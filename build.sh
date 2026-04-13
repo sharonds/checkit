@@ -12,16 +12,19 @@ echo '{"name":"react-devtools-core","version":"0.0.0","main":"index.js"}' \
 echo 'export default { connectToDevTools: () => {} };' \
   > node_modules/react-devtools-core/index.js
 
-bun build --compile --target=bun-darwin-arm64 src/index.tsx --outfile dist/article-checker-mac-arm64
+BUN="${BUN_BIN:-bun}"
+command -v "$BUN" &>/dev/null || BUN="$HOME/.bun/bin/bun"
+
+"$BUN" build --compile --target=bun-darwin-arm64 src/index.tsx --outfile dist/article-checker-mac-arm64
 echo "✓ dist/article-checker-mac-arm64  (Apple Silicon)"
 
-bun build --compile --target=bun-darwin-x64 src/index.tsx --outfile dist/article-checker-mac-x64
+"$BUN" build --compile --target=bun-darwin-x64 src/index.tsx --outfile dist/article-checker-mac-x64
 echo "✓ dist/article-checker-mac-x64    (Intel Mac)"
 
-bun build --compile --target=bun-linux-x64 src/index.tsx --outfile dist/article-checker-linux-x64
+"$BUN" build --compile --target=bun-linux-x64 src/index.tsx --outfile dist/article-checker-linux-x64
 echo "✓ dist/article-checker-linux-x64  (Linux)"
 
-bun build --compile --target=bun-windows-x64 src/index.tsx --outfile dist/article-checker-win-x64.exe
+"$BUN" build --compile --target=bun-windows-x64 src/index.tsx --outfile dist/article-checker-win-x64.exe
 echo "✓ dist/article-checker-win-x64.exe (Windows)"
 
 echo ""
