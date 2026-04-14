@@ -191,10 +191,23 @@ function Check({ docUrl }: { docUrl: string }) {
 
         if (config.parallelApiKey && result.matches.length > 0) {
           setPhase({ name: "enriching", result, words });
-          try {
-            const urlsToEnrich = result.matches.slice(0, 3).map((m) => m.url);
-            const pages = await extractPages(urlsToEnrich, config.parallelApiKey);
 
+          // Separate network errors (catch) from logic errors (let bubble up).
+          // Only extractPages can throw — findMatchingPassages is pure and safe.
+          let pages: Awaited<ReturnType<typeof extractPages>> = [];
+          try {
+            pages = await extractPages(
+              result.matches.slice(0, 3).map((m) => m.url),
+              config.parallelApiKey
+            );
+          } catch (err) {
+            enrichmentError =
+              err instanceof Error
+                ? `Passage enrichment failed: ${err.message}`
+                : "Passage enrichment unavailable — check your Parallel API key";
+          }
+
+          if (pages.length > 0) {
             matchedPassages = pages
               .filter((page) => !page.error)
               .map((page) => ({
@@ -203,13 +216,12 @@ function Check({ docUrl }: { docUrl: string }) {
               }))
               .filter((mp) => mp.passages.length > 0);
 
-            // Surface paywalled/unavailable pages as a soft warning
+            // Always warn about paywalled/unavailable sources — user needs to
+            // know the evidence is incomplete even if other sources succeeded.
             const failedCount = pages.filter((p) => p.error).length;
-            if (failedCount > 0 && matchedPassages.length === 0) {
+            if (failedCount > 0) {
               enrichmentError = `${failedCount} source${failedCount !== 1 ? "s" : ""} could not be fetched (may be paywalled)`;
             }
-          } catch {
-            enrichmentError = "Passage enrichment unavailable — check your Parallel API key";
           }
         }
 
