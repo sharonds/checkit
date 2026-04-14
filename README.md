@@ -242,7 +242,7 @@ article-checker/
 │   ├── index.tsx       # Entry point — routes to setup or check
 │   ├── setup.tsx       # First-run credential wizard (Ink UI)
 │   ├── check.tsx       # Plagiarism check UI + report (Ink UI)
-│   ├── gdoc.ts         # Fetches plain text from a Google Doc
+│   ├── gdoc.ts         # Input reader — Google Docs or local .md/.txt files
 │   ├── copyscape.ts    # Copyscape API client + XML response parser
 │   └── config.ts       # Reads/writes credentials to ~/.article-checker/
 ├── build.sh            # Compiles four platform binaries to dist/
