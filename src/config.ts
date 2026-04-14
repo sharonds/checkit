@@ -8,6 +8,7 @@ const CONFIG_FILE = join(CONFIG_DIR, "config.json");
 export interface Config {
   copyscapeUser: string;
   copyscapeKey: string;
+  parallelApiKey?: string;
 }
 
 export function configExists(): boolean {
