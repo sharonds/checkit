@@ -61,9 +61,13 @@ export class FactCheckSkill implements Skill {
 
     if (claims.length === 0) {
       return {
-        skillId: this.id, name: this.name, score: 70, verdict: "pass",
-        summary: "No specific verifiable claims found",
-        findings: [], costUsd: 0.001,
+        skillId: this.id, name: this.name, score: 60, verdict: "warn",
+        summary: "No specific verifiable claims detected",
+        findings: [{
+          severity: "warn",
+          text: "No checkable statistics, dates, or research findings found — adding cited facts (studies, percentages, named data) increases credibility and SEO authority",
+        }],
+        costUsd: 0.001,
       };
     }
 
