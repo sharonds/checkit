@@ -2,219 +2,62 @@ import React, { useState, useEffect } from "react";
 import { render, Box, Text, useApp } from "ink";
 import Spinner from "ink-spinner";
 import { fetchGoogleDoc, countWords } from "./gdoc.ts";
-import { checkCopyscape, type CopyscapeResult } from "./copyscape.ts";
-import { checkAiDetector, type AiDetectorResult } from "./aidetector.ts";
-import { extractPages } from "./parallel.ts";
-import { findMatchingPassages } from "./passage.ts";
+import { SkillRegistry } from "./skills/registry.ts";
+import { PlagiarismSkill } from "./skills/plagiarism.ts";
+import { AiDetectionSkill } from "./skills/aidetection.ts";
+import { SeoSkill } from "./skills/seo.ts";
+import { FactCheckSkill } from "./skills/factcheck.ts";
+import { ToneSkill } from "./skills/tone.ts";
+import { LegalSkill } from "./skills/legal.ts";
 import { readConfig } from "./config.ts";
-
-export interface MatchedPassage {
-  url: string;
-  passages: string[];
-}
+import { openDb, insertCheck } from "./db.ts";
+import { generateReport } from "./report.ts";
+import { writeFileSync } from "fs";
+import type { SkillResult } from "./skills/types.ts";
 
 type Phase =
   | { name: "reading" }
   | { name: "checking"; words: number }
-  | { name: "enriching"; result: CopyscapeResult; words: number }
-  | {
-      name: "done";
-      result: CopyscapeResult;
-      aiResult: AiDetectorResult | null;
-      words: number;
-      matchedPassages: MatchedPassage[];
-      /** Set when Parallel enrichment was attempted but failed */
-      enrichmentError?: string;
-      /** True when a Parallel key is configured (controls upsell hint) */
-      hasParallelKey: boolean;
-    }
+  | { name: "done"; results: SkillResult[]; words: number; reportPath: string; totalCostUsd: number }
   | { name: "error"; message: string };
 
 const DIVIDER = "─".repeat(48);
 
-function verdictLabel(result: CopyscapeResult): {
-  label: string;
-  color: string;
-} {
-  if (result.verdict === "rewrite")
-    return { label: "❌  REWRITE — similarity too high", color: "red" };
-  if (result.verdict === "review")
-    return { label: "⚠️   REVIEW — check flagged passages", color: "yellow" };
-  return { label: "✅  PUBLISH — no issues found", color: "green" };
-}
+const VERDICT_COLOR = { pass: "green", warn: "yellow", fail: "red" } as const;
+const VERDICT_ICON = { pass: "✅", warn: "⚠️ ", fail: "❌" };
 
-function aiVerdictLabel(ai: AiDetectorResult): { label: string; color: string } {
-  if (ai.verdict === "ai")
-    return { label: `🤖  AI-GENERATED — ${ai.aiPct}% probability`, color: "red" };
-  if (ai.verdict === "mixed")
-    return { label: `🔍  MIXED — ${ai.aiPct}% AI signals detected`, color: "yellow" };
-  return { label: `✍️   HUMAN — ${ai.aiPct}% AI probability (likely human)`, color: "green" };
-}
-
-function similarityColor(pct: number): string {
-  if (pct >= 26) return "red";
-  if (pct >= 16) return "yellow";
-  return "green";
-}
-
-function aiScoreColor(pct: number): string {
-  if (pct >= 70) return "red";
-  if (pct >= 30) return "yellow";
-  return "green";
-}
-
-function truncateUrl(url: string, max = 52): string {
-  try {
-    const { hostname, pathname } = new URL(url);
-    const short = hostname + pathname;
-    return short.length > max ? short.slice(0, max - 1) + "…" : short;
-  } catch {
-    return url.length > max ? url.slice(0, max - 1) + "…" : url;
-  }
-}
-
-function truncatePassage(text: string, max = 80): string {
-  return text.length > max ? text.slice(0, max - 1) + "…" : text;
-}
-
-/**
- * Normalise a URL for comparison by stripping scheme differences and trailing
- * slashes. Copyscape and Parallel may return the same page as http vs https
- * or with/without a trailing slash.
- */
-function normaliseUrl(url: string): string {
-  try {
-    const { hostname, pathname } = new URL(url);
-    return hostname + pathname.replace(/\/$/, "");
-  } catch {
-    return url;
-  }
-}
-
-function Report({
-  result,
-  aiResult,
-  words,
-  matchedPassages,
-  enrichmentError,
-  hasParallelKey,
-}: {
-  result: CopyscapeResult;
-  aiResult: AiDetectorResult | null;
+function Report({ results, words, reportPath, totalCostUsd }: {
+  results: SkillResult[];
   words: number;
-  matchedPassages: MatchedPassage[];
-  enrichmentError?: string;
-  hasParallelKey: boolean;
+  reportPath: string;
+  totalCostUsd: number;
 }) {
-  const { label, color } = verdictLabel(result);
+  const overallVerdict = results.some(r => r.verdict === "fail") ? "fail"
+    : results.some(r => r.verdict === "warn") ? "warn" : "pass";
+  const overallScore = results.length > 0
+    ? Math.round(results.reduce((s, r) => s + r.score, 0) / results.length)
+    : 0;
 
   return (
     <Box flexDirection="column" paddingY={1}>
       <Text dimColor>{DIVIDER}</Text>
-
-      <Box gap={2}>
-        <Text bold>Words checked:</Text>
-        <Text>{words.toLocaleString()}</Text>
-      </Box>
-
-      {/* ── Plagiarism section ── */}
-      <Box gap={2}>
-        <Text bold>Plagiarism:    </Text>
-        <Text color={similarityColor(result.similarityPct)} bold>
-          {result.similarityPct}%
-        </Text>
-        <Text dimColor>
-          ({result.matchedWords} / {result.totalWords} words matched)
-        </Text>
-      </Box>
-
-      {result.totalMatches > 0 && (
-        <Box flexDirection="column" marginTop={1}>
-          <Text bold>
-            Top matches ({result.totalMatches} source
-            {result.totalMatches !== 1 ? "s" : ""}):
-          </Text>
-          {result.matches.slice(0, 5).map((m, i) => {
-            const enrichment = matchedPassages.find(
-              (mp) => normaliseUrl(mp.url) === normaliseUrl(m.url)
-            );
-            const matchPct = Math.round(
-              (m.wordsMatched / result.totalWords) * 100
-            );
-            return (
-              <Box key={i} flexDirection="column" paddingLeft={2} marginTop={0}>
-                <Box gap={2}>
-                  <Text dimColor>{String(i + 1)}.</Text>
-                  <Text>{truncateUrl(m.url)}</Text>
-                  <Text color={similarityColor(matchPct)}>
-                    {m.wordsMatched} words
-                  </Text>
-                </Box>
-                {enrichment &&
-                  enrichment.passages.slice(0, 3).map((p, j) => (
-                    <Box key={j} paddingLeft={4}>
-                      <Text dimColor>↳ </Text>
-                      <Text color="yellow" italic>
-                        "{truncatePassage(p)}"
-                      </Text>
-                    </Box>
-                  ))}
-              </Box>
-            );
-          })}
-        </Box>
-      )}
-
-      {result.error && <Text color="yellow">⚠  {result.error}</Text>}
-      {enrichmentError && <Text dimColor>⚠  {enrichmentError}</Text>}
-
-      {/* ── AI Detection section ── */}
-      {aiResult && !aiResult.error && (
-        <Box flexDirection="column" marginTop={1}>
-          <Box gap={2}>
-            <Text bold>AI detection:  </Text>
-            <Text color={aiScoreColor(aiResult.aiPct)} bold>
-              {aiResult.aiPct}%
-            </Text>
-            <Text dimColor>probability AI-generated</Text>
+      <Box gap={2}><Text bold>Words checked:</Text><Text>{words.toLocaleString()}</Text></Box>
+      <Box gap={2}><Text bold>API cost:      </Text><Text dimColor>${totalCostUsd.toFixed(3)}</Text></Box>
+      <Box flexDirection="column" marginTop={1}>
+        {results.map((r) => (
+          <Box key={r.skillId} gap={2}>
+            <Text color={VERDICT_COLOR[r.verdict]}>{VERDICT_ICON[r.verdict]}</Text>
+            <Text bold>{r.name}:</Text>
+            <Text>{r.summary}</Text>
+            <Text dimColor>({r.score}/100)</Text>
           </Box>
-          {aiResult.topSegments.length > 0 && (
-            <Box flexDirection="column" paddingLeft={2} marginTop={0}>
-              <Text dimColor>Most AI-like passages:</Text>
-              {aiResult.topSegments.map((seg, i) => (
-                <Box key={i} paddingLeft={2}>
-                  <Text dimColor>↳ </Text>
-                  <Text color="red" italic>
-                    "{truncatePassage(seg.text, 90)}"
-                  </Text>
-                  <Text dimColor> ({Math.round(seg.aiScore * 100)}%)</Text>
-                </Box>
-              ))}
-            </Box>
-          )}
-        </Box>
-      )}
-      {aiResult?.error && <Text dimColor>⚠  {aiResult.error}</Text>}
-
-      {/* Upsell: only when there are matches and no parallel key configured */}
-      {result.totalMatches > 0 && !hasParallelKey && (
-        <Text dimColor>
-          Tip: run `article-checker --setup` to add a Parallel AI key for passage evidence
-        </Text>
-      )}
-
+        ))}
+      </Box>
       <Text dimColor>{DIVIDER}</Text>
-
-      <Text color={color as any} bold>
-        {label}
+      <Text color={VERDICT_COLOR[overallVerdict]} bold>
+        Overall: {overallScore}/100
       </Text>
-
-      {aiResult && !aiResult.error && (
-        <Text color={aiVerdictLabel(aiResult).color as any}>
-          {aiVerdictLabel(aiResult).label}
-        </Text>
-      )}
-
+      <Text dimColor>Report: {reportPath}</Text>
       <Text dimColor>{DIVIDER}</Text>
     </Box>
   );
@@ -233,68 +76,35 @@ function Check({ docUrl }: { docUrl: string }) {
 
         const config = readConfig();
 
-        // Run plagiarism check and AI detection in parallel
-        const [result, aiResult] = await Promise.all([
-          checkCopyscape(text, config),
-          checkAiDetector(text, config).catch((err): AiDetectorResult => ({
-            aiScore: 0,
-            aiPct: 0,
-            verdict: "human",
-            topSegments: [],
-            error: err instanceof Error ? err.message : "AI detection unavailable",
-          })),
-        ]);
+        const allSkills = [
+          config.skills.plagiarism && new PlagiarismSkill(),
+          config.skills.aiDetection && new AiDetectionSkill(),
+          config.skills.seo && new SeoSkill(),
+          config.skills.factCheck && new FactCheckSkill(),
+          config.skills.tone && new ToneSkill(),
+          config.skills.legal && new LegalSkill(),
+        ].filter(Boolean) as (PlagiarismSkill | AiDetectionSkill | SeoSkill | FactCheckSkill | ToneSkill | LegalSkill)[];
 
-        let matchedPassages: MatchedPassage[] = [];
-        let enrichmentError: string | undefined;
+        const registry = new SkillRegistry(allSkills);
+        const results = await registry.runAll(text, config);
+        const totalCostUsd = results.reduce((s, r) => s + r.costUsd, 0);
 
-        if (config.parallelApiKey && result.matches.length > 0) {
-          setPhase({ name: "enriching", result, words });
+        // Save to SQLite
+        const db = openDb();
+        insertCheck(db, { source: docUrl, wordCount: words, results, totalCostUsd });
+        db.close();
 
-          let pages: Awaited<ReturnType<typeof extractPages>> = [];
-          try {
-            pages = await extractPages(
-              result.matches.slice(0, 3).map((m) => m.url),
-              config.parallelApiKey
-            );
-          } catch (err) {
-            enrichmentError =
-              err instanceof Error
-                ? `Passage enrichment failed: ${err.message}`
-                : "Passage enrichment unavailable — check your Parallel API key";
-          }
+        // Write HTML report
+        const reportPath = "article-checker-report.html";
+        writeFileSync(reportPath, generateReport({ source: docUrl, wordCount: words, results, totalCostUsd }));
 
-          if (pages.length > 0) {
-            matchedPassages = pages
-              .filter((page) => !page.error)
-              .map((page) => ({
-                url: page.url,
-                passages: findMatchingPassages(text, page.content),
-              }))
-              .filter((mp) => mp.passages.length > 0);
+        // Open in browser (best-effort)
+        import("open").then(({ default: open }) => open(reportPath)).catch(() => {});
 
-            const failedCount = pages.filter((p) => p.error).length;
-            if (failedCount > 0) {
-              enrichmentError = `${failedCount} source${failedCount !== 1 ? "s" : ""} could not be fetched (may be paywalled)`;
-            }
-          }
-        }
-
-        setPhase({
-          name: "done",
-          result,
-          aiResult,
-          words,
-          matchedPassages,
-          enrichmentError,
-          hasParallelKey: !!config.parallelApiKey,
-        });
+        setPhase({ name: "done", results, words, reportPath, totalCostUsd });
         setTimeout(exit, 300);
       } catch (err) {
-        setPhase({
-          name: "error",
-          message: String(err).replace(/^Error:\s*/, ""),
-        });
+        setPhase({ name: "error", message: String(err).replace(/^Error:\s*/, "") });
         setTimeout(exit, 300);
       }
     }
@@ -314,19 +124,7 @@ function Check({ docUrl }: { docUrl: string }) {
     return (
       <Box gap={1} paddingY={1}>
         <Text color="cyan"><Spinner type="dots" /></Text>
-        <Text>Running plagiarism + AI checks ({phase.words.toLocaleString()} words)…</Text>
-      </Box>
-    );
-  }
-
-  if (phase.name === "enriching") {
-    return (
-      <Box gap={1} paddingY={1}>
-        <Text color="cyan"><Spinner type="dots" /></Text>
-        <Text>
-          Enriching {Math.min(phase.result.matches.length, 3)} source
-          {Math.min(phase.result.matches.length, 3) !== 1 ? "s" : ""} with passage evidence…
-        </Text>
+        <Text>Running {Object.values(readConfig().skills).filter(Boolean).length} checks ({phase.words.toLocaleString()} words)…</Text>
       </Box>
     );
   }
@@ -342,12 +140,10 @@ function Check({ docUrl }: { docUrl: string }) {
 
   return (
     <Report
-      result={phase.result}
-      aiResult={phase.aiResult}
+      results={phase.results}
       words={phase.words}
-      matchedPassages={phase.matchedPassages}
-      enrichmentError={phase.enrichmentError}
-      hasParallelKey={phase.hasParallelKey}
+      reportPath={phase.reportPath}
+      totalCostUsd={phase.totalCostUsd}
     />
   );
 }
