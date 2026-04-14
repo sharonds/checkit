@@ -71,17 +71,12 @@ function parseResponse(xml: string): CopyscapeResult {
   }
 
   const totalMatches = parseInt(
-    xml.match(/<totalcount>(\d+)<\/totalcount>/)?.[1] ?? "0"
+    xml.match(/<count>(\d+)<\/count>/)?.[1] ?? "0"
   );
+  // querywords = total words in the submitted text
   const totalWords = parseInt(
-    xml.match(/<allwordcount>(\d+)<\/allwordcount>/)?.[1] ?? "0"
+    xml.match(/<querywords>(\d+)<\/querywords>/)?.[1] ?? "0"
   );
-  const matchedWords = parseInt(
-    xml.match(/<querywordcount>(\d+)<\/querywordcount>/)?.[1] ?? "0"
-  );
-
-  const similarityPct =
-    totalWords > 0 ? Math.round((matchedWords / totalWords) * 100) : 0;
 
   const matches: CopyscapeMatch[] = [];
   const resultBlocks = [...xml.matchAll(/<result>([\s\S]*?)<\/result>/g)];
@@ -90,7 +85,7 @@ function parseResponse(xml: string): CopyscapeResult {
     const url = inner.match(/<url>(.*?)<\/url>/)?.[1]?.trim() ?? "";
     const title = inner.match(/<title>(.*?)<\/title>/)?.[1]?.trim() ?? url;
     const wordsMatched = parseInt(
-      inner.match(/<minwordsmatched>(\d+)<\/minwordsmatched>/)?.[1] ?? "0"
+      inner.match(/<wordsmatched>(\d+)<\/wordsmatched>/)?.[1] ?? "0"
     );
     const snippet = inner
       .match(/<htmlsnippet>([\s\S]*?)<\/htmlsnippet>/)?.[1]
@@ -99,6 +94,23 @@ function parseResponse(xml: string): CopyscapeResult {
 
     matches.push({ url, title, wordsMatched, snippet });
   }
+
+  // allwordsmatched / allpercentmatched: aggregate across all full comparisons (present when c>=3)
+  // Falls back to top result's per-result fields if aggregates are unavailable
+  const allWordsMatched = parseInt(
+    xml.match(/<allwordsmatched>(\d+)<\/allwordsmatched>/)?.[1] ?? "0"
+  );
+  const allPercentMatched = parseInt(
+    xml.match(/<allpercentmatched>(\d+)<\/allpercentmatched>/)?.[1] ?? "0"
+  );
+
+  const matchedWords = allWordsMatched > 0 ? allWordsMatched : (matches[0]?.wordsMatched ?? 0);
+  const similarityPct =
+    allPercentMatched > 0
+      ? allPercentMatched
+      : totalWords > 0
+      ? Math.round((matchedWords / totalWords) * 100)
+      : 0;
 
   const verdict =
     similarityPct >= THRESHOLD_REWRITE

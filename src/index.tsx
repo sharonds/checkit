@@ -8,7 +8,8 @@ const forceSetup = args.includes("--setup");
 const docUrl = args.find((a) => !a.startsWith("--"));
 
 async function main() {
-  const needsSetup = forceSetup || !configExists();
+  const hasEnvCredentials = !!(process.env.COPYSCAPE_USER && process.env.COPYSCAPE_KEY);
+  const needsSetup = forceSetup || (!configExists() && !hasEnvCredentials);
 
   if (needsSetup) {
     const existingConfig = configExists() ? readConfig() : undefined;
