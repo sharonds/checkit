@@ -509,6 +509,8 @@ export class MySkill implements Skill {
 
 Then add it to the `allSkills` array in `src/check.tsx` and wire the toggle in `src/config.ts`.
 
+See [docs/custom-skills.md](docs/custom-skills.md) for the full guide with examples.
+
 ---
 
 ## For Developers — Run from Source
