@@ -57,4 +57,16 @@ describe("fetchGoogleDoc with local file", () => {
       "File not found: /tmp/does-not-exist-xyz.md"
     );
   });
+
+  test("reads local .txt file and returns cleaned text", async () => {
+    const TMP_TXT = "/tmp/article-checker-test.txt";
+    writeFileSync(TMP_TXT, "Plain text article.\nSecond line.");
+    try {
+      const text = await fetchGoogleDoc(TMP_TXT);
+      expect(text).toContain("Plain text article.");
+      expect(text).toContain("Second line.");
+    } finally {
+      unlinkSync(TMP_TXT);
+    }
+  });
 });

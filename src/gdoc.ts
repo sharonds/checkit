@@ -5,7 +5,7 @@
  * Local files: pass an absolute path (/path/to/file.md), relative path
  * (./file.md, ../file.md), or any path ending in .md or .txt.
  */
-import { existsSync, readFileSync } from "fs";
+import { readFileSync } from "fs";
 
 /**
  * Returns true when the argument looks like a local file path rather than
@@ -43,11 +43,13 @@ export function extractDocId(url: string): string {
 export async function fetchGoogleDoc(input: string): Promise<string> {
   // Check if input is a local file path
   if (isLocalPath(input)) {
-    if (!existsSync(input)) {
-      throw new Error(`File not found: ${input}`);
+    try {
+      const raw = readFileSync(input, "utf-8");
+      return cleanText(raw);
+    } catch (err: any) {
+      if (err.code === "ENOENT") throw new Error(`File not found: ${input}`);
+      throw err;
     }
-    const raw = readFileSync(input, "utf-8");
-    return cleanText(raw);
   }
 
   // Otherwise, treat as Google Doc URL or ID
