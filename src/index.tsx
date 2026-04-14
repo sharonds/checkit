@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-import { configExists } from "./config.ts";
+import { configExists, readConfig } from "./config.ts";
 import { runSetup } from "./setup.tsx";
 import { runCheck } from "./check.tsx";
 
@@ -11,7 +11,8 @@ async function main() {
   const needsSetup = forceSetup || !configExists();
 
   if (needsSetup) {
-    await runSetup();
+    const existingConfig = configExists() ? readConfig() : undefined;
+    await runSetup(existingConfig);
     // If they only ran --setup with no URL, exit cleanly
     if (!docUrl) process.exit(0);
   }
