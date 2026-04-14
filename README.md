@@ -57,23 +57,23 @@ All enabled skills run in parallel. Adding more skills does not increase total t
 
 ### Example 1 — English article with Wikipedia passages
 
-An article about Vitamin D with 3 verbatim sentences from Wikipedia. Live output with all 3 skills:
+An article about Vitamin D with 3 verbatim sentences from Wikipedia. Live output with the default 3 skills:
 
 ```
 ────────────────────────────────────────────────
 Words checked:  310
 API cost:        $0.080
 
-❌  Plagiarism Check:  33% similarity — 18 sources matched  (34/100)
-✅  AI Detection:      10% AI probability — human           (90/100)
-❌  SEO:               Score 49/100 — 310 words, avg 17-word sentences  (49/100)
+❌   Plagiarism Check:  33% similarity — 18 sources matched  (34/100)
+✅   AI Detection:  10% AI probability — human  (90/100)
+❌   SEO:  310 words · avg 17-word sentences · readability: Medium  (49/100)
 ────────────────────────────────────────────────
 Overall: 58/100
 Report: article-checker-report.html
 ────────────────────────────────────────────────
 ```
 
-**HTML report:** Each skill gets a card with a score bar, verdict badge, and a list of findings with quoted passages.
+**HTML report:** Each skill gets a card with a circular score indicator, engine badge, and a list of findings. The report links to all engines used (Copyscape, Exa AI, MiniMax) and includes an MIT disclaimer.
 
 ---
 
@@ -349,9 +349,9 @@ Approximate cost per 800-word article check with all skills enabled:
 | Plagiarism | Copyscape | ~$0.09 |
 | AI Detection | Copyscape | ~$0.09 |
 | SEO | Offline | free |
-| Fact Check | Exa + Claude Haiku | ~$0.03 |
-| Tone of Voice | Claude Haiku | ~$0.002 |
-| Legal Risk | Claude Haiku | ~$0.002 |
+| Fact Check | Exa + MiniMax/Claude | ~$0.03 |
+| Tone of Voice | MiniMax/Claude | ~$0.002 |
+| Legal Risk | MiniMax/Claude | ~$0.002 |
 | Passage evidence (optional) | Parallel AI | ~$0.003 |
 | **Total — all skills** | | **~$0.22** |
 
