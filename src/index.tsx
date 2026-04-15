@@ -10,7 +10,9 @@ const forceSetup = args.includes("--setup");
 const showHistory = args.includes("--history");
 const batchIndex = args.indexOf("--batch");
 const batchDir = batchIndex !== -1 ? args[batchIndex + 1] : undefined;
-const docUrl = args.find((a) => !a.startsWith("--") && a !== batchDir);
+const outputIndex = args.indexOf("--output");
+const outputPath = outputIndex !== -1 ? args[outputIndex + 1] : undefined;
+const docUrl = args.find((a) => !a.startsWith("--") && a !== batchDir && a !== outputPath);
 
 async function main() {
   // --history: show recent checks from SQLite
@@ -62,14 +64,15 @@ async function main() {
     console.log('  article-checker ./my-article.md');
     console.log("");
     console.log("Options:");
-    console.log("  --batch <dir>  Check all .md/.txt files in a directory");
-    console.log("  --setup        Re-run the credential setup wizard");
-    console.log("  --history      Show the last 20 checks from history");
+    console.log("  --batch <dir>     Check all .md/.txt files in a directory");
+    console.log("  --output <path>   Export report to .md or .html file");
+    console.log("  --setup           Re-run the credential setup wizard");
+    console.log("  --history         Show the last 20 checks from history");
     console.log("");
     process.exit(0);
   }
 
-  await runCheck(docUrl);
+  await runCheck(docUrl, outputPath);
 }
 
 main().catch((err) => {
