@@ -11,6 +11,7 @@
 | Tone of Voice | MiniMax/Claude | ~$0.002 | Requires API keys + tone guide |
 | Legal Risk | MiniMax/Claude | ~$0.002 | Requires API keys |
 | Content Summary | MiniMax/Claude | ~$0.002 | Requires API keys |
+| Brief Matching | MiniMax/Claude | ~$0.002 | Requires API keys + brief context |
 
 All enabled skills run in parallel. Skills with missing API keys skip gracefully.
 
@@ -64,3 +65,53 @@ Additional dashboard features:
   - `--history` — Show recent checks from SQLite
   - `--setup` — Re-run credential wizard
 - **Custom skills** — Implement the `Skill` TypeScript interface to add your own validators. See [docs/custom-skills.md](custom-skills.md).
+
+---
+
+## Context System
+
+Contexts are reusable documents that provide additional instructions to skills during checks.
+
+| Context type | Used by | Purpose |
+|-------------|---------|---------|
+| `tone-guide` | Tone of Voice | Brand voice rules and writing standards |
+| `legal-policy` | Legal Risk | Company-specific legal requirements |
+| `brief` | Brief Matching | Content brief with topic, audience, and requirements |
+| `style-guide` | SEO + Tone | Writing style rules |
+| `custom` | Custom skills | Any additional context |
+
+Manage contexts via:
+- **CLI:** `article-checker context add/list/show/remove`
+- **Dashboard:** Contexts page (upload, edit, preview)
+- **API:** `POST/GET/DELETE /api/contexts`
+- **MCP:** `upload_context` and `list_contexts` tools
+
+Contexts are stored in the SQLite database (`~/.article-checker/history.db`) and automatically loaded by relevant skills before each check.
+
+---
+
+## MCP Server
+
+Article Checker includes an MCP (Model Context Protocol) server for AI agent integration with Claude Code, Cursor, and Windsurf.
+
+Start the server: `article-checker --mcp`
+
+| Tool | Description |
+|------|-------------|
+| `check_article` | Run quality checks on article text |
+| `list_reports` | Browse check history |
+| `get_report` | Get full report by ID |
+| `upload_context` | Save a tone guide, brief, or legal policy |
+| `list_contexts` | View saved context documents |
+| `get_skills` | See which skills are enabled |
+| `toggle_skill` | Enable/disable a skill |
+
+See [AGENTS.md](../AGENTS.md) for full integration instructions.
+
+---
+
+## CI Mode and JSON Output
+
+- **`--ci`** — Exits with code 1 if any skill returns a `fail` verdict. Designed for CI/CD pipelines and automated quality gates.
+- **`--json`** — Outputs structured JSON instead of the Ink terminal UI. Ideal for scripts, agents, and piping results to other tools.
+- **`runCheckHeadless()`** — Programmatic API for running checks without the terminal UI. Used by the MCP server, CI mode, and dashboard API.

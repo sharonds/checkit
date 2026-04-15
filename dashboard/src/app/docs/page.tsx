@@ -47,7 +47,9 @@ function GettingStarted() {
           Article Checker is a CLI tool and dashboard that runs multiple quality
           checks on your articles: plagiarism detection, AI content detection,
           SEO analysis, fact checking, tone-of-voice compliance, legal risk
-          scanning, and content summarization.
+          scanning, brief matching, and content summarization. It supports
+          context management (tone guides, briefs, legal policies) and integrates
+          with AI agents via an MCP server.
         </p>
         <p>
           Each check produces a score from 0 to 100 and a verdict of pass, warn,
@@ -126,19 +128,25 @@ function SkillsReference() {
       name: "Tone of Voice",
       engine: "MiniMax",
       cost: "~$0.01",
-      desc: "Evaluates whether the article matches your brand voice guidelines. Flags sections that deviate in formality, jargon level, or emotional tone from your configured style.",
+      desc: "Evaluates whether the article matches your brand voice guidelines. Automatically loads a tone-guide context if one has been uploaded via the Contexts page or CLI.",
     },
     {
       name: "Legal Risk",
       engine: "MiniMax",
       cost: "~$0.01",
-      desc: "Scans for potential legal issues: unsubstantiated health claims, defamatory statements, false promises, missing disclaimers, and copyright concerns. Provides specific fix suggestions.",
+      desc: "Scans for potential legal issues: unsubstantiated health claims, defamatory statements, false promises, missing disclaimers, and copyright concerns. Automatically loads a legal-policy context if available.",
     },
     {
       name: "Content Summary",
       engine: "MiniMax",
       cost: "~$0.01",
       desc: "Generates a structured summary: main topic, core argument, target audience, detected tone, and key takeaways. Useful for editorial review and metadata generation.",
+    },
+    {
+      name: "Brief Matching",
+      engine: "MiniMax",
+      cost: "~$0.01",
+      desc: "Checks the article against an uploaded content brief. Verifies coverage of required topics, audience alignment, and tone match. Requires a brief context uploaded via Contexts page or CLI.",
     },
   ];
 
@@ -324,6 +332,57 @@ function CliReference() {
       <CodeBlock>{`bun run article-checker --ui`}</CodeBlock>
       <Prose>
         <p>Start the web dashboard on localhost:3000.</p>
+      </Prose>
+
+      <SubHeading>CI mode</SubHeading>
+      <CodeBlock>{`bun run article-checker --ci ./article.md`}</CodeBlock>
+      <Prose>
+        <p>
+          Run checks and exit with code 1 if any skill returns a fail verdict.
+          Designed for CI/CD pipelines and automated quality gates.
+        </p>
+      </Prose>
+
+      <SubHeading>JSON output</SubHeading>
+      <CodeBlock>{`bun run article-checker --json ./article.md`}</CodeBlock>
+      <Prose>
+        <p>
+          Output structured JSON instead of the terminal UI. Useful for scripts,
+          agents, and piping results to other tools.
+        </p>
+      </Prose>
+
+      <SubHeading>MCP server</SubHeading>
+      <CodeBlock>{`bun run article-checker --mcp`}</CodeBlock>
+      <Prose>
+        <p>
+          Start the MCP server for AI agent integration with Claude Code, Cursor,
+          or Windsurf. Exposes 7 tools: check_article, list_reports, get_report,
+          upload_context, list_contexts, get_skills, toggle_skill.
+        </p>
+      </Prose>
+
+      <SubHeading>Context management</SubHeading>
+      <CodeBlock>{`# Upload a tone guide
+bun run article-checker context add tone-guide ./brand-voice.md
+
+# Upload a content brief
+bun run article-checker context add brief ./campaign-brief.md
+
+# List all contexts
+bun run article-checker context list
+
+# View a context
+bun run article-checker context show tone-guide
+
+# Remove a context
+bun run article-checker context remove brief`}</CodeBlock>
+      <Prose>
+        <p>
+          Manage context documents (tone guides, briefs, legal policies) that
+          skills use during checks. Contexts can also be managed from the
+          Contexts page in the dashboard.
+        </p>
       </Prose>
     </div>
   );

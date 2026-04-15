@@ -291,6 +291,120 @@ curl -X POST http://localhost:3000/api/skills \
 
 ---
 
+## POST /api/contexts
+
+Create or update a context document (tone guide, brief, legal policy, etc.).
+
+**Request body:**
+
+```json
+{
+  "type": "tone-guide",
+  "name": "Brand Voice",
+  "content": "Write in second person. Be warm and conversational..."
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | yes | Context type: `tone-guide`, `brief`, `legal-policy`, `style-guide`, or `custom`. |
+| `name` | string | no | Display name for the context. |
+| `content` | string | yes | The context document content (Markdown or plain text). |
+
+**Response (200):**
+
+```json
+{ "ok": true }
+```
+
+**Example:**
+
+```bash
+curl -X POST http://localhost:3000/api/contexts \
+  -H "Content-Type: application/json" \
+  -d '{"type": "tone-guide", "name": "Brand Voice", "content": "Write in second person..."}'
+```
+
+---
+
+## GET /api/contexts
+
+List all stored contexts.
+
+**Response (200):**
+
+```json
+[
+  {
+    "type": "tone-guide",
+    "name": "Brand Voice",
+    "content": "Write in second person...",
+    "updatedAt": "2026-04-15T10:30:00Z"
+  }
+]
+```
+
+**Example:**
+
+```bash
+curl http://localhost:3000/api/contexts
+```
+
+---
+
+## GET /api/contexts/:type
+
+Get a single context by type.
+
+**Response (200):**
+
+```json
+{
+  "type": "tone-guide",
+  "name": "Brand Voice",
+  "content": "Write in second person...",
+  "updatedAt": "2026-04-15T10:30:00Z"
+}
+```
+
+**Response (404):**
+
+```json
+{ "error": "Not found" }
+```
+
+**Example:**
+
+```bash
+curl http://localhost:3000/api/contexts/tone-guide
+```
+
+---
+
+## DELETE /api/contexts/:type
+
+Remove a context document.
+
+**Response (200):**
+
+```json
+{ "ok": true }
+```
+
+**Response (404):**
+
+```json
+{ "error": "Not found" }
+```
+
+**Example:**
+
+```bash
+curl -X DELETE http://localhost:3000/api/contexts/brief
+```
+
+---
+
 ## Error Responses
 
 All endpoints return errors in this format:

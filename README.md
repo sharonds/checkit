@@ -1,6 +1,6 @@
 # Article Checker
 
-> AI content quality gate for marketing teams. CLI + web dashboard that returns plagiarism, AI-detection, SEO score, fact-check, tone-of-voice, legal risk, and content summary — before you publish. Supports batch checking, tags, search, report export, and a local web dashboard for browsing results and managing skills.
+> AI content quality gate for marketing teams. CLI + web dashboard that returns plagiarism, AI-detection, SEO score, fact-check, tone-of-voice, legal risk, brief matching, and content summary — before you publish. Supports context management (tone guides, briefs, legal policies), MCP server for AI agent integration, batch checking, CI mode, JSON output, tags, search, report export, and a local web dashboard for browsing results and managing skills.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Built with Bun](https://img.shields.io/badge/Built%20with-Bun-fbf0df?logo=bun)](https://bun.sh)
@@ -29,6 +29,7 @@ Each check is a **skill** you can enable or disable. Results appear in the termi
 | **Tone of Voice** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key + tone guide file |
 | **Legal Risk** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key |
 | **Content Summary** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key |
+| **Brief Matching** | MiniMax/Claude | ~$0.002 | ❌ requires LLM key + brief context |
 
 All enabled skills run in parallel. Adding more skills does not increase total time significantly.
 
@@ -60,6 +61,11 @@ All enabled skills run in parallel. Adding more skills does not increase total t
 | **`--output` export** | `--output report.md` or `--output report.html` — save the report to a file. |
 | **Tags + search** | Attach tags to checks, search across all history by text or tag via dashboard or API. |
 | **JSON API** | RESTful API at `localhost:3000/api` for running checks, managing tags, toggling skills. See [docs/api.md](docs/api.md). |
+| **Context system** | Upload tone guides, content briefs, legal policies, and style guides. Contexts are stored in SQLite and automatically loaded by relevant skills. Manage via CLI (`article-checker context add/list/show/remove`) or the dashboard Contexts page. |
+| **MCP server** | 7 tools for AI agent integration (Claude Code, Cursor, Windsurf). Start with `article-checker --mcp`. Tools: `check_article`, `list_reports`, `get_report`, `upload_context`, `list_contexts`, `get_skills`, `toggle_skill`. |
+| **CI mode (`--ci`)** | Exits with code 1 if any skill returns a `fail` verdict. Designed for CI/CD pipelines. |
+| **JSON output (`--json`)** | Outputs structured JSON instead of the Ink terminal UI. Ideal for scripts, agents, and piping. |
+| **Brief matching** | Checks article against an uploaded content brief. Verifies coverage of required topics, audience alignment, and tone match. Requires a `brief` context. |
 | **Cross-platform** | Mac (Apple Silicon + Intel), Linux, Windows. |
 
 ---
@@ -321,6 +327,25 @@ article-checker --setup
 article-checker --history
 ```
 
+```bash
+# Manage contexts (tone guide, brief, legal policy)
+article-checker context add tone-guide ./brand-voice.md
+article-checker context add brief ./campaign-brief.md
+article-checker context add legal-policy ./legal-requirements.md
+article-checker context list
+article-checker context show tone-guide
+article-checker context remove brief
+
+# CI mode — exit 1 on fail (for CI/CD pipelines)
+article-checker --ci ./my-article.md
+
+# JSON output — structured result for scripts and agents
+article-checker --json ./my-article.md
+
+# MCP server — for Claude Code / Cursor / Windsurf
+article-checker --mcp
+```
+
 **Google Docs:** Share → Change to "Anyone with the link" → Viewer → Done.
 
 ---
@@ -411,6 +436,7 @@ Approximate cost per 800-word article check with all skills enabled:
 | Tone of Voice | MiniMax/Claude | ~$0.002 |
 | Legal Risk | MiniMax/Claude | ~$0.002 |
 | Content Summary | MiniMax/Claude | ~$0.002 |
+| Brief Matching | MiniMax/Claude | ~$0.002 |
 | Passage evidence (optional) | Parallel AI | ~$0.003 |
 | **Total — all skills** | | **~$0.22** |
 
@@ -480,6 +506,14 @@ Set the path: `TONE_GUIDE_FILE=/path/to/brand-voice.md`
 - Local web dashboard (`article-checker --ui`) with overview, reports, check, skills, settings, docs pages
 - Tags, search, and JSON API
 - Dark mode
+- Context system — tone guides, briefs, legal policies stored in SQLite, managed via CLI or dashboard
+- MCP server — 7 tools for AI agent integration (Claude Code, Cursor, Windsurf)
+- Brief Matching skill — checks article against uploaded content brief
+- CI mode (`--ci`) — exit 1 on fail for CI/CD pipelines
+- JSON output (`--json`) — structured output for scripts and agents
+- Headless check engine (`runCheckHeadless()`) for MCP, CI, and dashboard API
+- AGENTS.md — full agent integration guide
+- Dashboard Contexts page — upload, edit, preview contexts in browser
 
 ### Medium-term
 
@@ -533,6 +567,7 @@ article-checker/
 │   ├── parallel.ts           # Parallel Extract API client
 │   ├── passage.ts            # Passage matcher — finds copied sentences
 │   ├── batch.ts              # Batch checking — runs all .md/.txt files in a directory
+│   ├── checker.ts            # Headless check engine — runCheckHeadless() for MCP/CI/API
 │   ├── thresholds.ts         # Configurable pass/warn/fail score cutoffs
 │   └── skills/
 │       ├── types.ts          # Skill interface, SkillResult, Finding types
@@ -544,6 +579,7 @@ article-checker/
 │       ├── tone.ts           # ToneSkill — Claude brand voice validator
 │       ├── legal.ts          # LegalSkill — Claude legal risk scanner
 │       ├── summary.ts        # SummarySkill — topic, argument, audience, tone analysis
+│       ├── brief.ts          # BriefSkill — checks article against content brief
 │       └── llm.ts            # Shared LLM client factory for MiniMax/Claude
 ├── dashboard/                # Local web dashboard (Next.js)
 │   ├── src/app/              # Pages: overview, reports, check, skills, settings, docs
