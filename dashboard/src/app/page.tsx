@@ -12,9 +12,9 @@ function getVerdict(score: number): "pass" | "warn" | "fail" {
 }
 
 function scoreColorClass(score: number): string {
-  if (score >= 75) return "text-green-600 dark:text-green-400";
-  if (score >= 50) return "text-amber-600 dark:text-amber-400";
-  return "text-red-600 dark:text-red-400";
+  if (score >= 75) return "text-score-pass";
+  if (score >= 50) return "text-score-warn";
+  return "text-score-fail";
 }
 
 function getDayLabel(date: Date): string {
@@ -173,7 +173,7 @@ export default function DashboardPage() {
               <div className="flex h-3 w-full overflow-hidden rounded-full">
                 {verdictCounts.pass > 0 && (
                   <div
-                    className="bg-green-600"
+                    className="bg-score-pass"
                     style={{
                       width: `${(verdictCounts.pass / verdictTotal) * 100}%`,
                     }}
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                 )}
                 {verdictCounts.warn > 0 && (
                   <div
-                    className="bg-amber-600"
+                    className="bg-score-warn"
                     style={{
                       width: `${(verdictCounts.warn / verdictTotal) * 100}%`,
                     }}
@@ -189,7 +189,7 @@ export default function DashboardPage() {
                 )}
                 {verdictCounts.fail > 0 && (
                   <div
-                    className="bg-red-600"
+                    className="bg-score-fail"
                     style={{
                       width: `${(verdictCounts.fail / verdictTotal) * 100}%`,
                     }}
@@ -198,15 +198,15 @@ export default function DashboardPage() {
               </div>
             )}
             <p className="text-xs text-muted-foreground">
-              <span className="text-green-600 dark:text-green-400">
+              <span className="text-score-pass">
                 {verdictCounts.pass} passed
               </span>
               {" \u00b7 "}
-              <span className="text-amber-600 dark:text-amber-400">
+              <span className="text-score-warn">
                 {verdictCounts.warn} warnings
               </span>
               {" \u00b7 "}
-              <span className="text-red-600 dark:text-red-400">
+              <span className="text-score-fail">
                 {verdictCounts.fail} failed
               </span>
             </p>
@@ -247,7 +247,7 @@ export default function DashboardPage() {
 
         {/* Recent checks table */}
         <div>
-          <h2 className="mb-3 text-sm font-medium text-muted-foreground">
+          <h2 className="mb-3 text-lg font-semibold">
             Recent Checks
           </h2>
           <CheckTable checks={checkRows} />

@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 
 const VERDICT_STYLES = {
-  pass: "bg-green-600 text-white",
-  warn: "bg-amber-600 text-white",
-  fail: "bg-red-600 text-white",
+  pass: "bg-score-pass text-white",
+  warn: "bg-score-warn text-white",
+  fail: "bg-score-fail text-white",
 } as const;
 
 interface VerdictBadgeProps {

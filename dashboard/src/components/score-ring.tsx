@@ -1,9 +1,9 @@
 "use client";
 
-const VERDICT_COLORS = {
-  pass: "#16a34a",
-  warn: "#d97706",
-  fail: "#dc2626",
+const VERDICT_CSS_VARS = {
+  pass: "var(--color-score-pass)",
+  warn: "var(--color-score-warn)",
+  fail: "var(--color-score-fail)",
 } as const;
 
 interface ScoreRingProps {
@@ -17,7 +17,7 @@ export function ScoreRing({ score, verdict, size = 80 }: ScoreRingProps) {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-  const color = VERDICT_COLORS[verdict];
+  const color = VERDICT_CSS_VARS[verdict];
 
   return (
     <svg
