@@ -1,0 +1,132 @@
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import Database from "better-sqlite3";
+import { sqliteTable, integer, text, real } from "drizzle-orm/sqlite-core";
+import { desc, eq, sql } from "drizzle-orm";
+import { homedir } from "os";
+import { join } from "path";
+
+const DB_PATH = join(homedir(), ".article-checker", "history.db");
+
+// Schema matching CLI's bun:sqlite schema
+export const checks = sqliteTable("checks", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  source: text("source").notNull(),
+  wordCount: integer("word_count").notNull().default(0),
+  resultsJson: text("results_json").notNull().default("[]"),
+  totalCost: real("total_cost").notNull().default(0),
+  createdAt: text("created_at").notNull(),
+});
+
+export const tags = sqliteTable("tags", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull().unique(),
+});
+
+export const checkTags = sqliteTable("check_tags", {
+  checkId: integer("check_id").notNull(),
+  tagId: integer("tag_id").notNull(),
+});
+
+export type Check = typeof checks.$inferSelect;
+
+// Singleton connection
+let _db: ReturnType<typeof drizzle> | null = null;
+let _sqlite: InstanceType<typeof Database> | null = null;
+
+export function getDb() {
+  if (!_db) {
+    const dbPath = process.env.ARTICLE_CHECKER_DB ?? DB_PATH;
+    _sqlite = new Database(dbPath);
+    // Create tags tables if they don't exist (the CLI may not have created them)
+    _sqlite.pragma("journal_mode = WAL");
+    _sqlite.prepare(
+      `CREATE TABLE IF NOT EXISTS tags (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE)`
+    ).run();
+    _sqlite.prepare(
+      `CREATE TABLE IF NOT EXISTS check_tags (check_id INTEGER NOT NULL, tag_id INTEGER NOT NULL, PRIMARY KEY (check_id, tag_id))`
+    ).run();
+    _db = drizzle(_sqlite);
+  }
+  return _db;
+}
+
+export function closeDb() {
+  _sqlite?.close();
+  _db = null;
+  _sqlite = null;
+}
+
+export function getRecentChecks(limit: number) {
+  const db = getDb();
+  return db.select().from(checks).orderBy(desc(checks.id)).limit(limit).all();
+}
+
+export function getCheckById(id: number) {
+  const db = getDb();
+  const rows = db
+    .select()
+    .from(checks)
+    .where(eq(checks.id, id))
+    .limit(1)
+    .all();
+  return rows[0] ?? null;
+}
+
+export function getTotalStats() {
+  const db = getDb();
+  const result = db.all(
+    sql`SELECT COUNT(*) as total_checks, COALESCE(SUM(total_cost), 0) as total_cost FROM checks`
+  );
+  const row = result[0] as
+    | { total_checks: number; total_cost: number }
+    | undefined;
+  return {
+    totalChecks: row?.total_checks ?? 0,
+    totalCost: row?.total_cost ?? 0,
+  };
+}
+
+export function addTagsToCheck(checkId: number, tagNames: string[]) {
+  const db = getDb();
+  for (const name of tagNames) {
+    db.run(sql`INSERT OR IGNORE INTO tags (name) VALUES (${name})`);
+    const tag = db
+      .select()
+      .from(tags)
+      .where(eq(tags.name, name))
+      .limit(1)
+      .all()[0];
+    if (tag) {
+      db.run(
+        sql`INSERT OR IGNORE INTO check_tags (check_id, tag_id) VALUES (${checkId}, ${tag.id})`
+      );
+    }
+  }
+}
+
+export function getTagsForCheck(checkId: number): string[] {
+  const db = getDb();
+  const rows = db.all(
+    sql`SELECT t.name FROM tags t JOIN check_tags ct ON t.id = ct.tag_id WHERE ct.check_id = ${checkId} ORDER BY t.name`
+  );
+  return (rows as Array<{ name: string }>).map((r) => r.name);
+}
+
+export function getAllTags(): Array<{ name: string; count: number }> {
+  const db = getDb();
+  return db.all(
+    sql`SELECT t.name, COUNT(ct.check_id) as count FROM tags t JOIN check_tags ct ON t.id = ct.tag_id GROUP BY t.id ORDER BY count DESC`
+  ) as Array<{ name: string; count: number }>;
+}
+
+export function searchChecks(query: string, tag?: string) {
+  const db = getDb();
+  if (tag) {
+    return db.all(
+      sql`SELECT c.* FROM checks c JOIN check_tags ct ON c.id = ct.check_id JOIN tags t ON ct.tag_id = t.id WHERE t.name = ${tag} AND c.source LIKE ${"%" + query + "%"} ORDER BY c.id DESC LIMIT 50`
+    ) as Check[];
+  }
+  return db.all(
+    sql`SELECT * FROM checks WHERE source LIKE ${"%" + query + "%"} ORDER BY id DESC LIMIT 50`
+  ) as Check[];
+}
