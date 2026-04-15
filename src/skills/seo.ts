@@ -35,6 +35,8 @@ export function computeSeoMetrics(text: string): SeoMetrics {
     avgSentenceWords <= 25 ? 80 :
     avgSentenceWords <= 30 ? 60 : 40;
 
+  // Simplified Flesch-Kincaid: assumes ~1.5 syllables/word (average for English)
+  // For accurate scores, a syllable counter would be needed (e.g., hyphenation dictionary)
   const fleschKincaid = Math.round(206.835 - 1.015 * avgSentenceWords - 84.6 * 1.5);
 
   return { wordCount, wordCountScore, hasH1, hasH2, avgSentenceWords, sentenceLengthScore, fleschKincaid };
@@ -50,7 +52,8 @@ export function extractTopKeyword(text: string): string {
   const lang = detectLanguage(text);
 
   if (lang === "he") {
-    const words = text.split(/\s+/).filter((w) => w.length > 2 && !STOP_WORDS_HE.has(w));
+    const cleaned = text.replace(/[^\w\s\u0590-\u05FF]/g, " ");
+    const words = cleaned.split(/\s+/).filter((w) => w.length > 2 && !STOP_WORDS_HE.has(w));
     const freq: Record<string, number> = {};
     for (const w of words) freq[w] = (freq[w] ?? 0) + 1;
     const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]);

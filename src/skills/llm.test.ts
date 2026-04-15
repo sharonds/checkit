@@ -53,7 +53,7 @@ describe("getLlmClient", () => {
     expect(typeof c!.call).toBe("function");
   });
 
-  it("returns null when explicit provider has no matching key", () => {
+  it("falls back to auto-detect when explicit provider key is missing", () => {
     const c = getLlmClient({ ...baseConfig, minimaxApiKey: "mk", llmProvider: "openrouter" });
     // Falls through explicit check (no openrouter key), then auto-detects minimax
     expect(c!.provider).toBe("minimax");

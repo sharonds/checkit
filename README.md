@@ -494,7 +494,7 @@ Scores >= `pass` result in a PASS verdict, scores >= `warn` result in WARN, and 
 
 ### Multi-Language Support
 
-Article Checker auto-detects article language (English, Hebrew, Arabic, Chinese, Japanese, Korean). SEO keyword extraction uses language-specific stop words. The detected language appears in the SEO summary.
+Article Checker auto-detects article language (English, Hebrew, Arabic, Chinese, Japanese, Korean). SEO keyword extraction uses language-specific stop words for Hebrew and English (more languages planned). The detected language appears in the SEO summary.
 
 ### Tone of Voice Guide
 
@@ -534,7 +534,7 @@ Set the path: `TONE_GUIDE_FILE=/path/to/brand-voice.md`
 - OpenRouter integration — one API key for 200+ models, configurable via `LLM_PROVIDER` env var
 - Multi-language support — auto-detects English, Hebrew, Arabic, Chinese, Japanese, Korean with language-specific SEO
 - Tone improvement suggestions — rewrite suggestions in brand voice alongside violation flags
-- Citation recommendations — verified fact-check claims include markdown citation links to sources
+- Citation recommendations — verified fact-check claims include source domain citations
 
 ### Medium-term
 

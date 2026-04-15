@@ -17,6 +17,15 @@ describe("detectLanguage", () => {
   it("detects by character majority", () => {
     expect(detectLanguage("Hello שלום world כי רוב הטקסט בעברית")).toBe("he");
   });
+  it("detects Chinese", () => {
+    expect(detectLanguage("维生素D是一组脂溶性化合物")).toBe("zh");
+  });
+  it("detects Japanese (hiragana)", () => {
+    expect(detectLanguage("ビタミンDは脂溶性のビタミンです")).toBe("ja");
+  });
+  it("detects Korean", () => {
+    expect(detectLanguage("비타민D는 지용성 비타민입니다")).toBe("ko");
+  });
 });
 
 describe("isRtl", () => {

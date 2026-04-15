@@ -48,13 +48,15 @@ function createOpenAICaller(client: OpenAI, model: string): LlmClient["call"] {
       max_tokens: maxTokens,
       messages: [{ role: "user", content: prompt }],
     });
-    return response.choices[0]?.message?.content?.trim() ?? "";
+    const content = response.choices[0]?.message?.content;
+    if (!content) throw new Error("LLM returned empty response");
+    return content.trim();
   };
 }
 
 /**
  * Returns a configured LLM client.
- * Explicit `llmProvider` in config takes priority, then auto-detect by key presence.
+ * Explicit `llmProvider` in config is preferred when its key is set; falls back to auto-detect if key missing.
  * Returns null when no usable key is configured.
  */
 export function getLlmClient(config: Config): LlmClient | null {

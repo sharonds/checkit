@@ -29,7 +29,7 @@ Set the provider via `LLM_PROVIDER` env var or the Settings page in the dashboar
 
 ### Multi-Language Support
 
-Article Checker auto-detects article language via Unicode script analysis (no external dependencies). Supported languages: English, Hebrew, Arabic, Chinese, Japanese, Korean. SEO keyword extraction uses language-specific stop words. The detected language appears in the SEO summary.
+Article Checker auto-detects article language via Unicode script analysis (no external dependencies). Supported languages: English, Hebrew, Arabic, Chinese, Japanese, Korean. SEO keyword extraction uses language-specific stop words for Hebrew and English (more languages planned). The detected language appears in the SEO summary.
 
 ### Tone Rewrite Suggestions
 
@@ -37,7 +37,7 @@ When tone violations are found, each finding includes a suggested rewrite of the
 
 ### Citation Recommendations
 
-Verified fact-check claims include markdown citation links to the source URLs used as evidence. This helps writers add proper citations to their articles.
+Verified fact-check claims include source domain citations from the URLs used as evidence. This helps writers add proper citations to their articles.
 
 ---
 

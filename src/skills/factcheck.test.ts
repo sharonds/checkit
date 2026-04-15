@@ -34,14 +34,12 @@ describe("claimConfidence", () => {
 });
 
 describe("formatCitation", () => {
-  test("formats URL as markdown link with domain", () => {
+  test("formats URL as plain text domain", () => {
     const cite = formatCitation("https://www.cdc.gov/diabetes/basics/facts.html");
-    expect(cite).toContain("cdc.gov");
-    expect(cite).toContain("[");
-    expect(cite).toContain("](");
+    expect(cite).toBe("cdc.gov");
   });
   test("strips www prefix", () => {
-    expect(formatCitation("https://www.example.com/page")).toContain("[example.com]");
+    expect(formatCitation("https://www.example.com/page")).toBe("example.com");
   });
   test("returns raw URL on parse failure", () => {
     expect(formatCitation("not-a-url")).toBe("not-a-url");

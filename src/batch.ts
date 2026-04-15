@@ -35,71 +35,73 @@ export async function runBatch(dir: string): Promise<BatchResult[]> {
   }
 
   const config = readConfig();
-  const db = openDb();
-  const contexts = loadAllContexts(db);
-  const configWithContexts = { ...config, contexts };
-
-  // Use shared buildSkills() from checker.ts (single source of truth)
-  const registry = new SkillRegistry(buildSkills(configWithContexts));
   const results: BatchResult[] = [];
+  const db = openDb();
+  try {
+    const contexts = loadAllContexts(db);
+    const configWithContexts = { ...config, contexts };
 
-  console.log(`\nChecking ${files.length} articles in ${dir}...\n`);
+    // Use shared buildSkills() from checker.ts (single source of truth)
+    const registry = new SkillRegistry(buildSkills(configWithContexts));
 
-  for (const file of files) {
-    const text = readFileSync(file, "utf-8");
-    const wordCount = text.split(/\s+/).filter(Boolean).length;
+    console.log(`\nChecking ${files.length} articles in ${dir}...\n`);
 
-    console.log(`  Checking ${basename(file)}...`);
+    for (const file of files) {
+      const text = readFileSync(file, "utf-8");
+      const wordCount = text.split(/\s+/).filter(Boolean).length;
 
-    const rawSkillResults = await registry.runAll(text, configWithContexts);
-    const skillResults = rawSkillResults.map((r) => ({
-      ...r,
-      verdict: applyThreshold(r.score, r.verdict, configWithContexts.thresholds?.[r.skillId]),
-    }));
-    const totalCostUsd = skillResults.reduce((sum, r) => sum + r.costUsd, 0);
-    const overallScore =
-      skillResults.length > 0
-        ? Math.round(
-            skillResults.reduce((s, r) => s + r.score, 0) / skillResults.length
-          )
-        : 0;
-    const overallVerdict = skillResults.some((r) => r.verdict === "fail")
-      ? "fail"
-      : skillResults.some((r) => r.verdict === "warn")
-        ? "warn"
-        : "pass";
+      console.log(`  Checking ${basename(file)}...`);
 
-    // Save to DB
-    insertCheck(db, {
-      source: file,
-      wordCount,
-      results: skillResults,
-      totalCostUsd,
-    });
+      const rawSkillResults = await registry.runAll(text, configWithContexts);
+      const skillResults = rawSkillResults.map((r) => ({
+        ...r,
+        verdict: applyThreshold(r.score, r.verdict, configWithContexts.thresholds?.[r.skillId]),
+      }));
+      const totalCostUsd = skillResults.reduce((sum, r) => sum + r.costUsd, 0);
+      const overallScore =
+        skillResults.length > 0
+          ? Math.round(
+              skillResults.reduce((s, r) => s + r.score, 0) / skillResults.length
+            )
+          : 0;
+      const overallVerdict = skillResults.some((r) => r.verdict === "fail")
+        ? "fail"
+        : skillResults.some((r) => r.verdict === "warn")
+          ? "warn"
+          : "pass";
 
-    // Write individual HTML report
-    const reportPath = `article-checker-report-${basename(file, extname(file))}.html`;
-    writeFileSync(
-      reportPath,
-      generateReport({
+      // Save to DB
+      insertCheck(db, {
         source: file,
         wordCount,
         results: skillResults,
         totalCostUsd,
-        createdAt: new Date().toISOString(),
-      })
-    );
+      });
 
-    results.push({
-      file: basename(file),
-      score: overallScore,
-      verdict: overallVerdict,
-      costUsd: totalCostUsd,
-      reportPath,
-    });
+      // Write individual HTML report
+      const reportPath = `article-checker-report-${basename(file, extname(file))}.html`;
+      writeFileSync(
+        reportPath,
+        generateReport({
+          source: file,
+          wordCount,
+          results: skillResults,
+          totalCostUsd,
+          createdAt: new Date().toISOString(),
+        })
+      );
+
+      results.push({
+        file: basename(file),
+        score: overallScore,
+        verdict: overallVerdict,
+        costUsd: totalCostUsd,
+        reportPath,
+      });
+    }
+  } finally {
+    db.close();
   }
-
-  db.close();
 
   // Print summary table
   console.log(

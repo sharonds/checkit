@@ -3,13 +3,7 @@ import { render, Box, Text, useApp } from "ink";
 import Spinner from "ink-spinner";
 import { fetchGoogleDoc, countWords } from "./gdoc.ts";
 import { SkillRegistry } from "./skills/registry.ts";
-import { PlagiarismSkill } from "./skills/plagiarism.ts";
-import { AiDetectionSkill } from "./skills/aidetection.ts";
-import { SeoSkill } from "./skills/seo.ts";
-import { FactCheckSkill } from "./skills/factcheck.ts";
-import { ToneSkill } from "./skills/tone.ts";
-import { LegalSkill } from "./skills/legal.ts";
-import { SummarySkill } from "./skills/summary.ts";
+import { buildSkills } from "./checker.ts";
 import { readConfig } from "./config.ts";
 import { applyThreshold } from "./thresholds.ts";
 import { openDb, insertCheck } from "./db.ts";
@@ -79,17 +73,8 @@ function Check({ docUrl, outputPath }: { docUrl: string; outputPath?: string }) 
 
         const config = readConfig();
 
-        const allSkills = [
-          config.skills.plagiarism && new PlagiarismSkill(),
-          config.skills.aiDetection && new AiDetectionSkill(),
-          config.skills.seo && new SeoSkill(),
-          config.skills.factCheck && new FactCheckSkill(),
-          config.skills.tone && new ToneSkill(),
-          config.skills.legal && new LegalSkill(),
-          config.skills.summary && new SummarySkill(),
-        ].filter(Boolean) as (PlagiarismSkill | AiDetectionSkill | SeoSkill | FactCheckSkill | ToneSkill | LegalSkill | SummarySkill)[];
-
-        const registry = new SkillRegistry(allSkills);
+        const skills = buildSkills(config);
+        const registry = new SkillRegistry(skills);
         const rawResults = await registry.runAll(text, config);
         const results = rawResults.map((r) => ({
           ...r,

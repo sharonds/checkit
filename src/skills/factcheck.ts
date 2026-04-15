@@ -20,8 +20,7 @@ JSON array of claims:`;
 export function formatCitation(url: string): string {
   try {
     const u = new URL(url);
-    const domain = u.hostname.replace("www.", "");
-    return `[${domain}](${url})`;
+    return u.hostname.replace("www.", "");
   } catch {
     return url;
   }
@@ -138,7 +137,7 @@ null means inconclusive.`;
         findings.push({ severity: "warn", text: `Unverified (${confidence} confidence): "${claim}" — ${note}` });
       } else {
         const sources = claimResults.find(cr => cr.claim === claim)?.results ?? [];
-        const citations = sources.slice(0, 2).map(r => formatCitation(r.url)).join(", ");
+        const citations = sources.slice(0, 2).map(r => `${formatCitation(r.url)}`).join(", ");
         findings.push({
           severity: "info",
           text: `Verified (${confidence} confidence): "${claim}" — ${note}${citations ? `. Cite: ${citations}` : ""}`,
