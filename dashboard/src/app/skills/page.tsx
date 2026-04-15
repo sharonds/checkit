@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { toast } from "sonner";
 import { FooterBar } from "@/components/footer-bar";
 import { LoadingSkeleton } from "@/components/loading-skeleton";
@@ -22,6 +23,42 @@ const KEY_LABELS: Record<string, string> = {
   exa: "EXA_API_KEY",
   minimax: "MINIMAX_API_KEY",
   anthropic: "ANTHROPIC_API_KEY",
+};
+
+const SKILL_INFO: Record<string, { description: string; context?: string }> = {
+  plagiarism: {
+    description:
+      "Checks the full indexed web for copied passages via Copyscape.",
+  },
+  aiDetection: {
+    description:
+      "Detects AI-generated content probability per sentence.",
+  },
+  seo: {
+    description:
+      "Offline analysis: word count, headings, readability, keywords, links.",
+  },
+  factCheck: {
+    description:
+      "Extracts claims, searches evidence via Exa AI, assesses with confidence levels.",
+  },
+  tone: {
+    description: "Compares article against your brand voice guide.",
+    context: "tone-guide",
+  },
+  legal: {
+    description:
+      "Scans for health claims, defamation, false promises with fix suggestions.",
+    context: "legal-policy",
+  },
+  summary: {
+    description:
+      "Generates topic, main argument, target audience, and tone.",
+  },
+  brief: {
+    description: "Checks article against your content brief requirements.",
+    context: "brief",
+  },
 };
 
 export default function SkillsPage() {
@@ -50,7 +87,6 @@ export default function SkillsPage() {
         body: JSON.stringify({ skillId, enabled }),
       });
       if (!res.ok) {
-        // Revert on failure
         setSkills((prev) =>
           prev.map((s) => (s.id === skillId ? { ...s, enabled: !enabled } : s))
         );
@@ -80,51 +116,84 @@ export default function SkillsPage() {
               <LoadingSkeleton key={i} variant="card" />
             ))
           ) : (
-            skills.map((skill) => (
-              <Card key={skill.id}>
-                <CardContent className="flex items-center gap-4 py-4">
-                  <Switch
-                    checked={skill.enabled}
-                    onCheckedChange={(checked) =>
-                      toggleSkill(skill.id, checked as boolean)
-                    }
-                  />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <Badge variant="secondary">{skill.engine}</Badge>
-                    </div>
-                    <div className="mt-1 flex items-center gap-1.5">
-                      {skill.requiresKeys.length === 0 ? (
-                        <>
-                          <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
-                          <span className="text-xs text-muted-foreground">
-                            No API keys required
-                          </span>
-                        </>
-                      ) : skill.keysConfigured ? (
-                        <>
-                          <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
-                          <span className="text-xs text-muted-foreground">
-                            Keys configured
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
-                          <span className="text-xs text-red-600 dark:text-red-400">
-                            Missing:{" "}
-                            {skill.requiresKeys
-                              .map((k) => KEY_LABELS[k] ?? k)
-                              .join(", ")}
-                          </span>
-                        </>
+            skills.map((skill) => {
+              const info = SKILL_INFO[skill.id];
+              return (
+                <Card
+                  key={skill.id}
+                  className={`rounded-xl shadow-sm transition-opacity ${
+                    skill.enabled
+                      ? "border-l-4 border-l-score-pass"
+                      : "opacity-60"
+                  }`}
+                >
+                  <CardContent className="flex items-start gap-4 p-5">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-bold">
+                          {skill.name}
+                        </span>
+                        <Badge variant="secondary">{skill.engine}</Badge>
+                      </div>
+
+                      {info && (
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {info.description}
+                        </p>
                       )}
+
+                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+                        {/* API key status */}
+                        <div className="flex items-center gap-1.5">
+                          {skill.requiresKeys.length === 0 ? (
+                            <>
+                              <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
+                              <span className="text-xs text-muted-foreground">
+                                No API keys required
+                              </span>
+                            </>
+                          ) : skill.keysConfigured ? (
+                            <>
+                              <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
+                              <span className="text-xs text-muted-foreground">
+                                Ready
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="inline-block h-2 w-2 rounded-full bg-red-500" />
+                              <span className="text-xs text-red-600 dark:text-red-400">
+                                Missing:{" "}
+                                {skill.requiresKeys
+                                  .map((k) => KEY_LABELS[k] ?? k)
+                                  .join(", ")}
+                              </span>
+                            </>
+                          )}
+                        </div>
+
+                        {/* Context requirement */}
+                        {info?.context && (
+                          <Link
+                            href="/contexts"
+                            className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+                          >
+                            Requires {info.context} context
+                          </Link>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
+
+                    <Switch
+                      checked={skill.enabled}
+                      onCheckedChange={(checked) =>
+                        toggleSkill(skill.id, checked as boolean)
+                      }
+                    />
+                  </CardContent>
+                </Card>
+              );
+            })
           )}
         </div>
       </div>
