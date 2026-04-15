@@ -1,6 +1,6 @@
 import type { Skill, SkillResult, Finding } from "./types.ts";
 import type { Config } from "../config.ts";
-import { getLlmClient, getTextBlock, parseJsonResponse } from "./llm.ts";
+import { getLlmClient, parseJsonResponse } from "./llm.ts";
 
 export function buildLegalPrompt(articleText: string, legalPolicy?: string): string {
   const policySection = legalPolicy
@@ -42,13 +42,7 @@ export class LegalSkill implements Skill {
       };
     }
 
-    const response = await llm.client.messages.create({
-      model: llm.model,
-      max_tokens: 1024,
-      messages: [{ role: "user", content: buildLegalPrompt(text, config.contexts?.["legal-policy"]) }],
-    });
-
-    const raw = getTextBlock(response.content);
+    const raw = await llm.call(buildLegalPrompt(text, config.contexts?.["legal-policy"]), 1024);
     let parsed: { score: number; verdict: string; summary: string; risks: Array<{ category: string; severity: string; quote: string; reason: string; suggestion?: string }> };
     try {
       parsed = parseJsonResponse(raw);

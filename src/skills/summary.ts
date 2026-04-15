@@ -1,6 +1,6 @@
 import type { Skill, SkillResult, Finding } from "./types.ts";
 import type { Config } from "../config.ts";
-import { getLlmClient, getTextBlock, parseJsonResponse } from "./llm.ts";
+import { getLlmClient, parseJsonResponse } from "./llm.ts";
 
 export function buildSummaryPrompt(articleText: string): string {
   return `Analyze this article and return a brief structured summary.
@@ -32,13 +32,7 @@ export class SummarySkill implements Skill {
       };
     }
 
-    const response = await llm.client.messages.create({
-      model: llm.model,
-      max_tokens: 1024,
-      messages: [{ role: "user", content: buildSummaryPrompt(text) }],
-    });
-
-    const raw = getTextBlock(response.content);
+    const raw = await llm.call(buildSummaryPrompt(text), 1024);
     let parsed: { topic: string; argument: string; audience: string; tone: string };
     try {
       parsed = parseJsonResponse(raw);

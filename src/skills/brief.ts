@@ -1,6 +1,6 @@
 import type { Skill, SkillResult, Finding } from "./types.ts";
 import type { Config } from "../config.ts";
-import { getLlmClient, getTextBlock, parseJsonResponse } from "./llm.ts";
+import { getLlmClient, parseJsonResponse } from "./llm.ts";
 
 export function buildBriefPrompt(articleText: string, brief: string): string {
   return `You are a content editor checking if an article meets its brief requirements.
@@ -62,13 +62,7 @@ export class BriefSkill implements Skill {
       };
     }
 
-    const response = await llm.client.messages.create({
-      model: llm.model,
-      max_tokens: 1024,
-      messages: [{ role: "user", content: buildBriefPrompt(text, brief) }],
-    });
-
-    const raw = getTextBlock(response.content);
+    const raw = await llm.call(buildBriefPrompt(text, brief), 1024);
     let parsed: BriefResponse;
     try {
       parsed = parseJsonResponse(raw);

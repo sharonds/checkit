@@ -30,13 +30,14 @@ export function getApiKeyStatus() {
     minimax: !!(env.MINIMAX_API_KEY || config.minimaxApiKey),
     anthropic: !!(env.ANTHROPIC_API_KEY || config.anthropicApiKey),
     parallel: !!(env.PARALLEL_API_KEY || config.parallelApiKey),
+    openrouter: !!(env.OPENROUTER_API_KEY || config.openrouterApiKey),
   };
 }
 
 export function getMaskedConfig(): Record<string, unknown> {
   const config = readAppConfig();
   const masked = { ...config };
-  for (const k of ["copyscapeKey", "anthropicApiKey", "minimaxApiKey", "exaApiKey", "parallelApiKey"]) {
+  for (const k of ["copyscapeKey", "anthropicApiKey", "minimaxApiKey", "exaApiKey", "parallelApiKey", "openrouterApiKey"]) {
     if (masked[k]) masked[k] = maskKey(masked[k] as string);
   }
   return masked;

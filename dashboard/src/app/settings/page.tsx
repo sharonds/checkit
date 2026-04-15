@@ -18,12 +18,13 @@ interface ApiKeys {
   minimax: boolean;
   anthropic: boolean;
   parallel: boolean;
+  openrouter: boolean;
 }
 
 const LLM_PROVIDERS = [
   { id: "minimax", label: "MiniMax", badge: "Recommended", disabled: false },
   { id: "anthropic", label: "Anthropic", badge: null, disabled: false },
-  { id: "openrouter", label: "OpenRouter", badge: "Coming soon", disabled: true },
+  { id: "openrouter", label: "OpenRouter", badge: null, disabled: false },
   { id: "openai", label: "OpenAI", badge: "Coming soon", disabled: true },
   { id: "gemini", label: "Gemini", badge: "Coming soon", disabled: true },
 ];
@@ -34,6 +35,7 @@ const KEY_FIELDS = [
   { configKey: "exaApiKey", label: "Exa API Key", apiKeyId: "exa" },
   { configKey: "minimaxApiKey", label: "MiniMax API Key", apiKeyId: "minimax" },
   { configKey: "anthropicApiKey", label: "Anthropic API Key", apiKeyId: "anthropic" },
+  { configKey: "openrouterApiKey", label: "OpenRouter API Key", apiKeyId: "openrouter" },
   { configKey: "parallelApiKey", label: "Parallel API Key", apiKeyId: "parallel" },
 ];
 
@@ -56,6 +58,7 @@ export default function SettingsPage() {
     minimax: false,
     anthropic: false,
     parallel: false,
+    openrouter: false,
   });
 
   const [provider, setProvider] = useState("minimax");
