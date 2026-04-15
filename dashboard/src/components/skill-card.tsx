@@ -19,6 +19,7 @@ const ENGINE_MAP: Record<string, string> = {
   legal: "MiniMax",
   summary: "MiniMax",
   brief: "MiniMax",
+  purpose: "MiniMax",
 };
 
 interface Finding {

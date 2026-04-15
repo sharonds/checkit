@@ -59,6 +59,9 @@ const SKILL_INFO: Record<string, { description: string; context?: string }> = {
     description: "Checks article against your content brief requirements.",
     context: "brief",
   },
+  purpose: {
+    description: "Classifies article type (tutorial, announcement, case study, etc.) with purpose-specific recommendations.",
+  },
 };
 
 export default function SkillsPage() {

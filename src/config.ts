@@ -12,6 +12,7 @@ export interface SkillsConfig {
   legal: boolean;
   summary: boolean;
   brief: boolean;
+  purpose: boolean;
 }
 
 export interface Config {
@@ -41,6 +42,7 @@ const DEFAULT_SKILLS: SkillsConfig = {
   legal: false,
   summary: false,
   brief: false,
+  purpose: false,
 };
 
 export function configExists(): boolean {

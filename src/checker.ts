@@ -16,6 +16,7 @@ import { ToneSkill } from "./skills/tone.ts";
 import { LegalSkill } from "./skills/legal.ts";
 import { SummarySkill } from "./skills/summary.ts";
 import { BriefSkill } from "./skills/brief.ts";
+import { PurposeSkill } from "./skills/purpose.ts";
 
 export interface CheckResult {
   id: number;
@@ -35,6 +36,7 @@ export function buildSkills(config: Config): Skill[] {
   if (config.skills.legal) skills.push(new LegalSkill());
   if (config.skills.summary) skills.push(new SummarySkill());
   if (config.skills.brief) skills.push(new BriefSkill());
+  if (config.skills.purpose) skills.push(new PurposeSkill());
   return skills;
 }
 

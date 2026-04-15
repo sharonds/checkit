@@ -33,6 +33,7 @@ const ENGINE_LABEL: Record<string, { label: string; color: string }> = {
   "legal": { label: "MiniMax", color: "#0891b2" },
   "summary": { label: "MiniMax", color: "#0891b2" },
   "brief": { label: "MiniMax", color: "#0891b2" },
+  "purpose": { label: "MiniMax", color: "#0891b2" },
 };
 
 function scoreBar(score: number, verdict: string): string {
