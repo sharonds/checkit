@@ -19,6 +19,7 @@ describe("runCheckHeadless", () => {
     const result = await runCheckHeadless("test-input", {
       text: "This is a test article about TypeScript development. It has enough words to be meaningful for SEO analysis but not too many to slow down the test.",
       config,
+      dbPath: ":memory:",
     });
 
     expect(result.id).toBeGreaterThan(0);
@@ -45,6 +46,7 @@ describe("runCheckHeadless", () => {
     const result = await runCheckHeadless("test-input", {
       text: "Some text",
       config,
+      dbPath: ":memory:",
     });
 
     expect(result.results).toHaveLength(0);
@@ -67,6 +69,7 @@ describe("runCheckHeadless", () => {
     const result = await runCheckHeadless("db-test-source", {
       text: "# Test Heading\n\nA longer paragraph with several sentences. This helps the SEO check produce a more realistic result. We want to verify that the database insert works correctly.",
       config,
+      dbPath: ":memory:",
     });
 
     expect(result.id).toBeGreaterThan(0);

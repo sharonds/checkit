@@ -47,12 +47,12 @@ function buildSkills(config: Config): Skill[] {
  */
 export async function runCheckHeadless(
   source: string,
-  options?: { text?: string; config?: Config },
+  options?: { text?: string; config?: Config; dbPath?: string },
 ): Promise<CheckResult> {
   const config = options?.config ?? readConfig();
 
   // Load contexts from DB and attach to config
-  const db = openDb();
+  const db = openDb(options?.dbPath);
   try {
     const contexts = loadAllContexts(db);
     const configWithContexts: Config = { ...config, contexts };
