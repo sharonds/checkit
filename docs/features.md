@@ -1,0 +1,66 @@
+# Article Checker — Feature List
+
+## Content Quality Skills
+
+| Skill | Engine | Cost/check | Default |
+|-------|--------|-----------|---------|
+| Plagiarism Check | Copyscape | ~$0.09 | Enabled |
+| AI Detection | Copyscape | ~$0.09 | Enabled |
+| SEO Analysis | Offline | Free | Enabled |
+| Fact Check | Exa AI + MiniMax/Claude | ~$0.03 | Requires API keys |
+| Tone of Voice | MiniMax/Claude | ~$0.002 | Requires API keys + tone guide |
+| Legal Risk | MiniMax/Claude | ~$0.002 | Requires API keys |
+| Content Summary | MiniMax/Claude | ~$0.002 | Requires API keys |
+
+All enabled skills run in parallel. Skills with missing API keys skip gracefully.
+
+---
+
+## Report and Export
+
+- **HTML report** — Self-contained file with score bars, verdict badges, and per-finding citations. Opens in browser automatically after each check.
+- **Markdown export** — `--output report.md` saves the terminal report as a Markdown file.
+- **SQLite history** — Every check is persisted to `~/.article-checker/history.db`. Query with `--history`.
+
+---
+
+## Organization
+
+- **Tags** — Attach tags to any check via the dashboard or API (`POST /api/checks/:id/tags`). Filter and search by tag.
+- **Search** — Full-text search across check sources and results via the dashboard or API (`GET /api/search`).
+- **Batch checking** — `article-checker --batch ./articles/` checks all `.md`/`.txt` files in a directory.
+- **Configurable thresholds** — Custom pass/warn/fail score cutoffs per skill in `config.json`.
+
+---
+
+## Web Dashboard
+
+A local Next.js web interface started with `article-checker --ui` or `cd dashboard && bun run dev`.
+
+| Page | Description |
+|------|-------------|
+| **Overview** (/) | Total checks, average scores, cost chart, verdict distribution. |
+| **Reports** (/reports) | Browse check history, view details, filter by verdict. |
+| **Report Detail** (/reports/:id) | Full skill results, findings, score breakdown, tags. |
+| **Run Check** (/check) | Paste text or URL, add tags, run a new check from the browser. |
+| **Skills** (/skills) | Toggle skills on/off, see engine labels, API key status. |
+| **Settings** (/settings) | API key management with status indicators, threshold configuration. |
+| **Docs** (/docs) | In-app onboarding, skill reference, score guide, API setup, FAQ. |
+
+Additional dashboard features:
+- Dark mode via next-themes
+- Responsive layout (desktop + mobile)
+- JSON API for all operations (see [docs/api.md](api.md))
+
+---
+
+## Developer and Agent API
+
+- **JSON API** — RESTful endpoints at `http://localhost:3000/api` for running checks, managing tags, toggling skills, and reading config. See [docs/api.md](api.md).
+- **CLI flags:**
+  - `--ui` — Start the web dashboard and open browser
+  - `--batch <dir>` — Check all files in a directory
+  - `--output <path>` — Export report to `.md` or `.html`
+  - `--history` — Show recent checks from SQLite
+  - `--setup` — Re-run credential wizard
+- **Custom skills** — Implement the `Skill` TypeScript interface to add your own validators. See [docs/custom-skills.md](custom-skills.md).
