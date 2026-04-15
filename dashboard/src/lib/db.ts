@@ -27,7 +27,17 @@ export const checkTags = sqliteTable("check_tags", {
   tagId: integer("tag_id").notNull(),
 });
 
+export const contexts = sqliteTable("contexts", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  type: text("type").notNull().unique(),
+  name: text("name").notNull(),
+  content: text("content").notNull().default(""),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+});
+
 export type Check = typeof checks.$inferSelect;
+export type Context = typeof contexts.$inferSelect;
 
 // Singleton connection
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -44,6 +54,9 @@ export function getDb() {
     ).run();
     _sqlite.prepare(
       `CREATE TABLE IF NOT EXISTS check_tags (check_id INTEGER NOT NULL, tag_id INTEGER NOT NULL, PRIMARY KEY (check_id, tag_id))`
+    ).run();
+    _sqlite.prepare(
+      `CREATE TABLE IF NOT EXISTS contexts (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL UNIQUE, name TEXT NOT NULL, content TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now')))`
     ).run();
     _db = drizzle(_sqlite);
   }
@@ -129,4 +142,35 @@ export function searchChecks(query: string, tag?: string) {
   return db.all(
     sql`SELECT * FROM checks WHERE source LIKE ${"%" + query + "%"} ORDER BY id DESC LIMIT 50`
   ) as Check[];
+}
+
+// --- Context queries ---
+
+export function getContexts(): Context[] {
+  const db = getDb();
+  return db.select().from(contexts).all();
+}
+
+export function getContextByType(type: string): Context | null {
+  const db = getDb();
+  const rows = db
+    .select()
+    .from(contexts)
+    .where(eq(contexts.type, type))
+    .limit(1)
+    .all();
+  return rows[0] ?? null;
+}
+
+export function upsertContext(type: string, name: string, content: string) {
+  const db = getDb();
+  const now = new Date().toISOString();
+  db.run(
+    sql`INSERT INTO contexts (type, name, content, created_at, updated_at) VALUES (${type}, ${name}, ${content}, ${now}, ${now}) ON CONFLICT(type) DO UPDATE SET name = ${name}, content = ${content}, updated_at = ${now}`
+  );
+}
+
+export function deleteContextByType(type: string) {
+  const db = getDb();
+  db.run(sql`DELETE FROM contexts WHERE type = ${type}`);
 }

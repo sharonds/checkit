@@ -7,6 +7,10 @@ import {
   addTagsToCheck,
   getTagsForCheck,
   searchChecks,
+  getContexts,
+  getContextByType,
+  upsertContext,
+  deleteContextByType,
   getDb,
   closeDb,
 } from "../lib/db";
@@ -131,5 +135,42 @@ describe("searchChecks", () => {
   it("returns empty for no matches", () => {
     const results = searchChecks("nonexistent");
     expect(results).toEqual([]);
+  });
+});
+
+describe("contexts (Drizzle)", () => {
+  it("upserts and retrieves a context", () => {
+    upsertContext("tone-guide", "Brand Voice", "Be warm");
+    const ctx = getContextByType("tone-guide");
+    expect(ctx).not.toBeNull();
+    expect(ctx!.name).toBe("Brand Voice");
+    expect(ctx!.content).toBe("Be warm");
+  });
+
+  it("updates existing context on upsert", () => {
+    upsertContext("tone-guide", "TG", "first");
+    upsertContext("tone-guide", "TG Updated", "second");
+    const ctx = getContextByType("tone-guide");
+    expect(ctx!.name).toBe("TG Updated");
+    expect(ctx!.content).toBe("second");
+  });
+
+  it("lists all contexts", () => {
+    upsertContext("tone-guide", "TG", "...");
+    upsertContext("brief", "BR", "...");
+    const all = getContexts();
+    expect(all.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("returns null for non-existent type", () => {
+    const ctx = getContextByType("nonexistent");
+    expect(ctx).toBeNull();
+  });
+
+  it("deletes a context by type", () => {
+    upsertContext("tone-guide", "TG", "content");
+    deleteContextByType("tone-guide");
+    const ctx = getContextByType("tone-guide");
+    expect(ctx).toBeNull();
   });
 });

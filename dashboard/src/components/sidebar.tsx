@@ -8,6 +8,7 @@ import {
   FileText,
   PlayCircle,
   Puzzle,
+  BookMarked,
   Settings,
   BookOpen,
   Sun,
@@ -20,6 +21,7 @@ const navItems = [
   { href: "/reports", label: "Reports", icon: FileText },
   { href: "/check", label: "Run Check", icon: PlayCircle },
   { href: "/skills", label: "Skills", icon: Puzzle },
+  { href: "/contexts", label: "Contexts", icon: BookMarked },
   { href: "/settings", label: "Settings", icon: Settings },
   { href: "/docs", label: "Docs", icon: BookOpen },
 ];
