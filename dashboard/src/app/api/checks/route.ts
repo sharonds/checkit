@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const cliPath = join(process.cwd(), "..", "src", "index.tsx");
     const result = await new Promise<{ id: number }>((resolve, reject) => {
       const child = spawn("bun", ["run", cliPath, tmpFile], {
-        env: { ...process.env },
+        env: { ...process.env, ...(source ? { ARTICLE_CHECKER_SOURCE: source } : {}) },
         timeout: 120_000,
       });
       let stderr = "";

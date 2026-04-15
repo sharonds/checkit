@@ -98,17 +98,18 @@ function Check({ docUrl, outputPath }: { docUrl: string; outputPath?: string }) 
         const totalCostUsd = results.reduce((s, r) => s + r.costUsd, 0);
 
         // Save to SQLite
+        const sourceLabel = process.env.ARTICLE_CHECKER_SOURCE || docUrl;
         const db = openDb();
-        insertCheck(db, { source: docUrl, wordCount: words, results, totalCostUsd });
+        insertCheck(db, { source: sourceLabel, wordCount: words, results, totalCostUsd });
         db.close();
 
         // Write HTML report
         const reportPath = "article-checker-report.html";
-        writeFileSync(reportPath, generateReport({ source: docUrl, wordCount: words, results, totalCostUsd }));
+        writeFileSync(reportPath, generateReport({ source: sourceLabel, wordCount: words, results, totalCostUsd }));
 
         // Export to custom path if --output was specified
         if (outputPath) {
-          exportReport({ source: docUrl, wordCount: words, results, totalCostUsd }, outputPath);
+          exportReport({ source: sourceLabel, wordCount: words, results, totalCostUsd }, outputPath);
           console.log(`\nReport exported to ${outputPath}`);
         }
 
