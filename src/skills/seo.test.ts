@@ -48,6 +48,12 @@ describe("extractTopKeyword", () => {
   });
 });
 
+describe("extractTopKeyword — Hebrew", () => {
+  test("extracts Hebrew keyword ignoring Hebrew stop words", () => {
+    expect(extractTopKeyword("ויטמין ויטמין ויטמין הוא של את על")).toBe("ויטמין");
+  });
+});
+
 test("SeoSkill returns a SkillResult with costUsd 0", async () => {
   const skill = new SeoSkill();
   const config = {

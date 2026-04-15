@@ -1,5 +1,6 @@
 import type { Skill, SkillResult, Finding } from "./types.ts";
 import type { Config } from "../config.ts";
+import { detectLanguage, STOP_WORDS_HE } from "../language.ts";
 
 export interface SeoMetrics {
   wordCount: number;
@@ -46,6 +47,17 @@ export function readabilityLabel(fk: number): string {
 }
 
 export function extractTopKeyword(text: string): string {
+  const lang = detectLanguage(text);
+
+  if (lang === "he") {
+    const words = text.split(/\s+/).filter((w) => w.length > 2 && !STOP_WORDS_HE.has(w));
+    const freq: Record<string, number> = {};
+    for (const w of words) freq[w] = (freq[w] ?? 0) + 1;
+    const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+    return sorted[0]?.[0] ?? "";
+  }
+
+  // English / default logic
   const stopWords = new Set(["the","a","an","and","or","but","in","on","at","to","for","of",
     "with","is","are","was","were","be","been","being","have","has","had","do","does","did",
     "will","would","could","should","may","might","shall","can","this","that","these","those",
@@ -112,7 +124,8 @@ export class SeoSkill implements Skill {
 
     const verdict = score >= 75 ? "pass" : score >= 50 ? "warn" : "fail";
     const readLabel = readabilityLabel(m.fleschKincaid);
-    const summary = `${m.wordCount} words · avg ${m.avgSentenceWords}-word sentences · readability: ${readLabel}`;
+    const lang = detectLanguage(text);
+    const summary = `${m.wordCount} words · ${lang.toUpperCase()} · avg ${m.avgSentenceWords}-word sentences · readability: ${readLabel}`;
 
     return { skillId: this.id, name: this.name, score, verdict, summary, findings, costUsd: 0 };
   }
