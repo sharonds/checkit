@@ -24,6 +24,14 @@ if (outputIndex !== -1 && !outputPath) {
 const docUrl = args.find((a) => !a.startsWith("--") && a !== batchDir && a !== outputPath);
 
 async function main() {
+  // --mcp: start MCP server for Claude Code / Cursor integration
+  if (args.includes("--mcp")) {
+    const { startMcpServer } = await import("./mcp-server.ts");
+    await startMcpServer();
+    // Server runs until stdin closes — don't exit
+    await new Promise(() => {});
+  }
+
   // context subcommand: manage tone guides, briefs, policies
   if (args[0] === "context") {
     const { runContextCommand } = await import("./context.ts");
@@ -114,6 +122,7 @@ async function main() {
     console.log('  article-checker ./my-article.md');
     console.log("");
     console.log("Options:");
+    console.log("  --mcp             Start MCP server (for Claude Code, Cursor, etc.)");
     console.log("  --ui              Open the local web dashboard");
     console.log("  --batch <dir>     Check all .md/.txt files in a directory");
     console.log("  --output <path>   Export report to .md or .html file");

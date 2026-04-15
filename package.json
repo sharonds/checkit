@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.89.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "exa-js": "^2.11.0",
     "ink": "^5.0.1",
     "ink-spinner": "^5.0.0",
