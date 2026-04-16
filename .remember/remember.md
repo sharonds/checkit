@@ -16,8 +16,8 @@ Latest main SHA: see `git log --oneline main | head -1`.
 
 ## Next
 
-- **Deploy landing:** landing page is at `~/checkit-landing` (separate repo — currently has no Sharon-owned GitHub remote). Needs a `sharonds/checkit-landing` repo created + pushed + wired to Vercel with domain `checkit.cc`. Env: `NEXT_PUBLIC_WEB3FORMS_KEY=956869e0-47c2-4529-8298-2a1c7de39b9d`.
-- **Lighthouse on landing:** target Perf ≥ 85, A11y ≥ 95, BP/SEO = 100. If Perf drops under 85, consider `next/dynamic` on `DashboardWalkthrough` (big framer-motion + 4 images below fold).
+- **Landing is live (preview URL):** `https://checkit-landing-jzalu89yv-sharons-projects-fca19fb6.vercel.app`. Repo at `sharonds/checkit-landing`. Next steps: (a) point domain `checkit.cc` at Vercel (`vercel domains add checkit.cc` + DNS A-record `76.76.21.21`), (b) add `NEXT_PUBLIC_WEB3FORMS_KEY` to Preview env via dashboard.
+- **Lighthouse on landing:** run on the live URL. Target Perf ≥ 85, A11y ≥ 95, BP/SEO = 100. If Perf drops under 85, consider `next/dynamic` on `DashboardWalkthrough` (big framer-motion + 4 images below fold).
 - **Roadmap:** Phase 7 (research-backed editor) + Phase 8 (Checkit Studio) — see `docs/ROADMAP-IDEAS.md`.
 
 ## Notes
