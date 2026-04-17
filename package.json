@@ -10,7 +10,7 @@
     "setup": "bun src/index.tsx --setup",
     "build": "bash build.sh",
     "dev": "bun --watch src/index.tsx",
-    "test": "bun test src/*.test.ts src/skills/*.test.ts",
+    "test": "bun test src/*.test.ts src/skills/*.test.ts src/utils/*.test.ts",
     "test:dashboard": "cd dashboard && bunx vitest run",
     "test:all": "bun run test && bun run test:dashboard"
   },
@@ -23,9 +23,11 @@
     "ink-text-input": "^6.0.0",
     "open": "^11.0.0",
     "openai": "^6.34.0",
+    "proper-lockfile": "^4.1.2",
     "react": "^18.3.1"
   },
   "devDependencies": {
+    "@types/proper-lockfile": "^4.1.4",
     "@types/react": "^18.3.1",
     "bun-types": "latest"
   }

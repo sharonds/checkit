@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync } from "fs";
 import { homedir } from "os";
 import { join } from "path";
+import lockfile from "proper-lockfile";
 import type { Threshold } from "./thresholds.ts";
 
 export interface SkillsConfig {
@@ -93,12 +94,18 @@ export function readConfig(): Config {
   };
 }
 
-export function writeConfig(config: Partial<Config>): void {
+export async function writeConfig(config: Partial<Config>): Promise<void> {
   mkdirSync(CONFIG_DIR, { recursive: true });
-  const existing = configExists()
-    ? (JSON.parse(readFileSync(CONFIG_FILE, "utf-8")) as Config)
-    : {};
-  writeFileSync(CONFIG_FILE, JSON.stringify({ ...existing, ...config }, null, 2));
+  if (!existsSync(CONFIG_FILE)) writeFileSync(CONFIG_FILE, "{}");
+  const release = await lockfile.lock(CONFIG_FILE, {
+    retries: { retries: 5, minTimeout: 50, maxTimeout: 200 },
+  });
+  try {
+    const existing = JSON.parse(readFileSync(CONFIG_FILE, "utf-8")) as Config;
+    writeFileSync(CONFIG_FILE, JSON.stringify({ ...existing, ...config }, null, 2));
+  } finally {
+    await release();
+  }
 }
 
 /** @deprecated use writeConfig */

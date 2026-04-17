@@ -40,7 +40,7 @@ function Setup({ existingConfig, onComplete }: SetupProps) {
         config.parallelApiKey = val.trim();
         setParallelApiKeyVal(val.trim());
       }
-      saveConfig(config);
+      await saveConfig(config);
       setStep("done");
       setTimeout(() => {
         onComplete();
