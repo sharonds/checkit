@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Loader2, Save } from "lucide-react";
+import { fetchWithCsrf } from "@/lib/fetch-with-csrf";
 import { FooterBar } from "@/components/footer-bar";
 import { LoadingSkeleton } from "@/components/loading-skeleton";
 import { Badge } from "@/components/ui/badge";
@@ -104,7 +105,7 @@ export default function SettingsPage() {
   async function handleProviderChange(id: string) {
     setProvider(id);
     try {
-      const res = await fetch("/api/config", {
+      const res = await fetchWithCsrf("/api/config", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ llmProvider: id }),
@@ -127,7 +128,7 @@ export default function SettingsPage() {
         if (val.trim()) updates[key] = val.trim();
       }
       if (Object.keys(updates).length > 0) {
-        const res = await fetch("/api/config", {
+        const res = await fetchWithCsrf("/api/config", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updates),
@@ -161,7 +162,7 @@ export default function SettingsPage() {
   async function handleSaveThresholds() {
     setSavingThresholds(true);
     try {
-      const res = await fetch("/api/config", {
+      const res = await fetchWithCsrf("/api/config", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ thresholds }),

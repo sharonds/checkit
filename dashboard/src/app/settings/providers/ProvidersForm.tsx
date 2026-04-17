@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { toast } from "sonner";
+import { fetchWithCsrf } from "@/lib/fetch-with-csrf";
 import {
   PROVIDER_REGISTRY,
   SKILL_LABELS,
@@ -18,12 +19,6 @@ import { Badge } from "@/components/ui/badge";
 interface Props {
   initialProviders: Partial<Record<SkillId, SkillProviderConfig>>;
   skillIds: SkillId[];
-}
-
-function readCsrf(): string {
-  if (typeof document === "undefined") return "";
-  const m = document.querySelector('meta[name="checkapp-csrf"]');
-  return m?.getAttribute("content") ?? "";
 }
 
 function ProviderChips({ p }: { p: ProviderMetadata }) {
@@ -55,11 +50,10 @@ export function ProvidersForm({ initialProviders, skillIds }: Props) {
     }
     setSaving(skillId);
     try {
-      const res = await fetch("/api/providers", {
+      const res = await fetchWithCsrf("/api/providers", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "X-CheckApp-CSRF": readCsrf(),
         },
         body: JSON.stringify({
           skillId,

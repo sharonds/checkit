@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Loader2, Upload, FileText, Link2, AlertCircle } from "lucide-react";
+import { fetchWithCsrf } from "@/lib/fetch-with-csrf";
 import { FooterBar } from "@/components/footer-bar";
 import { SkillCard, type SkillResult } from "@/components/skill-card";
 import { TagInput } from "@/components/tag-input";
@@ -95,7 +96,7 @@ export default function CheckPage() {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/checks", {
+      const res = await fetchWithCsrf("/api/checks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text, source, tags }),

@@ -1,5 +1,7 @@
 import { jsonWithCors } from "@/lib/cors";
 import { readAppConfig, writeAppConfig, getApiKeyStatus } from "@/lib/config";
+import { guardLocalMutation } from "@/lib/guard-local";
+import { NextRequest } from "next/server";
 
 const SKILL_META = [
   { id: "plagiarism", name: "Plagiarism Check", engine: "Copyscape", requiresKeys: ["copyscape"] },
@@ -27,9 +29,11 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(req: NextRequest) {
+  const blocked = guardLocalMutation(req);
+  if (blocked) return blocked;
   try {
-    const { skillId, enabled } = await request.json() as { skillId: string; enabled: boolean };
+    const { skillId, enabled } = await req.json() as { skillId: string; enabled: boolean };
     const config = readAppConfig() as Record<string, unknown>;
     const skills = { ...(config.skills as Record<string, boolean> ?? {}) };
     skills[skillId] = enabled;
