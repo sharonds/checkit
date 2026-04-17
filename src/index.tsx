@@ -5,6 +5,7 @@ import { runCheck } from "./check.tsx";
 import { openDb, queryRecent } from "./db.ts";
 import { runBatch } from "./batch.ts";
 import { resolveProvider } from "./providers/resolve.ts";
+import type { Finding } from "./skills/types.ts";
 
 const args = process.argv.slice(2);
 const forceSetup = args.includes("--setup");
@@ -36,6 +37,17 @@ export function resolveDeepFactCheckEnv(deps: { configExists: () => boolean; env
     return { allowed: true, apiKey: existing.apiKey };
   }
   return { allowed: false };
+}
+
+export function summarizeFixRun(r: { fixable: Finding[]; remaining: Finding[] }): string {
+  if (r.fixable.length === 0 && r.remaining.length === 0) return "article is clean!";
+  const parts: string[] = [];
+  const warn = r.remaining.filter(f => f.severity === "warn").length;
+  const err = r.remaining.filter(f => f.severity === "error").length;
+  if (err) parts.push(`${err} error${err === 1 ? "" : "s"}`);
+  if (warn) parts.push(`${warn} warning${warn === 1 ? "" : "s"}`);
+  if (parts.length) return `Fixable findings applied; ${parts.join(", ")} remain.`;
+  return "Fixable findings applied; article is clean!";
 }
 
 // Unset the deep-fact-check env vars after the run so they can't leak into
