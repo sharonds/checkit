@@ -1,7 +1,24 @@
 import { readdirSync, readFileSync, statSync } from "fs";
+import { createHash } from "crypto";
+import { homedir } from "os";
 import { join } from "path";
 import { readConfig, type Config } from "../config.ts";
 import { embed, vectorizeUpsert } from "../providers/vectorize.ts";
+
+/** Default archive path derived from $HOME or os.homedir(). */
+export function resolveArchivePath(env: NodeJS.ProcessEnv = process.env): string {
+  return join(env.HOME ?? homedir(), ".checkapp", "archive");
+}
+
+/** Hash-based Vectorize ID — content-independent, stable across runs. */
+function vectorIdFromFile(filePath: string): string {
+  return createHash("sha256").update(filePath).digest("hex").slice(0, 32);
+}
+
+export interface IndexArchiveOpts {
+  env?: NodeJS.ProcessEnv;
+  configOverride?: Config;
+}
 
 /**
  * Ingest a directory of .md articles into Cloudflare Vectorize.
@@ -11,10 +28,26 @@ import { embed, vectorizeUpsert } from "../providers/vectorize.ts";
  * must be provisioned with `dimensions=768 metric=cosine`. The pre-flight log
  * surfaces this so first-run users don't trip on a dimension mismatch.
  *
- * `configOverride` is exposed for tests to bypass readConfig(); production
- * callers should omit it and rely on ~/.checkapp/config.json.
+ * Accepts either a positional `(dir, configOverride)` form (legacy CLI
+ * callers) or an `(opts: { env, configOverride })` form (B2.5 tests). When no
+ * dir is given, falls back to `resolveArchivePath(env)`.
  */
-export async function indexArchive(dir: string, configOverride?: Config): Promise<void> {
+export async function indexArchive(dir: string, configOverride?: Config): Promise<void>;
+export async function indexArchive(opts: IndexArchiveOpts): Promise<void>;
+export async function indexArchive(
+  arg1: string | IndexArchiveOpts,
+  arg2?: Config,
+): Promise<void> {
+  const isOptsForm = typeof arg1 !== "string";
+  const env: NodeJS.ProcessEnv = isOptsForm ? (arg1.env ?? process.env) : process.env;
+  const configOverride: Config | undefined = isOptsForm ? arg1.configOverride : arg2;
+  const dir: string = isOptsForm ? resolveArchivePath(env) : arg1;
+
+  const missingEnv = ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"].filter((k) => !env[k]);
+  if (missingEnv.length && isOptsForm) {
+    throw new Error(`Missing env vars: ${missingEnv.join(", ")}`);
+  }
+
   const config = configOverride ?? readConfig();
   const pc = config.providers?.["self-plagiarism"];
   if (!pc?.apiKey || !pc.extra?.accountId) {
@@ -46,7 +79,7 @@ export async function indexArchive(dir: string, configOverride?: Config): Promis
     const stat = statSync(full);
     const vec = await embed(content, config.openrouterApiKey);
     batch.push({
-      id: file.replace(/\.md$/, ""),
+      id: vectorIdFromFile(full),
       values: vec,
       metadata: {
         title: file,

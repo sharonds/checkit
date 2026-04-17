@@ -60,3 +60,24 @@ test("normalizeFinding rejects unknown severity value", () => {
   const r = normalizeFinding({ severity: "critical", text: "x" });
   expect(r.severity).toBe("info");
 });
+
+test("drops non-object sources/citations from findings", () => {
+  const out = normalizeSkillResult({
+    skillId: "test",
+    name: "Test",
+    score: 50,
+    verdict: "warn",
+    summary: "s",
+    findings: [
+      {
+        severity: "warn",
+        text: "claim",
+        sources: ["bad", { url: "https://ok.example", title: "Ok" }, null],
+        citations: [42, { title: "Real", doi: "10.x" }],
+      },
+    ],
+    costUsd: 0,
+  } as any);
+  expect(out.findings[0].sources).toEqual([{ url: "https://ok.example", title: "Ok" }]);
+  expect(out.findings[0].citations).toEqual([{ title: "Real", doi: "10.x" }]);
+});

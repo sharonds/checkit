@@ -32,7 +32,8 @@ describe("/api/providers", () => {
   });
 
   test("GET returns providers map", async () => {
-    const res = await GET();
+    const req = new NextRequest(new URL("http://localhost:3000/api/providers"));
+    const res = await GET(req);
     expect(res.status).toBe(200);
     const json = await res.json();
     expect(json.providers["fact-check"].provider).toBe("exa-search");
@@ -41,7 +42,8 @@ describe("/api/providers", () => {
   });
 
   test("GET masks apiKey — returns provider/extra/hasKey only", async () => {
-    const res = await GET();
+    const req = new NextRequest(new URL("http://localhost:3000/api/providers"));
+    const res = await GET(req);
     expect(res.status).toBe(200);
     const json = await res.json();
     // apiKey MUST NOT appear anywhere in the response
@@ -53,6 +55,12 @@ describe("/api/providers", () => {
     // hasKey flags tracking presence
     expect(json.hasKey["fact-check"]).toBe(true);
     expect(json.hasKey["grammar"]).toBe(false);
+  });
+
+  test("GET /api/providers is 403 from non-loopback hostname", async () => {
+    const req = new NextRequest(new URL("http://198.51.100.7:3000/api/providers"));
+    const res = await GET(req);
+    expect(res.status).toBe(403);
   });
 
   test("PUT accepts valid body with correct CSRF + localhost host", async () => {
@@ -191,5 +199,26 @@ describe("/api/providers", () => {
         }),
       })
     );
+  });
+
+  test("rejects PUT from spoofed Host header (uses nextUrl.hostname instead)", async () => {
+    const req = new NextRequest(new URL("http://203.0.113.5:3000/api/providers"), {
+      method: "PUT",
+      headers: { "host": "localhost", "content-type": "application/json", "x-checkapp-csrf": "test-csrf-token" },
+      body: JSON.stringify({ skillId: "factCheck", provider: "exa-search" }),
+    });
+    const res = await PUT(req);
+    expect(res.status).toBe(403);
+  });
+
+  test("accepts PUT from [::1]:3000 without IPv6 mangling", async () => {
+    mockReadAppConfig.mockReturnValue({ providers: {} });
+    const req = new NextRequest(new URL("http://[::1]:3000/api/providers"), {
+      method: "PUT",
+      headers: { "content-type": "application/json", "x-checkapp-csrf": "test-csrf-token" },
+      body: JSON.stringify({ skillId: "fact-check", provider: "exa-search" }),
+    });
+    const res = await PUT(req);
+    expect(res.status).not.toBe(403);
   });
 });

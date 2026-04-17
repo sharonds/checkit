@@ -1,9 +1,10 @@
 import { describe, test, expect, beforeEach, afterEach } from "bun:test";
 import { mkdtempSync, writeFileSync, rmSync } from "fs";
 import { tmpdir } from "os";
+import os from "os";
 import { join } from "path";
 import { mockFetch, urlRouter, jsonResponse } from "../testing/mock-fetch.ts";
-import { indexArchive } from "./index-archive.ts";
+import { indexArchive, resolveArchivePath } from "./index-archive.ts";
 import type { Config } from "../config.ts";
 
 const cfg: Config = {
@@ -64,5 +65,16 @@ describe("indexArchive", () => {
   test("throws when OpenRouter key is missing", async () => {
     const { openrouterApiKey, ...rest } = cfg;
     await expect(indexArchive(tmp, rest as Config)).rejects.toThrow(/OPENROUTER/);
+  });
+
+  test("errors cleanly when CLOUDFLARE_ACCOUNT_ID missing", async () => {
+    const env = { CLOUDFLARE_API_TOKEN: "t" } as any;
+    await expect(indexArchive({ env })).rejects.toThrow(/CLOUDFLARE_ACCOUNT_ID/);
+  });
+
+  test("uses os.homedir() when HOME unset", () => {
+    const env = { ...process.env, HOME: undefined };
+    const p = resolveArchivePath(env);
+    expect(p).toContain(os.homedir());
   });
 });

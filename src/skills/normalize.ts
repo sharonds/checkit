@@ -1,4 +1,12 @@
-import type { Finding, SkillResult } from "./types.ts";
+import type { Finding, SkillResult, Source, Citation } from "./types.ts";
+
+function isSource(x: unknown): x is Source {
+  return typeof x === "object" && x !== null && typeof (x as any).url === "string";
+}
+
+function isCitation(x: unknown): x is Citation {
+  return typeof x === "object" && x !== null && typeof (x as any).title === "string";
+}
 
 export function normalizeFinding(raw: unknown): Finding {
   if (!raw || typeof raw !== "object") return { severity: "info", text: "" };
@@ -10,9 +18,9 @@ export function normalizeFinding(raw: unknown): Finding {
     severity: validSeverities.includes(f.severity as never) ? (f.severity as Finding["severity"]) : "info",
     text: typeof f.text === "string" ? f.text : "",
     quote: typeof f.quote === "string" ? f.quote : undefined,
-    sources: Array.isArray(f.sources) ? (f.sources as Finding["sources"]) : undefined,
+    sources: Array.isArray(f.sources) ? f.sources.filter(isSource) : undefined,
     rewrite: typeof f.rewrite === "string" ? f.rewrite : undefined,
-    citations: Array.isArray(f.citations) ? (f.citations as Finding["citations"]) : undefined,
+    citations: Array.isArray(f.citations) ? f.citations.filter(isCitation) : undefined,
     claimType: validClaimTypes.includes(f.claimType as never) ? (f.claimType as Finding["claimType"]) : undefined,
     confidence: validConfidences.includes(f.confidence as never) ? (f.confidence as Finding["confidence"]) : undefined,
   };
@@ -23,7 +31,7 @@ export function normalizeSkillResult(raw: unknown): SkillResult {
     return { skillId: "", name: "", score: 0, verdict: "warn", summary: "", findings: [], costUsd: 0 };
   }
   const r = raw as Partial<SkillResult> & Record<string, unknown>;
-  const validVerdicts = ["pass", "warn", "fail"] as const;
+  const validVerdicts = ["pass", "warn", "fail", "skipped"] as const;
   return {
     skillId: typeof r.skillId === "string" ? r.skillId : "",
     name: typeof r.name === "string" ? r.name : "",
@@ -32,7 +40,9 @@ export function normalizeSkillResult(raw: unknown): SkillResult {
     summary: typeof r.summary === "string" ? r.summary : "",
     findings: Array.isArray(r.findings) ? r.findings.map(normalizeFinding) : [],
     costUsd: typeof r.costUsd === "number" ? r.costUsd : 0,
-    costBreakdown: r.costBreakdown && typeof r.costBreakdown === "object" ? (r.costBreakdown as Record<string, number>) : undefined,
+    costBreakdown: (r.costBreakdown && typeof r.costBreakdown === "object" && !Array.isArray(r.costBreakdown))
+      ? (r.costBreakdown as Record<string, number>)
+      : undefined,
     provider: typeof r.provider === "string" ? r.provider : undefined,
     error: typeof r.error === "string" ? r.error : undefined,
   };

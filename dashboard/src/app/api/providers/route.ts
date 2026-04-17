@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readAppConfig, writeAppConfig } from "@/lib/config";
-import { guardLocalMutation } from "@/lib/guard-local";
+import { guardLocalMutation, guardLocalReadOnly } from "@/lib/guard-local";
 import type { SkillId, SkillProviderConfig } from "@/lib/providers";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const blocked = guardLocalReadOnly(req);
+  if (blocked) return blocked;
+
   const cfg = readAppConfig() as Record<string, unknown>;
   const raw = (cfg.providers as Partial<Record<SkillId, SkillProviderConfig>>) ?? {};
   const maskedProviders = Object.fromEntries(
