@@ -1,26 +1,57 @@
 # Handoff
 
-## State
+## State (verified 2026-04-18)
 
-**Checkit v1.0 shipped** (renamed from article-checker). App is at `~/checkit`, GitHub is `sharonds/checkit`. PR #9 merged the rebrand into main.
+**Rebrand complete.** Both repos renamed from Checkit → CheckApp. Platform side done:
+- GitHub: `sharonds/checkapp` (auto-redirects from old `checkit` + `article-checker` URLs)
+- Local dir: `~/checkapp`
+- Branch: `main`
 
-Latest main SHA: see `git log --oneline main | head -1`.
+## Repo state
 
-**Config migration active:** first CLI launch moves `~/.article-checker/` → `~/.checkit/` once (idempotent). Binaries emit as `dist/checkit-{mac-arm64,mac-x64,linux-x64,win-x64.exe}`.
+- Latest commit on main: `d1c87bb rebrand: rename checkit → CheckApp (full) (#10)`
+- `package.json`: `name` is `checkapp`, `bin` is `checkapp`
+- MCP server: `checkapp`
+- Config dir: `~/.checkapp/` (migrates from legacy `~/.checkit/` or `~/.article-checker/` automatically on first run — see `src/config.ts`)
+- Dashboard db migration same pattern (see `dashboard/src/lib/db.ts`)
+- Env var `CHECKAPP_DB` accepted; legacy `ARTICLE_CHECKER_DB` also accepted for backwards compat
+- 160 CLI tests + 20 dashboard tests pass
+- 4 binaries build: `dist/checkapp-{mac-arm64,mac-x64,linux-x64,win-x64.exe}`
 
-**Domain (planned, not yet live):** `checkit.cc`. Old `articlechecker.dev` references are fully gone from the tree.
+## Cross-repo
 
-## Tests
-
-160/160 pass (`bun test src/*.test.ts src/skills/*.test.ts`). 20 pre-existing dashboard React-import failures are unrelated and exist on a clean main.
+The marketing landing page lives at `~/checkapp-landing` (repo `sharonds/checkapp-landing`, deployed at `checkapp.xyz`). Phase 7 planning + execution happens there, not here.
 
 ## Next
 
-- **Landing is live (preview URL):** `https://checkit-landing-jzalu89yv-sharons-projects-fca19fb6.vercel.app`. Repo at `sharonds/checkit-landing`. Next steps: (a) point domain `checkit.cc` at Vercel (`vercel domains add checkit.cc` + DNS A-record `76.76.21.21`), (b) add `NEXT_PUBLIC_WEB3FORMS_KEY` to Preview env via dashboard.
-- **Lighthouse on landing:** run on the live URL. Target Perf ≥ 85, A11y ≥ 95, BP/SEO = 100. If Perf drops under 85, consider `next/dynamic` on `DashboardWalkthrough` (big framer-motion + 4 images below fold).
-- **Roadmap:** Phase 7 (research-backed editor) + Phase 8 (Checkit Studio) — see `docs/ROADMAP-IDEAS.md`.
+Start a **fresh session** to preserve context budget. Choose one:
 
-## Notes
+**Path A: Phase 7 implementation plan (recommended)**
+Read `~/checkapp-landing/docs/superpowers/roadmap/2026-04-17-phase7-research-backed-editor.md`, then write a 30-task implementation plan at `~/checkapp-landing/docs/superpowers/plans/2026-04-18-phase7-implementation.md`. Use `superpowers:writing-plans`. Do NOT execute — just plan.
 
-- MCP server name is `checkit` (was `article-checker`).
-- GitHub auto-redirects `sharonds/article-checker` → `sharonds/checkit` for any old clone URLs.
+**Path B: Execute Phase 7**
+After the plan is written, execute with `superpowers:subagent-driven-development`. Options-per-category provider picker first, then 5 new skills, then upgrades to existing skills.
+
+## Phase 7 scope (short list)
+
+1. Options-per-category provider picker UI (Settings)
+2. Grammar & Style skill (LanguageTool default, Sapling / LLM fallback)
+3. Academic Citations skill (Semantic Scholar — free, no key)
+4. Self-plagiarism skill (Cloudflare Vectorize / Pinecone / Upstash Vector)
+5. Deep Fact-Check upgrade (Exa Deep Reasoning / Parallel Task — existing skill)
+6. Claim-level proof drill-down UI in dashboard reports
+7. Evidence + rewrite + citation attached to every flagged finding
+8. Cost tracker per skill per provider
+
+## Context lessons from this session
+
+- **Don't run `sed` across `docs/superpowers/plans/*.md`** — they're historical artifacts. If rebranding again in the future, exclude that directory. The landing repo has 2 annotated "corrupted historical" files because of this.
+- **Extension filters matter for `grep -rl`** — `.txt` files like `llms.txt` were missed by earlier sed because include list was `.md/.ts/.tsx/.json`. Add `--include="*.txt"` next time.
+- **Dashboard tests use `ARTICLE_CHECKER_DB` env var** historically. `getDb()` now accepts both that and `CHECKAPP_DB` for backwards compat — don't remove the fallback.
+- **Config dir migration is 3-generation**: `~/.article-checker` → `~/.checkit` → `~/.checkapp`. The `LEGACY_DIRS` array in both `src/config.ts` and `dashboard/src/lib/db.ts` handles both legacy paths.
+
+## Fresh session boot prompt
+
+```
+Read ~/checkapp-landing/docs/superpowers/roadmap/2026-04-17-phase7-research-backed-editor.md and ~/checkapp-landing/AGENTS.md and ~/checkapp-landing/.remember/remember.md, then write a ~30-task implementation plan at ~/checkapp-landing/docs/superpowers/plans/2026-04-18-phase7-implementation.md using superpowers:writing-plans. Do NOT execute — just plan. Ask me any clarifying questions before writing.
+```
