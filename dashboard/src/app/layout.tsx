@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { Providers } from "@/components/providers";
 import { Sidebar } from "@/components/sidebar";
+import { getCsrfToken } from "@/lib/csrf";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,12 +26,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const csrf = getCsrfToken();
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <meta name="checkapp-csrf" content={csrf} />
+      </head>
       <body className="flex min-h-full">
         <Providers>
           <Sidebar />
