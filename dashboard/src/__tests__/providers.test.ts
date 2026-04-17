@@ -1,8 +1,10 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { NextRequest } from "next/server";
 
-const mockReadAppConfig = vi.fn();
-const mockWriteAppConfig = vi.fn();
+const { mockReadAppConfig, mockWriteAppConfig } = vi.hoisted(() => ({
+  mockReadAppConfig: vi.fn(),
+  mockWriteAppConfig: vi.fn(),
+}));
 
 // Mock config + csrf reads
 vi.mock("@/lib/config", () => ({

@@ -1,8 +1,10 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { NextRequest } from "next/server";
 
-const mockReadAppConfig = vi.fn();
-const mockGetApiKeyStatus = vi.fn();
+const { mockReadAppConfig, mockGetApiKeyStatus } = vi.hoisted(() => ({
+  mockReadAppConfig: vi.fn(),
+  mockGetApiKeyStatus: vi.fn(),
+}));
 
 vi.mock("@/lib/config", () => ({
   readAppConfig: mockReadAppConfig,
