@@ -36,3 +36,13 @@ describe("get_skills", () => {
     expect(ids).toEqual(expect.arrayContaining(["grammar", "academic", "selfPlagiarism"]));
   });
 });
+
+describe("regenerate_article", () => {
+  it("returns structured skip when no LLM provider configured", async () => {
+    const cfg = { skills: {}, providers: {} };
+    const res = await handleToolCall("regenerate_article", { text: "hello", config: cfg });
+    const parsed = JSON.parse(res.content[0].type === "text" ? res.content[0].text : "{}");
+    expect(parsed.status).toBe("skipped");
+    expect(parsed.reason).toMatch(/no llm provider/i);
+  });
+});
