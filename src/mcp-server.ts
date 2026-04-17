@@ -90,7 +90,7 @@ export function getToolDefinitions() {
   ];
 }
 
-async function handleToolCall(name: string, args: Record<string, unknown>) {
+export async function handleToolCall(name: string, args: Record<string, unknown>) {
   switch (name) {
     case "check_article": {
       const text = args.text as string;

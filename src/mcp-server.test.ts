@@ -1,5 +1,5 @@
 import { describe, it, expect } from "bun:test";
-import { getToolDefinitions } from "./mcp-server.ts";
+import { getToolDefinitions, handleToolCall } from "./mcp-server.ts";
 
 describe("MCP tool definitions", () => {
   it("defines check_article tool", () => {
@@ -25,5 +25,14 @@ describe("MCP tool definitions", () => {
       expect(tool.description).toBeTruthy();
       expect(tool.inputSchema).toBeDefined();
     }
+  });
+});
+
+describe("get_skills", () => {
+  it("lists grammar, academic, selfPlagiarism", async () => {
+    const res = await handleToolCall("get_skills", {});
+    const text = res.content[0].type === "text" ? res.content[0].text : "";
+    const ids = JSON.parse(text).map((s: any) => s.id);
+    expect(ids).toEqual(expect.arrayContaining(["grammar", "academic", "selfPlagiarism"]));
   });
 });
