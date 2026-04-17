@@ -79,6 +79,16 @@ export function readConfig(): Config {
     ? (JSON.parse(readFileSync(CONFIG_FILE, "utf-8")) as Partial<Config>)
     : {};
 
+  // --deep-fact-check CLI flag sets this env var; swap fact-check provider at
+  // config-read time so all downstream readers see it without further plumbing.
+  let providers = file.providers;
+  if (process.env.CHECKAPP_DEEP_FACT_CHECK === "1" && process.env.CHECKAPP_DEEP_FACT_CHECK_KEY) {
+    providers = {
+      ...(providers ?? {}),
+      "fact-check": { provider: "exa-deep-reasoning", apiKey: process.env.CHECKAPP_DEEP_FACT_CHECK_KEY },
+    };
+  }
+
   return {
     copyscapeUser: process.env.COPYSCAPE_USER ?? file.copyscapeUser ?? "",
     copyscapeKey: process.env.COPYSCAPE_KEY ?? file.copyscapeKey ?? "",
@@ -96,7 +106,7 @@ export function readConfig(): Config {
     skills: { ...DEFAULT_SKILLS, ...(file.skills ?? {}) },
     thresholds: file.thresholds,
     contexts: file.contexts,
-    providers: file.providers,
+    providers,
   };
 }
 
