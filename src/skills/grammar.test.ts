@@ -163,3 +163,63 @@ describe("GrammarSkill — grammar-pass on AI rewrites (R9)", () => {
     expect(r.findings[0]?.rewrite).toBe("good");
   });
 });
+
+describe("GrammarSkill — review fixes", () => {
+  test("recheck disabled via boolean false (not just string)", async () => {
+    let ltCalls = 0;
+    mockFetch(urlRouter({
+      "api.minimax.io": async () =>
+        anthropicContent('[{"quote":"x","rewrite":"y","rule":"r"}]'),
+      "languagetool.org": async () => {
+        ltCalls++;
+        return jsonResponse({ matches: [] });
+      },
+    }));
+    const cfg: Config = {
+      ...cfgBase,
+      providers: { grammar: { provider: "llm-fallback", extra: { recheck: false as never } } },
+      minimaxApiKey: "mm-key",
+    };
+    await new GrammarSkill().run("x", cfg);
+    expect(ltCalls).toBe(0); // no recheck happened
+  });
+
+  test("recheck uses custom endpoint from extra.recheckEndpoint", async () => {
+    let seenHost = "";
+    mockFetch(urlRouter({
+      "api.minimax.io": async () =>
+        anthropicContent('[{"quote":"x","rewrite":"y","rule":"r"}]'),
+      "lt.my-company.internal": async (req) => {
+        seenHost = new URL(req.url).host;
+        return jsonResponse({ matches: [] });
+      },
+    }));
+    const cfg: Config = {
+      ...cfgBase,
+      providers: {
+        grammar: {
+          provider: "llm-fallback",
+          extra: { recheckEndpoint: "https://lt.my-company.internal/v2/check" },
+        },
+      },
+      minimaxApiKey: "mm-key",
+    };
+    await new GrammarSkill().run("x", cfg);
+    expect(seenHost).toBe("lt.my-company.internal");
+  });
+
+  test("filters malformed LLM items (missing quote/rewrite)", async () => {
+    mockFetch(urlRouter({
+      "api.minimax.io": async () =>
+        anthropicContent('[{"quote":"good","rewrite":"fixed","rule":"r"},{},{"quote":""},{"rewrite":"nope"}]'),
+    }));
+    const cfg: Config = {
+      ...cfgBase,
+      providers: { grammar: { provider: "llm-fallback", extra: { recheck: "false" } } },
+      minimaxApiKey: "mm-key",
+    };
+    const r = await new GrammarSkill().run("x", cfg);
+    expect(r.findings.length).toBe(1);
+    expect(r.findings[0].rewrite).toBe("fixed");
+  });
+});

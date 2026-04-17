@@ -109,7 +109,14 @@ JSON array:`;
     try {
       const raw = await llm.call(prompt, 2048);
       const parsed = parseJsonResponse<Array<{ quote: string; rewrite: string; rule: string }>>(raw);
-      if (Array.isArray(parsed)) items = parsed.slice(0, 10);
+      if (Array.isArray(parsed)) {
+        // Drop malformed items — missing quote/rewrite produces garbage findings.
+        items = parsed.filter((i) =>
+          i != null && typeof i === "object"
+          && typeof i.quote === "string" && i.quote.length > 0
+          && typeof i.rewrite === "string" && i.rewrite.length > 0
+        ).slice(0, 10);
+      }
     } catch { /* swallow — fall through to empty findings */ }
 
     let findings: Finding[] = items.map((i) => ({
@@ -121,14 +128,21 @@ JSON array:`;
 
     // R9: Grammar-pass on AI rewrites. LT is free and deterministic — correct
     // mechanical errors in the LLM's rewrite before surfacing it to the user.
-    // Skipped if explicitly disabled via providers.grammar.extra.recheck="false".
-    const recheckDisabled = config.providers?.grammar?.extra?.recheck === "false";
+    // Skipped if explicitly disabled via providers.grammar.extra.recheck (false or "false").
+    // `extra` is typed Record<string, string> but config JSON may contain booleans;
+    // the cast is deliberate — user config is untrusted JSON.
+    const recheckRaw = config.providers?.grammar?.extra?.recheck as unknown;
+    const recheckDisabled = recheckRaw === false || recheckRaw === "false";
+    // Self-hosted LT users: set providers.grammar.extra.recheckEndpoint to your
+    // self-hosted URL to keep text off third-party servers.
+    const recheckEndpoint = (config.providers?.grammar?.extra?.recheckEndpoint as string | undefined)
+      ?? "https://api.languagetool.org/v2/check";
     if (!recheckDisabled) {
       findings = await Promise.all(findings.map(async (f) => {
         if (!f.rewrite) return f;
         try {
           const recheck = await ltCheck({
-            endpoint: "https://api.languagetool.org/v2/check",
+            endpoint: recheckEndpoint,
             text: f.rewrite,
           });
           if (recheck.matches.length === 0) return f;
