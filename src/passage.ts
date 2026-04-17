@@ -32,10 +32,24 @@ export function splitIntoSentences(text: string): string[] {
   const trimmed = text.trim();
   if (!trimmed) return [];
 
-  // Try Latin-aware split first (handles abbreviations like "U.S." correctly)
+  // Intl.Segmenter handles Hebrew, English, Arabic, and most other scripts
+  // cleanly. We pass undefined locale so the runtime picks based on content.
+  if (typeof Intl !== "undefined" && typeof (Intl as any).Segmenter === "function") {
+    try {
+      const seg = new (Intl as any).Segmenter(undefined, { granularity: "sentence" });
+      const out: string[] = [];
+      for (const { segment } of seg.segment(trimmed)) {
+        const s = segment.trim();
+        if (s) out.push(s);
+      }
+      if (out.length > 0) return out;
+    } catch {
+      // fall through to regex-based splitting
+    }
+  }
+
+  // Legacy fallback (Latin-biased)
   const latinSplit = trimmed.split(/(?<=[.!?])\s+(?=[A-Z])/).map(s => s.trim()).filter(Boolean);
   if (latinSplit.length > 1) return latinSplit;
-
-  // Fallback: split on sentence-ending punctuation followed by whitespace (works for Hebrew, Arabic, CJK)
   return trimmed.split(/(?<=[.!?])\s+/).map(s => s.trim()).filter(Boolean);
 }

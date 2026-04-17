@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { findMatchingPassages, MIN_WORDS } from "./passage.ts";
+import { findMatchingPassages, MIN_WORDS, splitIntoSentences } from "./passage.ts";
 
 test("finds verbatim sentence from article in page content", () => {
   const article =
@@ -91,4 +91,27 @@ test("matches sentence despite markdown link syntax in page content", () => {
   expect(matches).toContain(
     "Vitamin D is essential for bone health and immune function in adults."
   );
+});
+
+test("splits Hebrew text into three sentences (not one monolithic block)", () => {
+  // Each sentence ≥ 8 words to pass MIN_WORDS.
+  const heb =
+    "זהו המשפט הראשון של המאמר והוא מכיל מספיק מילים לבדיקה. " +
+    "זהו המשפט השני שגם הוא ארוך דיו כדי לעבור את הסף המינימלי! " +
+    "והנה המשפט השלישי שמסיים את הפסקה עם מספיק תוכן לבחון?";
+  const sentences = splitIntoSentences(heb);
+  expect(sentences.length).toBe(3);
+  expect(sentences[0]).toContain("המשפט הראשון");
+});
+
+test("findMatchingPassages detects a copied Hebrew sentence", () => {
+  const copied = "זהו המשפט הראשון של המאמר והוא מכיל מספיק מילים לבדיקה";
+  // verify fixture meets MIN_WORDS=8
+  expect(copied.split(/\s+/).length).toBeGreaterThanOrEqual(8);
+
+  const article = `${copied}. משפט אחר לגמרי שכולל גם הוא מספיק מילים כדי לעבור את הסף.`;
+  const page    = `קצת טקסט אחר שממלא את התחילה. ${copied}. עוד טקסט בסוף העמוד.`;
+  const matches = findMatchingPassages(article, page);
+  expect(matches.length).toBe(1);
+  expect(matches[0]).toContain(copied);
 });
