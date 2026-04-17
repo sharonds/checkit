@@ -32,7 +32,8 @@ describe("/api/providers", () => {
   });
 
   test("GET returns providers map", async () => {
-    const res = await GET();
+    const req = new NextRequest(new URL("http://localhost:3000/api/providers"));
+    const res = await GET(req);
     expect(res.status).toBe(200);
     const json = await res.json();
     expect(json.providers["fact-check"].provider).toBe("exa-search");
@@ -41,7 +42,8 @@ describe("/api/providers", () => {
   });
 
   test("GET masks apiKey — returns provider/extra/hasKey only", async () => {
-    const res = await GET();
+    const req = new NextRequest(new URL("http://localhost:3000/api/providers"));
+    const res = await GET(req);
     expect(res.status).toBe(200);
     const json = await res.json();
     // apiKey MUST NOT appear anywhere in the response
@@ -53,6 +55,12 @@ describe("/api/providers", () => {
     // hasKey flags tracking presence
     expect(json.hasKey["fact-check"]).toBe(true);
     expect(json.hasKey["grammar"]).toBe(false);
+  });
+
+  test("GET /api/providers is 403 from non-loopback hostname", async () => {
+    const req = new NextRequest(new URL("http://198.51.100.7:3000/api/providers"));
+    const res = await GET(req);
+    expect(res.status).toBe(403);
   });
 
   test("PUT accepts valid body with correct CSRF + localhost host", async () => {
