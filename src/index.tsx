@@ -4,11 +4,14 @@ import { runSetup } from "./setup.tsx";
 import { runCheck } from "./check.tsx";
 import { openDb, queryRecent } from "./db.ts";
 import { runBatch } from "./batch.ts";
+import { resolveProvider } from "./providers/resolve.ts";
 
 const args = process.argv.slice(2);
 const forceSetup = args.includes("--setup");
 const showHistory = args.includes("--history");
 const showUi = args.includes("--ui");
+const deepFactCheck = args.includes("--deep-fact-check");
+const estimateOnly = args.includes("--estimate-cost");
 const batchIndex = args.indexOf("--batch");
 const batchDir = batchIndex !== -1 ? args[batchIndex + 1] : undefined;
 const outputIndex = args.indexOf("--output");
@@ -24,6 +27,33 @@ if (outputIndex !== -1 && !outputPath) {
 const docUrl = args.find((a) => !a.startsWith("--") && a !== batchDir && a !== outputPath);
 
 async function main() {
+  // --estimate-cost: wiring lands in Phase 7 B7. Fail noisily.
+  if (estimateOnly) {
+    console.error("--estimate-cost is not yet wired — lands in Phase 7 B7");
+    process.exit(1);
+  }
+
+  // --deep-fact-check: resolve the existing fact-check provider/apiKey (via B1's
+  // resolveProvider — NOT blindly config.exaApiKey), then swap the provider to
+  // exa-deep-reasoning while keeping the key. Downstream readConfig() calls honor
+  // the env-var sidecar so this propagates to checker/runCheck without extra plumbing.
+  if (deepFactCheck) {
+    const cfg = configExists() ? readConfig() : undefined;
+    if (cfg) {
+      const existing = resolveProvider(cfg, "fact-check");
+      const apiKey = existing?.apiKey ?? cfg.exaApiKey;
+      if (!apiKey) {
+        console.error("--deep-fact-check requires an Exa API key (set EXA_API_KEY or providers.fact-check.apiKey)");
+        process.exit(1);
+      }
+      process.env.CHECKAPP_DEEP_FACT_CHECK = "1";
+      process.env.CHECKAPP_DEEP_FACT_CHECK_KEY = apiKey;
+    } else {
+      console.error("--deep-fact-check requires a CheckApp config (run --setup first)");
+      process.exit(1);
+    }
+  }
+
   // --fix: run checks then generate AI rewrites for flagged sentences
   if (args.includes("--fix")) {
     const { runCheckHeadless } = await import("./checker.ts");
@@ -223,6 +253,8 @@ async function main() {
     console.log("");
     console.log("Options:");
     console.log("  --fix             Run checks then suggest AI rewrites for flagged sentences");
+    console.log("  --deep-fact-check Use Exa deep-reasoning for fact-checks (slower, deeper)");
+    console.log("  --estimate-cost   Print estimated cost for the configured skills (B7)");
     console.log("  --mcp             Start MCP server (for Claude Code, Cursor, etc.)");
     console.log("  --ui              Open the local web dashboard");
     console.log("  --ci              Headless check — exits 1 if any skill fails");
