@@ -5,6 +5,36 @@ import { ltCheck } from "../providers/languagetool.ts";
 
 const MAX_FINDINGS = 50;
 
+/**
+ * Replace a substring at a specific offset without using string.replace(),
+ * which replaces the first occurrence and fails when the substring appears
+ * multiple times (e.g., "the the" → replace both occurrences correctly).
+ */
+function spliceReplace(text: string, offset: number, length: number, replacement: string): string {
+  return text.slice(0, offset) + replacement + text.slice(offset + length);
+}
+
+/**
+ * Execute async work with a concurrency limit.
+ * Items are processed in order, but no more than `limit` work concurrently.
+ */
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  limit: number,
+  fn: (t: T) => Promise<R>,
+): Promise<R[]> {
+  const results: R[] = new Array(items.length);
+  let i = 0;
+  async function worker() {
+    while (i < items.length) {
+      const idx = i++;
+      results[idx] = await fn(items[idx]);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
+
 export class GrammarSkill implements Skill {
   readonly id = "grammar";
   readonly name = "Grammar & Style";
@@ -50,8 +80,13 @@ export class GrammarSkill implements Skill {
       const ltRes = await ltCheck({ endpoint, text, apiKey: resolved.apiKey });
       const findings = ltRes.matches.slice(0, MAX_FINDINGS).map((m): Finding => {
         const best = m.replacements[0]?.value ?? "";
-        const bad = text.slice(m.offset, m.offset + m.length);
-        const rewrite = best && bad ? m.sentence.replace(bad, best) : undefined;
+        // Find the offset within m.sentence by anchoring to the absolute offset.
+        // m.sentence is a slice of the original text; we need its offset within `text`.
+        const sentenceOffsetInText = text.indexOf(m.sentence);
+        const localOffset = sentenceOffsetInText >= 0 ? m.offset - sentenceOffsetInText : -1;
+        const rewrite = best && localOffset >= 0
+          ? spliceReplace(m.sentence, localOffset, m.length, best)
+          : undefined;
         return {
           severity: m.rule.id.startsWith("MORFOLOGIK") ? "error" : "warn",
           text: `${m.rule.description}: ${m.message}`,
@@ -138,7 +173,7 @@ JSON array:`;
     const recheckEndpoint = (config.providers?.grammar?.extra?.recheckEndpoint as string | undefined)
       ?? "https://api.languagetool.org/v2/check";
     if (!recheckDisabled) {
-      findings = await Promise.all(findings.map(async (f) => {
+      findings = await mapWithConcurrency(findings, 3, async (f) => {
         if (!f.rewrite) return f;
         try {
           const recheck = await ltCheck({
@@ -146,23 +181,26 @@ JSON array:`;
             text: f.rewrite,
           });
           if (recheck.matches.length === 0) return f;
+          // Sort matches by offset DESC so earlier offsets stay valid after each splice
+          const sorted = [...recheck.matches].slice(0, 5).sort((a, b) => b.offset - a.offset);
           let corrected = f.rewrite;
-          for (const m of recheck.matches.slice(0, 5)) {
+          for (const m of sorted) {
             const best = m.replacements[0]?.value;
             if (!best) continue;
-            const bad = f.rewrite.slice(m.offset, m.offset + m.length);
-            if (!bad) continue;
-            corrected = corrected.replace(bad, best);
+            corrected = spliceReplace(corrected, m.offset, m.length, best);
           }
           return { ...f, rewrite: corrected };
         } catch {
           return f;
         }
-      }));
+      });
     }
 
     const score = Math.max(0, 100 - findings.length * 3);
-    const verdict: SkillResult["verdict"] = score >= 75 ? "pass" : score >= 50 ? "warn" : "fail";
+    const verdict: SkillResult["verdict"] =
+      findings.length === 0 ? "pass"
+      : score >= 50 ? "warn"
+      : "fail";
     return {
       skillId: this.id, name: this.name, score, verdict,
       summary: findings.length === 0 ? "No grammar issues found (LLM)" : `LLM found ${findings.length} issues${recheckDisabled ? "" : " (rewrites grammar-checked)"}`,

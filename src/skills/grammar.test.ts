@@ -174,6 +174,74 @@ describe("GrammarSkill — grammar-pass on AI rewrites (R9)", () => {
   });
 });
 
+describe("GrammarSkill — B3.0 correctness fixes", () => {
+  test("runLanguageTool applies rewrite at the correct offset when bad word appears twice", async () => {
+    mockFetch(urlRouter({
+      "languagetool.org": async () => jsonResponse({
+        matches: [{
+          rule: { id: "DUPLICATE", description: "dup" },
+          message: "repeated word",
+          offset: 4, // position of second "the"
+          length: 3,
+          sentence: "the the quick brown fox",
+          replacements: [{ value: "a" }],
+          context: { text: "the the quick brown fox", offset: 4, length: 3 },
+        }],
+      }),
+    }));
+    const skill = new GrammarSkill();
+    const res = await skill.run("the the quick brown fox", cfgBase);
+    // rewrite must change the SECOND "the", not the first
+    expect(res.findings[0].rewrite).toBe("the a quick brown fox");
+  });
+
+  test("LLM fallback verdict caps at 'warn' whenever findings > 0, even when score >= 75", async () => {
+    // Create 8 findings which would score 76 with old formula
+    const manyFindings = Array.from({ length: 8 }, (_, i) => ({
+      quote: `error ${i}`,
+      rewrite: `fixed ${i}`,
+      rule: "Test rule",
+    }));
+    mockFetch(urlRouter({
+      "api.minimax.io": async () =>
+        anthropicContent(JSON.stringify(manyFindings)),
+      "languagetool.org": async () => jsonResponse({ matches: [] }),
+    }));
+    const cfg: Config = {
+      ...cfgBase,
+      providers: { grammar: { provider: "llm-fallback", extra: { recheck: "false" } } },
+      minimaxApiKey: "mm-key",
+    };
+    const res = await new GrammarSkill().run("test text", cfg);
+    expect(res.findings.length).toBe(8);
+    expect(res.verdict).not.toBe("pass");
+    expect(res.verdict).toBe("warn");
+  });
+
+  test("recheck concurrency does not burst — no more than 3 concurrent ltCheck calls", async () => {
+    let inFlight = 0; let peak = 0;
+    const ltMockHandler = async () => {
+      inFlight++;
+      peak = Math.max(peak, inFlight);
+      await new Promise(r => setTimeout(r, 20));
+      inFlight--;
+      return jsonResponse({ matches: [] });
+    };
+    mockFetch(urlRouter({
+      "api.minimax.io": async () =>
+        anthropicContent('[{"quote":"x1","rewrite":"y1","rule":"r1"},{"quote":"x2","rewrite":"y2","rule":"r2"},{"quote":"x3","rewrite":"y3","rule":"r3"},{"quote":"x4","rewrite":"y4","rule":"r4"},{"quote":"x5","rewrite":"y5","rule":"r5"},{"quote":"x6","rewrite":"y6","rule":"r6"},{"quote":"x7","rewrite":"y7","rule":"r7"},{"quote":"x8","rewrite":"y8","rule":"r8"},{"quote":"x9","rewrite":"y9","rule":"r9"},{"quote":"x10","rewrite":"y10","rule":"r10"}]'),
+      "languagetool.org": ltMockHandler,
+    }));
+    const cfg: Config = {
+      ...cfgBase,
+      providers: { grammar: { provider: "llm-fallback" } },
+      minimaxApiKey: "mm-key",
+    };
+    await new GrammarSkill().run("article with 10 findings", cfg);
+    expect(peak).toBeLessThanOrEqual(3);
+  });
+});
+
 describe("GrammarSkill — review fixes", () => {
   test("recheck disabled via boolean false (not just string)", async () => {
     let ltCalls = 0;
