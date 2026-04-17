@@ -31,5 +31,9 @@ export function safeHref(raw: unknown): string {
 export function sanitizeText(raw: unknown, maxLen = 2000): string {
   if (typeof raw !== "string") return "";
   const stripped = raw.replace(CONTROL_CHARS, "");
-  return stripped.length > maxLen ? stripped.slice(0, maxLen) + "…" : stripped;
+  if (stripped.length > maxLen) {
+    const sliced = stripped.slice(0, maxLen);
+    return sliced.endsWith("…") ? sliced : sliced + "…";
+  }
+  return stripped;
 }

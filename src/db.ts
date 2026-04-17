@@ -1,6 +1,6 @@
 import { Database } from "bun:sqlite";
 import { homedir } from "os";
-import { join } from "path";
+import { join, dirname } from "path";
 import { mkdirSync } from "fs";
 import type { SkillResult } from "./skills/types.ts";
 
@@ -20,7 +20,7 @@ export interface CheckRecord {
 
 export function openDb(path = DB_PATH): DB {
   if (path !== ":memory:") {
-    mkdirSync(DB_DIR, { recursive: true });
+    mkdirSync(dirname(path), { recursive: true });
   }
   const db = new Database(path);
   createSchema(db);

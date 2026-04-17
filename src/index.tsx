@@ -83,9 +83,9 @@ async function main() {
       process.exit(1);
     }
     const config = readConfig();
-    const { fetchGoogleDoc } = await import("./gdoc.ts");
+    const { fetchGoogleDoc, countWords } = await import("./gdoc.ts");
     const text = await fetchGoogleDoc(docUrl);
-    const wordCount = text.split(/\s+/).filter(Boolean).length;
+    const wordCount = countWords(text);
     const { estimateRunCost } = await import("./cost/estimator.ts");
     const est = estimateRunCost(config, wordCount);
     console.log(`Estimated cost: $${est.total.toFixed(4)}  (${wordCount} words)`);
