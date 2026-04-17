@@ -217,9 +217,9 @@ export default function SettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild variant="outline">
-                <Link href="/settings/providers">Configure →</Link>
-              </Button>
+              <Link href="/settings/providers" className="inline-flex items-center justify-center rounded-lg border border-border bg-background hover:bg-muted hover:text-foreground text-sm font-medium px-2.5 h-8 gap-1.5 transition-all">
+                Configure →
+              </Link>
             </CardContent>
           </Card>
 
