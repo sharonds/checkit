@@ -51,3 +51,18 @@ export interface Skill {
   name: string;
   run(text: string, config: Config): Promise<SkillResult>;
 }
+
+/**
+ * An enricher skill runs AFTER the primary skills and reads their results.
+ * It can either produce new findings or mutate/merge into existing findings.
+ * AcademicSkill is the first enricher — it reads fact-check findings and
+ * adds citations to claims with claimType scientific|medical|financial.
+ */
+export interface EnricherSkill extends Skill {
+  readonly kind: "enricher";
+  enrich(text: string, config: Config, priorResults: SkillResult[]): Promise<SkillResult>;
+}
+
+export function isEnricher(skill: Skill): skill is EnricherSkill {
+  return (skill as EnricherSkill).kind === "enricher";
+}
