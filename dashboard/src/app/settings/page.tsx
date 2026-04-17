@@ -49,6 +49,8 @@ const THRESHOLD_SKILLS = [
   { id: "tone", name: "Tone of Voice" },
   { id: "legal", name: "Legal Risk" },
   { id: "summary", name: "Content Summary" },
+  { id: "brief", name: "Brief Alignment" },
+  { id: "purpose", name: "Purpose Detection" },
 ];
 
 export default function SettingsPage() {
