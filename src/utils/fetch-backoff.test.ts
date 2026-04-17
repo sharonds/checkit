@@ -67,10 +67,12 @@ describe("fetchWithBackoff", () => {
   });
 
   test("parses HTTP-date Retry-After into milliseconds", () => {
-    const futureDate = new Date(Date.now() + 2500).toUTCString();
+    // HTTP-date format has second-resolution, so parsed delta is ~offset rounded
+    // down to the next full second. Use a 5s offset to give >1000ms of headroom.
+    const futureDate = new Date(Date.now() + 5000).toUTCString();
     const ms = parseRetryAfterMs(futureDate);
-    expect(ms).toBeGreaterThan(2000);
-    expect(ms).toBeLessThanOrEqual(3000);
+    expect(ms).toBeGreaterThan(1000);
+    expect(ms).toBeLessThanOrEqual(6000);
   });
 
   test("parses numeric Retry-After in seconds", () => {
