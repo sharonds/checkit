@@ -155,7 +155,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
       const skillId = args.skillId as string;
       const enabled = args.enabled as boolean;
       const skills = { ...config.skills, [skillId]: enabled };
-      writeConfig({ skills });
+      await writeConfig({ skills });
       return { content: [{ type: "text", text: `Skill '${skillId}' ${enabled ? "enabled" : "disabled"}` }] };
     }
     case "regenerate_article": {
