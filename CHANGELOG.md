@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Dependency majors**
+  - **Root runtime majors coordinated upgrade** (#36): `react` ^18 → ^19.2, `@types/react` ^18 → ^19.2, `ink` ^5 → ^7. Ink 7 requires React 19 — merged as one cluster. Dashboard was already on React 19.2.
+  - **Dashboard TypeScript** (#35): ^5 → ^6.
+    - TypeScript 6 caught two latent issues, both fixed in the same PR.
+    - Widened `AppConfigForEstimate` to type legacy `exaApiKey`/`copyscapeKey` fields the estimator already reads.
+    - Removed `(cfg as any)` escape hatches in `providerBase()`.
+    - Moved orphaned sanitize regression test from `src/lib/` into the vitest-watched `src/__tests__/` directory (77 → 78 tests now execute).
+  - **Dashboard Node types** (#36): `@types/node` ^20 → ^25. Node 24 LTS runtime unchanged; only types updated.
+  - Root deps: `@anthropic-ai/sdk` bumped via minor-and-patch group (#27).
+  - Dashboard deps: minor-and-patch group of 4 updates (#31).
+
+### Deferred
+
+- **ESLint 9 → 10** (Dependabot #33) — `eslint-plugin-react` (pulled in transitively via `eslint-config-next`) is not yet compatible with ESLint 10's rule-context API (`contextOrFilename.getFilename is not a function`). Will revisit once `eslint-config-next` ships a compatible release.
+
+### Added — repository infrastructure
+
+- `.github/dependabot.yml` — weekly version + security updates for CLI, dashboard, and GitHub Actions (grouped minor+patch, Monday 06:00 Europe/Amsterdam) (#25).
+- Branch protection on `main`: required `test` status check, linear history, conversation resolution, no force-push, no deletions.
+- CodeQL default setup (weekly; `actions`/`javascript`/`javascript-typescript`/`typescript`).
+- `ci.yml`: `actions/checkout` 4 → 6 (#26).
+
+### Security
+
+- Secret scanning + push protection enabled.
+- Dependabot vulnerability alerts + automated security fixes enabled.
+
+### Fixed
+
+- `.env.example` — replaced stale `checkit` references with `CheckApp` / `~/.checkapp` / `checkapp --setup` (#25).
+
 ## [1.2.0] — 2026-04-17 — Phase 7.1: Review Cleanup
 
 Consolidation release. Addresses all outstanding review findings from Phase 6 + Phase 7 PRs (#11–#19), CodeQL alerts, and a second Codex validation pass. Ships as five PRs (B0–B4).
