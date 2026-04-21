@@ -9,6 +9,7 @@ import { ReportTags } from "@/components/report-tags";
 import { ExportButtons } from "@/components/export-buttons";
 import { RegeneratePanel } from "@/components/regenerate-panel";
 import { FooterBar } from "@/components/footer-bar";
+import { DeepAuditPanel } from "@/components/DeepAuditPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -162,6 +163,8 @@ export default async function ReportDetailPage({
           </h2>
           <ReportTags checkId={check.id!} initialTags={checkTags} />
         </div>
+
+        <DeepAuditPanel reportId={check.id!} />
 
         {/* Fix Issues panel */}
         {(() => {
