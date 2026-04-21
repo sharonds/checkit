@@ -62,7 +62,7 @@ export async function pollUntilComplete(
 }
 
 export function extractText(data: InteractionResponse | null | undefined): string {
-  return data?.outputs?.[0]?.text ?? "";
+  return data?.outputs?.find((output) => output.text)?.text ?? "";
 }
 
 async function delay(ms: number): Promise<void> {

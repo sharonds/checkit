@@ -41,8 +41,8 @@ describe("interactions-api", () => {
     expect(polls).toBe(2);
   });
 
-  test("extractText returns an empty string when there is no text output", () => {
+  test("extractText returns the first available text output", () => {
     expect(extractText({ id: "int-1", status: "completed" })).toBe("");
-    expect(extractText({ id: "int-1", status: "completed", outputs: [{}, { text: "later" }] })).toBe("");
+    expect(extractText({ id: "int-1", status: "completed", outputs: [{}, { text: "later" }] })).toBe("later");
   });
 });
