@@ -69,16 +69,7 @@ export class FactCheckGroundedSkill implements Skill {
 
     const llm = getLlmClient(config);
     if (!llm) {
-      return {
-        skillId: this.id,
-        name: this.name,
-        score: 50,
-        verdict: "warn",
-        summary: "Skipped — no LLM key configured for claim extraction",
-        findings: [{ severity: "info", text: "Add an LLM API key to extract fact-checkable claims before grounded verification runs" }],
-        costUsd: 0,
-        provider: resolved.provider,
-      };
+      return skippedResult(this, "no LLM key configured for claim extraction");
     }
 
     const claims = await extractClaims(text, llm.call);
@@ -213,7 +204,7 @@ async function fetchGroundedAssessment(
   );
 
   if ((response.status === 500 || response.status === 503) && retriesLeft > 0) {
-    await sleep(150);
+    await sleep(3_000);
     return fetchGroundedAssessment(claim, apiKey, retriesLeft - 1);
   }
 
