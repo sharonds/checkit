@@ -7,11 +7,22 @@ import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 
 function loadEnv() {
-  const envPath = join(import.meta.dir, "../../../.env");
-  if (!existsSync(envPath)) return;
-  for (const line of readFileSync(envPath, "utf8").split("\n")) {
-    const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.+)$/);
-    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
+  // Try multiple candidates: main repo checkout (poc/ is one level from root),
+  // and worktree (poc-replacement/lib/ is five levels from checkapp root).
+  const candidates = [
+    join(import.meta.dir, "../.env"),
+    join(import.meta.dir, "../../.env"),
+    join(import.meta.dir, "../../../.env"),
+    join(import.meta.dir, "../../../../.env"),
+    join(import.meta.dir, "../../../../../.env"),
+  ];
+  for (const envPath of candidates) {
+    if (!existsSync(envPath)) continue;
+    for (const line of readFileSync(envPath, "utf8").split("\n")) {
+      const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.+)$/);
+      if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
+    }
+    return;
   }
 }
 loadEnv();

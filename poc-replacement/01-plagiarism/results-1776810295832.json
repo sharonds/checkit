@@ -1,0 +1,1679 @@
+{
+  "timestamp": "2026-04-21T22:24:55.832Z",
+  "corpus": [
+    {
+      "id": "01-heavy-photosynthesis",
+      "severity": "heavy",
+      "sentences": 9
+    },
+    {
+      "id": "02-heavy-water-cycle",
+      "severity": "heavy",
+      "sentences": 9
+    },
+    {
+      "id": "03-heavy-dna",
+      "severity": "heavy",
+      "sentences": 9
+    },
+    {
+      "id": "04-light-climate-change",
+      "severity": "light",
+      "sentences": 7
+    },
+    {
+      "id": "05-light-amazon-river",
+      "severity": "light",
+      "sentences": 6
+    },
+    {
+      "id": "06-light-plate-tectonics",
+      "severity": "light",
+      "sentences": 6
+    },
+    {
+      "id": "07-paraphrased-volcano",
+      "severity": "none",
+      "sentences": 6
+    },
+    {
+      "id": "08-paraphrased-ocean-currents",
+      "severity": "none",
+      "sentences": 6
+    },
+    {
+      "id": "09-original-indoor-plants",
+      "severity": "none",
+      "sentences": 9
+    },
+    {
+      "id": "10-original-meeting-agendas",
+      "severity": "none",
+      "sentences": 8
+    }
+  ],
+  "aggregate": {
+    "copyscape": {
+      "cm": {
+        "TP": 21,
+        "FP": 0,
+        "TN": 52,
+        "FN": 2,
+        "total": 75,
+        "accuracy": 0.9733333333333334
+      },
+      "prf": {
+        "precision": 1,
+        "recall": 0.9130434782608695,
+        "f1": 0.9545454545454545
+      },
+      "articleAccuracy": 0.9,
+      "totalCost": 0.09999999999999999
+    },
+    "gemini": {
+      "cm": {
+        "TP": 23,
+        "FP": 0,
+        "TN": 52,
+        "FN": 0,
+        "total": 75,
+        "accuracy": 1
+      },
+      "prf": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "articleAccuracy": 1,
+      "avgSourceUrlMatchRate": 0.6,
+      "totalCost": 0.37999999999999995
+    }
+  },
+  "perArticle": [
+    {
+      "id": "01-heavy-photosynthesis",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 5,
+        "totalSentences": 9,
+        "plagiarizedPct": 55.55555555555556
+      },
+      "copyscape": {
+        "similarityPct": 65,
+        "matches": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Photosynthesis",
+            "title": "Photosynthesis - Wikipedia",
+            "wordsMatched": 102,
+            "percentMatched": 56,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;plants, algae and cyanobacteria, convert light &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;energy — typically from sunlight — into the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Photosynthesis plays a critical role in producing and maintaining the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;water splitting. Photosynthetic organisms store the converted chemical &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;intracellular organic compounds (complex compounds containing &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;carbon), typically carbohydrates like sugars (mainly &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;glucose, fructose and sucrose), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;starches, phytoglycogen and cellulose. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;When ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;When needing to use this &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;organic compounds through cellular respiration. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Photosynthesis plays a &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.ias.hk/glossary/photosynthate/",
+            "title": "photosynthate – IASHK: Institute of Arboriculture Studies (HK)",
+            "wordsMatched": 65,
+            "percentMatched": 35,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;cyanobacteria, convert light energy, typically from sunlight, into the chemical energy necessary to fuel their metabolism. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Photosynthesis ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Photosynthesis plays a critical role in producing and maintaining the oxygen content of the Earth's atmosphere, and it supplies most of the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;biological energy necessary for complex life on Earth. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Schematic of photosynthesis in plants. The carbohydrates produced are stored in or ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Photosynthesis usually refers to oxygenic photosynthesis, a process that &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;produces oxygen. ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;To use this stored &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;chemical  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;energy, an organism's cells &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;metabolize the organic compounds through cellular respiration. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Photosynthesis plays &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/dl/EPUB/212T405G75/chapter_9__cellular__respiration__key.pdf",
+            "title": "Chapter 9 Cellular Respiration Key",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;process that releases oxygen as a byproduct of water splitting. Photosynthetic organisms store &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;compounds containing carbon), typically carbohydrates &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;and sucrose), starches, phytoglycogen and cellulose. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;When ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;When needing to use this stored energy, an organism's cells then metabolize the organic compounds through cellular respiration&lt;/font&gt;"
+          },
+          {
+            "url": "https://govcomapi.mtnima.gov.mr/CHAPTER/bm/75M5B94115260312/chapter_16__energy-efficiency-and__renewable-energy__apes.pdf",
+            "title": "Chapter 16 Energy Efficiency And Renewable Energy Apes",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;such as most plants, algae and cyanobacteria, convert light energy — typically from sunlight — into the chemical energy necessary to fuel their metabolism &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;oxygen as a byproduct of water splitting. Photosynthetic organisms store &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;fructose and sucrose), starches, phytoglycogen and cellulose. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;When needing &lt;/font&gt;"
+          },
+          {
+            "url": "https://govcomapi.mtnima.gov.mr/PLAY/592L00Q/160312250226/soil-mechanics__principles_and_practice__barnes.pdf",
+            "title": "Soil Mechanics Principles And Practice Barnes",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;of water splitting. Photosynthetic organisms store the converted chemical &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;carbohydrates like sugars (mainly glucose, fructose and &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;sucrose), starches, phytoglycogen and cellulose. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;When needing to use this &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the organic compounds through cellular respiration&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/groups/eltianguisdeoxnard/posts/27211566921778885/",
+            "title": "In an ecosystem, autotrophs, such as plants, capture solar energy ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;processes by which photopigment-bearing autotrophic organisms, such as most plants, algae and cyanobacteria, convert &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;light energy — typically from sunlight — into the chemical energy necessary to fuel their metabolism. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Introduction &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/file/DOC/7H3020J773/soil-mechanics_principles_and_practice__barnes.pdf",
+            "title": "Soil Mechanics Principles And Practice Barnes",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;releases oxygen as a byproduct of water splitting. Photosynthetic organisms store &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;sucrose), starches, phytoglycogen and cellulose. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;When needing to use this &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/search/PDF/D2T4869192/chapter_9_cellular__respiration_and-fermentation-study-guide.pdf",
+            "title": "Chapter 9 Cellular Respiration And Fermentation Study Guide",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;compounds containing carbon), typically carbohydrates like sugars (mainly glucose, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;When needing to use this stored energy, an organism's cells then metabolize &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/dl/PDF/2O40A96032/photosynthesis-study__guide_campbell.pdf",
+            "title": "Photosynthesis Study Guide Campbell",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;processes by which photopigment-bearing autotrophic organisms, such as most &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;sucrose), starches, phytoglycogen and cellulose. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;When needing to &lt;/font&gt;"
+          },
+          {
+            "url": "https://ocni.unap.edu.pe/fulldisplay/B13M4W/996471/photosynthesis-lab_gizmo_page_3.pdf",
+            "title": "Photosynthesis Lab Gizmo Page 3",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the Earth's atmosphere, and it supplies most of the biological energy necessary for complex life on Earth. [&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;2]. Photosynthesis - National Geographic Society &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/file/TEXT/24C6H18359/chapter-16__energy-efficiency-and-renewable-energy-apes.pdf",
+            "title": "Chapter 16 Energy Efficiency And Renewable Energy Apes",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;as most plants, algae and cyanobacteria, convert light energy — typically &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;complex compounds containing carbon), typically carbohydrates like &lt;/font&gt;"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Category:Researchers_of_photosynthesis",
+            "title": "Category:Researchers of photosynthesis - Wikipedia",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;cyanobacteria, convert light energy, typically from sunlight, into the chemical energy necessary to fuel their metabolism. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Pages in category &amp;quot;Researchers of &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.berndspyra.de/2024/03/",
+            "title": "March 2024 - Photographic notes",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;cyanobacteria, convert light energy, typically from sunlight, into the chemical energy necessary to fuel their &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;activities.” (Wikipedia &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 3620,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 73,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae and cyanobacteria, convert light energy — typically from sunlight — into the chemical energy necessary to fuel their metabolism.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Photosynthesis"
+          },
+          {
+            "sentence": "Photosynthesis plays a critical role in producing and maintaining the oxygen content of the Earth's atmosphere, and it supplies most of the biological energy necessary for complex life on Earth.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Photosynthesis"
+          },
+          {
+            "sentence": "The term photosynthesis usually refers to oxygenic photosynthesis, a process that releases oxygen as a byproduct of water splitting.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Photosynthesis"
+          },
+          {
+            "sentence": "Photosynthetic organisms store the converted chemical energy within the bonds of intracellular organic compounds (complex compounds containing carbon), typically carbohydrates like sugars (mainly glucose, fructose and sucrose), starches, phytoglycogen and cellulose.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Photosynthesis"
+          },
+          {
+            "sentence": "When needing to use this stored energy, an organism's cells then metabolize the organic compounds through cellular respiration.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Photosynthesis"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 73,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae and cyanobacteria, convert light energy — typically from sunlight — into the chemical energy necessary to fuel their metabolism.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Photosynthesis\"\n    },\n    {\n      \"sentence\": \"Photosynthesis plays a critical role in producing and maintaining the oxygen content of the Earth's atmosphere, and it supplies most of the biological energy necessary for complex life on Earth.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Photosynthesis\"\n    },\n    {\n      \"sentence\": \"The term photosynthesis usually refers to oxygenic photosynthesis, a process that releases oxygen as a byproduct of water splitting.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Photosynthesis\"\n    },\n    {\n      \"sentence\": \"Photosynthetic organisms store the converted chemical energy within the bonds of intracellular organic compounds (complex compounds containing carbon), typically carbohydrates like sugars (mainly glucose, fructose and sucrose), starches, phytoglycogen and cellulose.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Photosynthesis\"\n    },\n    {\n      \"sentence\": \"When needing to use this stored energy, an organism's cells then metabolize the organic compounds through cellular respiration.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Photosynthesis\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"Photosynthetic organisms store the converted chemical energy within the bonds of intracellular organic compounds\"",
+          "\"Photosynthesis plays a critical role in producing and maintaining the oxygen content of the Earth's atmosphere\"",
+          "\"The term photosynthesis usually refers to oxygenic photosynthesis, a process that releases oxygen as a byproduct of water splitting.\""
+        ],
+        "timeMs": 28452,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "02-heavy-water-cycle",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 6,
+        "totalSentences": 9,
+        "plagiarizedPct": 66.66666666666666
+      },
+      "copyscape": {
+        "similarityPct": 76,
+        "matches": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Water_cycle",
+            "title": "Water cycle - Wikipedia",
+            "wordsMatched": 143,
+            "percentMatched": 76,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... For the bicycle-like watercraft, see hydrocycle. &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The mass of water on Earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;However, the ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from river to ocean &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;sublimation, infiltration, surface runoff, and subsurface flow. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;In doing so, the &lt;/font&gt;"
+          },
+          {
+            "url": "https://silverairways.com/64451PN/55873P09N4/vwonderk/bwrapr/the_water__cycle_water__all-around.pdf",
+            "title": "The Water Cycle Water All Around - Silver Airways",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;movement  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;of water on, above and below. The &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;surface of the Earth across different reservoirs. The &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from river to ocean &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The processes that drive these movements, or fluxes, are evaporation, transpiration, &lt;/font&gt;"
+          },
+          {
+            "url": "https://the-doctor-binocs.fandom.com/wiki/The_Water_Cycle",
+            "title": "The Water Cycle - The Doctor Binocs Wiki - Fandom",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;movement  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;of water on &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The mass of water on Earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;transpiration, condensation, precipitation, sublimation, infiltration &lt;/font&gt;"
+          },
+          {
+            "url": "https://govcomapi.mtnima.gov.mr/PLAY/B33551B/270226/marine__biogeochemical__cycles-second_edition.pdf",
+            "title": "Marine Biogeochemical Cycles Second Edition",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;movement  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;of water on, above and below the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;However, the partitioning of the water into the major &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.enviropedia.net/hydrologic-cycle",
+            "title": "Hydrologic Cycle — Enviropedia",
+            "wordsMatched": 61,
+            "percentMatched": 32,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The mass of water on Earth remains fairly constant over time &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;but the partitioning of the water into the major reservoirs of ice, fresh water, saline water ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by the physical processes of evaporation &lt;/font&gt;"
+          },
+          {
+            "url": "https://beachapedia.org/Water_Cycle",
+            "title": "Water Cycle - Beachapedia",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... The mass &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;water on Earth remains fairly constant over time &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;but the partitioning of the water into the major reservoirs of ice, fresh water ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by the physical processes &lt;/font&gt;"
+          },
+          {
+            "url": "https://quizlet.com/195411353/water-cycle-flash-cards/",
+            "title": "Water Cycle Flashcards | Quizlet",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by the physical processes of evaporation &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.geocaching.com/geocache/GC5WV7C",
+            "title": "Marshall Hawthorne Pond Earthcache - Geocaching",
+            "wordsMatched": 50,
+            "percentMatched": 26,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by the physical processes &lt;/font&gt;"
+          },
+          {
+            "url": "https://silverairways.com/H7Y3958962/H4Y1415/bseparatep/jrinsez/the-water__cycle-water_all_around.pdf",
+            "title": "The Water Cycle Water All Around - Silver Airways",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;and below the surface of the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;However, the partitioning of &lt;/font&gt;"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Runoff_(hydrology)",
+            "title": "Runoff (hydrology) - Wikipedia",
+            "wordsMatched": 143,
+            "percentMatched": 76,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;However, the partitioning of the water into the major ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;transpiration, condensation, precipitation, sublimation, infiltration &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/data/TXT/818576D5E3/the_water__cycle-earth_and-space-science.pdf",
+            "title": "The Water Cycle Earth And Space Science",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltration, surface runoff, and &lt;/font&gt;"
+          },
+          {
+            "url": "https://open.spotify.com/show/4WEdwQyLaioe0w1XQVCBJE",
+            "title": "Hydrologic Cycle | Podcast on Spotify",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by the physical processes of evaporation &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/houseontherockportharcourt/posts/for-as-the-rain-comes-down-and-the-snow-from-heaven-and-do-not-return-there-but-/10155853346646352/",
+            "title": "“For as the rain comes down, and the snow from heaven, And do not ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;And with these movements water goes through &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/search/PDF/348QM44613/under_earth-under_water.pdf",
+            "title": "Under Earth Under Water",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;of the Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;However, the partitioning of the water into the. The &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/url/DOC/42K152F244/global_environment-water__air-and-geochemical-cycles.pdf",
+            "title": "Global Environment Water Air And Geochemical Cycles",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltration, surface runoff &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.quora.com/Why-does-it-never-rain-in-Dry-Valleys",
+            "title": "Why does it never rain in Dry Valleys? - Quora",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth across different reservoirs. The mass of water on Earth remains fairly constant over time. [ &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;2 ] However, the partitioning of the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.ispatguru.com/glossary-of-technical-terms-for-the-use-of-metallurgical-engineers-terms-starting-with-alphabet-w/",
+            "title": "Glossary of technical terms for the use of metallurgical engineers ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;earth across different reservoirs. The mass of water on earth remains fairly constant over time. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Water demand – A plant uses huge quantities &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 1645,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 77,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Water_cycle"
+          },
+          {
+            "sentence": "The mass of water on Earth remains fairly constant over time.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Water_cycle"
+          },
+          {
+            "sentence": "The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Water_cycle"
+          },
+          {
+            "sentence": "The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltration, surface runoff, and subsurface flow.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Water_cycle"
+          },
+          {
+            "sentence": "The ocean plays a key role in the water cycle as it is the source of 86% of global evaporation.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Water_cycle"
+          },
+          {
+            "sentence": "The evaporative phase of the cycle also acts as a purification process by separating water molecules from salts and other particles that are present in its liquid phase.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Water_cycle"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 77,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Water_cycle\"\n    },\n    {\n      \"sentence\": \"The mass of water on Earth remains fairly constant over time.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Water_cycle\"\n    },\n    {\n      \"sentence\": \"The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere due to a variety of physical and chemical processes.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Water_cycle\"\n    },\n    {\n      \"sentence\": \"The processes that drive these movements, or fluxes, are evaporation, transpiration, condensation, precipitation, sublimation, infiltration, surface runoff, and subsurface flow.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Water_cycle\"\n    },\n    {\n      \"sentence\": \"The ocean plays a key role in the water cycle as it is the source of 86% of global evaporation.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Water_cycle\"\n    },\n    {\n      \"sentence\": \"The evaporative phase of the cycle also acts as a purification process by separating water molecules from salts and other particles that are present in its liquid phase.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Water_cycle\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"The water cycle (or hydrologic cycle or hydrological cycle) is a biogeochemical cycle that involves the continuous change in form of water on, above and below the surface of the Earth across different reservoirs.\"",
+          "\"The water moves from one reservoir to another, such as from river to ocean, or from the ocean to the atmosphere\"",
+          "\"The mass of water on Earth remains fairly constant over time.\"",
+          "\"The ocean plays a key role in the water cycle as it is the source of 86% of global evaporation.\""
+        ],
+        "timeMs": 27936,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "03-heavy-dna",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 6,
+        "totalSentences": 9,
+        "plagiarizedPct": 66.66666666666666
+      },
+      "copyscape": {
+        "similarityPct": 65,
+        "matches": [
+          {
+            "url": "https://en.wikipedia.org/wiki/DNA",
+            "title": "DNA - Wikipedia",
+            "wordsMatched": 106,
+            "percentMatched": 65,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;polymer composed of two polynucleotide chains that coil around each other to form a double &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;helix. The polymer carries genetic &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;instructions for the development, functioning &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids. Alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one of the four &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The nitrogenous bases of the two separate polynucleotide strands are bound &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;bonds to make double-stranded DNA. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;The complementary &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.dreamstime.com/illustration/major-macromolecules.html",
+            "title": "Major Macromolecules Illustrations &amp; Vectors - Dreamstime.com",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... DNA molecule with the double polynucleotide spiral - closeup view 3d illustration. Deoxyribonucleic acid &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;is a polymer composed of two polynucleotide chains that &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The polymer carries genetic instructions for the development, functioning &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids. Alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;nucleic acids are one of the four major types of macromolecules that are essential for &lt;/font&gt;"
+          },
+          {
+            "url": "https://crescendo.co.nz/shop/models-dna-rna/",
+            "title": "MODELS [DNA, RNA]: Variety - Crescendo",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;polymer composed of two polynucleotide chains that coil around each other to &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;helix. The polymer carries genetic &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;instructions for the development, functioning &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Alongside proteins, lipids and complex carbohydrates (polysaccharides) &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.alamy.com/stock-photo/dna-strand-tem.html",
+            "title": "Dna strand tem hi-res stock photography and images - Alamy",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;they  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are one of the four major types of macromolecules that are essential for all known forms of life.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.tipbiosystems.com/applications/life-sciences/",
+            "title": "Life Sciences - Tip Biosystems",
+            "wordsMatched": 66,
+            "percentMatched": 40,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids. Alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;nucleic acids are one of the four major types of macromolecules that are essential &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.reddit.com/r/AskAcademia/comments/zg9s14/do_you_trust_wikipedia/",
+            "title": "Do you trust Wikipedia? : r/AskAcademia - Reddit",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The polymer carries genetic instructions for the development &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids. Alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.alamy.com/transmission-electron-micrograph-tem-of-a-single-strand-of-deoxyribonucleic-acid-dna-dna-is-a-molecule-that-carries-the-genetic-instructions-used-in-the-growth-development-functioning-and-reproduction-of-all-known-living-organisms-and-many-viruses-dna-and-ribonucleic-acid-rna-are-nucleic-acids-alongside-proteins-lipids-and-complex-carbohydrates-polysaccharides-they-are-one-of-the-four-major-types-of-macromolecules-that-are-essential-for-all-known-forms-of-life-most-dna-molecules-consist-of-two-biopolymer-strands-coiled-around-each-other-to-form-a-double-helix-dna-is-comprised-image352825668.html",
+            "title": "Transmission Electron Micrograph (TEM) of a single strand ... - Alamy",
+            "wordsMatched": 45,
+            "percentMatched": 27,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;they  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are one of the four major types &lt;/font&gt;"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Artificially_Expanded_Genetic_Information_System",
+            "title": "Artificially Expanded Genetic Information System - Wikipedia",
+            "wordsMatched": 72,
+            "percentMatched": 44,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one of the four &lt;/font&gt;"
+          },
+          {
+            "url": "https://loading.io/icon/t3p52z",
+            "title": "Dna Icon | Free SVG / PNG, Premium Animated GIF / APNG ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one of the four &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.sciencesource.com/1526074-genetics-dna-deoxyribonucleic-acid-stm-stock-image-rights-managed.html",
+            "title": "Genetics, DNA, Deoxyribonucleic Acid, STM - Image - Science Source",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;they  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are one of the four major &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.sciencesource.com/1516136-genetics-rna-attached-to-dna-tem-stock-image-rights-managed.html",
+            "title": "Genetics, RNA Attached to DNA, TEM | Stock Image - Science Source",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;they  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are one of the four major &lt;/font&gt;"
+          },
+          {
+            "url": "https://irispublishers.com/abeb/fulltext/actg-based-on-silicon-getting-news-structures-asi.ID.000612.php",
+            "title": "ACTG Based on Silicon Getting News Structures Asi, Csi, Tsi And Gsi",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... The &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Deoxyribonucleic acid (DNA) is a &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;molecule  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;composed of two polynucleotide chains that coil around each other to form a double helix &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.scribd.com/document/794479477/Deoxyribonucleic-acid",
+            "title": "Overview of Deoxyribonucleic Acid (DNA) | PDF - Scribd",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The polymer carries genetic instructions for the development, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;and ribonucleic acid (RNA) are nucleic acids. Alongside proteins, lipids and complex&lt;/font&gt;"
+          },
+          {
+            "url": "https://forum.arduino.cc/t/esp32-rsa-2048-encrypt-decrypt-working-code/1355038",
+            "title": "ESP32 RSA 2048 Encrypt/Decrypt (working code) - Arduino Forum",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA) is a polymer composed of two polynucleotide chains that coil around each other to form a double helix.&amp;quot;; &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;unsigned char to_encrypt &lt;/font&gt;"
+          },
+          {
+            "url": "https://irispublishers.com/abeb/fulltext/infrared-spectrum-for-the-new-nanomolecules-asi-csi-tsi-and-gsi.ID.000614.php",
+            "title": "Infrared Spectrum for the New Nanomolecules ASi, CSi, TSi and GSi",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... Introduction. The &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Deoxyribonucleic acid (DNA) is a &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;molecule  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;composed of two polynucleotide chains that coil around each other to form a double &lt;/font&gt;"
+          },
+          {
+            "url": "https://testbook.com/question-answer/which-of-the-following-is-responsible-for-controll--6451ffdfe6efcb591a169006",
+            "title": "[Solved] Which of the following is responsible for controlling heredi",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids. Alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one &lt;/font&gt;"
+          },
+          {
+            "url": "https://brainly.com/question/29607098",
+            "title": "Which of the following diagrams most clearly shows the overall 3D ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The polymer carries genetic instructions for the development, functioning, growth and reproduction of all known organisms and many viruses.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/EducationAtMIS/posts/dna-extraction-from-strawberries-and-bananas-grade-10-biology-with-msnagwadeoxyr/3353964384703921/",
+            "title": "DNA Extraction from strawberries and bananas Grade 10 BIOLOGY ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;polynucleotide chains that coil around each other to form a double helix &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;carrying  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;genetic instructions for the development, functioning &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.reddit.com/r/bladerunner/comments/75nhfi/gattaca_reference/",
+            "title": "GATTACA Reference : r/bladerunner - Reddit",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;they  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are one of &lt;/font&gt;"
+          },
+          {
+            "url": "https://mydnas.github.io/myDNA//DNA",
+            "title": "What is DNA?",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;DNA and ribonucleic acid (RNA) are nucleic acids; alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.walshmedicalmedia.com/open-access/what-is-dna-molecules.pdf",
+            "title": "What is DNA Molecules - Walsh Medical Media",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;ribonucleic acid (RNA) are nucleic acids. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Alongside proteins, lipids and &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;complicated  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;carbohydrates (polysaccharides), nucleic acids are one of &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0890540122000311",
+            "title": "Context-sensitive fusion grammars and fusion ... - ScienceDirect.com",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The nitrogenous bases of the two separate polynucleotide strands are bound together &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;to make double-stranded DNA, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;according to the complementarity A is &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 1849,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 73,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "Deoxyribonucleic acid (DNA) is a polymer composed of two polynucleotide chains that coil around each other to form a double helix.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/DNA"
+          },
+          {
+            "sentence": "The polymer carries genetic instructions for the development, functioning, growth and reproduction of all known organisms and many viruses.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/DNA"
+          },
+          {
+            "sentence": "DNA and ribonucleic acid (RNA) are nucleic acids.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/DNA"
+          },
+          {
+            "sentence": "Alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one of the four major types of macromolecules that are essential for all known forms of life.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/DNA"
+          },
+          {
+            "sentence": "The nitrogenous bases of the two separate polynucleotide strands are bound together, according to base pairing rules (A with T and C with G), with hydrogen bonds to make double-stranded DNA.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/DNA"
+          },
+          {
+            "sentence": "In eukaryotic cells, DNA is organized into long structures called chromosomes.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/DNA"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 73,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"Deoxyribonucleic acid (DNA) is a polymer composed of two polynucleotide chains that coil around each other to form a double helix.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/DNA\"\n    },\n    {\n      \"sentence\": \"The polymer carries genetic instructions for the development, functioning, growth and reproduction of all known organisms and many viruses.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/DNA\"\n    },\n    {\n      \"sentence\": \"DNA and ribonucleic acid (RNA) are nucleic acids.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/DNA\"\n    },\n    {\n      \"sentence\": \"Alongside proteins, lipids and complex carbohydrates (polysaccharides), nucleic acids are one of the four major types of macromolecules that are essential for all known forms of life.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/DNA\"\n    },\n    {\n      \"sentence\": \"The nitrogenous bases of the two separate polynucleotide strands are bound together, according to base pairing rules (A with T and C with G), with hydrogen bonds to make double-stranded DNA.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/DNA\"\n    },\n    {\n      \"sentence\": \"In eukaryotic cells, DNA is organized into long structures called chromosomes.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/DNA\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"DNA and ribonucleic acid (RNA) are nucleic acids.\"",
+          "\"The polymer carries genetic instructions for the development, functioning, growth and reproduction of all known organisms and many viruses.\"",
+          "\"Deoxyribonucleic acid (DNA) is a polymer composed of two polynucleotide chains that coil around each other to form a double helix.\"",
+          "\"The nitrogenous bases of the two separate polynucleotide strands are bound together, according to base pairing rules (A with T and C with G), with hydrogen bonds to make double-stranded DNA.\"",
+          "\"In eukaryotic cells, DNA is organized into long structures called chromosomes.\"",
+          "\"DNA is organized into long structures called chromosomes\"",
+          "23 pairs of chromosomes in the nucleus of virtually every cell"
+        ],
+        "timeMs": 54019,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "04-light-climate-change",
+      "groundTruth": {
+        "severity": "light",
+        "plagiarizedSentenceCount": 2,
+        "totalSentences": 7,
+        "plagiarizedPct": 28.57142857142857
+      },
+      "copyscape": {
+        "similarityPct": 34,
+        "matches": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Climate_change",
+            "title": "Climate change - Wikipedia",
+            "wordsMatched": 53,
+            "percentMatched": 34,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did at the end of the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;pre-industrial era, reaching levels not seen for millions of years. The &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;global map shows sea temperature rises of 0.5 to 1 degree Celsius; land &lt;/font&gt;"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Portal:Climate_change",
+            "title": "Portal:Climate change - Wikipedia",
+            "wordsMatched": 53,
+            "percentMatched": 34,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did at the end of the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;pre-industrial era, reaching levels not seen for millions of years. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Climate change has an increasingly large impact on the environment. Deserts are &lt;/font&gt;"
+          },
+          {
+            "url": "https://omniekonomi.se/vinterstorm-slar-till-i-usa-trump-fornekar-uppvarmning/a/GxQlV6",
+            "title": "Vinterstorm slår till i USA – Trump förnekar uppvärmning",
+            "wordsMatched": 53,
+            "percentMatched": 34,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did at the end of the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;pre-industrial era, reaching levels not seen for millions of years. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Climate change has an increasingly large impact on the environment &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/data/PPT/77233D36X3/switch__how__to-change-things-when_change-is_hard.pdf",
+            "title": "Switch How To Change Things When Change Is Hard",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;at the end of the pre-industrial era, reaching levels not seen for millions of years. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Switch How To Change Things When Change Is Hard. 2. Page &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.quora.com/Why-cant-the-ocean-be-distilled-to-make-water-water-shortage",
+            "title": "Why can't the ocean be distilled to make water (water shortage)?",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth's atmosphere now has roughly 50% more carbon dioxide , the main gas driving global warming, than it did at the end of the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;pre-industrial era , reaching levels not seen for millions of years. [ &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;6 ] Climate change has an increasingly large impact on the &lt;/font&gt;"
+          },
+          {
+            "url": "https://lan-portal.uob.edu.ly/dl/PLAY/TC16398565/the__art__of-change-leadership__driving_transformation_in-a-fast-paced_world.pdf",
+            "title": "The Art Of Change Leadership Driving Transformation In A Fast ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... Earth's. Page 2. &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did at the end of the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;pre-industrial era, reaching levels not seen for millions of years. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Climate change. Present-day climate change includes both global warming—the ongoing &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.quora.com/Why-cant-we-treat-the-existing-ocean-water-to-make-drinkable-water-and-reduce-water-shortages-around-the-world",
+            "title": "Why can't we treat the existing ocean water to make drinkable water ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Earth's atmosphere now has roughly 50% more carbon dioxide , the main gas driving global warming, than it did at the end of the pre &lt;/font&gt;"
+          },
+          {
+            "url": "https://govcomapi.mtnima.gov.mr/TEXT/288V97D/290326/the__art__of-change_leadership_driving-transformation_in-a_fast-paced-world.pdf",
+            "title": "The Art Of Change Leadership Driving Transformation In A Fast ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... Climate change &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the main gas driving global warming, than it did at the end of the pre-industrial era, reaching levels not seen &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 1159,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 35,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did at the end of the pre-industrial era, reaching levels not seen for millions of years.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Climate_change"
+          },
+          {
+            "sentence": "The World Health Organization calls climate change one of the biggest threats to global health in the 21st century.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Climate_change"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 35,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming, than it did at the end of the pre-industrial era, reaching levels not seen for millions of years.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Climate_change\"\n    },\n    {\n      \"sentence\": \"The World Health Organization calls climate change one of the biggest threats to global health in the 21st century.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Climate_change\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"Earth's atmosphere now has roughly 50% more carbon dioxide, the main gas driving global warming\""
+        ],
+        "timeMs": 26268,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "05-light-amazon-river",
+      "groundTruth": {
+        "severity": "light",
+        "plagiarizedSentenceCount": 2,
+        "totalSentences": 6,
+        "plagiarizedPct": 33.33333333333333
+      },
+      "copyscape": {
+        "similarityPct": 58,
+        "matches": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Amazon_River",
+            "title": "Amazon River - Wikipedia",
+            "wordsMatched": 87,
+            "percentMatched": 56,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River (&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;UK: /ˈæməzən/, US: /ˈæməzɒn/; Portuguese: rio Amazonas, Spanish: río Amazonas)  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;in South America is the largest river by discharge volume &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;second-longest or longest river system in the world, a title which is disputed with the Nile. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Amazon River. Rio Amazonas, Río Amazonas.... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;cu mi) per year, greater than the next seven largest independent rivers combined. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Two of the top ten rivers by discharge are tributaries of the Amazon river &lt;/font&gt;"
+          },
+          {
+            "url": "https://shabdkosh.com/dictionary/english-urdu/amazon%20river/amazon%20river-meaning-in-urdu",
+            "title": "amazon river meaning in Urdu - Shabdkosh.com",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River in South America is the largest river by discharge volume of water in the world, and the second-longest or longest river system in the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.oceansplasticleanup.com/Oceans_Seas_Rivers/Amazon_Rivers_Plastic_Waste_A_To_Z_Index_Top_Ocean_Polluters.htm",
+            "title": "AMAZON RIVERS INDEX A TO Z OCEAN PLASTIC TOP POLLUTERS",
+            "wordsMatched": 29,
+            "percentMatched": 18,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River has an average discharge of about &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;209,000 m3/s (7,400, &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;000 cu ft/s)—approximately 6,591 &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;km3 (1,581  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;cu mi) per year, greater than the next &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/61554590537947/posts/millions-of-years-ago-the-amazon-river-now-the-largest-river-by-discharge-volume/122229353846153017/",
+            "title": "Millions of years ago, the Amazon River, now the largest ... - Facebook",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River in South America is the largest river by discharge volume of water in the world, and the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;disputed longest river  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;in the world &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.sustained-impact.com/a-deep-nature-immersion-into-the-earths-largest-rainforest-4-of-5/",
+            "title": "Embarking on a Journey of Inner and Outer Exploration (Part 4)",
+            "wordsMatched": 23,
+            "percentMatched": 14,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;is the largest river by discharge volume of water in the world, and the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;longest river system in the world (&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Source: Wikipedia).&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.quora.com/Is-it-safe-to-drink-the-water-in-the-Amazon-River",
+            "title": "Is it safe to drink the water in the Amazon River? - Quora",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River has an average discharge of about &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;209,000 m3/s (7,400, &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;000 cu ft/s)—approximately 6,591 &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;km3 (1,581  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;cu mi) per year, greater &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/groups/942457462828021/posts/1212294202511011/",
+            "title": "The Amazon River in South America is the largest river by discharge ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River in South America is the largest river by discharge volume of water in the world, and &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by some definitions, it is the longest &lt;/font&gt;"
+          },
+          {
+            "url": "https://testbook.com/question-answer/which-is-the-largest-river-by-discharge-volume-of--67c9830aa6936541b8d640a9",
+            "title": "[Solved] Which is the largest river by discharge volume of water in t",
+            "wordsMatched": 21,
+            "percentMatched": 13,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... The correct answer is Amazon. Key Points &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The Amazon River &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;is the largest river by discharge volume of water in the world.&lt;/font&gt;"
+          }
+        ],
+        "timeMs": 4383,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 51,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "The Amazon River in South America is the largest river by discharge volume of water in the world, and the second-longest or longest river system in the world, a title which is disputed with the Nile.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Amazon_River"
+          },
+          {
+            "sentence": "The Amazon River has an average discharge of about 215,000–230,000 cubic meters per second (7,600,000–8,100,000 cu ft/s)—approximately 6,591–7,570 cubic kilometers (1,581–1,816 cu mi) per year, greater than the next seven largest independent rivers combined.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Amazon_River"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 51,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"The Amazon River in South America is the largest river by discharge volume of water in the world, and the second-longest or longest river system in the world, a title which is disputed with the Nile.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Amazon_River\"\n    },\n    {\n      \"sentence\": \"The Amazon River has an average discharge of about 215,000–230,000 cubic meters per second (7,600,000–8,100,000 cu ft/s)—approximately 6,591–7,570 cubic kilometers (1,581–1,816 cu mi) per year, greater than the next seven largest independent rivers combined.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Amazon_River\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"The Amazon River has an average discharge of about 215,000–230,000 cubic meters per second\"",
+          "\"The Amazon River in South America is the largest river by discharge volume of water in the world, and the second-longest or longest river system in the world, a title which is disputed with the Nile.\""
+        ],
+        "timeMs": 30666,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "06-light-plate-tectonics",
+      "groundTruth": {
+        "severity": "light",
+        "plagiarizedSentenceCount": 2,
+        "totalSentences": 6,
+        "plagiarizedPct": 33.33333333333333
+      },
+      "copyscape": {
+        "similarityPct": 0,
+        "matches": [],
+        "timeMs": 786,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": false
+      },
+      "gemini": {
+        "overallSimilarity": 39,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "According to the theory of plate tectonics, Earth's lithosphere comprises a number of large tectonic plates, which have been slowly moving since 3–4 billion years ago.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Plate_tectonics"
+          },
+          {
+            "sentence": "Earth's outer shell is fractured into seven or eight major plates (depending on how they are defined) and many minor plates or platelets.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://en.wikipedia.org/wiki/Plate_tectonics"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 39,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"According to the theory of plate tectonics, Earth's lithosphere comprises a number of large tectonic plates, which have been slowly moving since 3–4 billion years ago.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Plate_tectonics\"\n    },\n    {\n      \"sentence\": \"Earth's outer shell is fractured into seven or eight major plates (depending on how they are defined) and many minor plates or platelets.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://en.wikipedia.org/wiki/Plate_tectonics\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"Earth's lithosphere comprises a number of large tectonic plates, which have been slowly moving since 3–4 billion years ago.\"",
+          "\"Where the plates meet, their relative motion determines the type of boundary\"",
+          "\"Earth's lithosphere comprises a number of large tectonic plates, which have been slowly moving since 3–4 billion years ago\"",
+          "\"Earth's outer shell is fractured into\"",
+          "\"fractured into seven or eight major plates (depending on how they are defined) and many minor plates or platelets\"",
+          "\"earthquakes, volcanoes, mountain ranges, and deep ocean trenches\"",
+          "\"reshaping the planet over geological time\""
+        ],
+        "timeMs": 77763,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "07-paraphrased-volcano",
+      "groundTruth": {
+        "severity": "none",
+        "plagiarizedSentenceCount": 0,
+        "totalSentences": 6,
+        "plagiarizedPct": 0
+      },
+      "copyscape": {
+        "similarityPct": 0,
+        "matches": [],
+        "timeMs": 777,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 0,
+        "isPlagiarized": false,
+        "copiedSentences": [],
+        "rawText": "{\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sources": [],
+        "searchQueries": [
+          "\"A volcano is essentially a rupture\"",
+          "\"most plate boundaries lie beneath the sea\""
+        ],
+        "timeMs": 42345,
+        "costUsd": 0.038,
+        "error": "JSON parse failed: {\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 0,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "08-paraphrased-ocean-currents",
+      "groundTruth": {
+        "severity": "none",
+        "plagiarizedSentenceCount": 0,
+        "totalSentences": 6,
+        "plagiarizedPct": 0
+      },
+      "copyscape": {
+        "similarityPct": 0,
+        "matches": [],
+        "timeMs": 691,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 0,
+        "isPlagiarized": false,
+        "copiedSentences": [],
+        "rawText": "",
+        "sources": [],
+        "searchQueries": [],
+        "timeMs": 88207,
+        "costUsd": 0.038,
+        "error": "JSON parse failed: ",
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 0,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "09-original-indoor-plants",
+      "groundTruth": {
+        "severity": "none",
+        "plagiarizedSentenceCount": 0,
+        "totalSentences": 9,
+        "plagiarizedPct": 0
+      },
+      "copyscape": {
+        "similarityPct": 0,
+        "matches": [],
+        "timeMs": 667,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 0,
+        "isPlagiarized": false,
+        "copiedSentences": [],
+        "rawText": "{\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sources": [],
+        "searchQueries": [],
+        "timeMs": 19531,
+        "costUsd": 0.038,
+        "error": "JSON parse failed: {\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 0,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "10-original-meeting-agendas",
+      "groundTruth": {
+        "severity": "none",
+        "plagiarizedSentenceCount": 0,
+        "totalSentences": 8,
+        "plagiarizedPct": 0
+      },
+      "copyscape": {
+        "similarityPct": 0,
+        "matches": [],
+        "timeMs": 598,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 0,
+        "isPlagiarized": false,
+        "copiedSentences": [],
+        "rawText": "{\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sources": [],
+        "searchQueries": [
+          "\"A meeting without an agenda is just a conversation\"",
+          "\"little more than an expensive conversation\""
+        ],
+        "timeMs": 29753,
+        "costUsd": 0.038,
+        "error": "JSON parse failed: {\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 0,
+        "articleLevelCorrect": true
+      }
+    }
+  ]
+}

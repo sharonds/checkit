@@ -12,7 +12,7 @@ _Filled in after all four POCs complete._
 
 | API / Skill | Verdict | Evidence strength | Notes |
 |---|---|---|---|
-| Copyscape (plagiarism) | TBD | — | POC 1 |
+| Copyscape (plagiarism) | **augment** | 10 articles, 75 sentences, 0 FP | POC 1 |
 | Copyscape (AI detection) | TBD | — | POC 2 — expected to lose |
 | Semantic Scholar (citations) | TBD | — | POC 3 |
 | LLM (tone/legal/summary/brief/purpose) | TBD | — | POC 4 |
@@ -48,23 +48,46 @@ These POCs follow the same design principles as the fact-check research in `poc/
 
 | POC | API calls | Estimated cost | Actual cost |
 |---|---|---|---|
-| 1 — Plagiarism | — | — | — |
+| 1 — Plagiarism | 10+10 calls | ~$0.10 + ~$0.38 | **$0.48** |
 | 2 — AI Detection | — | — | — |
 | 3 — Academic Citations | — | — | — |
 | 4 — LLM Skills Swap | — | — | — |
-| **Total** | | | **$0.00 / $15.00 budget** |
+| **Total** | | | **$0.48 / $15.00 budget** |
 
 ---
 
 ## POC 1 — Plagiarism (Copyscape vs Gemini grounding)
 
-**Status:** Not started.
+**Status:** Complete. Verdict: **augment**
+**Run date:** 2026-04-22
 
-_Results will be filled in after `bun poc-replacement/01-plagiarism/run.ts` completes._
+| Metric | Copyscape | Gemini |
+|---|---|---|
+| Sentence-level accuracy | 97.3% | **100.0%** |
+| Sentence-level recall | 91.3% | **100.0%** |
+| Sentence-level precision | 100.0% | 100.0% |
+| Article-level accuracy | 90.0% | **100.0%** |
+| False positives | 0 | 0 |
+| Cost/article | **$0.010** | $0.038 (3.8×) |
+| Avg time/article | **~1.4s** | ~42.5s |
 
-Corpus: 10 articles (3 heavy plagiarism, 3 light, 2 paraphrased, 2 original).
-Scoring: sentence-level precision/recall + article-level severity match.
-See: `01-plagiarism/RESULTS.md`
+**Key finding:** Gemini caught near-verbatim plagiarism (introductory clause added to Wikipedia
+text) that Copyscape returned 0% on. Both engines had zero false positives on paraphrased or
+original content.
+
+**Why not replace:** Gemini at $0.038/call is 3.8× Copyscape's $0.01 — exceeds the ≤ 2×
+replacement cost criterion. Also 30× slower.
+
+**Recommended hybrid:** Copyscape primary. Gemini secondary check only when Copyscape returns
+< 10% similarity on articles showing encyclopedic-style writing. Expected to add <$0.038 per
+borderline case rather than all articles.
+
+**Reliability note:** Gemini's JSON output was truncated on 4 clean articles (empty
+`copiedSentences` array). Scores were correct because the runner defaulted to
+`isPlagiarized: false`, but this is a production concern. Fix: detect truncated pattern
+explicitly before full JSON parse.
+
+Full results: `01-plagiarism/RESULTS.md`
 
 ---
 
