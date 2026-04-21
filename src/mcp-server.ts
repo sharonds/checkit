@@ -1,9 +1,42 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { createHash } from "node:crypto";
 import { runCheckHeadless } from "./checker.ts";
-import { openDb, queryRecent, getCheckById, getContext, listContexts, insertContext, updateContext } from "./db.ts";
+import {
+  openDb,
+  queryRecent,
+  getCheckById,
+  getContext,
+  listContexts,
+  insertContext,
+  updateContext,
+  getCheckArticleText,
+  getActiveAuditForParent,
+} from "./db.ts";
+import type { Config } from "./config.ts";
 import { readConfig, writeConfig } from "./config.ts";
+import { FactCheckDeepResearchSkill } from "./skills/factcheck-deep-research.ts";
+
+const ESTIMATED_COMPLETION_MS = 15 * 60_000;
+
+const mcpServerDeps = {
+  openDb,
+  readConfig,
+  writeConfig,
+  createDeepResearchSkill: () => new FactCheckDeepResearchSkill(),
+};
+
+export function __setMcpServerTestOverrides(overrides: Partial<typeof mcpServerDeps>) {
+  Object.assign(mcpServerDeps, overrides);
+}
+
+export function __resetMcpServerTestOverrides() {
+  mcpServerDeps.openDb = openDb;
+  mcpServerDeps.readConfig = readConfig;
+  mcpServerDeps.writeConfig = writeConfig;
+  mcpServerDeps.createDeepResearchSkill = () => new FactCheckDeepResearchSkill();
+}
 
 export function getToolDefinitions() {
   return [
@@ -87,6 +120,32 @@ export function getToolDefinitions() {
         required: ["text"],
       },
     },
+    {
+      name: "deep_audit_article",
+      description: "Start or reuse an asynchronous deep fact-check audit for a stored report or raw article text",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          checkId: { type: "number", description: "Existing check ID whose stored article text should be audited" },
+          article: { type: "string", description: "Raw article text to audit" },
+        },
+        oneOf: [
+          { required: ["checkId"] },
+          { required: ["article"] },
+        ],
+      },
+    },
+    {
+      name: "get_deep_audit_result",
+      description: "Fetch the current result for a deep audit interaction",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          interactionId: { type: "string", description: "Deep audit interaction ID" },
+        },
+        required: ["interactionId"],
+      },
+    },
   ];
 }
 
@@ -99,7 +158,7 @@ export async function handleToolCall(name: string, args: Record<string, unknown>
       return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
     }
     case "list_reports": {
-      const db = openDb();
+      const db = mcpServerDeps.openDb();
       try {
         const limit = (args.limit as number) ?? 20;
         const checks = queryRecent(db, limit);
@@ -109,7 +168,7 @@ export async function handleToolCall(name: string, args: Record<string, unknown>
       }
     }
     case "get_report": {
-      const db = openDb();
+      const db = mcpServerDeps.openDb();
       try {
         const id = args.id as number;
         const check = getCheckById(db, id);
@@ -120,7 +179,7 @@ export async function handleToolCall(name: string, args: Record<string, unknown>
       }
     }
     case "upload_context": {
-      const db = openDb();
+      const db = mcpServerDeps.openDb();
       try {
         const type = args.type as string;
         const ctxName = (args.name as string) ?? type;
@@ -137,7 +196,7 @@ export async function handleToolCall(name: string, args: Record<string, unknown>
       }
     }
     case "list_contexts": {
-      const db = openDb();
+      const db = mcpServerDeps.openDb();
       try {
         const contexts = listContexts(db);
         return { content: [{ type: "text", text: JSON.stringify(contexts, null, 2) }] };
@@ -146,16 +205,16 @@ export async function handleToolCall(name: string, args: Record<string, unknown>
       }
     }
     case "get_skills": {
-      const config = readConfig();
+      const config = mcpServerDeps.readConfig();
       const skills = Object.entries(config.skills).map(([id, enabled]) => ({ id, enabled }));
       return { content: [{ type: "text", text: JSON.stringify(skills, null, 2) }] };
     }
     case "toggle_skill": {
-      const config = readConfig();
+      const config = mcpServerDeps.readConfig();
       const skillId = args.skillId as string;
       const enabled = args.enabled as boolean;
       const skills = { ...config.skills, [skillId]: enabled };
-      await writeConfig({ skills });
+      await mcpServerDeps.writeConfig({ skills });
       return { content: [{ type: "text", text: `Skill '${skillId}' ${enabled ? "enabled" : "disabled"}` }] };
     }
     case "regenerate_article": {
@@ -166,9 +225,113 @@ export async function handleToolCall(name: string, args: Record<string, unknown>
       const regen = await regenerateArticle(text, checkResult.results, { config });
       return { content: [{ type: "text", text: JSON.stringify(regen, null, 2) }] };
     }
+    case "deep_audit_article": {
+      const checkId = asOptionalFiniteNumber(args.checkId);
+      const article = asOptionalString(args.article);
+      const selectionError = getExclusiveArgError(checkId !== undefined, article !== undefined, "checkId", "article");
+      if (selectionError) {
+        return errorResponse(selectionError);
+      }
+
+      const db = mcpServerDeps.openDb();
+      try {
+        const config = mcpServerDeps.readConfig();
+        const skill = mcpServerDeps.createDeepResearchSkill();
+
+        let text: string;
+        let parentType: "check" | "content_hash";
+        let parentKey: string;
+
+        if (checkId !== undefined) {
+          const storedArticle = getCheckArticleText(db, checkId);
+          if (storedArticle === null) {
+            return errorResponse(`Report ${checkId} not found`);
+          }
+          if (!storedArticle.trim()) {
+            return errorResponse(
+              `Historical report ${checkId} does not store article text. Deep Audit cannot start from checkId for that report; pass article text directly instead.`,
+            );
+          }
+          text = storedArticle;
+          parentType = "check";
+          parentKey = String(checkId);
+        } else {
+          text = article!;
+          parentType = "content_hash";
+          parentKey = createHash("sha256").update(text).digest("hex").slice(0, 16);
+        }
+
+        const activeAudit = getActiveAuditForParent(db, parentType, parentKey);
+        if (activeAudit) {
+          return jsonResponse({
+            interactionId: activeAudit.interactionId,
+            status: activeAudit.status,
+            estimatedCompletion: activeAudit.startedAt + ESTIMATED_COMPLETION_MS,
+          });
+        }
+
+        const result = await skill.initiate(text, parentType, parentKey, config, "mcp");
+        return jsonResponse(result);
+      } catch (error) {
+        return errorResponse(error instanceof Error ? error.message : String(error));
+      } finally {
+        db.close();
+      }
+    }
+    case "get_deep_audit_result": {
+      const interactionId = asOptionalString(args.interactionId);
+      if (!interactionId) {
+        return errorResponse("get_deep_audit_result requires interactionId");
+      }
+
+      try {
+        const config = mcpServerDeps.readConfig();
+        const skill = mcpServerDeps.createDeepResearchSkill();
+        const result = await skill.fetchResult(interactionId, config as Config);
+
+        if (result === null) {
+          return jsonResponse({
+            interactionId,
+            status: "in_progress",
+            message: "Deep Audit is still running",
+          });
+        }
+
+        return jsonResponse({
+          interactionId,
+          status: result.verdict === "fail" ? "failed" : "completed",
+          result,
+        });
+      } catch (error) {
+        return errorResponse(error instanceof Error ? error.message : String(error));
+      }
+    }
     default:
       return { content: [{ type: "text", text: `Unknown tool: ${name}` }], isError: true };
   }
+}
+
+function asOptionalString(value: unknown): string | undefined {
+  return typeof value === "string" ? value : undefined;
+}
+
+function asOptionalFiniteNumber(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isFinite(value) ? value : undefined;
+}
+
+function getExclusiveArgError(hasFirst: boolean, hasSecond: boolean, firstName: string, secondName: string): string | null {
+  if (hasFirst === hasSecond) {
+    return `Provide exactly one of ${firstName} or ${secondName}`;
+  }
+  return null;
+}
+
+function jsonResponse(payload: unknown) {
+  return { content: [{ type: "text" as const, text: JSON.stringify(payload, null, 2) }] };
+}
+
+function errorResponse(message: string) {
+  return { content: [{ type: "text" as const, text: message }], isError: true };
 }
 
 export async function startMcpServer() {

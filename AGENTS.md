@@ -31,6 +31,8 @@ Or add to your MCP config (e.g., `.claude/settings.json`):
 | `get_skills` | See which skills are enabled | - |
 | `toggle_skill` | Enable/disable a skill | `skillId`, `enabled` |
 | `regenerate_article` | Get AI-suggested rewrites for flagged sentences | `text` |
+| `deep_audit_article` | Start or reuse an async deep fact-check audit | exactly one of `checkId` or `article` |
+| `get_deep_audit_result` | Fetch the current result for a deep audit interaction | `interactionId` |
 
 ### Example: Check an article from Claude Code
 
@@ -44,6 +46,21 @@ Or add to your MCP config (e.g., `.claude/settings.json`):
     - type: "tone-guide"
     - name: "Brand Voice"
     - content: "Write in second person. Be warm and conversational..."
+
+### Example: Start a deep audit from a saved report
+
+    Use the deep_audit_article tool with:
+    - checkId: 42
+
+### Example: Start a deep audit from raw article text
+
+    Use the deep_audit_article tool with:
+    - article: "Your full article text here..."
+
+### Example: Poll for deep audit completion
+
+    Use the get_deep_audit_result tool with:
+    - interactionId: "int_abc123"
 
 ## CLI Commands (scripts, CI/CD, OpenClaw)
 
