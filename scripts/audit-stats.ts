@@ -41,11 +41,12 @@ try {
   console.log(`Cost spent this week: $${weeklyCost.toFixed(2)}`);
   console.log("Failure rate by category:");
 
-  if (Object.keys(failureCounts).length === 0) {
+  const totalFailures = Object.values(failureCounts).reduce((sum, count) => sum + count, 0);
+  if (totalFailures === 0) {
     console.log("- none");
   } else {
     for (const [category, count] of Object.entries(failureCounts).sort((a, b) => b[1] - a[1])) {
-      const rate = audits.length === 0 ? 0 : (count / audits.length) * 100;
+      const rate = (count / totalFailures) * 100;
       console.log(`- ${category}: ${count} (${rate.toFixed(1)}%)`);
     }
   }

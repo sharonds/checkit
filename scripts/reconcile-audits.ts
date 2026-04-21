@@ -43,7 +43,7 @@ try {
 
   for (const audit of listActiveAudits()) {
     summary.scanned++;
-    const ageMs = now - audit.started_at;
+    let ageMs = now - audit.started_at;
 
     if (ageMs > STALE_THRESHOLD_MS) {
       markAuditStale(audit, now, ageMs);
@@ -70,11 +70,15 @@ try {
       summary.polled++;
       await skill.fetchResult(audit.interaction_id, config);
       const refreshed = getAuditById(audit.id) ?? audit;
+      ageMs = Date.now() - refreshed.started_at;
 
       if (refreshed.status === "completed") {
         summary.completed++;
       } else if (refreshed.status === "failed") {
         summary.failed++;
+      } else if (ageMs > STALE_THRESHOLD_MS) {
+        markAuditStale(refreshed, Date.now(), ageMs);
+        summary.stale++;
       } else {
         summary.stillInProgress++;
       }

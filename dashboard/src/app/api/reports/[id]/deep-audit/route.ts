@@ -4,6 +4,14 @@ import { jsonWithCors } from "@/lib/cors";
 import { getDb } from "@/lib/db";
 import { readConfig } from "../../../../../../../src/config";
 import {
+  emitAuditCompletedEvent,
+  emitAuditCreatedEvent,
+  emitAuditFailedEvent,
+  emitAuditPollEvent,
+  emitAuditRequestedEvent,
+  emitAuditStaleEvent,
+} from "../../../../../../../src/telemetry/audit-events";
+import {
   BASE,
   createInteraction,
   extractText,
@@ -58,6 +66,7 @@ interface CheckArticleRow {
 
 const STALE_THRESHOLD_MS = 90 * 60_000;
 const DEFAULT_COST_USD = 1.5;
+const STALE_MESSAGE = "Deep Audit exceeded the 90 minute stale threshold.";
 
 let schemaReady = false;
 // Best-effort reconciliation inside the route module: each server process kicks
@@ -200,6 +209,12 @@ export async function POST(
 
     const db = getDb();
     const startedAt = Date.now();
+    emitAuditRequestedEvent({
+      provider: "gemini-deep-research",
+      parentType: "check",
+      parentKey,
+      requestedBy: "dashboard",
+    });
     db.run(sql`
       INSERT INTO deep_audits (
         parent_type,
@@ -235,6 +250,14 @@ export async function POST(
         SET interaction_id = ${interactionId}, status = 'in_progress'
         WHERE id = ${created.id}
       `);
+      emitAuditCreatedEvent({
+        provider: "gemini-deep-research",
+        auditId: created.id,
+        interactionId,
+        parentType: "check",
+        parentKey,
+        requestedBy: "dashboard",
+      });
 
       const started = getAuditById(parentKey, created.id);
       if (!started) {
@@ -256,6 +279,16 @@ export async function POST(
           error_message = ${getErrorMessage(error, "Deep Audit could not be started")}
         WHERE id = ${created.id}
       `);
+      emitAuditFailedEvent({
+        provider: "gemini-deep-research",
+        auditId: created.id,
+        interactionId: null,
+        parentType: "check",
+        parentKey,
+        requestedBy: "dashboard",
+        reason: getErrorMessage(error, "Deep Audit could not be started"),
+        stage: "create",
+      });
 
       return jsonWithCors(
         { error: getErrorMessage(error, "Deep Audit could not be started") },
@@ -381,17 +414,42 @@ function getAuditById(parentKey: string, auditId: number): DeepAuditRow | null {
 function markExpiredAuditsForParent(parentKey: string) {
   const db = getDb();
   const cutoff = Date.now() - STALE_THRESHOLD_MS;
+  const expired = db.all(sql`
+    SELECT *
+    FROM deep_audits
+    WHERE parent_type = 'check'
+      AND parent_key = ${parentKey}
+      AND status = 'in_progress'
+      AND started_at < ${cutoff}
+  `) as DeepAuditRow[];
+
+  if (expired.length === 0) {
+    return;
+  }
+
   db.run(sql`
     UPDATE deep_audits
     SET
       status = 'stale',
       completed_at = COALESCE(completed_at, ${Date.now()}),
-      error_message = COALESCE(error_message, 'Deep Audit exceeded the 90 minute stale threshold.')
+      error_message = COALESCE(error_message, ${STALE_MESSAGE})
     WHERE parent_type = 'check'
       AND parent_key = ${parentKey}
       AND status = 'in_progress'
       AND started_at < ${cutoff}
   `);
+  for (const audit of expired) {
+    emitAuditStaleEvent({
+      provider: "gemini-deep-research",
+      auditId: audit.id,
+      interactionId: audit.interaction_id,
+      parentType: audit.parent_type,
+      parentKey: audit.parent_key,
+      requestedBy: audit.requested_by,
+      ageMs: Date.now() - audit.started_at,
+      reason: audit.error_message ?? STALE_MESSAGE,
+    });
+  }
 }
 
 function refreshPendingStaleness(audit: DeepAuditRow): DeepAuditRow {
@@ -409,11 +467,22 @@ function refreshPendingStaleness(audit: DeepAuditRow): DeepAuditRow {
     SET
       status = 'stale',
       completed_at = ${Date.now()},
-      error_message = COALESCE(error_message, 'Deep Audit exceeded the 90 minute stale threshold.')
+      error_message = COALESCE(error_message, ${STALE_MESSAGE})
     WHERE id = ${audit.id}
   `);
 
-  return getAuditById(audit.parent_key, audit.id) ?? audit;
+  const refreshed = getAuditById(audit.parent_key, audit.id) ?? audit;
+  emitAuditStaleEvent({
+    provider: "gemini-deep-research",
+    auditId: refreshed.id,
+    interactionId: refreshed.interaction_id,
+    parentType: refreshed.parent_type,
+    parentKey: refreshed.parent_key,
+    requestedBy: refreshed.requested_by,
+    ageMs: Date.now() - refreshed.started_at,
+    reason: refreshed.error_message ?? STALE_MESSAGE,
+  });
+  return refreshed;
 }
 
 async function refreshAuditIfNeeded(
@@ -436,10 +505,21 @@ async function refreshAuditIfNeeded(
       SET
         status = 'stale',
         completed_at = ${Date.now()},
-        error_message = COALESCE(error_message, 'Deep Audit exceeded the 90 minute stale threshold.')
+        error_message = COALESCE(error_message, ${STALE_MESSAGE})
       WHERE id = ${staleCandidate.id}
     `);
-    return getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+    const refreshed = getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+    emitAuditStaleEvent({
+      provider: "gemini-deep-research",
+      auditId: refreshed.id,
+      interactionId: refreshed.interaction_id,
+      parentType: refreshed.parent_type,
+      parentKey: refreshed.parent_key,
+      requestedBy: refreshed.requested_by,
+      ageMs: Date.now() - refreshed.started_at,
+      reason: refreshed.error_message ?? STALE_MESSAGE,
+    });
+    return refreshed;
   }
 
   const config = readConfig();
@@ -448,6 +528,14 @@ async function refreshAuditIfNeeded(
   }
 
   try {
+    emitAuditPollEvent({
+      provider: "gemini-deep-research",
+      auditId: staleCandidate.id,
+      interactionId: staleCandidate.interaction_id,
+      parentType: staleCandidate.parent_type,
+      parentKey: staleCandidate.parent_key,
+      requestedBy: staleCandidate.requested_by,
+    });
     const response = await fetch(
       `${BASE}/interactions/${encodeURIComponent(
         staleCandidate.interaction_id,
@@ -459,7 +547,18 @@ async function refreshAuditIfNeeded(
         errorMessage: `Interaction ${staleCandidate.interaction_id} was not found`,
         completedAt: Date.now(),
       });
-      return getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+      const refreshed = getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+      emitAuditFailedEvent({
+        provider: "gemini-deep-research",
+        auditId: refreshed.id,
+        interactionId: staleCandidate.interaction_id,
+        parentType: refreshed.parent_type,
+        parentKey: refreshed.parent_key,
+        requestedBy: refreshed.requested_by,
+        reason: refreshed.error_message ?? `Interaction ${staleCandidate.interaction_id} was not found`,
+        stage: "poll",
+      });
+      return refreshed;
     }
 
     if (!response.ok) {
@@ -482,7 +581,21 @@ async function refreshAuditIfNeeded(
         resultJson: JSON.stringify(data),
         completedAt: Date.now(),
       });
-      return getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+      const refreshed = getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+      emitAuditFailedEvent({
+        provider: "gemini-deep-research",
+        auditId: refreshed.id,
+        interactionId: staleCandidate.interaction_id,
+        parentType: refreshed.parent_type,
+        parentKey: refreshed.parent_key,
+        requestedBy: refreshed.requested_by,
+        reason:
+          refreshed.error_message ??
+          data.error?.trim() ??
+          `Interaction ${staleCandidate.interaction_id} failed`,
+        stage: "poll",
+      });
+      return refreshed;
     }
 
     updateAuditStatus(staleCandidate.id, "completed", {
@@ -491,7 +604,16 @@ async function refreshAuditIfNeeded(
       errorMessage: null,
       completedAt: Date.now(),
     });
-    return getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+    const refreshed = getAuditById(staleCandidate.parent_key, staleCandidate.id) ?? staleCandidate;
+    emitAuditCompletedEvent({
+      provider: "gemini-deep-research",
+      auditId: refreshed.id,
+      interactionId: staleCandidate.interaction_id,
+      parentType: refreshed.parent_type,
+      parentKey: refreshed.parent_key,
+      requestedBy: refreshed.requested_by,
+    });
+    return refreshed;
   } catch (error) {
     if (options.failHard) {
       throw error;
