@@ -13,6 +13,7 @@ import { PlagiarismSkill } from "../../../src/skills/plagiarism";
 import { AiDetectionSkill } from "../../../src/skills/aidetection";
 import { SeoSkill } from "../../../src/skills/seo";
 import { FactCheckSkill } from "../../../src/skills/factcheck";
+import { FactCheckGroundedSkill } from "../../../src/skills/factcheck-grounded";
 import { ToneSkill } from "../../../src/skills/tone";
 import { LegalSkill } from "../../../src/skills/legal";
 import { SummarySkill } from "../../../src/skills/summary";
@@ -36,15 +37,51 @@ export interface CoreResult {
   totalCostUsd: number;
 }
 
+export interface FactCheckSelection {
+  flagOn: boolean;
+  requestedTier: Config["factCheckTier"];
+  effectiveTier: "basic" | "standard" | "premium";
+  selectedImplementation: "basic" | "grounded";
+  selectedSkillId: "fact-check" | "fact-check-grounded";
+}
+
+export interface RunCheckHooks {
+  onFactCheckTierSelected?: (selection: FactCheckSelection) => void;
+}
+
 /**
- * Build skills based on config (reimplementation of CLI's buildSkills).
+ * Mirrors src/checker.ts so the dashboard follows the same tier gating and
+ * sync fallback behavior as the CLI.
  */
-function buildSkills(config: Config): Skill[] {
+export function selectFactCheckSkill(
+  config: Config,
+  hooks?: RunCheckHooks,
+): { skill: Skill; selection: FactCheckSelection } {
+  const flagOn = config.factCheckTierFlag === true;
+  const effectiveTier = flagOn ? (config.factCheckTier ?? "basic") : "basic";
+  const selection: FactCheckSelection = {
+    flagOn,
+    requestedTier: config.factCheckTier,
+    effectiveTier,
+    selectedImplementation: effectiveTier === "standard" ? "grounded" : "basic",
+    selectedSkillId: effectiveTier === "standard" ? "fact-check-grounded" : "fact-check",
+  };
+
+  hooks?.onFactCheckTierSelected?.(selection);
+
+  const skill = selection.selectedImplementation === "grounded"
+    ? new FactCheckGroundedSkill()
+    : new FactCheckSkill();
+
+  return { skill, selection };
+}
+
+function buildSkills(config: Config, hooks?: RunCheckHooks): Skill[] {
   const skills: Skill[] = [];
   if (config.skills.plagiarism) skills.push(new PlagiarismSkill());
   if (config.skills.aiDetection) skills.push(new AiDetectionSkill());
   if (config.skills.seo) skills.push(new SeoSkill());
-  if (config.skills.factCheck) skills.push(new FactCheckSkill());
+  if (config.skills.factCheck) skills.push(selectFactCheckSkill(config, hooks).skill);
   if (config.skills.tone) skills.push(new ToneSkill());
   if (config.skills.legal) skills.push(new LegalSkill());
   if (config.skills.summary) skills.push(new SummarySkill());
@@ -60,8 +97,12 @@ function buildSkills(config: Config): Skill[] {
  * Pure check pipeline: text + config → skill results.
  * Reimplementation of CLI's runCheckCore for Node.js environment.
  */
-export async function runCheckCore(text: string, config: Config): Promise<CoreResult> {
-  const skills = buildSkills(config);
+export async function runCheckCore(
+  text: string,
+  config: Config,
+  hooks?: RunCheckHooks,
+): Promise<CoreResult> {
+  const skills = buildSkills(config, hooks);
   const registry = new SkillRegistry(skills);
   const raw = await registry.runAll(text, config);
   const results = raw.map((r) => ({

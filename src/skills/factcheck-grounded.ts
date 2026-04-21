@@ -1,5 +1,6 @@
 import type { Config } from "../config.ts";
 import { resolveProvider } from "../providers/resolve.ts";
+import { emitGroundedCallEvent } from "../telemetry/audit-events.ts";
 import { getLlmClient, parseJsonResponse, LLM_MODEL } from "./llm.ts";
 import { claimConfidence, formatCitation, extractClaimsPrompt } from "./factcheck.ts";
 import type { ClaimType, Finding, Skill, SkillResult, Source } from "./types.ts";
@@ -182,6 +183,13 @@ async function fetchGroundedAssessment(
   apiKey: string,
   retriesLeft: number,
 ): Promise<GeminiGroundedResponse> {
+  emitGroundedCallEvent({
+    provider: "gemini-grounded",
+    model: GEMINI_GROUNDED_MODEL,
+    claimPreview: claim.slice(0, 160),
+    retriesLeft,
+  });
+
   const response = await fetch(
     `${GEMINI_BASE_URL}/${GEMINI_GROUNDED_MODEL}:generateContent?key=${apiKey}`,
     {

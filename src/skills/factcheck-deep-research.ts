@@ -1,6 +1,7 @@
 import type { Config } from "../config.ts";
 import {
   getActiveAuditForParent,
+  getDeepAudit,
   openDb,
   insertDeepAudit,
   updateAuditStatus,
@@ -9,6 +10,13 @@ import {
   type DeepAuditRequestedBy,
   type DeepAuditStatus,
 } from "../db.ts";
+import {
+  emitAuditCompletedEvent,
+  emitAuditCreatedEvent,
+  emitAuditFailedEvent,
+  emitAuditPollEvent,
+  emitAuditRequestedEvent,
+} from "../telemetry/audit-events.ts";
 import { BASE, createInteraction, extractText, type InteractionResponse } from "../utils/interactions-api.ts";
 import type { Skill, SkillResult } from "./types.ts";
 
@@ -63,13 +71,20 @@ export class FactCheckDeepResearchSkill implements Skill {
     requestedBy: DeepAuditRequestedBy = "mcp",
   ): Promise<InitiateDeepResearchResult> {
     const apiKey = requireGeminiApiKey(config);
+    emitAuditRequestedEvent({
+      provider: "gemini-deep-research",
+      parentType,
+      parentKey,
+      requestedBy,
+    });
 
     return this.withDb(async (db) => {
       const active = getActiveAuditForParent(db, parentType, parentKey);
       if (active) {
+        const status = active.status === "pending" ? "pending" : "in_progress";
         return {
           interactionId: active.interactionId,
-          status: active.status,
+          status,
           estimatedCompletion: active.startedAt + ESTIMATED_COMPLETION_MS,
         };
       }
@@ -100,6 +115,14 @@ export class FactCheckDeepResearchSkill implements Skill {
           "UPDATE deep_audits SET interaction_id = ?, status = 'in_progress' WHERE id = ?",
           [interactionId, auditId],
         );
+        emitAuditCreatedEvent({
+          provider: "gemini-deep-research",
+          auditId,
+          interactionId,
+          parentType,
+          parentKey,
+          requestedBy,
+        });
 
         return {
           interactionId,
@@ -111,6 +134,16 @@ export class FactCheckDeepResearchSkill implements Skill {
           "UPDATE deep_audits SET status = 'failed', completed_at = ?, error_message = ? WHERE id = ?",
           [this.now(), errorMessage(error), auditId],
         );
+        emitAuditFailedEvent({
+          provider: "gemini-deep-research",
+          auditId,
+          interactionId: null,
+          parentType,
+          parentKey,
+          requestedBy,
+          reason: errorMessage(error),
+          stage: "create",
+        });
         throw error;
       }
     });
@@ -118,6 +151,10 @@ export class FactCheckDeepResearchSkill implements Skill {
 
   async fetchResult(interactionId: string, config: Config): Promise<SkillResult | null> {
     const apiKey = requireGeminiApiKey(config);
+    emitAuditPollEvent({
+      provider: "gemini-deep-research",
+      interactionId,
+    });
     const response = await fetch(
       `${BASE}/interactions/${encodeURIComponent(interactionId)}?key=${encodeURIComponent(apiKey)}`,
     );
@@ -128,6 +165,16 @@ export class FactCheckDeepResearchSkill implements Skill {
         updateAuditStatus(db, interactionId, "failed", {
           errorMessage: error,
           completedAt: this.now(),
+        });
+        const audit = getDeepAudit(db, interactionId);
+        emitAuditFailedEvent({
+          provider: "gemini-deep-research",
+          interactionId,
+          auditId: audit?.id ?? null,
+          parentType: audit?.parentType ?? null,
+          parentKey: audit?.parentKey ?? null,
+          reason: error,
+          stage: "poll",
         });
         return failedResult(this, error);
       });
@@ -151,6 +198,16 @@ export class FactCheckDeepResearchSkill implements Skill {
           resultJson: JSON.stringify(data),
           completedAt: this.now(),
         });
+        const audit = getDeepAudit(db, interactionId);
+        emitAuditFailedEvent({
+          provider: "gemini-deep-research",
+          interactionId,
+          auditId: audit?.id ?? null,
+          parentType: audit?.parentType ?? null,
+          parentKey: audit?.parentKey ?? null,
+          reason: error,
+          stage: "poll",
+        });
         return failedResult(this, error);
       });
     }
@@ -162,6 +219,14 @@ export class FactCheckDeepResearchSkill implements Skill {
         resultJson: JSON.stringify(data),
         errorMessage: null,
         completedAt: this.now(),
+      });
+      const audit = getDeepAudit(db, interactionId);
+      emitAuditCompletedEvent({
+        provider: "gemini-deep-research",
+        interactionId,
+        auditId: audit?.id ?? null,
+        parentType: audit?.parentType ?? null,
+        parentKey: audit?.parentKey ?? null,
       });
       return completedResult(this, text);
     });
