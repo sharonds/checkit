@@ -1,9 +1,24 @@
 import { test, expect, describe, beforeEach, afterEach } from "bun:test";
 import { Database } from "bun:sqlite";
 import { mkdtempSync, rmSync, existsSync } from "fs";
-import { tmpdir, homedir } from "os";
+import { tmpdir } from "os";
 import { join } from "path";
-import { createSchema, insertCheck, queryRecent, openDb, insertContext, getContext, listContexts, updateContext, deleteContext, loadAllContexts, type CheckRecord } from "./db.ts";
+import {
+  createSchema,
+  insertCheck,
+  queryRecent,
+  openDb,
+  insertContext,
+  getContext,
+  listContexts,
+  updateContext,
+  deleteContext,
+  loadAllContexts,
+  getCheckArticleText,
+  getActiveAuditForParent,
+  getAuditsForParent,
+  insertDeepAudit,
+} from "./db.ts";
 
 let db: Database;
 
@@ -36,6 +51,45 @@ describe("insertCheck", () => {
       totalCostUsd: 0.18,
     });
     expect(id).toBeGreaterThan(0);
+  });
+
+  test("persists article text for report-backed deep audits", () => {
+    const id = insertCheck(db, {
+      source: "./article.md",
+      wordCount: 5,
+      results: [],
+      totalCostUsd: 0,
+      articleText: "Stored article text",
+    });
+
+    expect(getCheckArticleText(db, id)).toBe("Stored article text");
+    expect(queryRecent(db, 1)[0]?.articleText).toBe("Stored article text");
+  });
+});
+
+describe("createSchema", () => {
+  test("adds article_text to legacy checks tables", () => {
+    const legacyDb = new Database(":memory:");
+    legacyDb.run(`
+      CREATE TABLE checks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        source TEXT NOT NULL,
+        word_count INTEGER NOT NULL DEFAULT 0,
+        results_json TEXT NOT NULL DEFAULT '[]',
+        total_cost REAL NOT NULL DEFAULT 0,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )
+    `);
+
+    createSchema(legacyDb);
+
+    const columns = legacyDb
+      .query<{ name: string }, []>("PRAGMA table_info(checks)")
+      .all()
+      .map((column) => column.name);
+
+    expect(columns).toContain("article_text");
+    legacyDb.close();
   });
 });
 
@@ -99,5 +153,43 @@ describe("contexts", () => {
     const map = loadAllContexts(db);
     expect(map["tone-guide"]).toBe("be warm");
     expect(map["brief"]).toBe("500 words");
+  });
+});
+
+describe("deep_audits", () => {
+  test("returns the active audit for a parent and ignores terminal audits", () => {
+    insertDeepAudit(db, {
+      parentType: "content_hash",
+      parentKey: "hash-1",
+      requestedBy: "mcp",
+      startedAt: 100,
+    });
+    const activeId = insertDeepAudit(db, {
+      parentType: "content_hash",
+      parentKey: "hash-1",
+      requestedBy: "dashboard",
+      startedAt: 200,
+    });
+    db.run(
+      "UPDATE deep_audits SET interaction_id = ?, status = 'in_progress' WHERE id = ?",
+      ["int-active", activeId],
+    );
+    const completedId = insertDeepAudit(db, {
+      parentType: "content_hash",
+      parentKey: "hash-1",
+      requestedBy: "cli",
+      startedAt: 300,
+    });
+    db.run(
+      "UPDATE deep_audits SET interaction_id = ?, status = 'completed', completed_at = ? WHERE id = ?",
+      ["int-completed", 400, completedId],
+    );
+
+    const active = getActiveAuditForParent(db, "content_hash", "hash-1");
+
+    expect(active).not.toBeNull();
+    expect(active?.interactionId).toBe("int-active");
+    expect(active?.status).toBe("in_progress");
+    expect(getAuditsForParent(db, "content_hash", "hash-1")).toHaveLength(3);
   });
 });
