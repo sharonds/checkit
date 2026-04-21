@@ -46,7 +46,7 @@ See [docs/security.md](docs/security.md) for the BYOK-alpha threat model.
 | **Grammar & Style** | LanguageTool + LLM fallback | free tier / ~$0.002 | ✅ (free tier) |
 | **Academic Citations** | Semantic Scholar | free | ✅ |
 | **Self-Plagiarism** | Cloudflare Vectorize + OpenRouter embeddings | ~$0.0001 | ❌ requires index (`checkapp index <dir>`) |
-| **Fact Check** | Exa AI + Claude/MiniMax | ~$0.03 | ❌ requires `EXA_API_KEY` + LLM key |
+| **Fact Check** | Tiered: Basic = Exa + LLM; Standard = Gemini + Google Search; Deep Audit = Gemini Deep Research | varies | Basic is available by default; Standard is opt-in; Deep Audit is async |
 | **Tone of Voice** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key + tone guide file |
 | **Legal Risk** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key |
 | **Content Summary** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key |
@@ -54,6 +54,20 @@ See [docs/security.md](docs/security.md) for the BYOK-alpha threat model.
 | **Content Purpose** | MiniMax/Claude | ~$0.002 | ❌ requires LLM key |
 
 All enabled skills run in parallel. Adding more skills does not increase total time significantly.
+
+---
+
+## Fact-Check Tiers
+
+Standard is opt-in and stays off by default until Gate 2 passes. Basic remains the default tier unless `factCheckTierFlag` is explicitly enabled.
+
+| Tier | Engine | Cost per article | Typical time | Notes |
+|------|--------|------|------|-------|
+| Basic (default) | Exa + LLM | $0.04 | ~15s | Works without Gemini API key |
+| Standard (opt-in) | Gemini + Google Search grounding | $0.16 | ~45s | Requires `GEMINI_API_KEY`. Enable with `factCheckTierFlag=true` and `factCheckTier="standard"` in config. |
+| Deep Audit (async) | Gemini Deep Research | $1.50 | 5–15 min | Premium audit workflow. Initiate via dashboard button or `deep_audit_article` MCP tool. |
+
+Research basis: the Standard tier was selected based on an [internal benchmark on a 20-claim synthetic corpus](https://github.com/sharonds/checkapp-fact-check-research). That benchmark is directional, not definitive - see its [LIMITATIONS.md](https://github.com/sharonds/checkapp-fact-check-research/blob/main/LIMITATIONS.md) before relying on the results for your own decisions.
 
 ---
 

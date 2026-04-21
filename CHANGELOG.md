@@ -40,6 +40,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - `.env.example` — replaced stale `checkit` references with `CheckApp` / `~/.checkapp` / `checkapp --setup` (#25).
 
+## [1.3.0] - 2026-04-22
+
+### Added
+
+- Fact-Check Tier system with three tiers: Basic (Exa + LLM, current default), Standard (Gemini + Google Search grounding, opt-in behind `factCheckTierFlag`), Deep Audit (Gemini Deep Research, async premium workflow).
+- Gemini-backed fact-check tiers (Grounded and Deep Audit) plus provider capability checks for preview Gemini endpoints.
+- `deep_audit_article` and `get_deep_audit_result` MCP tools for agent integration.
+- Dashboard Deep Audit panel on report pages.
+- Dashboard tier selector in Settings.
+- Provider capability layer with startup health check for preview Gemini endpoints.
+- Telemetry for tier selection and audit lifecycle events.
+
+### Changed
+
+- Exa fact-check now uses `text` retrieval (full content) in addition to highlights, for better specific-statistic verification.
+
+### Fixed
+
+- Removed restrictive `includeDomains` filter from Exa search that caused false negatives on topics outside the hardcoded allowlist.
+
+### Notes
+
+- Standard tier defaults to off. Enable it manually (`factCheckTierFlag: true, factCheckTier: "standard"` in config) until we validate it with broader production evidence.
+- Tier selection was informed by an internal 20-claim synthetic benchmark; see [research repo](https://github.com/sharonds/checkapp-fact-check-research) for methodology and limitations.
+
 ## [1.2.0] — 2026-04-17 — Phase 7.1: Review Cleanup
 
 Consolidation release. Addresses all outstanding review findings from Phase 6 + Phase 7 PRs (#11–#19), CodeQL alerts, and a second Codex validation pass. Ships as five PRs (B0–B4).

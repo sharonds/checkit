@@ -62,6 +62,10 @@ Or add to your MCP config (e.g., `.claude/settings.json`):
     Use the get_deep_audit_result tool with:
     - interactionId: "int_abc123"
 
+### Fact-check tiers
+
+Basic is the default fact-check tier. Standard is opt-in and only used when `factCheckTierFlag=true` and `factCheckTier="standard"` are present in config. Deep Audit is async; start it with `deep_audit_article` and poll with `get_deep_audit_result`.
+
 ## CLI Commands (scripts, CI/CD, OpenClaw)
 
     # Check an article (with Ink UI)
@@ -107,6 +111,7 @@ Or add to your MCP config (e.g., `.claude/settings.json`):
 | `COPYSCAPE_USER` | Yes | Copyscape username |
 | `COPYSCAPE_KEY` | Yes | Copyscape API key |
 | `EXA_API_KEY` | No | Exa AI for fact-check evidence search |
+| `GEMINI_API_KEY` | No | Gemini API key for Standard and Deep Audit fact-check tiers |
 | `MINIMAX_API_KEY` | No | MiniMax LLM (preferred, cheapest) |
 | `ANTHROPIC_API_KEY` | No | Anthropic Claude LLM (fallback) |
 | `OPENROUTER_API_KEY` | No | OpenRouter — one key for 200+ models |
