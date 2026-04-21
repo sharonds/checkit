@@ -28,7 +28,6 @@ try {
 
   const statusCounts = countByStatus(audits);
   const failureCounts = countFailureCategories(audits);
-  const totalFailures = Object.values(failureCounts).reduce((sum, count) => sum + count, 0);
   const completionDurations = audits
     .filter((audit) => audit.completed_at !== null && audit.completed_at >= audit.started_at)
     .map((audit) => audit.completed_at! - audit.started_at);
@@ -39,14 +38,14 @@ try {
   console.log(`Total audits: ${audits.length}`);
   console.log(`Status counts: pending=${statusCounts.pending} in_progress=${statusCounts.in_progress} completed=${statusCounts.completed} failed=${statusCounts.failed} stale=${statusCounts.stale}`);
   console.log(`Median completion time: ${formatDuration(median(completionDurations))}`);
-  console.log(`Weekly cost estimate: $${weeklyCost.toFixed(2)}`);
+  console.log(`Cost spent this week: $${weeklyCost.toFixed(2)}`);
   console.log("Failure rate by category:");
 
-  if (totalFailures === 0) {
+  if (Object.keys(failureCounts).length === 0) {
     console.log("- none");
   } else {
     for (const [category, count] of Object.entries(failureCounts).sort((a, b) => b[1] - a[1])) {
-      const rate = (count / totalFailures) * 100;
+      const rate = audits.length === 0 ? 0 : (count / audits.length) * 100;
       console.log(`- ${category}: ${count} (${rate.toFixed(1)}%)`);
     }
   }

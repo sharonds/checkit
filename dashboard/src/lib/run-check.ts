@@ -49,6 +49,21 @@ export interface RunCheckHooks {
   onFactCheckTierSelected?: (selection: FactCheckSelection) => void;
 }
 
+const DEFAULT_SKILLS: NonNullable<Config["skills"]> = {
+  plagiarism: true,
+  aiDetection: true,
+  seo: true,
+  factCheck: false,
+  tone: false,
+  legal: false,
+  summary: false,
+  brief: false,
+  purpose: false,
+  grammar: false,
+  academic: false,
+  selfPlagiarism: false,
+};
+
 /**
  * Mirrors src/checker.ts so the dashboard follows the same tier gating and
  * sync fallback behavior as the CLI.
@@ -77,19 +92,20 @@ export function selectFactCheckSkill(
 }
 
 function buildSkills(config: Config, hooks?: RunCheckHooks): Skill[] {
+  const skillsConfig = { ...DEFAULT_SKILLS, ...(config.skills ?? {}) };
   const skills: Skill[] = [];
-  if (config.skills.plagiarism) skills.push(new PlagiarismSkill());
-  if (config.skills.aiDetection) skills.push(new AiDetectionSkill());
-  if (config.skills.seo) skills.push(new SeoSkill());
-  if (config.skills.factCheck) skills.push(selectFactCheckSkill(config, hooks).skill);
-  if (config.skills.tone) skills.push(new ToneSkill());
-  if (config.skills.legal) skills.push(new LegalSkill());
-  if (config.skills.summary) skills.push(new SummarySkill());
-  if (config.skills.brief) skills.push(new BriefSkill());
-  if (config.skills.purpose) skills.push(new PurposeSkill());
-  if (config.skills.grammar) skills.push(new GrammarSkill());
-  if (config.skills.academic) skills.push(new AcademicSkill());
-  if (config.skills.selfPlagiarism) skills.push(new SelfPlagiarismSkill());
+  if (skillsConfig.plagiarism) skills.push(new PlagiarismSkill());
+  if (skillsConfig.aiDetection) skills.push(new AiDetectionSkill());
+  if (skillsConfig.seo) skills.push(new SeoSkill());
+  if (skillsConfig.factCheck) skills.push(selectFactCheckSkill({ ...config, skills: skillsConfig }, hooks).skill);
+  if (skillsConfig.tone) skills.push(new ToneSkill());
+  if (skillsConfig.legal) skills.push(new LegalSkill());
+  if (skillsConfig.summary) skills.push(new SummarySkill());
+  if (skillsConfig.brief) skills.push(new BriefSkill());
+  if (skillsConfig.purpose) skills.push(new PurposeSkill());
+  if (skillsConfig.grammar) skills.push(new GrammarSkill());
+  if (skillsConfig.academic) skills.push(new AcademicSkill());
+  if (skillsConfig.selfPlagiarism) skills.push(new SelfPlagiarismSkill());
   return skills;
 }
 
@@ -102,12 +118,13 @@ export async function runCheckCore(
   config: Config,
   hooks?: RunCheckHooks,
 ): Promise<CoreResult> {
-  const skills = buildSkills(config, hooks);
+  const effectiveConfig = { ...config, skills: { ...DEFAULT_SKILLS, ...(config.skills ?? {}) } };
+  const skills = buildSkills(effectiveConfig, hooks);
   const registry = new SkillRegistry(skills);
-  const raw = await registry.runAll(text, config);
+  const raw = await registry.runAll(text, effectiveConfig);
   const results = raw.map((r) => ({
     ...r,
-    verdict: applyThreshold(r.score, r.verdict, config.thresholds?.[r.skillId]),
+    verdict: applyThreshold(r.score, r.verdict, effectiveConfig.thresholds?.[r.skillId]),
   }));
   const totalCostUsd = results.reduce((s, r) => s + r.costUsd, 0);
   return { results, totalCostUsd };
