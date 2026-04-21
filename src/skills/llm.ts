@@ -1,10 +1,10 @@
 /**
- * Unified LLM client that supports Anthropic SDK (MiniMax, Anthropic) and
- * OpenAI-compatible SDK (OpenRouter).
+ * Unified LLM client that supports Anthropic SDK (MiniMax, Anthropic),
+ * Gemini direct fetch, and OpenAI-compatible SDK (OpenRouter).
  *
  * Skills call `llm.call(prompt, maxTokens)` — the SDK difference is hidden.
  *
- * Priority (auto-detect): MiniMax -> Anthropic -> OpenRouter
+ * Priority (auto-detect): MiniMax -> Anthropic -> Gemini -> OpenRouter
  * Explicit: set `llmProvider` in config to override.
  */
 import Anthropic from "@anthropic-ai/sdk";
@@ -18,10 +18,11 @@ export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
 export const LLM_MODEL = {
   minimax: "MiniMax-M2.7",
   anthropic: "claude-haiku-4-5-20251001",
+  gemini: "gemini-3.1-pro-preview",
   openrouter: "anthropic/claude-3.5-haiku",
 } as const;
 
-export type LlmProvider = "minimax" | "anthropic" | "openrouter";
+export type LlmProvider = "minimax" | "anthropic" | "gemini" | "openrouter";
 
 export interface LlmClient {
   provider: LlmProvider;
@@ -54,6 +55,52 @@ function createOpenAICaller(client: OpenAI, model: string): LlmClient["call"] {
   };
 }
 
+interface GeminiGenerateContentResponse {
+  candidates?: Array<{
+    content?: {
+      parts?: Array<{
+        text?: string;
+        thought?: boolean;
+      }>;
+    };
+  }>;
+}
+
+function createGeminiCaller(apiKey: string, model: string): LlmClient["call"] {
+  return async (prompt: string, maxTokens = 1024) => {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: {
+            maxOutputTokens: Math.max(maxTokens, 8192),
+            temperature: 0.1,
+            thinkingConfig: { thinkingLevel: "low" },
+          },
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`Gemini LLM error: HTTP ${response.status}`);
+    }
+
+    const data = (await response.json()) as GeminiGenerateContentResponse;
+    const text = (data.candidates ?? [])
+      .flatMap((candidate) => candidate.content?.parts ?? [])
+      .filter((part) => part.thought !== true)
+      .map((part) => part.text ?? "")
+      .join("")
+      .trim();
+
+    if (!text) throw new Error("LLM returned empty response");
+    return text;
+  };
+}
+
 /**
  * Returns a configured LLM client.
  * Explicit `llmProvider` in config is preferred when its key is set; falls back to auto-detect if key missing.
@@ -73,8 +120,11 @@ export function getLlmClient(config: Config): LlmClient | null {
     const client = new Anthropic({ apiKey: config.minimaxApiKey, baseURL: MINIMAX_BASE_URL });
     return { provider: "minimax", model: LLM_MODEL.minimax, call: createAnthropicCaller(client, LLM_MODEL.minimax) };
   }
+  if (config.llmProvider === "gemini" && config.geminiApiKey) {
+    return { provider: "gemini", model: LLM_MODEL.gemini, call: createGeminiCaller(config.geminiApiKey, LLM_MODEL.gemini) };
+  }
 
-  // Auto-detect: MiniMax -> Anthropic -> OpenRouter
+  // Auto-detect: MiniMax -> Anthropic -> Gemini -> OpenRouter
   if (config.minimaxApiKey) {
     const client = new Anthropic({ apiKey: config.minimaxApiKey, baseURL: MINIMAX_BASE_URL });
     return { provider: "minimax", model: LLM_MODEL.minimax, call: createAnthropicCaller(client, LLM_MODEL.minimax) };
@@ -82,6 +132,9 @@ export function getLlmClient(config: Config): LlmClient | null {
   if (config.anthropicApiKey) {
     const client = new Anthropic({ apiKey: config.anthropicApiKey });
     return { provider: "anthropic", model: LLM_MODEL.anthropic, call: createAnthropicCaller(client, LLM_MODEL.anthropic) };
+  }
+  if (config.geminiApiKey) {
+    return { provider: "gemini", model: LLM_MODEL.gemini, call: createGeminiCaller(config.geminiApiKey, LLM_MODEL.gemini) };
   }
   if (config.openrouterApiKey) {
     const client = new OpenAI({ apiKey: config.openrouterApiKey, baseURL: OPENROUTER_BASE_URL });

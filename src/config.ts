@@ -27,7 +27,10 @@ export interface Config {
   anthropicApiKey?: string;
   minimaxApiKey?: string;
   openrouterApiKey?: string;
-  llmProvider?: "minimax" | "anthropic" | "openrouter";
+  geminiApiKey?: string;
+  llmProvider?: "minimax" | "anthropic" | "openrouter" | "gemini";
+  factCheckTier?: "basic" | "standard" | "premium";
+  factCheckTierFlag?: boolean;
   toneGuideFile?: string;
   skills: SkillsConfig;
   thresholds?: Record<string, Threshold>;
@@ -100,11 +103,14 @@ export function readConfig(): Config {
     anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? file.anthropicApiKey,
     minimaxApiKey: process.env.MINIMAX_API_KEY ?? file.minimaxApiKey,
     openrouterApiKey: process.env.OPENROUTER_API_KEY ?? file.openrouterApiKey,
+    geminiApiKey: process.env.GEMINI_API_KEY ?? file.geminiApiKey,
     llmProvider: (() => {
-      const validProviders = ["minimax", "anthropic", "openrouter"];
+      const validProviders = ["minimax", "anthropic", "openrouter", "gemini"];
       const rawProvider = process.env.LLM_PROVIDER ?? file.llmProvider;
       return validProviders.includes(rawProvider as string) ? (rawProvider as Config["llmProvider"]) : undefined;
     })(),
+    factCheckTier: file.factCheckTier,
+    factCheckTierFlag: file.factCheckTierFlag,
     toneGuideFile: process.env.TONE_GUIDE_FILE ?? file.toneGuideFile,
     skills: { ...DEFAULT_SKILLS, ...(file.skills ?? {}) },
     thresholds: file.thresholds,
