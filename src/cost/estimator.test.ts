@@ -127,4 +127,22 @@ describe("estimateRunCost", () => {
     }, 800);
     expect(r.perSkill.aiDetection).toBeCloseTo(0.03);
   });
+
+  test("premium tier estimate is basic sync cost, not Deep Audit cost", () => {
+    // Runtime routes premium → basic sync + async Deep Audit. The sync-run
+    // estimate must NOT add $1.50 as if Deep Audit ran synchronously.
+    const cfg: Config = {
+      ...base({ factCheck: true }),
+      factCheckTierFlag: true,
+      factCheckTier: "premium",
+      providers: { "fact-check": { provider: "exa-search", apiKey: "k" } },
+    };
+    const r = estimateRunCost(cfg, 500);
+    expect(r.perSkill["fact-check"]).toBe(0.04); // basic, NOT 1.5
+  });
+
+  test("estimateFactCheckCost('premium') still returns 1.5 as a pure helper", () => {
+    // Kept for separate Deep Audit pricing display (e.g. --estimate-cost).
+    expect(estimateFactCheckCost("premium")).toBe(1.5);
+  });
 });

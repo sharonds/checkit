@@ -5,7 +5,7 @@
 | Skill | Engine | Cost/check | Default |
 |-------|--------|-----------|---------|
 | Plagiarism Check | Copyscape | ~$0.09 | Enabled |
-| AI Detection | Copyscape | ~$0.09 | Enabled |
+| AI Detection | Copyscape | ~$0.03 | Enabled |
 | SEO Analysis | Offline | Free | Enabled |
 | Fact Check | Tiered: Basic = Exa + LLM; Standard = Gemini + Google Search; Deep Audit = Gemini Deep Research | varies | Basic is default; Standard is opt-in; Deep Audit is async |
 | Tone of Voice | MiniMax/Claude | ~$0.002 | Requires API keys + tone guide |
@@ -13,9 +13,9 @@
 | Content Summary | MiniMax/Claude | ~$0.002 | Requires API keys |
 | Brief Matching | MiniMax/Claude | ~$0.002 | Requires API keys + brief context |
 | Content Purpose | MiniMax/Claude | ~$0.002 | Requires API keys |
-| Grammar & Style | LanguageTool (default) / Sapling / LLM-fallback | Free / $0.0008/100w / LLM | Optional — LT free, no key required |
-| Academic Citations | Semantic Scholar | Free (100 req/5min) | Optional — no key required |
-| Self-Plagiarism | Cloudflare Vectorize / Pinecone / Upstash | ~$0.0002/article | Optional — requires one-time `checkapp index <dir>` |
+| Grammar & Style | LanguageTool (default) / Sapling / LLM-fallback | Free / $0.0008/100w / LLM | Disabled by default — enable in Settings; LT free tier works without any API key |
+| Academic Citations | Semantic Scholar | Free (100 req/5min) | Disabled by default — augments fact-check findings when enabled; no key required |
+| Self-Plagiarism | Cloudflare Vectorize / Pinecone / Upstash | ~$0.0002/article | Disabled by default — requires one-time `checkapp index <dir>`, `OPENROUTER_API_KEY`, and provider config |
 
 All enabled skills run in parallel. Skills with missing API keys skip gracefully.
 

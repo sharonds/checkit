@@ -13,7 +13,7 @@ export interface PollUntilCompleteOptions {
 }
 
 export async function createInteraction(apiKey: string, body: unknown): Promise<{ id: string }> {
-  const response = await fetch(`${BASE}/interactions?key=${apiKey}`, {
+  const response = await fetch(`${BASE}/interactions?key=${encodeURIComponent(apiKey)}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -40,7 +40,9 @@ export async function pollUntilComplete(
   const maxPolls = opts.maxPolls ?? 80;
 
   for (let attempt = 0; attempt < maxPolls; attempt++) {
-    const response = await fetch(`${BASE}/interactions/${id}?key=${apiKey}`);
+    const response = await fetch(
+      `${BASE}/interactions/${encodeURIComponent(id)}?key=${encodeURIComponent(apiKey)}`,
+    );
     if (!response.ok) {
       throw new Error(`Failed to poll interaction ${id}: ${response.status}`);
     }

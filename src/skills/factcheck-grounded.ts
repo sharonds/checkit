@@ -99,12 +99,12 @@ export class FactCheckGroundedSkill implements Skill {
     }
 
     const findings: Finding[] = [];
-    const perClaimCost = resolved.metadata?.costPerCheckUsd ?? 0.01;
+    const perClaimCost = resolved.metadata?.costPerCheckUsd ?? 0.04;
     let costUsd = 0.001;
 
     const groundedResults: GroundedClaimResult[] = [];
     for (const claim of claims.slice(0, 4)) {
-      const grounded = await assessClaimGrounded(claim, resolved.apiKey);
+      const grounded = await assessClaimGrounded(claim, resolved.apiKey, perClaimCost);
       costUsd += perClaimCost;
       groundedResults.push({ claim, ...grounded });
     }
@@ -173,7 +173,11 @@ async function extractClaims(
 let _e2eGroundedCursor = 0;
 let _e2eGroundedScenarioName: string | null = null;
 
-async function assessClaimGrounded(claim: string, apiKey: string): Promise<Omit<GroundedClaimResult, "claim">> {
+async function assessClaimGrounded(
+  claim: string,
+  apiKey: string,
+  perClaimCost: number,
+): Promise<Omit<GroundedClaimResult, "claim">> {
   if (isE2E()) {
     const s = loadScenario();
     if (s.name !== _e2eGroundedScenarioName) {
@@ -203,6 +207,7 @@ async function assessClaimGrounded(claim: string, apiKey: string): Promise<Omit<
     apiKey,
     createGeminiCapability({ apiKey }).getModel("grounded"),
     1,
+    perClaimCost,
   );
   const candidate = response.candidates?.[0];
   const text = (candidate?.content?.parts ?? [])
@@ -225,6 +230,7 @@ async function fetchGroundedAssessment(
   apiKey: string,
   model: string,
   retriesLeft: number,
+  perClaimCost: number,
 ): Promise<GeminiGroundedResponse> {
   const startedAt = Date.now();
   const emitAttempt = (payload: Record<string, unknown>) =>
@@ -233,14 +239,14 @@ async function fetchGroundedAssessment(
       model,
       claimPreview: claim.slice(0, 160),
       retriesLeft,
-      costUsd: 0.01,
+      costUsd: perClaimCost,
       ...payload,
     });
 
   let response: Response;
   try {
     response = await fetch(
-      `${GEMINI_BASE_URL}/${model}:generateContent?key=${apiKey}`,
+      `${GEMINI_BASE_URL}/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -282,7 +288,7 @@ async function fetchGroundedAssessment(
       totalTokens: null,
     });
     await sleep(3_000);
-    return fetchGroundedAssessment(claim, apiKey, model, retriesLeft - 1);
+    return fetchGroundedAssessment(claim, apiKey, model, retriesLeft - 1, perClaimCost);
   }
 
   if (!response.ok) {

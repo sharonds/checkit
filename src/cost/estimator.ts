@@ -63,11 +63,15 @@ export function estimateRunCost(config: Config, wordCount: number): EstimateResu
   };
 
   if (config.skills.factCheck) {
-    const effectiveTier = config.factCheckTierFlag === true
+    const configuredTier = config.factCheckTierFlag === true
       ? (config.factCheckTier ?? "basic")
       : null;
-    perSkill["fact-check"] = effectiveTier
-      ? estimateFactCheckCost(effectiveTier)
+    // Runtime routes "premium" to basic sync + async Deep Audit. Don't charge
+    // $1.50 here. estimateFactCheckCost("premium") stays as a pure helper for
+    // displaying Deep Audit pricing separately (see --estimate-cost output).
+    const syncTierForEstimate = configuredTier === "premium" ? "basic" : configuredTier;
+    perSkill["fact-check"] = syncTierForEstimate
+      ? estimateFactCheckCost(syncTierForEstimate)
       : providerBase("fact-check") * FACT_CHECK_MAX_CLAIMS;
   }
   if ((config.skills as any).aiDetection) {

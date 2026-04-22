@@ -22,4 +22,11 @@ describe("format helpers", () => {
   it("formats numbers with a fixed grouping style", () => {
     expect(formatNumber(1234567)).toBe("1,234,567");
   });
+
+  it("returns a fallback for invalid date input instead of throwing or garbage", () => {
+    expect(() => formatShortDate("unknown")).not.toThrow();
+    expect(formatShortDate("unknown")).toBe("");
+    expect(() => formatDateTime("not-a-date")).not.toThrow();
+    expect(formatDateTime("not-a-date")).toBe("");
+  });
 });

@@ -28,7 +28,9 @@ export function ClaimDrillDown({ finding }: Props) {
           </SheetTitle>
         </SheetHeader>
         <div className="mt-4 space-y-4">
-          {finding.sources?.map((s, i) => (
+          {finding.sources?.map((s, i) => {
+            const publishedLabel = s.publishedDate ? formatShortDate(s.publishedDate) : "";
+            return (
             <article key={`s-${i}`} className="rounded border p-3">
               <a
                 href={safeHref(s.url)}
@@ -38,9 +40,9 @@ export function ClaimDrillDown({ finding }: Props) {
               >
                 {sanitizeText(s.title) || safeHref(s.url)}
               </a>
-              {s.publishedDate && (
+              {publishedLabel && (
                 <Badge variant="secondary" className="ml-2">
-                  {formatShortDate(s.publishedDate)}
+                  {publishedLabel}
                 </Badge>
               )}
               {typeof s.relevanceScore === "number" && (
@@ -54,7 +56,8 @@ export function ClaimDrillDown({ finding }: Props) {
                 </p>
               )}
             </article>
-          ))}
+            );
+          })}
 
           {finding.citations?.map((c, i) => (
             <article key={`c-${i}`} className="rounded border bg-blue-50/30 p-3">

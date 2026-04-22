@@ -25,10 +25,14 @@ export function formatDate(
   value: DateInput,
   options: Intl.DateTimeFormatOptions = {}
 ): string {
+  const date = normalizeDateInput(value);
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
   return new Intl.DateTimeFormat(DEFAULT_LOCALE, {
     ...options,
     timeZone: DEFAULT_TIME_ZONE,
-  }).format(normalizeDateInput(value));
+  }).format(date);
 }
 
 export function formatDateTime(value: DateInput): string {

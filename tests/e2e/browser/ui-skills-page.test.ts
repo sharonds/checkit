@@ -61,11 +61,20 @@ describe("dashboard /skills — list + SEO toggle", () => {
           await browser.open(`${handle.url}/skills`);
           await assertHydrated({ timeoutMs: 15_000 });
 
-          // The agent-browser interactive snapshot strips visible text for
-          // role-based output, so read the rendered body text directly.
-          const bodyText = await spawnBrowserEval("document.body.innerText");
+          // The skills list is fetched async after hydration; poll until the
+          // first expected row has rendered before asserting the full set,
+          // otherwise the body text reflects only the shell and flakes.
+          const listed = await (async () => {
+            const deadline = Date.now() + 15_000;
+            while (Date.now() < deadline) {
+              const body = await spawnBrowserEval("document.body.innerText");
+              if (body.includes("Plagiarism Check")) return body;
+              await new Promise((r) => setTimeout(r, 400));
+            }
+            return await spawnBrowserEval("document.body.innerText");
+          })();
           for (const name of EXPECTED_SKILL_NAMES) {
-            expect(bodyText).toContain(name);
+            expect(listed).toContain(name);
           }
 
           // Read baseline config via GET (no CSRF needed).

@@ -5,6 +5,28 @@ All notable changes to CheckApp are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.1] - 2026-04-23
+
+### Security
+
+- Deep Audit POST route (`/api/reports/[id]/deep-audit`) now enforces the same loopback + CSRF guard as other mutation routes. Previously a caller that could reach the dev server could trigger a paid Gemini Deep Research job without localhost + CSRF checks.
+
+### Fixed
+
+- Cost estimator no longer over-reports premium fact-check tier: `factCheckTier: "premium"` runtime routes to basic sync + async Deep Audit, but the estimator was adding $1.50/check as if Deep Audit ran synchronously. Preflight totals are now accurate.
+- Gemini `maxOutputTokens` now honors the caller's token budget, capped at 8192. Previously any caller asking for less than 8192 silently got 8192, up to 16× response-side cost.
+- `formatShortDate` / `formatDateTime` return an empty string instead of throwing a `RangeError` when given non-ISO input (e.g. Exa's occasional `publishedDate: "unknown"`); `ClaimDrillDown` also omits the badge entirely when the fallback kicks in.
+- Gemini API key and interaction id are now URL-encoded in all Gemini interaction calls (`interactions-api.ts`, `factcheck-grounded.ts`, `llm.ts`), preventing broken requests when a key or id contains `+` or `/`.
+
+### Changed
+
+- Provider registry `costPerCheckUsd` for `gemini-grounded` and `gemini-deep-research` now express per-claim pricing ($0.04 / $0.375) so the per-article 4-claim total matches the tier estimator and user-facing cost labels ($0.16 / $1.50).
+- CI now runs the browser E2E lane (`bun run test:e2e:browser`) so new UI regressions are caught before merge.
+
+### Docs
+
+- README skills table: AI Detection cost corrected to ~$0.03 (shipped cost constant). Grammar / Academic / Self-Plagiarism now accurately marked as disabled by default, matching `DEFAULT_SKILLS`. Mirrored in `docs/features.md`.
+
 ## [Unreleased]
 
 ### Changed

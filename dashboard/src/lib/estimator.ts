@@ -58,13 +58,14 @@ export function estimateRunCost(cfg: AppConfigForEstimate, wordCount: number): E
   const s = cfg.skills ?? {};
 
   if (s.factCheck) {
-    const effectiveTier = cfg.factCheckTierFlag === true ? (cfg.factCheckTier ?? "basic") : null;
-    perSkill["fact-check"] = effectiveTier
-      ? effectiveTier === "standard"
+    const configuredTier = cfg.factCheckTierFlag === true ? (cfg.factCheckTier ?? "basic") : null;
+    // Runtime routes "premium" to basic sync + async Deep Audit; don't charge
+    // $1.50 synchronously here (mirrors ~/checkapp/src/cost/estimator.ts).
+    const syncTier = configuredTier === "premium" ? "basic" : configuredTier;
+    perSkill["fact-check"] = syncTier
+      ? syncTier === "standard"
         ? 0.16
-        : effectiveTier === "premium"
-          ? 1.5
-          : 0.04
+        : 0.04
       : providerBase(cfg, "fact-check") * FACT_CHECK_MAX_CLAIMS;
   }
   if ((s as any).aiDetection) {

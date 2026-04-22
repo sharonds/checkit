@@ -75,14 +75,16 @@ function createGeminiCaller(apiKey: string, model: string): LlmClient["call"] {
   return async (prompt: string, maxTokens = 1024) => {
     assertMocksOnly("llm:gemini");
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
-            maxOutputTokens: Math.max(maxTokens, 8192),
+            // Respect caller's token budget; cap at 8192 so a large request
+            // doesn't produce runaway cost. Callers needing more should split.
+            maxOutputTokens: Math.min(maxTokens, 8192),
             temperature: 0.1,
             thinkingConfig: { thinkingLevel: "low" },
           },

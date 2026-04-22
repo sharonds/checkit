@@ -119,11 +119,44 @@ describe("getLlmClient", () => {
     expect(capturedBody).toMatchObject({
       contents: [{ parts: [{ text: "prompt text" }] }],
       generationConfig: {
-        maxOutputTokens: 8192,
+        maxOutputTokens: 16,
         temperature: 0.1,
         thinkingConfig: { thinkingLevel: "low" },
       },
     });
+  });
+
+  it("Gemini maxOutputTokens defaults to 1024 when caller passes no budget", async () => {
+    let capturedBody: Record<string, unknown> | null = null;
+    mockFetch(async (req) => {
+      capturedBody = JSON.parse((req as Request).body ? await req.text() : "{}") as Record<string, unknown>;
+      return jsonResponse({ candidates: [{ content: { parts: [{ text: "x" }] } }] });
+    });
+    const c = getLlmClient({ ...baseConfig, geminiApiKey: "gk" });
+    await c!.call("hi");
+    expect((capturedBody as any).generationConfig.maxOutputTokens).toBe(1024);
+  });
+
+  it("Gemini maxOutputTokens respects small explicit budgets (no floor bump)", async () => {
+    let capturedBody: Record<string, unknown> | null = null;
+    mockFetch(async (req) => {
+      capturedBody = JSON.parse((req as Request).body ? await req.text() : "{}") as Record<string, unknown>;
+      return jsonResponse({ candidates: [{ content: { parts: [{ text: "x" }] } }] });
+    });
+    const c = getLlmClient({ ...baseConfig, geminiApiKey: "gk" });
+    await c!.call("hi", 512);
+    expect((capturedBody as any).generationConfig.maxOutputTokens).toBe(512);
+  });
+
+  it("Gemini maxOutputTokens caps at 8192 for large budgets", async () => {
+    let capturedBody: Record<string, unknown> | null = null;
+    mockFetch(async (req) => {
+      capturedBody = JSON.parse((req as Request).body ? await req.text() : "{}") as Record<string, unknown>;
+      return jsonResponse({ candidates: [{ content: { parts: [{ text: "x" }] } }] });
+    });
+    const c = getLlmClient({ ...baseConfig, geminiApiKey: "gk" });
+    await c!.call("hi", 20000);
+    expect((capturedBody as any).generationConfig.maxOutputTokens).toBe(8192);
   });
 });
 

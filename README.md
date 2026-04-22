@@ -41,11 +41,11 @@ See [docs/security.md](docs/security.md) for the BYOK-alpha threat model.
 | Skill | Engine | Cost/check | Enabled by default |
 |-------|--------|-----------|-------------------|
 | **Plagiarism** | Copyscape | ~$0.09 | ✅ |
-| **AI Detection** | Copyscape | ~$0.09 | ✅ |
+| **AI Detection** | Copyscape | ~$0.03 | ✅ |
 | **SEO** | Offline (no API) | free | ✅ |
-| **Grammar & Style** | LanguageTool + LLM fallback | free tier / ~$0.002 | ✅ (free tier) |
-| **Academic Citations** | OpenAlex (default) / Semantic Scholar (legacy) | free | ✅ |
-| **Self-Plagiarism** | Cloudflare Vectorize + OpenRouter embeddings | ~$0.0001 | ❌ requires index (`checkapp index <dir>`) |
+| **Grammar & Style** | LanguageTool + LLM fallback | free tier / ~$0.002 | ❌ disabled by default (enable in Settings; LanguageTool free tier works without any API key) |
+| **Academic Citations** | OpenAlex (default) / Semantic Scholar (legacy) | free | ❌ disabled by default (augments fact-check findings when enabled; OpenAlex/SS both free) |
+| **Self-Plagiarism** | Cloudflare Vectorize + OpenRouter embeddings | ~$0.0001 | ❌ disabled by default — requires index (`checkapp index <dir>`), `OPENROUTER_API_KEY`, and Cloudflare Vectorize provider config |
 | **Fact Check** | Tiered: Basic = Exa + LLM; Standard = Gemini + Google Search; Deep Audit = Gemini Deep Research | varies | Basic is available by default; Standard is opt-in; Deep Audit is async |
 | **Tone of Voice** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key + tone guide file |
 | **Legal Risk** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key |
