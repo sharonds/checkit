@@ -20,6 +20,8 @@ import {
 } from "../telemetry/audit-events.ts";
 import { BASE, createInteraction, extractText, type InteractionResponse } from "../utils/interactions-api.ts";
 import type { Skill, SkillResult } from "./types.ts";
+import { isE2E, assertMocksOnly } from "../e2e/mode.ts";
+import { loadScenario } from "../e2e/fixtures.ts";
 
 const ESTIMATED_COMPLETION_MS = 15 * 60_000;
 const DEFAULT_COST_USD = 1.5;
@@ -106,17 +108,19 @@ export class FactCheckDeepResearchSkill implements Skill {
       });
 
       try {
-        const { id: interactionId } = await createInteraction(apiKey, {
-          input: buildDeepResearchPrompt(text),
-          agent: model,
-          background: true,
-          store: true,
-          agent_config: {
-            type: "deep-research",
-            thinking_summaries: "auto",
-            visualization: "off",
-          },
-        });
+        const { id: interactionId } = isE2E()
+          ? { id: loadScenario().providers.deepResearch?.initiateResponse.interaction_id ?? "int_e2e_mock" }
+          : await createInteraction(apiKey, {
+              input: buildDeepResearchPrompt(text),
+              agent: model,
+              background: true,
+              store: true,
+              agent_config: {
+                type: "deep-research",
+                thinking_summaries: "auto",
+                visualization: "off",
+              },
+            });
 
         db.run(
           "UPDATE deep_audits SET interaction_id = ?, status = 'in_progress', started_at = ?, requested_by = ?, cost_estimate_usd = ? WHERE id = ?",
@@ -162,9 +166,15 @@ export class FactCheckDeepResearchSkill implements Skill {
       provider: "gemini-deep-research",
       interactionId,
     });
-    const response = await fetch(
-      `${BASE}/interactions/${encodeURIComponent(interactionId)}?key=${encodeURIComponent(apiKey)}`,
-    );
+    let response: { status: number; ok: boolean; json: () => Promise<unknown> };
+    if (isE2E()) {
+      response = mockDeepResearchPoll();
+    } else {
+      assertMocksOnly("gemini-deep-research");
+      response = await fetch(
+        `${BASE}/interactions/${encodeURIComponent(interactionId)}?key=${encodeURIComponent(apiKey)}`,
+      );
+    }
 
     if (response.status === 404) {
       const error = `Interaction ${interactionId} was not found`;
@@ -287,6 +297,33 @@ Bullet list of the most material factual issues, ordered by severity.
 ## Article to fact-check
 
 ${text.slice(0, 4000)}`;
+}
+
+// E2E poll mock: consumes pollStates from the active scenario in order. The
+// cursor is keyed by scenario name so tests across scenarios don't interfere.
+let _e2ePollCursor = 0;
+let _e2ePollScenarioName: string | null = null;
+
+function mockDeepResearchPoll(): { status: number; ok: boolean; json: () => Promise<unknown> } {
+  const s = loadScenario();
+  if (s.name !== _e2ePollScenarioName) {
+    _e2ePollScenarioName = s.name;
+    _e2ePollCursor = 0;
+  }
+  const states = s.providers.deepResearch?.pollStates ?? [];
+  if (states.length === 0) {
+    return { status: 404, ok: false, json: async () => ({}) };
+  }
+  const idx = Math.min(_e2ePollCursor, states.length - 1);
+  _e2ePollCursor += 1;
+  const state = states[idx]!;
+  const body: InteractionResponse = {
+    id: s.providers.deepResearch?.initiateResponse.interaction_id ?? "int_e2e_mock",
+    status: state.status,
+    outputs: state.outputs,
+    error: state.error,
+  };
+  return { status: 200, ok: true, json: async () => body };
 }
 
 function normalizeInteractionStatus(status: string | undefined): "in_progress" | "completed" | "failed" {

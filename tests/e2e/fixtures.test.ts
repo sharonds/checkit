@@ -23,11 +23,11 @@ describe("scenario fixtures", () => {
     });
   }
 
-  it("basic-happy provides minimax + exa + geminiChat stubs", () => {
+  it("basic-happy provides llm.extractClaims + llm.assessClaim + exa stubs", () => {
     const s = loadScenario("basic-happy");
-    expect(s.providers.minimax?.text).toBeTruthy();
+    expect(s.providers.llm?.extractClaims).toBeTruthy();
+    expect(s.providers.llm?.assessClaim).toBeTruthy();
     expect(s.providers.exa?.results.length).toBeGreaterThan(0);
-    expect(s.providers.geminiChat?.text).toBeTruthy();
   });
 
   it("standard-happy provides grounded claims with sources", () => {

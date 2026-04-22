@@ -112,6 +112,13 @@ function createGeminiCaller(apiKey: string, model: string): LlmClient["call"] {
  * Explicit `llmProvider` in config is preferred when its key is set; falls back to auto-detect if key missing.
  * Returns null when no usable key is configured.
  */
+function detectPromptPhase(prompt: string): "extract" | "assess" | "other" {
+  const head = prompt.slice(0, 200).toLowerCase();
+  if (head.includes("extract the") && head.includes("claim")) return "extract";
+  if (head.includes("is this claim supported")) return "assess";
+  return "other";
+}
+
 export function getLlmClient(config: Config): LlmClient | null {
   // E2E mode: return a scenario-driven mock instead of making real HTTP calls.
   // We still honor the configured provider so skills that branch on it see the
@@ -129,13 +136,21 @@ export function getLlmClient(config: Config): LlmClient | null {
     return {
       provider,
       model: LLM_MODEL[provider],
-      call: async () => {
+      call: async (prompt: string) => {
         const s = loadScenario();
-        const text =
+        const phase = detectPromptPhase(prompt);
+        if (phase === "extract" && s.providers.llm?.extractClaims) {
+          return s.providers.llm.extractClaims;
+        }
+        if (phase === "assess" && s.providers.llm?.assessClaim) {
+          return s.providers.llm.assessClaim;
+        }
+        // Legacy / fallback: single-response fixture.
+        return (
           s.providers.geminiChat?.text ??
           s.providers.minimax?.text ??
-          "{}";
-        return text;
+          "{}"
+        );
       },
     };
   }

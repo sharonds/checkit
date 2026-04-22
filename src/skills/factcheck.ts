@@ -3,6 +3,8 @@ import type { Skill, SkillResult, Finding, ClaimType } from "./types.ts";
 import type { Config } from "../config.ts";
 import { getLlmClient, parseJsonResponse } from "./llm.ts";
 import { resolveProvider } from "../providers/resolve.ts";
+import { isE2E, assertMocksOnly } from "../e2e/mode.ts";
+import { loadScenario } from "../e2e/fixtures.ts";
 
 export function extractClaimsPrompt(articleText: string): string {
   return `Extract the 4 most specific, verifiable factual claims from the article below.
@@ -67,7 +69,14 @@ export class FactCheckSkill implements Skill {
       };
     }
 
-    const exa = new Exa(apiKey);
+    // E2E mock: return scenario Exa results instead of constructing a real
+    // Exa client. The scenario provides one results bundle reused per claim.
+    const exaMock = isE2E()
+      ? (_q: string) => ({
+          results: loadScenario().providers.exa?.results ?? [],
+        })
+      : null;
+    const exa = exaMock ? null : new Exa(apiKey);
 
     // Step 1: extract claims
     const claimsText = await llm.call(extractClaimsPrompt(text), 1024);
@@ -97,23 +106,31 @@ export class FactCheckSkill implements Skill {
     const findings: Finding[] = [];
     let costUsd = 0.001;
 
-    const search = deepMode
-      ? (q: string) => exa.search(q, {
-          type: "deep-reasoning",
-          numResults: 5,
-          contents: {
-            text: { maxCharacters: 4000 },
-            highlights: { maxCharacters: 1000, numSentences: 3, query: q },
-          },
-        })
-      : (q: string) => exa.search(q, {
-          type: "auto",
-          numResults: 3,
-          contents: {
-            text: { maxCharacters: 4000 },
-            highlights: { maxCharacters: 1000, numSentences: 3, query: q },
-          },
-        });
+    const search = exaMock
+      ? async (q: string) => exaMock(q)
+      : deepMode
+      ? async (q: string) => {
+          assertMocksOnly("exa:deep-reasoning");
+          return exa!.search(q, {
+            type: "deep-reasoning",
+            numResults: 5,
+            contents: {
+              text: { maxCharacters: 4000 },
+              highlights: { maxCharacters: 1000, numSentences: 3, query: q },
+            },
+          });
+        }
+      : async (q: string) => {
+          assertMocksOnly("exa:search");
+          return exa!.search(q, {
+            type: "auto",
+            numResults: 3,
+            contents: {
+              text: { maxCharacters: 4000 },
+              highlights: { maxCharacters: 1000, numSentences: 3, query: q },
+            },
+          });
+        };
 
     const claimResults = await Promise.all(
       claims.slice(0, 4).map(async (claim) => {

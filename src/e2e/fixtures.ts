@@ -28,9 +28,17 @@ export interface Scenario {
   tier: "basic" | "standard" | "premium";
   flagOn: boolean;
   providers: {
+    // Legacy single-response field. If set, used as a fallback for any LLM call.
     minimax?: { text: string };
-    exa?: { results: ScenarioExaResult[] };
     geminiChat?: { text: string };
+    // Preferred: give separate stubs for the two LLM phases the checker calls.
+    // extractClaims: JSON array of claim strings.
+    // assessClaim:   JSON object {supported, note, claimType}.
+    llm?: {
+      extractClaims?: string;
+      assessClaim?: string;
+    };
+    exa?: { results: ScenarioExaResult[] };
     geminiGrounded?: { claims: ScenarioGroundedClaim[] };
     deepResearch?: {
       initiateResponse: { interaction_id: string };

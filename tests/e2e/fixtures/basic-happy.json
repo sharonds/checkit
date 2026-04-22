@@ -4,8 +4,9 @@
   "tier": "basic",
   "flagOn": false,
   "providers": {
-    "minimax": {
-      "text": "{\"claims\":[{\"text\":\"Coffee contains caffeine, a stimulant\"},{\"text\":\"The human heart pumps blood throughout the body\"}]}"
+    "llm": {
+      "extractClaims": "[\"Coffee contains caffeine, a stimulant\",\"The human heart pumps blood throughout the body\"]",
+      "assessClaim": "{\"supported\":true,\"note\":\"Verified against cited sources.\",\"claimType\":\"general\"}"
     },
     "exa": {
       "results": [

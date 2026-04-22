@@ -36,26 +36,27 @@ describe("LLM E2E mock hook", () => {
     restoreEnv(saved);
   });
 
-  it("returns the scenario minimax text without any network", async () => {
+  it("extract-claim prompts return scenario extractClaims without network", async () => {
     process.env.CHECKAPP_E2E = "1";
     process.env.CHECKAPP_E2E_SCENARIO = "basic-happy";
 
     const client = getLlmClient({ minimaxApiKey: "dummy" } as Config);
     expect(client).not.toBeNull();
     expect(client!.provider).toBe("minimax");
-    const text = await client!.call("any prompt");
+    const text = await client!.call("Extract the 4 most specific claims from article");
     expect(text).toContain("Coffee contains caffeine");
     expect(fetchCount).toBe(0);
   });
 
-  it("returns the scenario geminiChat text when provider is gemini", async () => {
+  it("assess-claim prompts return scenario assessClaim stub", async () => {
     process.env.CHECKAPP_E2E = "1";
     process.env.CHECKAPP_E2E_SCENARIO = "basic-happy";
 
     const client = getLlmClient({ geminiApiKey: "dummy", llmProvider: "gemini" } as Config);
     expect(client!.provider).toBe("gemini");
-    const text = await client!.call("any prompt");
-    expect(text).toContain("Coffee contains caffeine");
+    const text = await client!.call("Is this claim supported by the evidence below?");
+    expect(text).toContain("supported");
+    expect(text).toContain("claimType");
     expect(fetchCount).toBe(0);
   });
 

@@ -1,3 +1,5 @@
+import { isE2E } from "../e2e/mode.ts";
+
 const DEFAULT_BASE_URL = "https://generativelanguage.googleapis.com/v1beta";
 const DEFAULT_MODEL_PRO = "gemini-3.1-pro-preview";
 const DEFAULT_MODEL_FLASH = "gemini-3-flash-preview";
@@ -35,8 +37,13 @@ export interface GeminiCapabilityOptions {
   timeoutMs?: number;
 }
 
-let globalCachedHealth: { value: GeminiHealth; expiresAt: number } | null = null;
-let globalInFlight: Promise<GeminiHealth> | null = null;
+interface CachedHealthEntry {
+  value: GeminiHealth;
+  expiresAt: number;
+}
+
+const globalCachedHealth = new Map<string, CachedHealthEntry>();
+const globalInFlight = new Map<string, Promise<GeminiHealth>>();
 
 export function createGeminiCapability(options: GeminiCapabilityOptions = {}): GeminiCapability {
   const models = resolveModels();
@@ -45,34 +52,47 @@ export function createGeminiCapability(options: GeminiCapabilityOptions = {}): G
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   const cacheTtlMs = options.cacheTtlMs ?? DEFAULT_CACHE_TTL_MS;
   const getFetch = () => options.fetch ?? globalThis.fetch;
+  const apiKey = options.apiKey ?? process.env.GEMINI_API_KEY ?? "";
+  const cacheKey = `${apiKey}::${models.pro}::${models.flash}::${models.deepResearch}`;
 
   async function checkHealth(): Promise<GeminiHealth> {
     const current = now();
-    if (globalCachedHealth && globalCachedHealth.expiresAt > current) {
-      return globalCachedHealth.value;
+    const cached = globalCachedHealth.get(cacheKey);
+    if (cached && cached.expiresAt > current) {
+      return cached.value;
     }
-    if (globalInFlight) {
-      return globalInFlight;
+    const inFlight = globalInFlight.get(cacheKey);
+    if (inFlight) {
+      return inFlight;
     }
 
-    globalInFlight = runHealthChecks()
+    const pending = runHealthChecks()
       .then((health) => {
-        globalCachedHealth = {
+        globalCachedHealth.set(cacheKey, {
           value: health,
           expiresAt: now() + cacheTtlMs,
-        };
+        });
         return health;
       })
       .finally(() => {
-        globalInFlight = null;
+        globalInFlight.delete(cacheKey);
       });
 
-    return globalInFlight;
+    globalInFlight.set(cacheKey, pending);
+    return pending;
   }
 
   async function runHealthChecks(): Promise<GeminiHealth> {
     const checkedAt = now();
-    const apiKey = options.apiKey ?? process.env.GEMINI_API_KEY ?? "";
+    // E2E: capability health always reports healthy without hitting the network.
+    if (isE2E()) {
+      return {
+        pro: true,
+        grounding: true,
+        deepResearch: true,
+        checkedAt,
+      };
+    }
     if (!apiKey) {
       return {
         pro: false,
@@ -117,7 +137,7 @@ export function createGeminiCapability(options: GeminiCapabilityOptions = {}): G
     models,
     checkHealth,
     getModel(task: GeminiTask): string {
-      const health = globalCachedHealth?.value;
+      const health = globalCachedHealth.get(cacheKey)?.value;
       switch (task) {
         case "chat":
           return health && !health.pro ? models.flash : models.pro;
@@ -153,13 +173,15 @@ export function createGeminiCapability(options: GeminiCapabilityOptions = {}): G
 
 export const geminiCapability = createGeminiCapability();
 
-export function primeGeminiCapabilityHealthCheck(): Promise<GeminiHealth> {
-  return geminiCapability.checkHealth();
+export function primeGeminiCapabilityHealthCheck(
+  options?: Pick<GeminiCapabilityOptions, "apiKey" | "baseUrl" | "cacheTtlMs" | "fetch" | "now" | "timeoutMs">,
+): Promise<GeminiHealth> {
+  return options ? createGeminiCapability(options).checkHealth() : geminiCapability.checkHealth();
 }
 
 export function resetGeminiCapabilityHealthCache(): void {
-  globalCachedHealth = null;
-  globalInFlight = null;
+  globalCachedHealth.clear();
+  globalInFlight.clear();
 }
 
 function resolveModels(): GeminiModels {
