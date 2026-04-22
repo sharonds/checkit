@@ -8,7 +8,24 @@
 
 ## TL;DR
 
-_Filled in after all four POCs complete._
+All four POCs complete. Budget: **$3.61 / $15.00**. See `DECISION-MATRIX.md` for the
+full synthesis.
+
+**Three headline findings:**
+
+1. **Gemini's strength is web grounding, not classification.** It wins fact-check,
+   plagiarism, and citations (all grounded tasks) but loses to MiniMax and to GPT-5.4
+   on every pure-text analysis task (skills, AI detection).
+
+2. **GPT-5.4 is the winner nobody expected in the Plan 3 scope.** It came up in POC 4
+   as the strongest LLM for text-classification skills (wins 5 of 6), and in the POC 2
+   supplement as a strictly-better secondary signal for AI detection (vs Gemini).
+   The original "MiniMax vs Gemini" question becomes a three-way with GPT-5.4 winning.
+
+3. **Deep Research is a narrow premium tier, not a default.** Validated in Plan 1 for
+   fact-check (novel methodological catches). Tested here on legal-with-policy — LOST
+   to standard LLMs. Its value is in broad research without a reference doc; the
+   legal-no-policy mode would be the right test (untested, recommended).
 
 | API / Skill | Verdict | Evidence strength | Notes |
 |---|---|---|---|
@@ -252,10 +269,41 @@ Full results: `04-llm-skills-swap/RESULTS.md`
 
 ## Synthesis
 
-_Written after all four POCs complete. Will inform Gate 4 decision._
+**Gemini 3.1 Pro is a specialist tool, not a general replacement.** Use it where web
+grounding is decisive (fact-check, plagiarism secondary, citation deep-search). Do NOT
+use it for text classification where it loses to both the incumbent MiniMax and the
+newcomer GPT-5.4.
+
+**GPT-5.4 is the general-purpose upgrade path for CheckApp's LLM skills.** Wins 5 of 6
+skills vs MiniMax with no single-dimension regression > 1pt. Comparable or better cost
+on small-output classification tasks.
+
+**Copyscape remains the default for plagiarism and AI detection** — statistical
+classifiers outperform LLMs on their own territory. Augment with Gemini (plagiarism) or
+GPT-5.4 (AI detection) as secondary signals where the primary is weakest.
+
+**The Semantic Scholar substitution (OpenAlex) is a forced win.** SS's free tier is
+production-unusable; OpenAlex is a viable drop-in at zero operational friction.
+
+**Deep Research's premium tier case is tier-specific.** Justified for fact-check
+(validated). Not justified for policy-checked legal (tested here). Hypothesized for
+no-policy legal and pharma/finance audits — worth one more $1.50 test before committing.
+
+**Architectural implication for CheckApp:** Different tasks need different providers.
+The right abstraction is per-skill provider configuration, not a single "LLM provider"
+global setting. This matches how the codebase is heading with `src/providers/registry.ts`.
 
 ---
 
 ## Recommendations
 
-_Written after synthesis. Links to `DECISION-MATRIX.md`._
+All concrete recommendations, including Plan 2 follow-on task lists and cost impact,
+are in `DECISION-MATRIX.md`. Summary:
+
+1. **Adopt the 5 "replace" verdicts** behind new feature flags (not default-on)
+2. **Adopt the 2 "augment" verdicts** behind opt-in hybrid flags
+3. **Validate each migration** with ≥ 100 production samples before flipping defaults
+4. **External reviewer sign-off required** before moving to integration
+
+Plan 3 deliverable is the matrix itself, not the implementation. Implementation = Plan 2
+extensions, with the same gating pattern as the fact-check rollout.
