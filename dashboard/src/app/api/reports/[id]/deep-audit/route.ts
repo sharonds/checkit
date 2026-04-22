@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import type { NextRequest } from "next/server";
 import { jsonWithCors } from "@/lib/cors";
 import { getDb } from "@/lib/db";
+import { guardLocalMutation } from "@/lib/guard-local";
 import { readConfig } from "../../../../../../../src/config";
 import {
   emitAuditCompletedEvent,
@@ -149,9 +150,12 @@ export async function GET(
 }
 
 export async function POST(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const blocked = guardLocalMutation(request);
+  if (blocked) return blocked;
+
   try {
     ensureDeepAuditSchema();
     await initializeDeepAuditRuntime();
