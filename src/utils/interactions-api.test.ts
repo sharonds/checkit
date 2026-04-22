@@ -45,4 +45,27 @@ describe("interactions-api", () => {
     expect(extractText({ id: "int-1", status: "completed" })).toBe("");
     expect(extractText({ id: "int-1", status: "completed", outputs: [{}, { text: "later" }] })).toBe("later");
   });
+
+  test("createInteraction URL-encodes the API key", async () => {
+    let seenUrl = "";
+    mockFetch(async (req) => {
+      seenUrl = req.url;
+      return jsonResponse({ id: "int-enc" }, 201);
+    });
+    await createInteraction("abc+def/ghi", { input: "ping" });
+    expect(seenUrl).toContain("%2B");
+    expect(seenUrl).toContain("%2F");
+    expect(seenUrl).not.toContain("abc+def/ghi");
+  });
+
+  test("pollUntilComplete URL-encodes the interaction id and key", async () => {
+    let seenUrl = "";
+    mockFetch(async (req) => {
+      seenUrl = req.url;
+      return jsonResponse({ id: "int/with/slash", status: "completed", outputs: [{ text: "x" }] });
+    });
+    await pollUntilComplete("int/with/slash", "abc+key", { pollIntervalMs: 0, maxPolls: 1 });
+    expect(seenUrl).toContain("int%2Fwith%2Fslash");
+    expect(seenUrl).toContain("abc%2Bkey");
+  });
 });
