@@ -1,15 +1,18 @@
 /**
- * Unified LLM client that supports Anthropic SDK (MiniMax, Anthropic) and
- * OpenAI-compatible SDK (OpenRouter).
+ * Unified LLM client that supports Anthropic SDK (MiniMax, Anthropic),
+ * Gemini direct fetch, and OpenAI-compatible SDK (OpenRouter).
  *
  * Skills call `llm.call(prompt, maxTokens)` — the SDK difference is hidden.
  *
- * Priority (auto-detect): MiniMax -> Anthropic -> OpenRouter
+ * Priority (auto-detect): MiniMax -> Anthropic -> Gemini -> OpenRouter
  * Explicit: set `llmProvider` in config to override.
  */
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import type { Config } from "../config.ts";
+import { createGeminiCapability } from "../providers/gemini-capability.ts";
+import { isE2E, assertMocksOnly } from "../e2e/mode.ts";
+import { loadScenario } from "../e2e/fixtures.ts";
 
 export const MINIMAX_BASE_URL = "https://api.minimax.io/anthropic";
 export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
@@ -18,10 +21,11 @@ export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
 export const LLM_MODEL = {
   minimax: "MiniMax-M2.7",
   anthropic: "claude-haiku-4-5-20251001",
+  gemini: "gemini-3.1-pro-preview",
   openrouter: "anthropic/claude-3.5-haiku",
 } as const;
 
-export type LlmProvider = "minimax" | "anthropic" | "openrouter";
+export type LlmProvider = "minimax" | "anthropic" | "gemini" | "openrouter";
 
 export interface LlmClient {
   provider: LlmProvider;
@@ -32,6 +36,7 @@ export interface LlmClient {
 
 function createAnthropicCaller(client: Anthropic, model: string): LlmClient["call"] {
   return async (prompt: string, maxTokens = 1024) => {
+    assertMocksOnly("llm:anthropic");
     const response = await client.messages.create({
       model,
       max_tokens: maxTokens,
@@ -43,6 +48,7 @@ function createAnthropicCaller(client: Anthropic, model: string): LlmClient["cal
 
 function createOpenAICaller(client: OpenAI, model: string): LlmClient["call"] {
   return async (prompt: string, maxTokens = 1024) => {
+    assertMocksOnly("llm:openai");
     const response = await client.chat.completions.create({
       model,
       max_tokens: maxTokens,
@@ -54,12 +60,101 @@ function createOpenAICaller(client: OpenAI, model: string): LlmClient["call"] {
   };
 }
 
+interface GeminiGenerateContentResponse {
+  candidates?: Array<{
+    content?: {
+      parts?: Array<{
+        text?: string;
+        thought?: boolean;
+      }>;
+    };
+  }>;
+}
+
+function createGeminiCaller(apiKey: string, model: string): LlmClient["call"] {
+  return async (prompt: string, maxTokens = 1024) => {
+    assertMocksOnly("llm:gemini");
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: {
+            maxOutputTokens: Math.max(maxTokens, 8192),
+            temperature: 0.1,
+            thinkingConfig: { thinkingLevel: "low" },
+          },
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`Gemini LLM error: HTTP ${response.status}`);
+    }
+
+    const data = (await response.json()) as GeminiGenerateContentResponse;
+    const text = (data.candidates ?? [])
+      .flatMap((candidate) => candidate.content?.parts ?? [])
+      .filter((part) => part.thought !== true)
+      .map((part) => part.text ?? "")
+      .join("")
+      .trim();
+
+    if (!text) throw new Error("LLM returned empty response");
+    return text;
+  };
+}
+
 /**
  * Returns a configured LLM client.
  * Explicit `llmProvider` in config is preferred when its key is set; falls back to auto-detect if key missing.
  * Returns null when no usable key is configured.
  */
+function detectPromptPhase(prompt: string): "extract" | "assess" | "other" {
+  const head = prompt.slice(0, 200).toLowerCase();
+  if (head.includes("extract the") && head.includes("claim")) return "extract";
+  if (head.includes("is this claim supported")) return "assess";
+  return "other";
+}
+
 export function getLlmClient(config: Config): LlmClient | null {
+  // E2E mode: return a scenario-driven mock instead of making real HTTP calls.
+  // We still honor the configured provider so skills that branch on it see the
+  // expected value, but the call() handler reads from the fixture.
+  if (isE2E()) {
+    const provider: LlmProvider =
+      config.llmProvider ??
+      (config.minimaxApiKey
+        ? "minimax"
+        : config.anthropicApiKey
+          ? "anthropic"
+          : config.geminiApiKey
+            ? "gemini"
+            : "minimax");
+    return {
+      provider,
+      model: LLM_MODEL[provider],
+      call: async (prompt: string) => {
+        const s = loadScenario();
+        const phase = detectPromptPhase(prompt);
+        if (phase === "extract" && s.providers.llm?.extractClaims) {
+          return s.providers.llm.extractClaims;
+        }
+        if (phase === "assess" && s.providers.llm?.assessClaim) {
+          return s.providers.llm.assessClaim;
+        }
+        // Legacy / fallback: single-response fixture.
+        return (
+          s.providers.geminiChat?.text ??
+          s.providers.minimax?.text ??
+          "{}"
+        );
+      },
+    };
+  }
+
   // Explicit provider preference
   if (config.llmProvider === "openrouter" && config.openrouterApiKey) {
     const client = new OpenAI({ apiKey: config.openrouterApiKey, baseURL: OPENROUTER_BASE_URL });
@@ -73,8 +168,12 @@ export function getLlmClient(config: Config): LlmClient | null {
     const client = new Anthropic({ apiKey: config.minimaxApiKey, baseURL: MINIMAX_BASE_URL });
     return { provider: "minimax", model: LLM_MODEL.minimax, call: createAnthropicCaller(client, LLM_MODEL.minimax) };
   }
+  if (config.llmProvider === "gemini" && config.geminiApiKey) {
+    const model = createGeminiCapability({ apiKey: config.geminiApiKey }).getModel("chat");
+    return { provider: "gemini", model, call: createGeminiCaller(config.geminiApiKey, model) };
+  }
 
-  // Auto-detect: MiniMax -> Anthropic -> OpenRouter
+  // Auto-detect: MiniMax -> Anthropic -> Gemini -> OpenRouter
   if (config.minimaxApiKey) {
     const client = new Anthropic({ apiKey: config.minimaxApiKey, baseURL: MINIMAX_BASE_URL });
     return { provider: "minimax", model: LLM_MODEL.minimax, call: createAnthropicCaller(client, LLM_MODEL.minimax) };
@@ -82,6 +181,10 @@ export function getLlmClient(config: Config): LlmClient | null {
   if (config.anthropicApiKey) {
     const client = new Anthropic({ apiKey: config.anthropicApiKey });
     return { provider: "anthropic", model: LLM_MODEL.anthropic, call: createAnthropicCaller(client, LLM_MODEL.anthropic) };
+  }
+  if (config.geminiApiKey) {
+    const model = createGeminiCapability({ apiKey: config.geminiApiKey }).getModel("chat");
+    return { provider: "gemini", model, call: createGeminiCaller(config.geminiApiKey, model) };
   }
   if (config.openrouterApiKey) {
     const client = new OpenAI({ apiKey: config.openrouterApiKey, baseURL: OPENROUTER_BASE_URL });

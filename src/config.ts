@@ -1,6 +1,6 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync, renameSync } from "fs";
 import { homedir } from "os";
-import { join } from "path";
+import { dirname, join } from "path";
 import lockfile from "proper-lockfile";
 import type { Threshold } from "./thresholds.ts";
 
@@ -27,7 +27,10 @@ export interface Config {
   anthropicApiKey?: string;
   minimaxApiKey?: string;
   openrouterApiKey?: string;
-  llmProvider?: "minimax" | "anthropic" | "openrouter";
+  geminiApiKey?: string;
+  llmProvider?: "minimax" | "anthropic" | "openrouter" | "gemini";
+  factCheckTier?: "basic" | "standard" | "premium";
+  factCheckTierFlag?: boolean;
   toneGuideFile?: string;
   skills: SkillsConfig;
   thresholds?: Record<string, Threshold>;
@@ -40,7 +43,12 @@ const LEGACY_DIRS = [
   join(homedir(), ".checkit"),
   join(homedir(), ".article-checker"),
 ];
-const CONFIG_FILE = join(CONFIG_DIR, "config.json");
+// CHECKAPP_CONFIG_PATH lets tests and E2E harnesses redirect reads/writes to
+// a temp file without touching the developer's real ~/.checkapp/config.json.
+// Resolved dynamically so tests can set the env var after module load.
+function configFile(): string {
+  return process.env.CHECKAPP_CONFIG_PATH ?? join(CONFIG_DIR, "config.json");
+}
 
 // One-time migration: move legacy config dirs to new location
 // Guarded so this is idempotent and silent in the common case.
@@ -74,12 +82,12 @@ const DEFAULT_SKILLS: SkillsConfig = {
 };
 
 export function configExists(): boolean {
-  return existsSync(CONFIG_FILE);
+  return existsSync(configFile());
 }
 
 export function readConfig(): Config {
-  const file: Partial<Config> = existsSync(CONFIG_FILE)
-    ? (JSON.parse(readFileSync(CONFIG_FILE, "utf-8")) as Partial<Config>)
+  const file: Partial<Config> = existsSync(configFile())
+    ? (JSON.parse(readFileSync(configFile(), "utf-8")) as Partial<Config>)
     : {};
 
   // --deep-fact-check CLI flag sets this env var; swap fact-check provider at
@@ -100,11 +108,14 @@ export function readConfig(): Config {
     anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? file.anthropicApiKey,
     minimaxApiKey: process.env.MINIMAX_API_KEY ?? file.minimaxApiKey,
     openrouterApiKey: process.env.OPENROUTER_API_KEY ?? file.openrouterApiKey,
+    geminiApiKey: process.env.GEMINI_API_KEY ?? file.geminiApiKey,
     llmProvider: (() => {
-      const validProviders = ["minimax", "anthropic", "openrouter"];
+      const validProviders = ["minimax", "anthropic", "openrouter", "gemini"];
       const rawProvider = process.env.LLM_PROVIDER ?? file.llmProvider;
       return validProviders.includes(rawProvider as string) ? (rawProvider as Config["llmProvider"]) : undefined;
     })(),
+    factCheckTier: file.factCheckTier,
+    factCheckTierFlag: file.factCheckTierFlag,
     toneGuideFile: process.env.TONE_GUIDE_FILE ?? file.toneGuideFile,
     skills: { ...DEFAULT_SKILLS, ...(file.skills ?? {}) },
     thresholds: file.thresholds,
@@ -114,20 +125,20 @@ export function readConfig(): Config {
 }
 
 export async function writeConfig(config: Partial<Config>): Promise<void> {
-  mkdirSync(CONFIG_DIR, { recursive: true });
+  mkdirSync(dirname(configFile()), { recursive: true });
   // Atomic idempotent bootstrap: exclusive-create succeeds once, subsequent
   // callers get EEXIST and fall through. No TOCTOU between existsSync and write.
   try {
-    writeFileSync(CONFIG_FILE, "{}", { flag: "wx" });
+    writeFileSync(configFile(), "{}", { flag: "wx" });
   } catch (err) {
     if ((err as NodeJS.ErrnoException).code !== "EEXIST") throw err;
   }
-  const release = await lockfile.lock(CONFIG_FILE, {
+  const release = await lockfile.lock(configFile(), {
     retries: { retries: 5, minTimeout: 50, maxTimeout: 200 },
   });
   try {
-    const existing = JSON.parse(readFileSync(CONFIG_FILE, "utf-8")) as Config;
-    writeFileSync(CONFIG_FILE, JSON.stringify({ ...existing, ...config }, null, 2));
+    const existing = JSON.parse(readFileSync(configFile(), "utf-8")) as Config;
+    writeFileSync(configFile(), JSON.stringify({ ...existing, ...config }, null, 2));
   } finally {
     await release();
   }
@@ -137,5 +148,5 @@ export async function writeConfig(config: Partial<Config>): Promise<void> {
 export const saveConfig = writeConfig;
 
 export function configPath(): string {
-  return CONFIG_FILE;
+  return configFile();
 }

@@ -21,6 +21,19 @@ export interface EstimateResult {
   warnings: string[];
 }
 
+export function estimateFactCheckCost(tier: Config["factCheckTier"] = "basic"): number {
+  switch (tier) {
+    case "basic":
+      return 0.04;
+    case "standard":
+      return 0.16;
+    case "premium":
+      return 1.5;
+    default:
+      return 0.04;
+  }
+}
+
 /**
  * Pre-flight cost estimate. Returns a per-skill breakdown, running total,
  * and human-readable warnings when known provider limits will be hit.
@@ -50,7 +63,12 @@ export function estimateRunCost(config: Config, wordCount: number): EstimateResu
   };
 
   if (config.skills.factCheck) {
-    perSkill["fact-check"] = providerBase("fact-check") * FACT_CHECK_MAX_CLAIMS;
+    const effectiveTier = config.factCheckTierFlag === true
+      ? (config.factCheckTier ?? "basic")
+      : null;
+    perSkill["fact-check"] = effectiveTier
+      ? estimateFactCheckCost(effectiveTier)
+      : providerBase("fact-check") * FACT_CHECK_MAX_CLAIMS;
   }
   if ((config.skills as any).aiDetection) {
     perSkill.aiDetection = providerBase("ai-detection" as any) || AI_DETECTION_COST;

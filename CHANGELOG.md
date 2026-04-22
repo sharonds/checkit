@@ -40,6 +40,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - `.env.example` — replaced stale `checkit` references with `CheckApp` / `~/.checkapp` / `checkapp --setup` (#25).
 
+## [1.3.0] - 2026-04-22
+
+### Added
+
+- Fact-Check Tier system with three tiers: Basic (Exa + LLM, current default), Standard (Gemini + Google Search grounding, opt-in behind `factCheckTierFlag`), Deep Audit (Gemini Deep Research, async premium workflow).
+- Gemini-backed fact-check tiers (Grounded and Deep Audit) plus provider capability checks for preview Gemini endpoints.
+- `deep_audit_article` and `get_deep_audit_result` MCP tools for agent integration.
+- Dashboard Deep Audit panel on report pages.
+- Dashboard tier selector in Settings.
+- Provider capability layer with startup health check for preview Gemini endpoints.
+- Telemetry for tier selection and audit lifecycle events.
+- **End-to-end verification lane** for the tier system. `bun run test:e2e:browser` boots the real Next.js dashboard against temp config + DB, drives provider mocks via scenario fixtures, and covers basic / standard / premium via `/api/checks`, CLI, and MCP. `bun run test:e2e:live` runs the same surfaces against real APIs (Exa + Gemini grounded + Gemini Deep Research) — opt-in via `CHECKAPP_ALLOW_LIVE_PROVIDERS=1`. Live smokes verified all three tiers: basic ~$0.05, standard ~$0.20, premium ~$1.50 (32KB real audit report).
+- Belt-and-suspenders live-provider guard (`assertMocksOnly`) throws if any adapter reaches the network in E2E mode without the explicit opt-in.
+- Scenario fixture registry (`tests/e2e/fixtures/`) with six scenarios: basic-happy, standard-happy, premium-pending, premium-completed, premium-failed, settings-default-off.
+
+### Changed
+
+- Exa fact-check now uses `text` retrieval (full content) in addition to highlights, for better specific-statistic verification.
+- `src/config.ts` and `src/db.ts` resolve `CHECKAPP_CONFIG_PATH` / `CHECKAPP_DB_PATH` dynamically on each call so tests can redirect paths without a subprocess boundary.
+
+### Fixed
+
+- Removed restrictive `includeDomains` filter from Exa search that caused false negatives on topics outside the hardcoded allowlist.
+- **Gemini Deep Research capability probe** was sending `background=false, store=false` to `/interactions`, which Gemini rejects with HTTP 400. That silently gated out every real Deep Research call through the cached health check. Probe now uses `background=true, store=true` (both required). Caught by the live Premium smoke.
+- `dashboard/src/app/api/checks/route.ts` now honors `CHECKAPP_DB_PATH` instead of hardcoding `~/.checkapp/history.db`.
+
+### Known issues
+
+- **Dashboard React hydration fails app-wide under `next dev`** — pre-existing on `main`, not introduced by Plan 2. Interactive controls (tier selector, skill toggles, forms) are silent; only server-rendered content is visible. Tracked in [sharonds/checkapp#44](https://github.com/sharonds/checkapp/issues/44) with a follow-up plan in `docs/superpowers/plans/2026-04-23-plan-dashboard-hydration-fix.md`. CLI + MCP + all HTTP API surfaces are unaffected.
+
+### Notes
+
+- Standard tier defaults to off. Enable it manually (`factCheckTierFlag: true, factCheckTier: "standard"` in config) until we validate it with broader production evidence.
+- Tier selection was informed by an internal 20-claim synthetic benchmark; see [research repo](https://github.com/sharonds/checkapp-fact-check-research) for methodology and limitations.
+
 ## [1.2.0] — 2026-04-17 — Phase 7.1: Review Cleanup
 
 Consolidation release. Addresses all outstanding review findings from Phase 6 + Phase 7 PRs (#11–#19), CodeQL alerts, and a second Codex validation pass. Ships as five PRs (B0–B4).

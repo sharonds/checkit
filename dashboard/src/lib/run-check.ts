@@ -13,6 +13,7 @@ import { PlagiarismSkill } from "../../../src/skills/plagiarism";
 import { AiDetectionSkill } from "../../../src/skills/aidetection";
 import { SeoSkill } from "../../../src/skills/seo";
 import { FactCheckSkill } from "../../../src/skills/factcheck";
+import { FactCheckGroundedSkill } from "../../../src/skills/factcheck-grounded";
 import { ToneSkill } from "../../../src/skills/tone";
 import { LegalSkill } from "../../../src/skills/legal";
 import { SummarySkill } from "../../../src/skills/summary";
@@ -36,23 +37,75 @@ export interface CoreResult {
   totalCostUsd: number;
 }
 
+export interface FactCheckSelection {
+  flagOn: boolean;
+  requestedTier: Config["factCheckTier"];
+  effectiveTier: "basic" | "standard" | "premium";
+  selectedImplementation: "basic" | "grounded";
+  selectedSkillId: "fact-check" | "fact-check-grounded";
+}
+
+export interface RunCheckHooks {
+  onFactCheckTierSelected?: (selection: FactCheckSelection) => void;
+}
+
+const DEFAULT_SKILLS: NonNullable<Config["skills"]> = {
+  plagiarism: true,
+  aiDetection: true,
+  seo: true,
+  factCheck: false,
+  tone: false,
+  legal: false,
+  summary: false,
+  brief: false,
+  purpose: false,
+  grammar: false,
+  academic: false,
+  selfPlagiarism: false,
+};
+
 /**
- * Build skills based on config (reimplementation of CLI's buildSkills).
+ * Mirrors src/checker.ts so the dashboard follows the same tier gating and
+ * sync fallback behavior as the CLI.
  */
-function buildSkills(config: Config): Skill[] {
+export function selectFactCheckSkill(
+  config: Config,
+  hooks?: RunCheckHooks,
+): { skill: Skill; selection: FactCheckSelection } {
+  const flagOn = config.factCheckTierFlag === true;
+  const effectiveTier = flagOn ? (config.factCheckTier ?? "basic") : "basic";
+  const selection: FactCheckSelection = {
+    flagOn,
+    requestedTier: config.factCheckTier,
+    effectiveTier,
+    selectedImplementation: effectiveTier === "standard" ? "grounded" : "basic",
+    selectedSkillId: effectiveTier === "standard" ? "fact-check-grounded" : "fact-check",
+  };
+
+  hooks?.onFactCheckTierSelected?.(selection);
+
+  const skill = selection.selectedImplementation === "grounded"
+    ? new FactCheckGroundedSkill()
+    : new FactCheckSkill();
+
+  return { skill, selection };
+}
+
+function buildSkills(config: Config, hooks?: RunCheckHooks): Skill[] {
+  const skillsConfig = { ...DEFAULT_SKILLS, ...(config.skills ?? {}) };
   const skills: Skill[] = [];
-  if (config.skills.plagiarism) skills.push(new PlagiarismSkill());
-  if (config.skills.aiDetection) skills.push(new AiDetectionSkill());
-  if (config.skills.seo) skills.push(new SeoSkill());
-  if (config.skills.factCheck) skills.push(new FactCheckSkill());
-  if (config.skills.tone) skills.push(new ToneSkill());
-  if (config.skills.legal) skills.push(new LegalSkill());
-  if (config.skills.summary) skills.push(new SummarySkill());
-  if (config.skills.brief) skills.push(new BriefSkill());
-  if (config.skills.purpose) skills.push(new PurposeSkill());
-  if (config.skills.grammar) skills.push(new GrammarSkill());
-  if (config.skills.academic) skills.push(new AcademicSkill());
-  if (config.skills.selfPlagiarism) skills.push(new SelfPlagiarismSkill());
+  if (skillsConfig.plagiarism) skills.push(new PlagiarismSkill());
+  if (skillsConfig.aiDetection) skills.push(new AiDetectionSkill());
+  if (skillsConfig.seo) skills.push(new SeoSkill());
+  if (skillsConfig.factCheck) skills.push(selectFactCheckSkill({ ...config, skills: skillsConfig }, hooks).skill);
+  if (skillsConfig.tone) skills.push(new ToneSkill());
+  if (skillsConfig.legal) skills.push(new LegalSkill());
+  if (skillsConfig.summary) skills.push(new SummarySkill());
+  if (skillsConfig.brief) skills.push(new BriefSkill());
+  if (skillsConfig.purpose) skills.push(new PurposeSkill());
+  if (skillsConfig.grammar) skills.push(new GrammarSkill());
+  if (skillsConfig.academic) skills.push(new AcademicSkill());
+  if (skillsConfig.selfPlagiarism) skills.push(new SelfPlagiarismSkill());
   return skills;
 }
 
@@ -60,13 +113,18 @@ function buildSkills(config: Config): Skill[] {
  * Pure check pipeline: text + config → skill results.
  * Reimplementation of CLI's runCheckCore for Node.js environment.
  */
-export async function runCheckCore(text: string, config: Config): Promise<CoreResult> {
-  const skills = buildSkills(config);
+export async function runCheckCore(
+  text: string,
+  config: Config,
+  hooks?: RunCheckHooks,
+): Promise<CoreResult> {
+  const effectiveConfig = { ...config, skills: { ...DEFAULT_SKILLS, ...(config.skills ?? {}) } };
+  const skills = buildSkills(effectiveConfig, hooks);
   const registry = new SkillRegistry(skills);
-  const raw = await registry.runAll(text, config);
+  const raw = await registry.runAll(text, effectiveConfig);
   const results = raw.map((r) => ({
     ...r,
-    verdict: applyThreshold(r.score, r.verdict, config.thresholds?.[r.skillId]),
+    verdict: applyThreshold(r.score, r.verdict, effectiveConfig.thresholds?.[r.skillId]),
   }));
   const totalCostUsd = results.reduce((s, r) => s + r.costUsd, 0);
   return { results, totalCostUsd };

@@ -1,5 +1,5 @@
 import { describe, test, expect } from "bun:test";
-import { estimateRunCost } from "./estimator.ts";
+import { estimateFactCheckCost, estimateRunCost } from "./estimator.ts";
 import type { Config } from "../config.ts";
 
 const skillsOff = {
@@ -14,6 +14,12 @@ const base = (skills: Partial<Config["skills"]> = {}): Config => ({
 });
 
 describe("estimateRunCost", () => {
+  test("estimateFactCheckCost returns the configured tier pricing", () => {
+    expect(estimateFactCheckCost("basic")).toBe(0.04);
+    expect(estimateFactCheckCost("standard")).toBe(0.16);
+    expect(estimateFactCheckCost("premium")).toBe(1.5);
+  });
+
   test("fact-check scales by MAX_CLAIMS (4)", () => {
     const cfg: Config = {
       ...base({ factCheck: true }),
@@ -21,6 +27,28 @@ describe("estimateRunCost", () => {
     };
     const r = estimateRunCost(cfg, 1000);
     expect(r.perSkill["fact-check"]).toBeCloseTo(0.008 * 4, 4); // $0.032
+  });
+
+  test("fact-check uses selected standard tier pricing when the flag is on", () => {
+    const cfg: Config = {
+      ...base({ factCheck: true }),
+      factCheckTierFlag: true,
+      factCheckTier: "standard",
+      providers: { "fact-check": { provider: "exa-search", apiKey: "k" } },
+    };
+    const r = estimateRunCost(cfg, 1000);
+    expect(r.perSkill["fact-check"]).toBeCloseTo(0.16, 4);
+  });
+
+  test("fact-check uses basic provider pricing when the flag is off", () => {
+    const cfg: Config = {
+      ...base({ factCheck: true }),
+      factCheckTierFlag: false,
+      factCheckTier: "premium",
+      providers: { "fact-check": { provider: "exa-search", apiKey: "k" } },
+    };
+    const r = estimateRunCost(cfg, 1000);
+    expect(r.perSkill["fact-check"]).toBeCloseTo(0.008 * 4, 4);
   });
 
   test("fact-check deep-reasoning is $0.025 × 4 = $0.100", () => {

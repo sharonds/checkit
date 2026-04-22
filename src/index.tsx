@@ -86,9 +86,13 @@ async function main() {
     const { fetchGoogleDoc, countWords } = await import("./gdoc.ts");
     const text = await fetchGoogleDoc(docUrl);
     const wordCount = countWords(text);
-    const { estimateRunCost } = await import("./cost/estimator.ts");
+    const { estimateRunCost, estimateFactCheckCost } = await import("./cost/estimator.ts");
     const est = estimateRunCost(config, wordCount);
-    console.log(`Estimated cost: $${est.total.toFixed(4)}  (${wordCount} words)`);
+    console.log(`Estimated total cost for this run: $${est.total.toFixed(4)}  (${wordCount} words)`);
+    console.log("Fact-check tier pricing:");
+    console.log(`  Basic       $${estimateFactCheckCost("basic").toFixed(4)}/check`);
+    console.log(`  Standard    $${estimateFactCheckCost("standard").toFixed(4)}/check`);
+    console.log(`  Deep Audit  $${estimateFactCheckCost("premium").toFixed(4)}/check`);
     console.log("Per-skill breakdown:");
     for (const [k, v] of Object.entries(est.perSkill)) {
       console.log(`  ${k.padEnd(20)}  $${v.toFixed(4)}`);

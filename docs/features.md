@@ -7,7 +7,7 @@
 | Plagiarism Check | Copyscape | ~$0.09 | Enabled |
 | AI Detection | Copyscape | ~$0.09 | Enabled |
 | SEO Analysis | Offline | Free | Enabled |
-| Fact Check | Exa AI + MiniMax/Claude | ~$0.03 | Requires API keys |
+| Fact Check | Tiered: Basic = Exa + LLM; Standard = Gemini + Google Search; Deep Audit = Gemini Deep Research | varies | Basic is default; Standard is opt-in; Deep Audit is async |
 | Tone of Voice | MiniMax/Claude | ~$0.002 | Requires API keys + tone guide |
 | Legal Risk | MiniMax/Claude | ~$0.002 | Requires API keys |
 | Content Summary | MiniMax/Claude | ~$0.002 | Requires API keys |
@@ -18,6 +18,18 @@
 | Self-Plagiarism | Cloudflare Vectorize / Pinecone / Upstash | ~$0.0002/article | Optional — requires one-time `checkapp index <dir>` |
 
 All enabled skills run in parallel. Skills with missing API keys skip gracefully.
+
+### Fact-Check Tiers
+
+CheckApp's fact-check skill is tiered:
+
+| Tier | Engine | Cost per article | Typical time | Notes |
+|------|--------|------|------|-------|
+| Basic (default) | Exa + LLM | $0.04 | ~15s | Works without Gemini API key |
+| Standard (opt-in) | Gemini + Google Search grounding | $0.16 | ~45s | Requires `GEMINI_API_KEY`. Enable with `factCheckTierFlag=true` and `factCheckTier="standard"` in config. |
+| Deep Audit (async) | Gemini Deep Research | $1.50 | 5-15 min | Premium audit workflow. Start from the dashboard or `deep_audit_article` MCP tool. |
+
+Standard stays off by default until the feature flag is enabled. The benchmark that informed Standard is directional rather than definitive; see the [research repo](https://github.com/sharonds/checkapp-fact-check-research) and [LIMITATIONS.md](https://github.com/sharonds/checkapp-fact-check-research/blob/main/LIMITATIONS.md) for scope and constraints.
 
 ### Phase 7 — Research-Backed Editor (shipped 2026-04)
 
@@ -158,6 +170,8 @@ Start the server: `checkapp --mcp`
 | `get_skills` | See which skills are enabled |
 | `toggle_skill` | Enable/disable a skill |
 | `regenerate_article` | Get AI-suggested rewrites for flagged sentences |
+| `deep_audit_article` | Start or reuse an async deep fact-check audit |
+| `get_deep_audit_result` | Fetch the current result for a deep audit interaction |
 
 See [AGENTS.md](../AGENTS.md) for full integration instructions.
 
