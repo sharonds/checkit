@@ -45,7 +45,7 @@ describe("deep audit POST — CSRF guard", () => {
       expect(res.status).toBe(403);
     } finally {
       await handle.stop();
-      await new Promise((r) => setTimeout(r, 200));
+      await new Promise((r) => setTimeout(r, 500));
       temp.cleanup();
     }
   }, 60_000);
@@ -70,7 +70,7 @@ describe("deep audit POST — CSRF guard", () => {
       expect(res.status).toBe(403);
     } finally {
       await handle.stop();
-      await new Promise((r) => setTimeout(r, 200));
+      await new Promise((r) => setTimeout(r, 500));
       temp.cleanup();
     }
   }, 60_000);
