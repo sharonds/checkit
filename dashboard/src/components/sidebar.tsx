@@ -42,7 +42,7 @@ export function Sidebar() {
     if (!canToggleTheme) return;
     setTheme(isDarkMode ? "light" : "dark");
   };
-  const toggleLabel = canToggleTheme
+  const toggleHint = canToggleTheme
     ? isDarkMode
       ? "Switch to light theme"
       : "Switch to dark theme"
@@ -59,7 +59,8 @@ export function Sidebar() {
           size="icon"
           className="h-7 w-7 text-muted-foreground hover:text-accent-foreground hover:bg-accent md:hidden"
           onClick={toggleTheme}
-          aria-label={toggleLabel}
+          aria-label="Toggle theme"
+          title={toggleHint}
           disabled={!canToggleTheme}
         >
           <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -99,7 +100,8 @@ export function Sidebar() {
             size="icon"
             className="h-7 w-7 text-muted-foreground hover:text-accent-foreground hover:bg-accent"
             onClick={toggleTheme}
-            aria-label={toggleLabel}
+            aria-label="Toggle theme"
+            title={toggleHint}
             disabled={!canToggleTheme}
           >
             <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
