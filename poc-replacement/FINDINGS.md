@@ -13,7 +13,7 @@ _Filled in after all four POCs complete._
 | API / Skill | Verdict | Evidence strength | Notes |
 |---|---|---|---|
 | Copyscape (plagiarism) | **augment** | 10 articles, 75 sentences, 0 FP | POC 1 |
-| Copyscape (AI detection) | TBD | — | POC 2 — expected to lose |
+| Copyscape (AI detection) | **augment** | 20 samples, complementary failure modes | POC 2 |
 | Semantic Scholar (citations) | TBD | — | POC 3 |
 | LLM (tone/legal/summary/brief/purpose) | TBD | — | POC 4 |
 
@@ -49,10 +49,10 @@ These POCs follow the same design principles as the fact-check research in `poc/
 | POC | API calls | Estimated cost | Actual cost |
 |---|---|---|---|
 | 1 — Plagiarism (initial+extended) | 16+16 calls | ~$0.16 + ~$0.61 | **$0.77** |
-| 2 — AI Detection | — | — | — |
+| 2 — AI Detection | 20+20 calls | $0.20 + $0.06 | **$0.26** |
 | 3 — Academic Citations | — | — | — |
 | 4 — LLM Skills Swap | — | — | — |
-| **Total** | | | **$0.77 / $15.00 budget** |
+| **Total** | | | **$1.03 / $15.00 budget** |
 
 ---
 
@@ -111,13 +111,43 @@ Full results: `01-plagiarism/RESULTS.md`
 
 ## POC 2 — AI Detection (Copyscape AI detector vs Gemini)
 
-**Status:** Not started.
+**Status:** Complete. Verdict: **augment**
+**Run date:** 2026-04-22
 
-_Results will be filled in after `bun poc-replacement/02-ai-detection/run.ts` completes._
+| Metric | Copyscape | Gemini |
+|---|---|---|
+| Accuracy | **90.0%** | 80.0% |
+| Precision | 83.3% | **100.0%** |
+| Recall | **100.0%** | 60.0% |
+| F1 | **90.9%** | 75.0% |
+| Spearman (score vs actual AI %) | **0.896** | 0.747 |
+| Cost/sample | $0.010 | **$0.003** (3.3× cheaper) |
 
-Corpus: 20 samples (5 pure human, 5 pure AI, 5 AI-then-edited, 5 human-then-polished).
-Scoring: binary AI/HUMAN classification + Spearman calibration.
-See: `02-ai-detection/RESULTS.md`
+**Key finding — complementary failure modes (not overlapping):**
+
+| Provenance | Copyscape correct | Gemini correct |
+|---|---|---|
+| pure-human | 5/5 | 5/5 |
+| pure-ai | 5/5 | 5/5 |
+| ai-then-edited | **5/5** | 1/5 ❌ |
+| human-then-polished | 3/5 ❌ | **5/5** |
+
+- **Gemini FNs (4 cases)**: missed every AI sample that had been lightly edited with personal
+  anecdotes. It over-weights "specific personal details" as a HUMAN signal, even when 80%+
+  of the structure is AI. **Exploitable**: adding a few personal anecdotes bypasses Gemini.
+- **Copyscape FPs (2 cases)**: over-flagged human writing that had minor AI polish applied
+  to a few sentences. Gemini correctly recognized these as human.
+
+The failure modes are orthogonal, which argues for a **4-state hybrid** signal
+(both-AI / CS-only-AI / Gem-only-AI / both-HUMAN) rather than binary replace/keep.
+
+**Cost reversal from POC 1:** Gemini is 3.3× CHEAPER here (no grounding needed for
+classification). Opposite of POC 1 where Gemini grounding was 3.8× more expensive.
+
+**Reliability concern:** 1/20 Gemini calls timed out (283s) and fell back to 50%
+confidence. Production would need explicit timeout handling.
+
+Full results: `02-ai-detection/RESULTS.md`
 
 ---
 
