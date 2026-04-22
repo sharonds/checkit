@@ -5,7 +5,7 @@ All notable changes to CheckApp are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.3.1] - 2026-04-23
 
 ### Security
 
@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - README skills table: AI Detection cost corrected to ~$0.03 (shipped cost constant). Grammar / Academic / Self-Plagiarism now accurately marked as disabled by default, matching `DEFAULT_SKILLS`. Mirrored in `docs/features.md`.
 
-<!-- Version: bump to 1.3.1 or roll into next minor — decide with user at merge time -->
+## [Unreleased]
 
 ### Changed
 
