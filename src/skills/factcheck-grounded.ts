@@ -99,7 +99,7 @@ export class FactCheckGroundedSkill implements Skill {
     }
 
     const findings: Finding[] = [];
-    const perClaimCost = resolved.metadata?.costPerCheckUsd ?? 0.01;
+    const perClaimCost = resolved.metadata?.costPerCheckUsd ?? 0.04;
     let costUsd = 0.001;
 
     const groundedResults: GroundedClaimResult[] = [];
@@ -233,7 +233,7 @@ async function fetchGroundedAssessment(
       model,
       claimPreview: claim.slice(0, 160),
       retriesLeft,
-      costUsd: 0.01,
+      costUsd: 0.04,
       ...payload,
     });
 

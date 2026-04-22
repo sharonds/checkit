@@ -129,7 +129,7 @@ describe("FactCheckGroundedSkill", () => {
         provider: "gemini-grounded",
         model: "gemini-3.1-pro-preview",
         httpStatus: 200,
-        costUsd: 0.01,
+        costUsd: 0.04,
         inputTokens: 111,
         outputTokens: 22,
         totalTokens: 133,
