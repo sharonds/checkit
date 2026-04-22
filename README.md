@@ -43,6 +43,9 @@ See [docs/security.md](docs/security.md) for the BYOK-alpha threat model.
 | **Plagiarism** | Copyscape | ~$0.09 | ✅ |
 | **AI Detection** | Copyscape | ~$0.09 | ✅ |
 | **SEO** | Offline (no API) | free | ✅ |
+| **Grammar & Style** | LanguageTool + LLM fallback | free tier / ~$0.002 | ✅ (free tier) |
+| **Academic Citations** | Semantic Scholar | free | ✅ |
+| **Self-Plagiarism** | Cloudflare Vectorize + OpenRouter embeddings | ~$0.0001 | ❌ requires index (`checkapp index <dir>`) |
 | **Fact Check** | Exa AI + Claude/MiniMax | ~$0.03 | ❌ requires `EXA_API_KEY` + LLM key |
 | **Tone of Voice** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key + tone guide file |
 | **Legal Risk** | Claude/MiniMax | ~$0.002 | ❌ requires LLM key |
