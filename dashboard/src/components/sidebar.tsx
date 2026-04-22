@@ -1,5 +1,6 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -29,9 +30,23 @@ const navItems = [
 export function Sidebar() {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+
   const isDarkMode = resolvedTheme === "dark";
-  const toggleTheme = () => setTheme(isDarkMode ? "light" : "dark");
-  const toggleLabel = isDarkMode ? "Switch to light theme" : "Switch to dark theme";
+  const canToggleTheme = mounted && resolvedTheme != null;
+  const toggleTheme = () => {
+    if (!canToggleTheme) return;
+    setTheme(isDarkMode ? "light" : "dark");
+  };
+  const toggleLabel = canToggleTheme
+    ? isDarkMode
+      ? "Switch to light theme"
+      : "Switch to dark theme"
+    : "Theme loading";
 
   return (
     <aside className="fixed inset-x-0 top-0 z-30 border-b border-border/10 bg-sidebar text-sidebar-foreground md:inset-y-0 md:left-0 md:w-60 md:border-r md:border-b-0">
@@ -45,6 +60,7 @@ export function Sidebar() {
           className="h-7 w-7 text-muted-foreground hover:text-accent-foreground hover:bg-accent md:hidden"
           onClick={toggleTheme}
           aria-label={toggleLabel}
+          disabled={!canToggleTheme}
         >
           <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -84,6 +100,7 @@ export function Sidebar() {
             className="h-7 w-7 text-muted-foreground hover:text-accent-foreground hover:bg-accent"
             onClick={toggleTheme}
             aria-label={toggleLabel}
+            disabled={!canToggleTheme}
           >
             <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
