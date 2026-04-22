@@ -36,7 +36,7 @@ jobs:
         run: cd dashboard && bunx vitest run
 
       - name: Install agent-browser
-        run: npm install -g agent-browser && agent-browser install
+        run: npm install -g agent-browser@0.26.0 && agent-browser install
 
       - name: Run browser E2E lane
         run: bun run test:e2e:browser
