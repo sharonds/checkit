@@ -38,7 +38,7 @@ export function ClaimDrillDown({ finding }: Props) {
               >
                 {sanitizeText(s.title) || safeHref(s.url)}
               </a>
-              {s.publishedDate && (
+              {s.publishedDate && formatShortDate(s.publishedDate) && (
                 <Badge variant="secondary" className="ml-2">
                   {formatShortDate(s.publishedDate)}
                 </Badge>
