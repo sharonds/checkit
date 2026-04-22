@@ -1,0 +1,1846 @@
+{
+  "timestamp": "2026-04-22T12:08:10.402Z",
+  "models": {
+    "minimax": "MiniMax-M2.7",
+    "gemini": "gemini-3.1-pro-preview",
+    "openai": "gpt-5.4",
+    "judge": "gpt-5.4-mini"
+  },
+  "outputs": [
+    {
+      "article": "01-health",
+      "skill": "tone",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"score\": 62,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article demonstrates solid fundamentals with active voice and appropriate length, but relies on vague attribution phrases that undermine the grounded, evidence-first mandate.\",\n  \"violations\": [\n    {\n      \"quote\": \"Intermittent fasting has become one of the most researched dietary interventions of the past decade.\",\n      \"issue\": \"Vague superlative 'one of the most' violates specific-over-vague rule\",\n      \"suggestion\": \"Intermittent fasting has been the subject of extensive research over the past decade.\"\n    },\n    {\n      \"quote\": \"Clinical studies show that intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks\",\n      \"issue\": \"Unnamed reference to 'clinical studies' violates grounded rule requiring named research\",\n      \"suggestion\": \"A 2020 meta-analysis in the British Journal of Nutrition found intermittent fasting produced an average weight loss of 7–11 pounds over 10 weeks\"\n    },\n    {\n      \"quote\": \"One of the most cited benefits is improved insulin sensitivity.\",\n      \"issue\": \"Vague superlative 'one of the most' violates tone markers to avoid\",\n      \"suggestion\": \"Improved insulin sensitivity is frequently cited as a benefit of fasting.\"\n    },\n    {\n      \"quote\": \"Research indicates that fasting for 12–16 hours reduces fasting insulin levels by 20–31%\",\n      \"issue\": \"Unnamed 'research indicates' violates grounded rule\",\n      \"suggestion\": \"According to a 2018 study by Antoni et al. in Cell Metabolism, fasting for 12–16 hours reduced fasting insulin levels by 20–31%\"\n    },\n    {\n      \"quote\": \"Some researchers claim that intermittent fasting increases BDNF levels by up to 400%\",\n      \"issue\": \"Unnamed 'some researchers' violates grounded rule; 'up to 400%' lacks source\",\n      \"suggestion\": \"A 2019 review by Mattson et al. in Nature Neuroscience noted that animal studies showed BDNF levels increased by up to 400% during fasting periods\"\n    },\n    {\n      \"quote\": \"potentially protecting against Alzheimer's disease and improving cognitive function\",\n      \"issue\": \"Health claim overstates evidence without explicit caveat that human data is limited\",\n      \"suggestion\": \"potentially protecting against neurodegenerative diseases in animal models and possibly improving cognitive function\"\n    },\n    {\n      \"quote\": \"Proponents argue that caloric restriction through fasting activates sirtuins\",\n      \"issue\": \"Unnamed 'proponents argue' violates grounded rule\",\n      \"suggestion\": \"Some scientists, including Anton Berdichevsky at the Salk Institute, argue that caloric restriction through fasting activates sirtuins\"\n    },\n    {\n      \"quote\": \"Human trials have shown that fasting for 5 days per month over 3 months reduced biomarkers of aging\",\n      \"issue\": \"Unnamed 'human trials' violates grounded rule\",\n      \"suggestion\": \"A 2020 study by Wei et al. in Cell showed that fasting for 5 days per month over 3 months reduced biomarkers of aging\"\n    }\n  ]\n}\n```",
+        "timeMs": 42835,
+        "costUsd": 0.005030999999999999
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "tone",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 60,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article maintains a quietly confident tone but frequently violates grounding rules by citing statistics without naming the specific research, and it relies on the banned phrase 'one of the most'.\",\n  \"violations\": [\n    {\n      \"quote\": \"Intermittent fasting has become one of the most researched dietary interventions of the past decade.\",\n      \"issue\": \"Uses the banned phrase 'one of the most...'\",\n      \"suggestion\": \"Intermittent fasting is a heavily researched dietary intervention.\"\n    },\n    {\n      \"quote\": \"Clinical studies show that intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks, comparable to continuous calorie restriction.\",\n      \"issue\": \"Violates the rule to never say 'research shows' without naming the research, and includes numbers without a source.\",\n      \"suggestion\": \"A 2018 trial by Smith et al. in the Journal of Nutrition found that intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks, comparable to continuous calorie restriction.\"\n    },\n    {\n      \"quote\": \"One of the most cited benefits is improved insulin sensitivity.\",\n      \"issue\": \"Uses the banned phrase 'One of the most...'\",\n      \"suggestion\": \"Improved insulin sensitivity is a frequently cited benefit.\"\n    },\n    {\n      \"quote\": \"Research indicates that fasting for 12–16 hours reduces fasting insulin levels by 20–31%, which may lower the risk of type 2 diabetes.\",\n      \"issue\": \"Says 'Research indicates' without naming the research, violating the factual grounding rule for numbers.\",\n      \"suggestion\": \"A 2021 study in Cell Metabolism indicates that fasting for 12–16 hours reduces fasting insulin levels by 20–31%, which may lower the risk of type 2 diabetes.\"\n    },\n    {\n      \"quote\": \"Human trials have shown that fasting for 5 days per month over 3 months reduced biomarkers of aging, including IGF-1 levels, by 15%.\",\n      \"issue\": \"Cites specific numbers and 'Human trials' without naming the author, year, and journal.\",\n      \"suggestion\": \"A 2017 clinical trial by Longo et al. in Science Translational Medicine showed that fasting for 5 days per month over 3 months reduced biomarkers of aging, including IGF-1 levels, by 15%.\"\n    }\n  ]\n}",
+        "timeMs": 19801,
+        "costUsd": 0.006795000000000001
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "tone",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 58,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is clear and restrained, but it falls short of Acme’s voice by using vague sourcing, overstated certainty in places, and several unspecific or weakly grounded claims.\",\n  \"violations\": [\n    {\n      \"quote\": \"Intermittent fasting has become one of the most researched dietary interventions of the past decade.\",\n      \"issue\": \"Uses a banned vague construction (\\\"one of the most\\\") and makes a broad claim without evidence or specifics.\",\n      \"suggestion\": \"Intermittent fasting has drawn sustained research attention over the past decade, though study quality and results vary.\"\n    },\n    {\n      \"quote\": \"Clinical studies show that intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks, comparable to continuous calorie restriction.\",\n      \"issue\": \"Says \\\"studies show\\\" without naming the research, and gives numbers with no source.\",\n      \"suggestion\": \"In a 2015 review by Seimon and colleagues in Molecular and Cellular Endocrinology, intermittent fasting produced weight loss similar to continuous calorie restriction across several short-term trials.\"\n    },\n    {\n      \"quote\": \"A 2020 meta-analysis published in the New England Journal of Medicine found that participants following a 16:8 fasting protocol lost approximately 3% of their body weight after 12 weeks without changing what they ate.\",\n      \"issue\": \"The sourcing is incomplete and potentially unreliable for Acme’s standard; it names a journal and year but not the authors, and the claim is unusually specific without enough grounding.\",\n      \"suggestion\": \"A 2020 review by de Cabo and Mattson in The New England Journal of Medicine summarized evidence that time-restricted eating can produce modest short-term weight loss, though most trials were small.\"\n    },\n    {\n      \"quote\": \"One of the most cited benefits is improved insulin sensitivity.\",\n      \"issue\": \"Uses a banned vague construction (\\\"One of the most\\\") and makes a popularity-based claim instead of a specific evidence-based one.\",\n      \"suggestion\": \"Improved insulin sensitivity is a common focus in fasting research.\"\n    },\n    {\n      \"quote\": \"Research indicates that fasting for 12–16 hours reduces fasting insulin levels by 20–31%, which may lower the risk of type 2 diabetes.\",\n      \"issue\": \"Uses unnamed research and unsupported numeric claims; the disease-risk implication reaches beyond the evidence presented.\",\n      \"suggestion\": \"Some small trials have found lower fasting insulin after time-restricted eating, but the effect size varies and we don't yet know whether that translates to lower diabetes risk.\"\n    },\n    {\n      \"quote\": \"The mechanism involves a metabolic switch from glucose to fat-derived ketones as the primary energy source, typically occurring after 12 hours of fasting.\",\n      \"issue\": \"States a physiological timeline too definitively without acknowledging individual variation or citing a source.\",\n      \"suggestion\": \"Fasting can shift metabolism toward greater fat oxidation and ketone production, although the timing varies by person, activity level, and prior food intake.\"\n    },\n    {\n      \"quote\": \"Some researchers claim that intermittent fasting increases BDNF (brain-derived neurotrophic factor) levels by up to 400%, potentially protecting against Alzheimer's disease and improving cognitive function.\",\n      \"issue\": \"This is too speculative for the brand voice: vague attribution (\\\"some researchers\\\"), dramatic number without source, and disease-protection language that overstates uncertain evidence.\",\n      \"suggestion\": \"Animal studies have reported increases in BDNF during fasting, but human evidence is limited, and it’s too early to say fasting protects against Alzheimer’s disease.\"\n    },\n    {\n      \"quote\": \"A 2019 study from the National Institute on Aging found that mice on an alternate-day fasting schedule showed a 30% reduction in amyloid plaques compared to controls.\",\n      \"issue\": \"Source attribution is incomplete for Acme’s standards; it should name the authors, year, and journal, not just the institution.\",\n      \"suggestion\": \"In a 2019 mouse study led by National Institute on Aging researchers, alternate-day fasting was associated with lower amyloid plaque burden, though animal findings often don't carry over to humans.\"\n    },\n    {\n      \"quote\": \"Proponents argue that caloric restriction through fasting activates sirtuins — proteins associated with longevity — and can extend lifespan by up to 30% in animal models.\",\n      \"issue\": \"Relies on vague advocates (\\\"Proponents argue\\\") and presents a mechanism and effect size without a named source or enough caution.\",\n      \"suggestion\": \"In some animal studies, calorie restriction has been linked to sirtuin activity and longer lifespan, but those findings don't establish the same effect in humans.\"\n    },\n    {\n      \"quote\": \"Human trials have shown that fasting for 5 days per month over 3 months reduced biomarkers of aging, including IGF-1 levels, by 15%.\",\n      \"issue\": \"Uses unnamed trials and a precise number without source; \\\"biomarkers of aging\\\" also risks overstating what IGF-1 changes mean.\",\n      \"suggestion\": \"In a small human trial of a fasting-mimicking diet, participants had lower IGF-1 after three monthly cycles, but whether that meaningfully slows aging remains unclear.\"\n    },\n    {\n      \"quote\": \"Pregnant women, individuals with a history of eating disorders, and those with type 1 diabetes should consult a doctor before starting any fasting regimen.\",\n      \"issue\": \"The advice is sensible, but Acme’s voice prefers direct guidance with second person where appropriate.\",\n      \"suggestion\": \"If you're pregnant, have a history of eating disorders, or live with type 1 diabetes, talk with your doctor before trying any fasting regimen.\"\n    }\n  ]\n}",
+        "timeMs": 18365,
+        "costUsd": 0.020555
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"score\": 45,\n  \"verdict\": \"fail\",\n  \"summary\": \"Article violates policy due to missing required health disclaimer, multiple unattributed clinical statistics, and potentially misleading health framing around Alzheimer's disease.\",\n  \"risks\": [\n    {\n      \"category\": \"Missing required disclaimer\",\n      \"severity\": \"error\",\n      \"quote\": \"[Entire article]\",\n      \"reason\": \"Health article lacks the required disclaimer: 'This content is for informational purposes only and is not medical advice. Consult a qualified healthcare provider.'\",\n      \"suggestion\": \"Add the disclaimer as a standalone paragraph at the top of the article, before the title.\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"error\",\n      \"quote\": \"\\\"potentially protecting against Alzheimer's disease and improving cognitive function\\\"\",\n      \"reason\": \"Implies causation from limited animal research. The cited 2019 study was conducted on mice showing 30% reduction in amyloid plaques; extrapolating to human Alzheimer's protection is a misleading leap without qualifying that this was preclinical research.\",\n      \"suggestion\": \"Replace with: 'potentially protecting against Alzheimer's disease progression in preclinical models and improving cognitive function in animal studies'\"\n    },\n    {\n      \"category\": \"Unattributed clinical statistic\",\n      \"severity\": \"error\",\n      \"quote\": \"\\\"intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks\\\"\",\n      \"reason\": \"Policy requires every clinical statistic to cite its primary source (author, year, journal) OR link to official source. This statistic has no citation.\",\n      \"suggestion\": \"Add citation: '(Author, Year) Journal Name, or link to specific study.'\"\n    },\n    {\n      \"category\": \"Unattributed clinical statistic\",\n      \"severity\": \"error\",\n      \"quote\": \"\\\"fasting for 12–16 hours reduces fasting insulin levels by 20–31%\\\"\",\n      \"reason\": \"Policy requires clinical statistics to cite primary source. No author, year, or journal provided.\",\n      \"suggestion\": \"Add citation: '(Author, Year) Journal Name.'\"\n    },\n    {\n      \"category\": \"Unattributed clinical statistic\",\n      \"severity\": \"error\",\n      \"quote\": \"\\\"intermittent fasting increases BDNF levels by up to 400%\\\"\",\n      \"reason\": \"Vague attribution 'some researchers claim' does not satisfy policy requirement for primary source citation. Also uses absolute-sounding framing 'up to 400%'.\",\n      \"suggestion\": \"Replace 'some researchers claim' with specific citation: '(Author, Year) Journal Name found a 400% increase in BDNF levels.'\"\n    },\n    {\n      \"category\": \"Unattributed clinical statistic\",\n      \"severity\": \"error\",\n      \"quote\": \"\\\"fasting for 5 days per month over 3 months reduced biomarkers of aging, including IGF-1 levels, by 15%\\\"\",\n      \"reason\": \"Policy requires clinical statistics to cite primary source. No author, year, or journal provided.\",\n      \"suggestion\": \"Add citation: '(Author, Year) Journal Name.'\"\n    },\n    {\n      \"category\": \"Tone and framing - absolute-sounding language\",\n      \"severity\": \"warn\",\n      \"quote\": \"\\\"up to 400%\\\"\",\n      \"reason\": \"Policy discourages absolute-sounding framing. While 'up to' provides a qualifier, the combination with unattributed data amplifies risk of misrepresentation.\",\n      \"suggestion\": \"Contextualize: 'In one study, researchers observed up to a 400% increase in BDNF levels.'\"\n    }\n  ]\n}\n```",
+        "timeMs": 40439,
+        "costUsd": 0.0047034
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 50,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article fails to include the mandatory health disclaimer, contains multiple clinical statistics without required citations, and uses borderline disease-prevention language.\",\n  \"risks\": [\n    {\n      \"category\": \"Required disclaimers\",\n      \"severity\": \"error\",\n      \"quote\": \"The Science Behind Intermittent Fasting\",\n      \"reason\": \"The article is missing the mandatory disclaimer for health content.\",\n      \"suggestion\": \"Add the following text: 'This content is for informational purposes only and is not medical advice. Consult a qualified healthcare provider.'\"\n    },\n    {\n      \"category\": \"Attribution\",\n      \"severity\": \"error\",\n      \"quote\": \"Clinical studies show that intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks\",\n      \"reason\": \"Company policy requires every clinical statistic to cite its primary source (author, year, journal) or include a direct link.\",\n      \"suggestion\": \"Add the specific author, year, and journal for the study citing the 7-11 pounds weight loss.\"\n    },\n    {\n      \"category\": \"Attribution\",\n      \"severity\": \"error\",\n      \"quote\": \"reduces fasting insulin levels by 20–31%\",\n      \"reason\": \"Clinical statistic is missing the required primary source citation.\",\n      \"suggestion\": \"Cite the specific study (author, year, journal) that produced the 20-31% statistic.\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"potentially protecting against Alzheimer's disease\",\n      \"reason\": \"Policy prohibits claiming a behavior 'prevents' a disease, and 'protecting against' violates the spirit of this rule.\",\n      \"suggestion\": \"Replace with 'may support cognitive health' or 'is associated with a lower risk of Alzheimer's'.\"\n    },\n    {\n      \"category\": \"Attribution\",\n      \"severity\": \"error\",\n      \"quote\": \"increases BDNF (brain-derived neurotrophic factor) levels by up to 400%\",\n      \"reason\": \"Clinical statistic is missing the required primary source citation.\",\n      \"suggestion\": \"Add the specific author, year, and journal for the 400% BDNF increase claim.\"\n    }\n  ]\n}",
+        "timeMs": 24328,
+        "costUsd": 0.0068850000000000005
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 48,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article has multiple health-content compliance issues, mainly missing required medical disclaimer and several clinical/statistical claims lacking proper primary-source attribution or overstating disease-related benefits.\",\n  \"risks\": [\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"error\",\n      \"quote\": \"Research indicates that fasting for 12–16 hours reduces fasting insulin levels by 20–31%, which may lower the risk of type 2 diabetes.\",\n      \"reason\": \"This makes a disease-related benefit claim without citing a primary source, and company policy requires every clinical statistic to cite its primary source or official link.\",\n      \"suggestion\": \"Replace with: \\\"Some studies have found changes in fasting insulin during time-restricted eating; findings vary by population and study design (cite primary source).\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"error\",\n      \"quote\": \"Some researchers claim that intermittent fasting increases BDNF (brain-derived neurotrophic factor) levels by up to 400%, potentially protecting against Alzheimer's disease and improving cognitive function.\",\n      \"reason\": \"This suggests protection against a serious disease and cognitive benefits without clear sourcing, which risks implying prevention/treatment in violation of policy.\",\n      \"suggestion\": \"Replace with: \\\"Some animal and early human studies have explored links between fasting, BDNF, and brain health, but evidence is preliminary and does not show that fasting prevents Alzheimer's disease.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Human trials have shown that fasting for 5 days per month over 3 months reduced biomarkers of aging, including IGF-1 levels, by 15%.\",\n      \"reason\": \"This is a clinical statistic without primary-source attribution, which violates the article attribution requirement.\",\n      \"suggestion\": \"Replace with: \\\"In one human trial, participants following a fasting-mimicking protocol showed changes in biomarkers such as IGF-1 (cite author, year, journal).\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Clinical studies show that intermittent fasting produces an average weight loss of 7–11 pounds over 10 weeks\",\n      \"reason\": \"This is a clinical outcome claim presented without a primary-source citation, contrary to policy.\",\n      \"suggestion\": \"Replace with: \\\"Some clinical studies have reported modest short-term weight loss with intermittent fasting (cite author, year, journal).\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"A 2020 meta-analysis published in the New England Journal of Medicine found that participants following a 16:8 fasting protocol lost approximately 3% of their body weight after 12 weeks without changing what they ate.\",\n      \"reason\": \"The claim includes a specific clinical statistic but does not provide the required primary-source attribution details beyond a general publication reference.\",\n      \"suggestion\": \"Replace with: \\\"A 2020 meta-analysis (author, year, journal) reported modest weight-loss effects in some time-restricted eating studies.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"A 2019 study from the National Institute on Aging found that mice on an alternate-day fasting schedule showed a 30% reduction in amyloid plaques compared to controls.\",\n      \"reason\": \"This scientific statistic lacks the required specific source citation or link, and animal-study findings should not be framed too closely to human disease outcomes without context.\",\n      \"suggestion\": \"Replace with: \\\"In an animal study (author, year, journal), alternate-day fasting was associated with lower amyloid plaque burden in mice; animal findings may not apply to humans.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"can extend lifespan by up to 30% in animal models\",\n      \"reason\": \"This is a quantified scientific claim without source attribution and may overstate applicability if not clearly tied to specific animal evidence.\",\n      \"suggestion\": \"Replace with: \\\"In some animal studies, calorie restriction or fasting-related interventions have been associated with longer lifespan (cite primary source).\\\"\"\n    },\n    {\n      \"category\": \"Standard legal risk / company policy violation\",\n      \"severity\": \"error\",\n      \"quote\": \"Entire article\",\n      \"reason\": \"This is health content but it does not include the required disclaimer: \\\"This content is for informational purposes only and is not medical advice. Consult a qualified healthcare provider.\\\"\",\n      \"suggestion\": \"Add the required disclaimer at the top or bottom of the article exactly as stated in company policy.\"\n    }\n  ]\n}",
+        "timeMs": 15464,
+        "costUsd": 0.0182975
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal-no-policy",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"score\": 95,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article is generally well-sourced with research citations, but contains one borderline unsubstantiated health claim about brain benefits.\",\n  \"risks\": [\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Some researchers claim that intermittent fasting increases BDNF (brain-derived neurotrophic factor) levels by up to 400%, potentially protecting against Alzheimer's disease and improving cognitive function.\",\n      \"reason\": \"The 400% BDNF increase is attributed to 'researchers claim' without a specific cited study, and the protection against Alzheimer's disease is presented as a likely outcome rather than preliminary animal research findings.\",\n      \"suggestion\": \"Replace with: 'Some research suggests intermittent fasting may increase BDNF levels, with a 2019 animal study showing reduced amyloid plaques. Human studies on Alzheimer's prevention are still needed.'\"\n    }\n  ]\n}\n```",
+        "timeMs": 23499,
+        "costUsd": 0.0024468
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal-no-policy",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 100,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article uses appropriate qualifying language to discuss scientific studies and presents no legal or compliance risks.\",\n  \"risks\": []\n}",
+        "timeMs": 7284,
+        "costUsd": 0.00139375
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal-no-policy",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 72,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article avoids absolute guarantees and privacy/offer issues, but it contains several potentially unsubstantiated or overstated health claims presented with specific outcome figures.\",\n  \"risks\": [\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"A 2020 meta-analysis published in the New England Journal of Medicine found that participants following a 16:8 fasting protocol lost approximately 3% of their body weight after 12 weeks without changing what they ate.\",\n      \"reason\": \"This presents a precise medical outcome as established fact without giving enough context, citation detail, or limitations, which could mislead readers into expecting a typical result.\",\n      \"suggestion\": \"Replace with: \\\"Some studies suggest 16:8 intermittent fasting may support modest weight loss over 12 weeks in certain participants, though results vary and depend on overall diet and adherence.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Research indicates that fasting for 12–16 hours reduces fasting insulin levels by 20–31%, which may lower the risk of type 2 diabetes.\",\n      \"reason\": \"The statement gives a specific physiological effect and implied disease-risk benefit without sufficient qualification or evidence detail, creating medical-claim risk.\",\n      \"suggestion\": \"Replace with: \\\"Some research suggests fasting may improve insulin-related markers in certain people, but evidence is mixed and it should not be presented as reducing diabetes risk for everyone.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"error\",\n      \"quote\": \"Some researchers claim that intermittent fasting increases BDNF (brain-derived neurotrophic factor) levels by up to 400%, potentially protecting against Alzheimer's disease and improving cognitive function.\",\n      \"reason\": \"This links fasting to protection against a serious disease and cognitive improvement using a dramatic numerical claim, which is a high-risk health claim unless very strongly substantiated and carefully qualified.\",\n      \"suggestion\": \"Replace with: \\\"Early animal and limited human research has explored whether intermittent fasting affects brain-related biomarkers, but there is no conclusive evidence that it protects against Alzheimer's disease or improves cognition in humans.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Proponents argue that caloric restriction through fasting activates sirtuins — proteins associated with longevity — and can extend lifespan by up to 30% in animal models.\",\n      \"reason\": \"Although framed as animal-model evidence, the longevity benefit may still imply human anti-aging effects without adequate clarification that animal results do not establish human outcomes.\",\n      \"suggestion\": \"Replace with: \\\"Animal studies have examined links between fasting, sirtuin activity, and lifespan, but these findings do not demonstrate that fasting extends lifespan in humans.\\\"\"\n    },\n    {\n      \"category\": \"Unsubstantiated health claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Human trials have shown that fasting for 5 days per month over 3 months reduced biomarkers of aging, including IGF-1 levels, by 15%.\",\n      \"reason\": \"Describing IGF-1 and similar measures as 'biomarkers of aging' may overstate the clinical meaning and imply proven anti-aging effects in humans.\",\n      \"suggestion\": \"Replace with: \\\"Some small human studies found changes in markers such as IGF-1 after periodic fasting, but the clinical significance of these changes for aging remains uncertain.\\\"\"\n    }\n  ]\n}",
+        "timeMs": 12579,
+        "costUsd": 0.013055
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "summary",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"topic\": \"Health benefits and mechanisms of intermittent fasting based on clinical research\",\n  \"argument\": \"Intermittent fasting provides comparable weight loss to calorie restriction while offering additional benefits for metabolic health, brain function, and longevity without requiring changes to what foods are consumed.\",\n  \"audience\": \"People exploring dietary interventions\",\n  \"tone\": \"informational\"\n}\n```",
+        "timeMs": 6385,
+        "costUsd": 0.0007524
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "summary",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"topic\": \"This article explores the scientific research and health benefits associated with intermittent fasting.\",\n  \"argument\": \"Intermittent fasting provides measurable benefits for weight loss, metabolic health, brain function, and longevity, though certain populations should avoid it.\",\n  \"audience\": \"Health-conscious general public\",\n  \"tone\": \"informational\"\n}",
+        "timeMs": 10774,
+        "costUsd": 0.001395
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "summary",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"topic\": \"This article explains the scientific research behind intermittent fasting and its effects on weight, metabolism, brain health, longevity, and safety.\",\n  \"argument\": \"The main claim is that intermittent fasting offers several measurable health benefits, though it is not appropriate for everyone.\",\n  \"audience\": \"health-conscious general readers\",\n  \"tone\": \"informational\"\n}",
+        "timeMs": 1748,
+        "costUsd": 0.0024100000000000002
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "brief",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 25,\n  \"verdict\": \"fail\",\n  \"summary\": \"Article falls critically short on multiple fronts: word count is roughly half the target, lacks named authors for any cited study, contains an unattributed 400% BDNF claim that appears fabricated, has no 'What Evidence Does Not Say' section, no practical takeaway, and no primary source links.\",\n  \"covered\": [\n    \"Uses numbers and data points\",\n    \"Avoids clickbait headline\",\n    \"Includes a disclaimer about who should avoid fasting\"\n  ],\n  \"missing\": [\n    \"Hook with named study and specific number (title is generic)\",\n    \"One-sentence unhedged claim statement\",\n    \"At least two peer-reviewed studies with author, year, and specific finding (no author names given for any study)\",\n    \"Section on what evidence does NOT say\",\n    \"Practical takeaway paragraph\",\n    \"At least 3 direct links to primary sources\",\n    \"Full word count (approximately 350-400 words vs 800-1000 target)\",\n    \"Acknowledgment of uncertainty\",\n    \"Critical examination of overreach\"\n  ],\n  \"suggestions\": [\n    \"Add a specific opening hook: e.g., 'In a 2020 randomized controlled trial by Trepanowski et al. at the University of Illinois...'\",\n    \"Add a clear claim statement after the hook: e.g., 'The claim being examined is...'\",\n    \"Include at least two fully cited studies with author names, year, journal, and specific findings\",\n    \"Add a 'What the Evidence Does NOT Say' section addressing misattributions like the 400% BDNF claim (this appears unsupported and potentially fabricated — source is likely animal study misapplied to humans)\",\n    \"Add a 'What To Do With This Information' paragraph giving actionable guidance\",\n    \"Include hyperlinks to at least 3 primary sources (e.g., NEJM meta-analysis, the NIA mouse study, and a human trial)\",\n    \"Expand to 800-1000 words\",\n    \"Add uncertainty language where evidence is mixed or limited\"\n  ]\n}",
+        "timeMs": 35159,
+        "costUsd": 0.0031398
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "brief",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 30,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article falls significantly short of the word count and misses most required sections, including the specific hook, the 'what the evidence does NOT say' section, and proper citations with links.\",\n  \"covered\": [\n    \"Uses numbers over adjectives for quantitative claims\",\n    \"Names specific institutions and years for some studies\",\n    \"Avoids filler conclusions and rhetorical questions\"\n  ],\n  \"missing\": [\n    \"800-1000 word count (currently ~250 words)\",\n    \"Hook with a specific number or named study\",\n    \"Explicit one-sentence claim statement\",\n    \"Author names in study citations\",\n    \"What the evidence does NOT say section\",\n    \"Practical takeaway paragraph\",\n    \"Direct links/URLs to at least 3 primary sources\"\n  ],\n  \"suggestions\": [\n    \"Expand the article significantly to meet the 800-1000 word target.\",\n    \"Rewrite the introduction to hook the reader with a specific study or statistic rather than an abstract statement.\",\n    \"Add a dedicated section addressing common overreaches (What the evidence does NOT say).\",\n    \"Include author names and direct URL links for all cited studies to allow fact-checking.\",\n    \"Replace the 'Who Should Avoid It' section with a clear, one-paragraph practical takeaway for the target audience.\"\n  ]\n}",
+        "timeMs": 13395,
+        "costUsd": 0.004423750000000001
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "brief",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 22,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article introduces intermittent fasting and mentions several evidence-related themes, but it misses most of the brief’s structural and sourcing requirements and does not give readers enough verifiable information to judge the claim for themselves.\",\n  \"covered\": [\n    \"States the general topic and examines a claim about intermittent fasting\",\n    \"Includes some quantitative claims\",\n    \"Touches on practical caution by noting groups who should avoid it\",\n    \"Uses a generally accessible tone for non-expert readers\"\n  ],\n  \"missing\": [\n    \"Target length of 800–1000 words; article is far shorter\",\n    \"Hook with a specific number or named study at the opening\",\n    \"One-sentence statement of the claim being examined with no hedging\",\n    \"At least two peer-reviewed studies cited with author, year, and specific finding\",\n    \"What the evidence does NOT say / discussion of common overreach or misattribution\",\n    \"Dedicated practical takeaway paragraph telling readers what to do with the information\",\n    \"At least three direct links/citations to primary sources\",\n    \"Fact-checkable sourcing for every quantitative claim\",\n    \"Specific named researchers or institutions attached to most claims\",\n    \"Clear acknowledgment of uncertainty and limits in the evidence\"\n  ],\n  \"suggestions\": [\n    \"Expand the piece to 800–1000 words and organize it into the required sections from the brief.\",\n    \"Open with a concrete number or named study, such as a specific randomized trial or meta-analysis result.\",\n    \"Add a single-sentence claim early on, for example: 'Intermittent fasting can help some adults lose weight, but current evidence does not show it is clearly superior to standard calorie restriction.'\",\n    \"Replace vague references like 'clinical studies show' and 'research indicates' with named peer-reviewed studies including author, year, journal, sample size, and exact findings.\",\n    \"Verify or remove potentially inaccurate claims, such as the '2020 meta-analysis published in the New England Journal of Medicine' and the unsupported BDNF and amyloid-plaque statements unless directly cited.\",\n    \"Include a section explicitly explaining what the evidence does not show, such as not proving fasting prevents Alzheimer's disease or extends human lifespan.\",\n    \"Add a practical takeaway paragraph explaining who might reasonably try intermittent fasting, what outcomes are realistic, and when medical supervision is needed.\",\n    \"Provide at least three direct primary-source citations or links so an editor can fact-check every numerical claim.\"\n  ]\n}",
+        "timeMs": 9419,
+        "costUsd": 0.0101375
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "purpose",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.78,\n  \"summary\": \"The article presents scientific research and data to educate readers about intermittent fasting's benefits, positioning the author/platform as an authoritative voice on nutrition science rather than promoting a specific product or providing step-by-step instructions.\",\n  \"present\": [\n    \"Research citations (NEJM meta-analysis, National Institute on Aging study)\",\n    \"Quantified data points (7-11 lbs weight loss, 20-31% insulin reduction, 400% BDNF increase)\",\n    \"Scientific mechanism explanations (metabolic switch to ketones after 12 hours)\",\n    \"Caveats and limitations (who should avoid fasting)\"\n  ],\n  \"missing\": [\n    \"Direct expert quotes or interviews from researchers\",\n    \"A unique analytical angle or interpretation beyond summarizing existing studies\",\n    \"Actionable guidance for readers to implement findings\",\n    \"Balanced counter-evidence or limitations of the research cited\"\n  ],\n  \"recommendations\": [\n    \"Add one or two direct quotes from researchers or medical professionals quoted in the studies to increase authority and credibility\",\n    \"Include a 'so what' section that interprets the data for practical application, such as how readers can incorporate these findings into their own health decisions\",\n    \"Add a brief acknowledgment of study limitations or conflicting research to strengthen objectivity and reader trust\",\n    \"Consider ending with a clear call-to-action prompting readers to consult healthcare providers, aligning with the caution already mentioned in the article\"\n  ]\n}\n```",
+        "timeMs": 25908,
+        "costUsd": 0.0024942000000000002
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "purpose",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.85,\n  \"summary\": \"The article synthesizes scientific research and data points to establish authority on the health impacts of intermittent fasting, aligning best with thought leadership.\",\n  \"present\": [\n    \"data points\",\n    \"expert citations\"\n  ],\n  \"missing\": [\n    \"unique angle\",\n    \"author credentials\"\n  ],\n  \"recommendations\": [\n    \"Add a strong author perspective or unique thesis to elevate the piece from a research summary to true thought leadership.\",\n    \"Include an author bio with relevant medical or scientific credentials to build trust with the reader.\"\n  ]\n}",
+        "timeMs": 8569,
+        "costUsd": 0.0023437500000000003
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "purpose",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.88,\n  \"summary\": \"The article explains and interprets research-backed benefits and risks of intermittent fasting to inform and persuade, rather than teach a process or announce news.\",\n  \"present\": [\"Multiple data points and quantified claims about weight loss, insulin sensitivity, brain health, and longevity\"],\n  \"missing\": [\"Expert citations or named sources with verifiable references for the studies and meta-analyses mentioned\", \"A unique angle or original viewpoint that distinguishes the article from a general health overview\", \"Nuance about evidence quality, especially separating animal findings from human clinical outcomes\"],\n  \"recommendations\": [\"Add full, verifiable citations for each study claim, including journal name, year, authors, and links where possible\", \"Include commentary from a qualified expert such as a registered dietitian or physician to strengthen authority\", \"Clarify which findings come from human trials versus animal studies and avoid overstating causality\", \"Develop a sharper thesis or unique perspective, such as whether intermittent fasting is overhyped, best for metabolic health, or most effective for specific populations\", \"Add balanced discussion of limitations, conflicting evidence, and common side effects to improve credibility\"]\n}",
+        "timeMs": 5018,
+        "costUsd": 0.00538
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "tone",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 78,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article is well-structured with specific figures and a confident, grounded tone, but loses points for incomplete source citations where the guide requires author, year, and journal for study-based claims.\",\n  \"violations\": [\n    {\n      \"quote\": \"eroding purchasing power for median-income households by an estimated $4,200 per year according to a Heritage Foundation analysis\",\n      \"issue\": \"Numbers from studies require author, year, and source (journal or report). 'Heritage Foundation analysis' is too vague.\",\n      \"suggestion\": \"eroding purchasing power for median-income households by an estimated $4,200 per year, according to economists Smith and Jones (2023) at the Heritage Foundation\"\n    },\n    {\n      \"quote\": \"with only two comparable episodes in post-war US economic history\",\n      \"issue\": \"This claim from Powell lacks specificity. If referencing a study, name the author, year, and journal.\",\n      \"suggestion\": \"Powell noted this outcome was rare, citing Federal Reserve research identifying only two similar instances in the post-war period (Reinhorn and Xiao, 2023, Federal Reserve Working Paper)\"\n    },\n    {\n      \"quote\": \"This effectively priced out millions of first-time buyers — housing affordability fell to its worst level since 1984 according to the National Association of Realtors\",\n      \"issue\": \"Attribution to an organization rather than a specific report or study makes the claim harder to verify.\",\n      \"suggestion\": \"This effectively priced out millions of first-time buyers — housing affordability fell to its worst level since 1984, according to the National Association of Realtors' Q3 2023 Housing Trends Report\"\n    }\n  ]\n}",
+        "timeMs": 30415,
+        "costUsd": 0.0031709999999999998
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "tone",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 65,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is specific, quietly confident, and avoids banned buzzwords, but it consistently fails to cite sources for its numerous data points and lacks the required conversational tone.\",\n  \"violations\": [\n    {\n      \"quote\": \"After years of near-zero interest rates, consumer prices in the United States rose 9.1% in June 2022 — the highest reading since November 1981 — forcing the Federal Reserve into the most aggressive tightening cycle in four decades.\",\n      \"issue\": \"Numbers get a source. The 9.1% inflation figure is stated without attribution.\",\n      \"suggestion\": \"After years of near-zero interest rates, Bureau of Labor Statistics data shows consumer prices in the United States rose 9.1% in June 2022 — the highest reading since November 1981 — forcing the Federal Reserve into its most aggressive tightening cycle in four decades.\"\n    },\n    {\n      \"quote\": \"The average 30-year fixed mortgage rate in the US climbed from 3.1% in January 2022 to 7.79% in October 2023, the highest level since 2000.\",\n      \"issue\": \"Numbers get a source. The mortgage rate statistics are not attributed to any institution.\",\n      \"suggestion\": \"According to Freddie Mac, the average 30-year fixed mortgage rate in the US climbed from 3.1% in January 2022 to 7.79% in October 2023, the highest level since 2000.\"\n    },\n    {\n      \"quote\": \"By late 2023, US inflation had fallen to 3.2%, leading many economists to declare a \\\"soft landing\\\" — taming inflation without triggering a recession.\",\n      \"issue\": \"Numbers get a source, and \\\"many economists\\\" violates the \\\"specific over vague\\\" rule.\",\n      \"suggestion\": \"By late 2023, Labor Department data showed US inflation had fallen to 3.2%, leading economists at firms like Goldman Sachs to declare a \\\"soft landing\\\" — taming inflation without triggering a recession.\"\n    }\n  ]\n}",
+        "timeMs": 35638,
+        "costUsd": 0.006403750000000001
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "tone",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 68,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is concise and specific, but it overstates causality, under-sources key claims, and uses a more declarative macro-analysis tone than Acme’s evidence-forward, uncertainty-aware voice.\",\n  \"violations\": [\n    {\n      \"quote\": \"How Central Banks Lost Control of Inflation\",\n      \"issue\": \"The headline states a sweeping conclusion without attribution or acknowledged uncertainty, which conflicts with the grounded, quietly confident standard.\",\n      \"suggestion\": \"How Central Banks Responded to the Inflation Surge\"\n    },\n    {\n      \"quote\": \"The post-pandemic inflation surge caught nearly every major central bank off guard.\",\n      \"issue\": \"This broad claim is unsourced and vague; Acme requires named evidence or explicit uncertainty for claims about institutional expectations.\",\n      \"suggestion\": \"Many major central banks underestimated how persistent post-pandemic inflation would be, based on their 2021 and early-2022 forecasts.\"\n    },\n    {\n      \"quote\": \"This is the fastest pace of rate hikes since Paul Volcker's tenure in the early 1980s, when the Fed pushed rates above 20% to break a decade-long inflationary spiral.\",\n      \"issue\": \"The historical comparison is plausible but unsourced, and 'to break a decade-long inflationary spiral' assigns causal certainty without attribution.\",\n      \"suggestion\": \"By recent historical standards, this was the Fed's fastest tightening cycle since the early 1980s, when the federal funds rate rose above 20% under Paul Volcker.\"\n    },\n    {\n      \"quote\": \"Eurozone inflation peaked at 10.6% in October 2022, driven largely by energy prices following Russia's invasion of Ukraine.\",\n      \"issue\": \"The sentence makes a causal claim without naming a source or showing evidence, which weakens factual grounding.\",\n      \"suggestion\": \"Eurozone inflation peaked at 10.6% in October 2022; ECB and Eurostat reporting at the time pointed to energy prices as a major driver after Russia's invasion of Ukraine.\"\n    },\n    {\n      \"quote\": \"This effectively priced out millions of first-time buyers — housing affordability fell to its worst level since 1984 according to the National Association of Realtors.\",\n      \"issue\": \"The phrase 'priced out millions' is a large unsourced estimate, and the sentence blends a sourced statistic with an unsupported extrapolation.\",\n      \"suggestion\": \"Higher mortgage rates sharply reduced affordability for first-time buyers; the National Association of Realtors said its affordability measure fell to its lowest level since 1984.\"\n    },\n    {\n      \"quote\": \"This represented the largest decline in real wages since 1980, eroding purchasing power for median-income households by an estimated $4,200 per year according to a Heritage Foundation analysis.\",\n      \"issue\": \"The sentence relies on an advocacy-group analysis without context and does not separate the sourced estimate from the broader historical claim.\",\n      \"suggestion\": \"Real wages fell during the inflation spike. A Heritage Foundation analysis estimated a median-income household lost about $4,200 a year in purchasing power, though estimates vary by method.\"\n    },\n    {\n      \"quote\": \"By late 2023, US inflation had fallen to 3.2%, leading many economists to declare a \\\"soft landing\\\" — taming inflation without triggering a recession.\",\n      \"issue\": \"The phrase 'many economists' is vague and unsourced; Acme prefers named analysts, institutions, or a more precise construction.\",\n      \"suggestion\": \"By late 2023, US inflation had fallen to 3.2%, prompting some economists and market analysts to argue that the US might achieve a soft landing without a recession.\"\n    },\n    {\n      \"quote\": \"This outcome was described by Fed Chair Jerome Powell as historically rare, with only two comparable episodes in post-war US economic history.\",\n      \"issue\": \"The sentence attributes a specific historical count without a date, speech, or source, which falls short of the guide's sourcing standard.\",\n      \"suggestion\": \"Jerome Powell called that outcome historically rare in late-2023 remarks, though the exact number of comparable post-war episodes depends on how economists define a soft landing.\"\n    }\n  ]\n}",
+        "timeMs": 13012,
+        "costUsd": 0.015935
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 85,\n  \"verdict\": \"pass\",\n  \"summary\": \"Article is generally well-sourced and factual but lacks the required financial disclaimer on a monetary policy/economics piece.\",\n  \"risks\": [\n    {\n      \"category\": \"Financial disclaimer\",\n      \"severity\": \"warn\",\n      \"quote\": \"[Entire article - no disclaimer present]\",\n      \"reason\": \"Company policy requires all financial articles to include: 'This is not financial advice. Past performance does not predict future returns.'\",\n      \"suggestion\": \"Add the required disclaimer as a footnote or at the end of the article before the byline.\"\n    }\n  ]\n}",
+        "timeMs": 24034,
+        "costUsd": 0.0025913999999999998
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 50,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article discusses financial and economic topics but violates company policy by omitting the mandatory financial disclaimer and failing to hyperlink government data sources.\",\n  \"risks\": [\n    {\n      \"category\": \"Required disclaimers\",\n      \"severity\": \"error\",\n      \"quote\": \"How Central Banks Lost Control of Inflation\",\n      \"reason\": \"The article covers financial topics (inflation, interest rates, mortgages) but is missing the mandatory financial disclaimer required by company policy.\",\n      \"suggestion\": \"Add the following text to the article: 'This is not financial advice. Past performance does not predict future returns.'\"\n    },\n    {\n      \"category\": \"Attribution\",\n      \"severity\": \"error\",\n      \"quote\": \"consumer prices in the United States rose 9.1% in June 2022\",\n      \"reason\": \"Company policy dictates that government data (such as BLS inflation statistics and Federal Reserve rate data) must link to the specific source page, but no links are provided.\",\n      \"suggestion\": \"Add a hyperlink over the statistic directing the reader to the specific BLS or Federal Reserve report page.\"\n    }\n  ]\n}",
+        "timeMs": 15868,
+        "costUsd": 0.0043837500000000005
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 72,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is generally low-risk but has attribution gaps for several factual claims and is missing the required financial disclaimer for financial/economic content.\",\n  \"risks\": [\n    {\n      \"category\": \"Attribution / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"consumer prices in the United States rose 9.1% in June 2022 — the highest reading since November 1981\",\n      \"reason\": \"This is a specific economic statistic presented as fact without a link to the underlying government source; company policy requires government data to link to the specific page, not just mention the fact.\",\n      \"suggestion\": \"Replace with: \\\"According to the U.S. Bureau of Labor Statistics CPI release for June 2022, consumer prices rose 9.1% year over year, the highest reading since November 1981.\\\"\"\n    },\n    {\n      \"category\": \"Attribution / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"Between March 2022 and July 2023, the Federal Reserve raised its benchmark federal funds rate from 0.25% to 5.5%\",\n      \"reason\": \"This is government/central bank data stated without linking to the specific Federal Reserve source page, which the policy requires.\",\n      \"suggestion\": \"Replace with: \\\"According to the Federal Reserve's target rate announcements, the benchmark federal funds rate rose from 0.25% in March 2022 to 5.5% by July 2023.\\\"\"\n    },\n    {\n      \"category\": \"Attribution / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"The European Central Bank moved more slowly, raising rates from -0.5% to 4.0% between July 2022 and September 2023.\",\n      \"reason\": \"Specific central bank figures are unsourced in the article; company policy requires linking to the specific official page for government/institutional data.\",\n      \"suggestion\": \"Replace with: \\\"According to ECB policy rate decisions, the deposit facility rate increased from -0.5% in July 2022 to 4.0% by September 2023.\\\"\"\n    },\n    {\n      \"category\": \"Attribution / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"The average 30-year fixed mortgage rate in the US climbed from 3.1% in January 2022 to 7.79% in October 2023\",\n      \"reason\": \"This is a precise market statistic without a cited primary or official source, creating substantiation risk under the policy.\",\n      \"suggestion\": \"Replace with: \\\"Freddie Mac's Primary Mortgage Market Survey reported the average 30-year fixed rate rising from about 3.1% in early 2022 to 7.79% in October 2023.\\\"\"\n    },\n    {\n      \"category\": \"Attribution / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"housing affordability fell to its worst level since 1984 according to the National Association of Realtors\",\n      \"reason\": \"The statement references a source but does not provide the specific page or report, which the policy requires for factual claims.\",\n      \"suggestion\": \"Replace with: \\\"According to the National Association of Realtors' Housing Affordability Index report, affordability reached its weakest level since 1984.\\\"\"\n    },\n    {\n      \"category\": \"Attribution / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"eroding purchasing power for median-income households by an estimated $4,200 per year according to a Heritage Foundation analysis\",\n      \"reason\": \"This is a specific quantified claim tied to a third-party analysis but lacks a citation to the underlying report; under policy, unsourced claims should be removed or clearly attributed with source details.\",\n      \"suggestion\": \"Replace with: \\\"A Heritage Foundation analysis estimated that median-income households lost roughly $4,200 in annual purchasing power; include a link to the specific report or remove the figure.\\\"\"\n    },\n    {\n      \"category\": \"Required disclaimer / company policy\",\n      \"severity\": \"warn\",\n      \"quote\": \"The article discusses inflation, rates, housing markets, and wage impacts without any disclaimer.\",\n      \"reason\": \"This is financial/economic editorial content, and company policy requires the disclaimer: \\\"This is not financial advice. Past performance does not predict future returns.\\\"\",\n      \"suggestion\": \"Add this disclaimer prominently: \\\"This is not financial advice. Past performance does not predict future returns.\\\"\"\n    }\n  ]\n}",
+        "timeMs": 13412,
+        "costUsd": 0.0176525
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal-no-policy",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 100,\n  \"verdict\": \"pass\",\n  \"summary\": \"This economic analysis article contains no content that violates the specified legal risk categories; it presents factual historical data about central banks, inflation, and monetary policy without unsubstantiated health claims, defamation, false promises, privacy violations, or price misrepresentation.\",\n  \"risks\": []\n}",
+        "timeMs": 10546,
+        "costUsd": 0.0012948
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal-no-policy",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 100,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article is a factual economic analysis and contains no legal risks across the specified categories.\",\n  \"risks\": []\n}",
+        "timeMs": 7504,
+        "costUsd": 0.0015525
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal-no-policy",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 94,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article is largely factual and low-risk, with only minor concern around a potentially overstated causal attribution in the title.\",\n  \"risks\": [\n    {\n      \"category\": \"Defamatory/defamation statement\",\n      \"severity\": \"warn\",\n      \"quote\": \"# How Central Banks Lost Control of Inflation\",\n      \"reason\": \"The headline asserts as fact that central banks 'lost control,' which could be seen as an unqualified allegation of institutional failure rather than a clearly framed opinion or analysis.\",\n      \"suggestion\": \"Replace with: \\\"How Central Banks Responded to the Inflation Surge\\\"\"\n    }\n  ]\n}",
+        "timeMs": 2643,
+        "costUsd": 0.0041600000000000005
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "summary",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"topic\": \"Post-pandemic inflation surge and central banks' aggressive monetary tightening responses\",\n  \"argument\": \"Central banks were caught off guard by post-pandemic inflation, forcing them into the fastest rate hikes in decades to tame prices\",\n  \"audience\": \"Economically informed readers\",\n  \"tone\": \"informational\"\n}\n```",
+        "timeMs": 11979,
+        "costUsd": 0.0012036
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "summary",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"topic\": \"The article details the post-pandemic inflation surge, the aggressive interest rate hikes by central banks, and the resulting economic impacts.\",\n  \"argument\": \"Central banks were forced into historically aggressive rate hikes to combat unexpected inflation, causing significant economic strain but potentially achieving a rare soft landing.\",\n  \"audience\": \"Readers interested in economics\",\n  \"tone\": \"informational\"\n}",
+        "timeMs": 13943,
+        "costUsd": 0.0016637500000000003
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "summary",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"topic\": \"This article explains how major central banks responded to the post-pandemic inflation surge and its economic effects.\",\n  \"argument\": \"It argues that central banks were caught off guard by inflation and had to raise interest rates rapidly, with significant consequences for housing, wages, and recession risks.\",\n  \"audience\": \"general economics readers\",\n  \"tone\": \"informational\"\n}",
+        "timeMs": 1922,
+        "costUsd": 0.002725
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "brief",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 25,\n  \"verdict\": \"fail\",\n  \"summary\": \"Article is a news-style summary missing all six required structural sections, with no peer-reviewed studies, no claim examination, no overreach analysis, no practical takeaway, and no primary source links.\",\n  \"covered\": [\n    \"Hook with specific number (9.1% June 2022 inflation figure)\",\n    \"Numbers over adjectives (uses quantitative data throughout)\",\n    \"Skeptical tone (avoids 'experts agree' phrasing)\"\n  ],\n  \"missing\": [\n    \"Claim being examined (one sentence, no hedging)\",\n    \"Two peer-reviewed studies with author, year, and specific finding\",\n    \"Section addressing what evidence does NOT say (common overreach/misattribution)\",\n    \"Practical takeaway paragraph for readers\",\n    \"At least 3 links to primary sources\",\n    \"Word count compliance (300-350 words vs. 800-1000 target)\",\n    \"Explicit evaluation of whether the 'soft landing' thesis is well-supported\"\n  ],\n  \"suggestions\": [\n    \"Add a clear thesis sentence: e.g., 'The claim being examined is that the Fed achieved a rare 'soft landing'—bringing down inflation without causing a recession.'\",\n    \"Replace Heritage Foundation citation with peer-reviewed studies such as work by Federal Reserve economists or academic journals (e.g., 'Blinder et al., 2023' or 'Reif et al., 2024' from Journal of Monetary Economics)\",\n    \"Add a 'What This Doesn't Prove' section addressing what the soft landing evidence cannot tell us (e.g., long-term effects, whether it was sustainable)\",\n    \"Include a practical takeaway paragraph: what should readers do with this information about central bank effectiveness?\",\n    \"Add direct citations to primary sources: Federal Reserve FOMC statements, ECB working papers, BLS CPI data, NAR housing affordability reports\",\n    \"Expand to 800-1000 words with deeper evidence analysis\"\n  ]\n}",
+        "timeMs": 27638,
+        "costUsd": 0.0029909999999999997
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "brief",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 20,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article functions as a brief historical summary of recent inflation rather than the requested evidence-based explainer, missing the word count target and nearly all required structural sections.\",\n  \"covered\": [\n    \"Hook with a specific number\",\n    \"Tone uses numbers over adjectives\",\n    \"Names specific institutions (Federal Reserve, ECB, NAR, Heritage Foundation)\"\n  ],\n  \"missing\": [\n    \"800-1000 word count (currently ~250 words)\",\n    \"Explicit one-sentence claim being examined\",\n    \"At least TWO peer-reviewed studies with author, year, and specific finding\",\n    \"What the evidence does NOT say section\",\n    \"Practical takeaway paragraph\",\n    \"Links to at least 3 primary sources\"\n  ],\n  \"suggestions\": [\n    \"Expand the article significantly to meet the 800-1000 word target.\",\n    \"Reframe the narrative around a specific, single-sentence claim about inflation or central banking.\",\n    \"Incorporate at least two specific peer-reviewed studies (with author and year) rather than just general institutional reports.\",\n    \"Add a dedicated section explaining what the evidence does NOT say to address common misconceptions.\",\n    \"Include a practical takeaway paragraph detailing what the reader should do with this information.\",\n    \"Add direct hyperlinks to all primary sources and citations.\"\n  ]\n}",
+        "timeMs": 12157,
+        "costUsd": 0.004602500000000001
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "brief",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 24,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article includes some concrete numbers and topical context, but it does not function as an evidence-based explainer because it lacks a clearly examined claim, peer-reviewed evidence, source links, and the required discussion of what the evidence does and does not show.\",\n  \"covered\": [\n    \"Opens with a specific number: US CPI at 9.1% in June 2022\",\n    \"Uses a generally non-clickbait headline\",\n    \"Includes several quantitative claims about rates, inflation, and mortgages\",\n    \"Tone is mostly informational rather than sensational\"\n  ],\n  \"missing\": [\n    \"Target length of 800–1000 words; article is substantially under length\",\n    \"Hook with a specific number or named study is only partially met because no named study is introduced\",\n    \"A one-sentence statement of the claim being examined\",\n    \"A clear evidence-based framing that helps the reader judge whether a popular idea is supported\",\n    \"Section explaining what the evidence actually says\",\n    \"At least two peer-reviewed studies with author, year, and specific finding\",\n    \"Section explaining what the evidence does NOT say or addressing common overreach/misattribution\",\n    \"Practical takeaway telling the reader what to do with the information\",\n    \"At least three direct links/citations to primary sources\",\n    \"Fact-checkable sourcing for nearly all quantitative claims\",\n    \"Acknowledgment of uncertainty in a structured way\",\n    \"Specific researchers or institutions attached to most claims\"\n  ],\n  \"suggestions\": [\n    \"Rewrite around a single explicit claim, for example: 'Central banks lost control of inflation because monetary policy stayed too loose for too long.'\",\n    \"Add a dedicated evidence section citing at least two peer-reviewed studies with author, year, and exact findings relevant to inflation dynamics and monetary policy transmission.\",\n    \"Include a section on what the evidence does not show, such as distinguishing supply shocks, fiscal stimulus, and energy-price effects from central-bank actions alone.\",\n    \"Provide at least three direct primary-source citations or links, such as BLS CPI data, Federal Reserve releases, ECB data, and peer-reviewed journal articles.\",\n    \"Replace unsupported assertions like 'priced out millions' and the Heritage Foundation wage-loss estimate with directly sourced, verifiable evidence.\",\n    \"Add a practical takeaway paragraph explaining how readers should interpret inflation claims and what indicators or sources they should watch.\",\n    \"Expand the article to meet the 800–1000 word target while preserving a skeptical, evidence-first structure.\"\n  ]\n}",
+        "timeMs": 9932,
+        "costUsd": 0.010542500000000002
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "purpose",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.85,\n  \"summary\": \"This analytical piece synthesizes historical and contemporary economic data to explain how and why major central banks lost control of post-pandemic inflation, making it a data-driven opinion/analysis article rather than news, product, or instructional content.\",\n  \"present\": [\n    \"Historical data points (9.1% inflation June 2022, 10.6% eurozone peak)\",\n    \"Quantitative comparisons (525 basis points, 7.79% mortgage rate)\",\n    \"Expert references (Jerome Powell quote on soft landing rarity)\",\n    \"Contextual analysis (Volcker era comparison, 1981 and 1980s benchmarks)\",\n    \"Multiple data sources cited (Heritage Foundation, National Association of Realtors)\"\n  ],\n  \"missing\": [\n    \"Clear author/expert opinion voice and stance\",\n    \"Industry implication or forward-looking perspective\",\n    \"Original research methodology or unique data angle\",\n    \"Call to action or recommendation for reader takeaway\",\n    \"Counterarguments or alternative interpretations of the data\"\n  ],\n  \"recommendations\": [\n    \"Add a clear thesis statement with author perspective in the opening paragraph to strengthen thought-leadership positioning\",\n    \"Include a 'so what' section explaining implications for investors, policymakers, or businesses reading the article\",\n    \"Cite 2-3 external economic experts with their contrasting opinions on central bank competence\",\n    \"Add original analysis or proprietary data interpretation that goes beyond reported statistics\",\n    \"Conclude with actionable insights or recommendations for how audiences should interpret these trends\"\n  ]\n}\n```",
+        "timeMs": 29302,
+        "costUsd": 0.0024557999999999997
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "purpose",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.85,\n  \"summary\": \"The article analyzes macroeconomic trends and central bank policies using historical data, fitting the profile of an industry analysis or thought leadership piece.\",\n  \"present\": [\n    \"data points\",\n    \"expert citations\"\n  ],\n  \"missing\": [\n    \"unique angle\"\n  ],\n  \"recommendations\": [\n    \"Introduce a stronger unique angle or forward-looking opinion on what central banks should do next to elevate the piece beyond a factual summary.\",\n    \"Include direct quotes from economic experts or the author to strengthen the authoritative tone.\"\n  ]\n}",
+        "timeMs": 15230,
+        "costUsd": 0.0024725000000000003
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "purpose",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.93,\n  \"summary\": \"The article interprets major macroeconomic events using historical comparisons and economic data to frame an opinionated analysis rather than announce news or teach a process.\",\n  \"present\": [\"Multiple quantitative data points on inflation, rates, mortgages, and wages\", \"Comparative framing across the Fed and ECB\", \"Use of historical context and expert reference to Jerome Powell\"],\n  \"missing\": [\"A clear original thesis explaining exactly how central banks 'lost control'\", \"Broader expert citations or sourced analysis beyond scattered figures\", \"A distinctive insight or forward-looking takeaway for readers\"],\n  \"recommendations\": [\"Add a strong thesis in the introduction that states the specific drivers of central bank policy failure, such as misreading supply shocks, overstimulus, or delayed tightening.\", \"Cite additional authoritative sources or economists for key claims, especially around wage impacts and soft-landing comparisons.\", \"Include a short analysis section with the author's unique perspective on what central banks should do differently next cycle.\", \"Clarify sourcing for all statistics and attribute each figure to institutions like BLS, Fed, ECB, Eurostat, or NAR.\", \"Strengthen the conclusion with implications for investors, households, or policymakers so the piece feels more insight-driven than descriptive.\"]\n}",
+        "timeMs": 4873,
+        "costUsd": 0.00592
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "tone",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 95,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article strongly aligns with the brand voice guide, providing specific figures with named sources, using active voice, maintaining confident but appropriately hedged language, and avoiding all prohibited tone markers.\",\n  \"violations\": []\n}",
+        "timeMs": 28158,
+        "costUsd": 0.0028422
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "tone",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 65,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is appropriately skeptical and avoids hype, but it consistently fails to properly cite authors and journals for its statistics and lacks the conversational tone required by the guide.\",\n  \"violations\": [\n    {\n      \"quote\": \"Training a single large language model like GPT-3 consumes approximately 1,287 megawatt-hours of electricity — equivalent to the annual energy consumption of 120 US households.\",\n      \"issue\": \"Numbers get a source, but no source is provided for this specific statistic.\",\n      \"suggestion\": \"According to a 2021 study by Patterson et al. in the Journal of Machine Learning Research, training a model like GPT-3 consumes about 1,287 megawatt-hours of electricity—roughly what 120 US households use in a year.\"\n    },\n    {\n      \"quote\": \"A 2019 study from the University of Massachusetts Amherst found that training a single large NLP model produces up to 626,000 pounds of CO2 equivalent — roughly five times the lifetime emissions of an average American car.\",\n      \"issue\": \"Fails to name the author and journal for the study, violating the factual grounding rule.\",\n      \"suggestion\": \"A 2019 study by Strubell et al. published in the Proceedings of the ACL found that training a single large NLP model produces up to 626,000 pounds of CO2 equivalent.\"\n    },\n    {\n      \"quote\": \"Training GPT-4 required approximately 700,000 liters of freshwater for cooling data center servers, according to a 2023 paper from UC Riverside.\",\n      \"issue\": \"Mentions a paper and year but fails to name the author and journal.\",\n      \"suggestion\": \"Training GPT-4 required approximately 700,000 liters of freshwater for cooling data center servers, according to a 2023 paper by Peng et al. published in Nature.\"\n    },\n    {\n      \"quote\": \"Producing a single NVIDIA H100 GPU requires approximately 2,100 kilowatt-hours during the fabrication process at TSMC's fabs.\",\n      \"issue\": \"Contains specific numbers without citing any source.\",\n      \"suggestion\": \"A 2023 report from [Source Name] estimates that producing a single NVIDIA H100 GPU requires about 2,100 kilowatt-hours during fabrication at TSMC's fabs.\"\n    },\n    {\n      \"quote\": \"Several AI labs have announced commitments to run on 100% renewable energy by 2030.\",\n      \"issue\": \"Uses vague language ('Several AI labs') instead of being specific.\",\n      \"suggestion\": \"Companies like OpenAI and Anthropic have announced commitments to run on 100% renewable energy by 2030.\"\n    }\n  ]\n}",
+        "timeMs": 29195,
+        "costUsd": 0.0079025
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "tone",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 68,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is clear and relatively grounded, but it leans formal, uses a few vague or weakly sourced claims, and misses the brand’s preference for precise attribution and a more conversational, quietly confident tone.\",\n  \"violations\": [\n    {\n      \"quote\": \"Artificial intelligence has transformed industries at remarkable speed, but the infrastructure powering it carries an environmental cost that the industry has been slow to disclose.\",\n      \"issue\": \"Too broad and assertive without specific evidence; 'transformed industries at remarkable speed' and 'slow to disclose' are vague claims that need sourcing or qualification.\",\n      \"suggestion\": \"AI use has expanded quickly, but public reporting on the energy and water demands behind it is still limited.\"\n    },\n    {\n      \"quote\": \"As demand for large language models accelerates, the energy and water consumption of data centers is becoming a significant contributor to global emissions.\",\n      \"issue\": \"The claim is too general and not specific enough for the guide’s factual grounding standard; it also lacks a named source for 'significant contributor.'\",\n      \"suggestion\": \"As demand for large language models rises, researchers and grid analysts have warned that data center growth could materially increase electricity use and emissions, depending on the power mix.\"\n    },\n    {\n      \"quote\": \"Training a single large language model like GPT-3 consumes approximately 1,287 megawatt-hours of electricity — equivalent to the annual energy consumption of 120 US households.\",\n      \"issue\": \"Uses a precise number without naming the source, author, year, or publication, which the guide requires.\",\n      \"suggestion\": \"A 2021 paper by Patterson and colleagues estimated that training GPT-3 used about 1,287 megawatt-hours of electricity, roughly the annual use of 120 U.S. households.\"\n    },\n    {\n      \"quote\": \"When scaled to inference (running the model for millions of users), the numbers grow dramatically.\",\n      \"issue\": \"Vague wording; 'grow dramatically' is imprecise and does not meet the guide’s preference for concrete specifics over general emphasis.\",\n      \"suggestion\": \"Inference can use more total electricity than training because the model runs repeatedly for many users.\"\n    },\n    {\n      \"quote\": \"Less publicized is AI's water footprint.\",\n      \"issue\": \"Formal, slightly rhetorical framing instead of the brand’s grounded, direct style.\",\n      \"suggestion\": \"AI also has a water footprint that gets less attention than electricity use.\"\n    },\n    {\n      \"quote\": \"Producing a single NVIDIA H100 GPU requires approximately 2,100 kilowatt-hours during the fabrication process at TSMC's fabs.\",\n      \"issue\": \"Highly specific numerical claim without any source attribution, which violates the factual grounding rule.\",\n      \"suggestion\": \"Chip fabrication is energy-intensive, but estimates for a single H100 vary and should be tied to a named source before using a precise figure.\"\n    },\n    {\n      \"quote\": \"Several AI labs have announced commitments to run on 100% renewable energy by 2030.\",\n      \"issue\": \"Vague collective claim with no named companies or sources; the guide prefers exact attribution.\",\n      \"suggestion\": \"Some large tech companies, including Google and Microsoft, have said they aim to cut data center emissions sharply by 2030, though their timelines and methods differ.\"\n    }\n  ]\n}",
+        "timeMs": 11129,
+        "costUsd": 0.01336
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"score\": 90,\n  \"verdict\": \"pass\",\n  \"summary\": \"Article is generally well-sourced but contains one tone/absolute-language risk requiring correction.\",\n  \"risks\": [\n    {\n      \"category\": \"Absolute/unsupported outcome claim\",\n      \"severity\": \"warn\",\n      \"quote\": \"Several AI labs have announced commitments to run on 100% renewable energy by 2030.\",\n      \"reason\": \"Uses absolute '100%' when describing future commitments that are not yet achieved; company policy prohibits absolute terms for outcomes.\",\n      \"suggestion\": \"Replace with: 'Several AI labs have announced commitments to increase renewable energy sourcing to meet their operational needs by 2030.'\"\n    }\n  ]\n}\n```",
+        "timeMs": 28471,
+        "costUsd": 0.0025913999999999998
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 75,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is free of major legal risks like defamation or medical claims, but it violates company policy regarding unsourced statistical claims and the use of absolute terms.\",\n  \"risks\": [\n    {\n      \"category\": \"Attribution\",\n      \"severity\": \"warn\",\n      \"quote\": \"Training a single large language model like GPT-3 consumes approximately 1,287 megawatt-hours of electricity — equivalent to the annual energy consumption of 120 US households.\",\n      \"reason\": \"Company policy requires all statistical claims to cite a primary source or be clearly labeled as the author's opinion.\",\n      \"suggestion\": \"Add a citation to the specific study or report that provided the 1,287 MWh figure (e.g., 'According to a 2021 study by...').\"\n    },\n    {\n      \"category\": \"Attribution\",\n      \"severity\": \"warn\",\n      \"quote\": \"Producing a single NVIDIA H100 GPU requires approximately 2,100 kilowatt-hours during the fabrication process at TSMC's fabs.\",\n      \"reason\": \"This is an unsourced statistical claim, which violates the attribution policy.\",\n      \"suggestion\": \"Cite the specific industry report, manufacturer data, or study that provided this energy consumption figure.\"\n    },\n    {\n      \"category\": \"Tone and framing\",\n      \"severity\": \"warn\",\n      \"quote\": \"Several AI labs have announced commitments to run on 100% renewable energy by 2030.\",\n      \"reason\": \"The policy strictly prohibits the use of absolute terms like '100%' for outcomes.\",\n      \"suggestion\": \"Replace '100%' with 'fully' or 'entirely' (e.g., 'commitments to transition fully to renewable energy').\"\n    }\n  ]\n}",
+        "timeMs": 29369,
+        "costUsd": 0.0059125
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 72,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article is generally low-risk on the requested categories, but it contains several attribution and substantiation issues under company policy and a potentially unsupported implication about industry disclosure.\",\n  \"risks\": [\n    {\n      \"category\": \"Unsourced/attribution risk\",\n      \"severity\": \"warn\",\n      \"quote\": \"the infrastructure powering it carries an environmental cost that the industry has been slow to disclose\",\n      \"reason\": \"This asserts industry-wide nondisclosure without a cited source, which could be challenged as an unsupported factual claim and creates avoidable legal risk.\",\n      \"suggestion\": \"Replace with: \\\"the infrastructure powering it carries environmental costs that are not always prominently reported in public discussions of AI\\\".\"\n    },\n    {\n      \"category\": \"Unsourced/attribution risk\",\n      \"severity\": \"warn\",\n      \"quote\": \"Goldman Sachs estimated in 2024 that data centers will consume 8% of total US electricity by 2030, up from 3% in 2022.\",\n      \"reason\": \"The claim references a source but does not provide the specific report title, author, or link, which falls short of the policy expectation for attributable statistics.\",\n      \"suggestion\": \"Replace with: \\\"According to Goldman Sachs Research (2024) [link], data centers could consume 8% of U.S. electricity by 2030, up from about 3% in 2022.\\\"\"\n    },\n    {\n      \"category\": \"Unsourced/attribution risk\",\n      \"severity\": \"warn\",\n      \"quote\": \"A 2019 study from the University of Massachusetts Amherst found that training a single large NLP model produces up to 626,000 pounds of CO2 equivalent\",\n      \"reason\": \"This clinical-style quantitative claim needs a primary citation with author, year, and journal or an official link under the company attribution policy.\",\n      \"suggestion\": \"Replace with: \\\"Strubell et al. (2019) reported that training some large NLP models could produce up to 626,000 pounds of CO2e [journal/link].\\\"\"\n    },\n    {\n      \"category\": \"Unsourced/attribution risk\",\n      \"severity\": \"warn\",\n      \"quote\": \"Training GPT-4 required approximately 700,000 liters of freshwater for cooling data center servers, according to a 2023 paper from UC Riverside.\",\n      \"reason\": \"A precise statistic is presented without the paper title, authors, or link, making the claim insufficiently substantiated for publication.\",\n      \"suggestion\": \"Replace with: \\\"Li et al. (2023, UC Riverside/official publication link) estimated that training GPT-4 may have required about 700,000 liters of freshwater for cooling.\\\"\"\n    },\n    {\n      \"category\": \"Unsourced/attribution risk\",\n      \"severity\": \"warn\",\n      \"quote\": \"Google's total water consumption reached 5.6 billion gallons in 2022 — a 20% increase from 2021 — with AI workloads identified as a key driver.\",\n      \"reason\": \"The numeric claim and causation statement need a specific source link; the phrase \\\"key driver\\\" may overstate causation if Google did not expressly attribute the increase that way.\",\n      \"suggestion\": \"Replace with: \\\"Google reported water consumption of 5.6 billion gallons in 2022, up 20% from 2021 [specific report link]. The company said growing AI demand can increase computing-related resource use.\\\"\"\n    },\n    {\n      \"category\": \"Unsourced/attribution risk\",\n      \"severity\": \"warn\",\n      \"quote\": \"Producing a single NVIDIA H100 GPU requires approximately 2,100 kilowatt-hours during the fabrication process at TSMC's fabs.\",\n      \"reason\": \"This is a specific manufacturing statistic about named companies without any citation, creating substantiation risk.\",\n      \"suggestion\": \"Replace with: \\\"Some analyses estimate that advanced AI chip fabrication is highly energy-intensive [cite source], though exact per-chip energy use varies by process and facility.\\\"\"\n    }\n  ]\n}",
+        "timeMs": 13607,
+        "costUsd": 0.0160375
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal-no-policy",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 100,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article is a factual, well-sourced analysis of AI's environmental impact with all claims attributed to credible sources such as Goldman Sachs, university studies, and corporate sustainability reports.\",\n  \"risks\": []\n}",
+        "timeMs": 12404,
+        "costUsd": 0.00135
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal-no-policy",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 100,\n  \"verdict\": \"pass\",\n  \"summary\": \"The article is a factual, well-cited report on the environmental impact of AI and contains no legal risks across the specified categories.\",\n  \"risks\": []\n}",
+        "timeMs": 16019,
+        "costUsd": 0.00163125
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal-no-policy",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 68,\n  \"verdict\": \"warn\",\n  \"summary\": \"The article has no obvious health, false promise, privacy, or price risks, but it contains a few potentially defamatory or weakly substantiated factual assertions about companies and industry behavior.\",\n  \"risks\": [\n    {\n      \"category\": \"Defamatory/defamation statement\",\n      \"severity\": \"warn\",\n      \"quote\": \"the infrastructure powering it carries an environmental cost that the industry has been slow to disclose\",\n      \"reason\": \"This asserts as fact that the industry has been slow to disclose environmental impacts, which could be seen as alleging concealment or lack of transparency by identifiable companies or the industry as a whole without attribution.\",\n      \"suggestion\": \"Replace with: \\\"the infrastructure powering it carries environmental costs that have only recently received broader public attention.\\\"\"\n    },\n    {\n      \"category\": \"Defamatory/defamation statement\",\n      \"severity\": \"warn\",\n      \"quote\": \"Google's total water consumption reached 5.6 billion gallons in 2022 — a 20% increase from 2021 — with AI workloads identified as a key driver.\",\n      \"reason\": \"This links Google's increased water use directly to AI workloads as a factual cause; if not precisely supported by a cited source, it could create legal risk by attributing blame to a named company.\",\n      \"suggestion\": \"Replace with: \\\"Google's total water consumption reached 5.6 billion gallons in 2022 — a 20% increase from 2021 — and reporting has noted that data center and AI-related demand may be contributing factors.\\\"\"\n    },\n    {\n      \"category\": \"Defamatory/defamation statement\",\n      \"severity\": \"warn\",\n      \"quote\": \"critics note that \\\"matching\\\" differs from running on real-time clean power\",\n      \"reason\": \"While milder than a direct accusation, this could imply Google's claim is misleading unless the criticism is attributed to a specific source.\",\n      \"suggestion\": \"Replace with: \\\"Some energy analysts distinguish between annual renewable-energy matching and sourcing real-time carbon-free electricity.\\\"\"\n    }\n  ]\n}",
+        "timeMs": 6876,
+        "costUsd": 0.008575000000000001
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "summary",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"topic\": \"The environmental costs of AI infrastructure including energy consumption, carbon emissions, water usage, and chip manufacturing\",\n  \"argument\": \"AI's rapid growth carries significant hidden environmental costs that the industry has been slow to disclose, including massive energy and water consumption tied to data centers and semiconductor production\",\n  \"audience\": \"Tech and environment stakeholders\",\n  \"tone\": \"informational\"\n}\n```",
+        "timeMs": 13894,
+        "costUsd": 0.00147
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "summary",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"topic\": \"The article details the significant environmental impacts of artificial intelligence, specifically focusing on energy consumption, carbon emissions, and water usage.\",\n  \"argument\": \"The rapid expansion of AI infrastructure carries a massive and growing environmental cost that threatens global sustainability goals despite proposed industry solutions.\",\n  \"audience\": \"Tech-conscious general public\",\n  \"tone\": \"informational\"\n}",
+        "timeMs": 15022,
+        "costUsd": 0.0016225000000000002
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "summary",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"topic\": \"This article examines the environmental impact of AI infrastructure, including its energy use, carbon emissions, water consumption, and chip manufacturing footprint.\",\n  \"argument\": \"The article argues that AI’s rapid growth carries substantial and underdisclosed environmental costs that must be addressed through transparency, cleaner power, and efficiency improvements.\",\n  \"audience\": \"tech and policy readers\",\n  \"tone\": \"informational\"\n}",
+        "timeMs": 2008,
+        "costUsd": 0.00279
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "brief",
+      "provider": "minimax",
+      "result": {
+        "text": "{\n  \"score\": 35,\n  \"verdict\": \"fail\",\n  \"summary\": \"Article contains good data and sources but lacks the structural requirements of the brief—no stated claim, no dedicated 'what evidence doesn't say' section, no practical takeaway for readers, and word count is roughly half the 800-1000 word target.\",\n  \"covered\": [\n    \"Energy consumption data with specific numbers\",\n    \"Carbon emissions citing UMass Amherst 2019 study\",\n    \"Water usage citing UC Riverside 2023 paper\",\n    \"Goldman Sachs 2024 electricity projection\",\n    \"Google/Microsoft sustainability commitments\",\n    \"Numbers over adjectives approach\",\n    \"Named studies and institutions\"\n  ],\n  \"missing\": [\n    \"Hook with specific study opening\",\n    \"Explicit statement of the claim being examined (one sentence, no hedging)\",\n    \"Dedicated section on what the evidence does NOT say\",\n    \"Practical takeaway paragraph for readers\",\n    \"Actual links to primary sources (at least 3)\",\n    \"Full word count compliance (estimated ~450 words vs. 800-1000 target)\",\n    \"Acknowledgment of uncertainty where appropriate\",\n    \"Explicit addressing of common overreach or misattribution\"\n  ],\n  \"suggestions\": [\n    \"Add an opening hook citing a specific study with a striking finding (e.g., 'Training GPT-3 consumed as much energy as 120 homes for a year')\",\n    \"Add a clear 'The claim being examined' section stating what popular idea about AI the article will evaluate\",\n    \"Create a 'What the evidence does NOT say' section addressing common claims the research doesn't support (e.g., that AI is 'unsustainable' or that individual users bear primary responsibility)\",\n    \"Add a 'What you should do with this information' paragraph giving readers actionable takeaways\",\n    \"Include actual URLs to the cited studies and reports\",\n    \"Expand to 800-1000 words by adding more context, uncertainty caveats, and depth\",\n    \"Add acknowledgment that figures vary across studies and methodologies differ\"\n  ]\n}",
+        "timeMs": 28240,
+        "costUsd": 0.0029525999999999997
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "brief",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"score\": 30,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article falls significantly short of the word count and misses almost all structural requirements, including the specific hook, the 'what the evidence does not say' section, and the practical takeaway.\",\n  \"covered\": [\n    \"Tone uses numbers over adjectives\",\n    \"Names specific institutions and studies (UMass Amherst, UC Riverside)\",\n    \"Avoids rhetorical questions and filler\"\n  ],\n  \"missing\": [\n    \"800-1000 word count target (currently ~330 words)\",\n    \"Hook with a specific number or named study (uses an abstract opener)\",\n    \"Explicit one-sentence claim being examined\",\n    \"Author names in study citations\",\n    \"What the evidence does NOT say section\",\n    \"Practical takeaway paragraph\",\n    \"Direct links to primary sources\"\n  ],\n  \"suggestions\": [\n    \"Expand the article significantly to meet the 800-1000 word count.\",\n    \"Rewrite the introduction to start immediately with a specific number or study, removing the abstract opener.\",\n    \"Explicitly state the claim being examined in a single, unhedged sentence.\",\n    \"Add a dedicated section addressing what the evidence does NOT say to prevent overreach.\",\n    \"Include a practical takeaway paragraph detailing what the reader should do with this information.\",\n    \"Add direct hyperlinks to the primary sources and include author names for the peer-reviewed studies.\"\n  ]\n}",
+        "timeMs": 14231,
+        "costUsd": 0.004691250000000001
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "brief",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"score\": 41,\n  \"verdict\": \"fail\",\n  \"summary\": \"The article covers the general topic with some specific numbers, but it misses several core brief requirements, especially explicit claim framing, evidence analysis, overreach limits, primary-source links, and sufficient sourcing detail for fact-checking.\",\n  \"covered\": [\n    \"Uses a specific number in the opening section (1,287 megawatt-hours for GPT-3 training)\",\n    \"Addresses environmental impacts of AI infrastructure, including energy, carbon, water, and semiconductor manufacturing\",\n    \"Includes some named sources and institutions such as University of Massachusetts Amherst, Microsoft, UC Riverside, Google, Goldman Sachs, and the International Energy Agency\",\n    \"Uses a generally accessible tone for non-expert readers\",\n    \"Contains quantitative claims rather than relying only on adjectives\"\n  ],\n  \"missing\": [\n    \"Target length of 800–1000 words; the draft appears substantially shorter\",\n    \"A one-sentence statement of the claim being examined with no hedging\",\n    \"A dedicated section explaining what the evidence actually says\",\n    \"At least two peer-reviewed studies cited with author, year, and specific finding\",\n    \"A dedicated section on what the evidence does NOT say or common overreach/misattribution\",\n    \"A practical takeaway paragraph telling readers what to do with the information\",\n    \"At least three direct links to primary sources\",\n    \"Enough citation detail for an editor to fact-check every quantitative claim from named sources alone\",\n    \"Clear acknowledgment of uncertainty around estimates and scope differences\",\n    \"Skeptical evidence-weighing approach focused on judging how well the claim is supported\"\n  ],\n  \"suggestions\": [\n    \"Add an explicit one-sentence claim near the top, such as: 'The claim is that current AI systems impose a large and growing environmental cost through electricity use, water consumption, and associated emissions.'\",\n    \"Expand the article to 800–1000 words by adding an evidence-focused discussion rather than more broad assertions\",\n    \"Create a 'What the evidence actually says' section that cites at least two peer-reviewed papers with author names, years, and precise findings\",\n    \"Replace vague references like 'a 2023 paper from UC Riverside' with full attribution such as named authors, publication venue, year, and direct link\",\n    \"Add a 'What the evidence does NOT say' section distinguishing training from inference, model-specific estimates from industry-wide impacts, and renewable-energy matching from real-time clean power use\",\n    \"Include a practical takeaway paragraph explaining how readers should interpret AI environmental claims, for example by asking whether a figure covers training, inference, location-specific grid mix, and water-cooling assumptions\",\n    \"Provide at least three direct primary-source citations or links, such as the original peer-reviewed papers and company sustainability reports\",\n    \"Qualify uncertain or contested numbers, especially around GPT-4 water use and chip-manufacturing energy, and note when estimates are indirect rather than disclosed by the companies involved\",\n    \"Ensure every numerical claim is tied to a named source in enough detail that an editor can verify it without external guesswork\"\n  ]\n}",
+        "timeMs": 10573,
+        "costUsd": 0.0122575
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "purpose",
+      "provider": "minimax",
+      "result": {
+        "text": "```json\n{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.88,\n  \"summary\": \"This article presents an analytical perspective on the environmental costs of AI infrastructure with data points from research firms, academic studies, and corporate reports, making it an industry opinion/analysis piece rather than news, a tutorial, or any other format.\",\n  \"present\": [\n    \"Multiple data points (1,287 MWh for training, 626,000 lbs CO2, 700,000 liters water)\",\n    \"External citations (Goldman Sachs, University of Massachusetts Amherst, UC Riverside)\",\n    \"Corporate data references (Microsoft 2023 sustainability report, Google water consumption)\",\n    \"Balanced perspective acknowledging both problems and proposed solutions\",\n    \"Industry-wide scope covering energy, emissions, water, and supply chain\"\n  ],\n  \"missing\": [\n    \"Direct expert quotes or named industry analyst perspectives\",\n    \"Specific actionable recommendations or frameworks for readers\",\n    \"Clear call-to-action or next steps for stakeholders\",\n    \"Methodology transparency for the cited statistics\",\n    \"Comparison with competitors' environmental performance\"\n  ],\n  \"recommendations\": [\n    \"Add interviews with named sustainability experts or AI researchers to strengthen authority\",\n    \"Include a 'What Organizations Can Do' section with concrete, implementable steps\",\n    \"Add methodology footnotes for cited statistics (e.g., how the 1,287 MWh figure was calculated)\",\n    \"Conclude with a clear call-to-action specifying which stakeholders (enterprises, policymakers, AI labs) should take what actions\",\n    \"Consider adding a competitive comparison showing which AI providers have best/worst environmental practices\"\n  ]\n}\n```",
+        "timeMs": 31458,
+        "costUsd": 0.0026117999999999996
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "purpose",
+      "provider": "gemini",
+      "result": {
+        "text": "{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.90,\n  \"summary\": \"The article analyzes an industry-wide issue using data points and institutional citations to establish authority on the environmental impact of AI.\",\n  \"present\": [\n    \"Data points and statistics\",\n    \"Citations from research institutions and industry reports\"\n  ],\n  \"missing\": [\n    \"Direct quotes from industry experts\",\n    \"A distinct authorial opinion or unique angle\",\n    \"Author credentials\"\n  ],\n  \"recommendations\": [\n    \"Add direct quotes from sustainability experts or AI researchers to strengthen authority.\",\n    \"Include a concluding section with a strong, unique opinion or call-to-action for the industry.\",\n    \"Add an author bio highlighting their expertise in AI or environmental science.\"\n  ]\n}",
+        "timeMs": 11816,
+        "costUsd": 0.00282125
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "purpose",
+      "provider": "openai",
+      "result": {
+        "text": "{\n  \"purpose\": \"thought-leadership\",\n  \"confidence\": 0.97,\n  \"summary\": \"The article argues that AI growth has significant environmental costs and supports that viewpoint with industry data, external studies, and a forward-looking policy/technology discussion.\",\n  \"present\": [\"Multiple quantitative data points on energy, carbon, water, and chip manufacturing impacts\", \"External citations and attributed sources such as Goldman Sachs, UMass Amherst, UC Riverside, Microsoft, Google, and the IEA\", \"A clear industry-focused argument about the hidden environmental tradeoffs of AI adoption\"],\n  \"missing\": [\"A distinctive original thesis or contrarian angle beyond summarizing known environmental concerns\", \"Expert quotes or commentary that interpret the data and strengthen authority\", \"Clear recommendations or implications for specific audiences such as AI buyers, policymakers, or data center operators\", \"Nuance on uncertainty, methodology, or scope behind the cited estimates\"],\n  \"recommendations\": [\"Add a sharper thesis in the introduction, such as whether the core issue is lack of disclosure, inefficient inference at scale, or supply-chain externalities.\", \"Include direct expert commentary from a climate researcher, data center engineer, or sustainability lead to add interpretation rather than only statistics.\", \"Specify the source, date, and methodology caveats for high-impact claims like GPT-4 water usage and H100 fabrication energy to improve credibility.\", \"Conclude with audience-specific actions, for example requiring emissions disclosure from AI vendors, prioritizing low-water regions for data centers, or measuring inference efficiency per user request.\", \"Differentiate training versus inference impacts more explicitly and quantify which is likely to dominate under mass adoption scenarios.\", \"Add a unique framing device, such as comparing AI environmental cost per query, per model, and per chip, to give the piece a more memorable perspective.\", \"Balance the critique with concrete evaluation of proposed solutions, including the limitations of renewable energy matching versus 24/7 carbon-free power and the realistic effect of hardware efficiency gains.\"]\n}",
+        "timeMs": 8453,
+        "costUsd": 0.007845000000000001
+      }
+    }
+  ],
+  "judgments": [
+    {
+      "article": "01-health",
+      "skill": "tone",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "specificity": 5,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "scoresB": {
+          "specificity": 4,
+          "voice_guide_alignment": 2,
+          "rewrite_quality": 3
+        },
+        "reasoning": "B is more specific and better aligned to a grounded, evidence-first tone guide, with more concrete rewrite suggestions, while A is accurate but more generic and less clearly mapped to brand voice dimensions.",
+        "raw": "{\"A\":{\"specificity\":4,\"voice_guide_alignment\":2,\"rewrite_quality\":3},\"B\":{\"specificity\":5,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"reasoning\":\"B is more specific and better aligned to a grounded, evidence-first tone guide, with more concrete rewrite suggestions, while A is accurate but more generic and less clearly mapped to brand voice dimensions.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "tone",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "specificity": 5,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "scoresB": {
+          "specificity": 4,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "reasoning": "A is slightly more specific and complete in quoting and rewriting flagged lines, while B is also strong but appears a bit less complete and more generic in places.",
+        "raw": "{\"A\":{\"specificity\":5,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"B\":{\"specificity\":4,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"reasoning\":\"A is slightly more specific and complete in quoting and rewriting flagged lines, while B is also strong but appears a bit less complete and more generic in places.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "tone",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "specificity": 3,
+          "voice_guide_alignment": 2,
+          "rewrite_quality": 2
+        },
+        "scoresB": {
+          "specificity": 4,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "reasoning": "A is more specific and better aligned to the voice guide because it more carefully explains why each passage violates grounding and offers nuanced rewrites, while B is more generic and repeatedly invents overly precise citations in its suggestions.",
+        "raw": "{\"A\":{\"specificity\":4,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"B\":{\"specificity\":3,\"voice_guide_alignment\":2,\"rewrite_quality\":2},\"reasoning\":\"A is more specific and better aligned to the voice guide because it more carefully explains why each passage violates grounding and offers nuanced rewrites, while B is more generic and repeatedly invents overly precise citations in its suggestions.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 4,
+          "severity_calibration": 4,
+          "actionability": 4
+        },
+        "scoresB": {
+          "risk_specificity": 3,
+          "severity_calibration": 3,
+          "actionability": 3
+        },
+        "reasoning": "A is more specific and actionable, naming the disclaimer and source-citation requirements more clearly and calibrating most issues as errors, while B is vaguer about the governing rule and understates the severity of some risks as warnings.",
+        "raw": "{\"A\":{\"risk_specificity\":4,\"severity_calibration\":4,\"actionability\":4},\"B\":{\"risk_specificity\":3,\"severity_calibration\":3,\"actionability\":3},\"reasoning\":\"A is more specific and actionable, naming the disclaimer and source-citation requirements more clearly and calibrating most issues as errors, while B is vaguer about the governing rule and understates the severity of some risks as warnings.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 4,
+          "severity_calibration": 4,
+          "actionability": 5
+        },
+        "scoresB": {
+          "risk_specificity": 3,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "reasoning": "A is more precise and better calibrated overall, while B is somewhat actionable but over/under-sevs several items and is less specific in naming the exact policy clause at risk.",
+        "raw": "{\"A\":{\"risk_specificity\":4,\"severity_calibration\":4,\"actionability\":5},\"B\":{\"risk_specificity\":3,\"severity_calibration\":2,\"actionability\":4},\"reasoning\":\"A is more precise and better calibrated overall, while B is somewhat actionable but over/under-sevs several items and is less specific in naming the exact policy clause at risk.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 2,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "scoresB": {
+          "risk_specificity": 3,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "reasoning": "Both outputs focus on company policy rather than named legal/compliance clauses, but B is slightly more specific about disease-related health-claim risk while A is a bit clearer and more direct on remediation for disclaimer/citation fixes.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":3,\"actionability\":4},\"B\":{\"risk_specificity\":3,\"severity_calibration\":3,\"actionability\":4},\"reasoning\":\"Both outputs focus on company policy rather than named legal/compliance clauses, but B is slightly more specific about disease-related health-claim risk while A is a bit clearer and more direct on remediation for disclaimer/citation fixes.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal-no-policy",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 2,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "scoresB": {
+          "risk_specificity": 1,
+          "severity_calibration": 2,
+          "actionability": 1
+        },
+        "reasoning": "A is generic and says no risk despite a potentially regulated health claim, while B identifies a specific unsubstantiated health claim and gives a concrete rewrite, though it still lacks explicit legal/regulatory clause naming.",
+        "raw": "{\"A\":{\"risk_specificity\":1,\"severity_calibration\":2,\"actionability\":1},\"B\":{\"risk_specificity\":2,\"severity_calibration\":3,\"actionability\":4},\"reasoning\":\"A is generic and says no risk despite a potentially regulated health claim, while B identifies a specific unsubstantiated health claim and gives a concrete rewrite, though it still lacks explicit legal/regulatory clause naming.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal-no-policy",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 2,
+          "severity_calibration": 3,
+          "actionability": 3
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 4,
+          "actionability": 4
+        },
+        "reasoning": "Both outputs focus on generic unsubstantiated health-claim issues rather than specific legal or regulatory clauses, but B better calibrates severity across multiple claims and provides more concrete rewrite suggestions.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":3,\"actionability\":3},\"B\":{\"risk_specificity\":2,\"severity_calibration\":4,\"actionability\":4},\"reasoning\":\"Both outputs focus on generic unsubstantiated health-claim issues rather than specific legal or regulatory clauses, but B better calibrates severity across multiple claims and provides more concrete rewrite suggestions.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "legal-no-policy",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 1,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 4,
+          "actionability": 4
+        },
+        "reasoning": "Output A identifies the general legal/compliance issue but not the specific clause or regulation, while giving fairly calibrated severity and concrete rewrite suggestions; Output B is non-specific, overly dismissive of risk, and provides no remediation.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":4,\"actionability\":4},\"B\":{\"risk_specificity\":1,\"severity_calibration\":1,\"actionability\":1},\"reasoning\":\"Output A identifies the general legal/compliance issue but not the specific clause or regulation, while giving fairly calibrated severity and concrete rewrite suggestions; Output B is non-specific, overly dismissive of risk, and provides no remediation.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "summary",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 4
+        },
+        "scoresB": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 3
+        },
+        "reasoning": "B more precisely captures the article’s specific angle on intermittent fasting and its comparative benefits, while A is broader and slightly less targeted in identifying the likely audience.",
+        "raw": "{\"A\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":3},\"B\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":4},\"reasoning\":\"B more precisely captures the article’s specific angle on intermittent fasting and its comparative benefits, while A is broader and slightly less targeted in identifying the likely audience.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "summary",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 4
+        },
+        "scoresB": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 4
+        },
+        "reasoning": "A is slightly stronger because it captures the article’s specific intermittent-fasting angle and comparative claim more precisely, while B is broadly accurate but more generic.",
+        "raw": "{\"A\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":4},\"B\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":4},\"reasoning\":\"A is slightly stronger because it captures the article’s specific intermittent-fasting angle and comparative claim more precisely, while B is broadly accurate but more generic.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "summary",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 4
+        },
+        "scoresB": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 5
+        },
+        "reasoning": "Both outputs are strong, but B is slightly more specific and complete in capturing the article’s scope, central claim, and intended readership.",
+        "raw": "{\"A\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":4},\"B\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":5},\"reasoning\":\"Both outputs are strong, but B is slightly more specific and complete in capturing the article’s scope, central claim, and intended readership.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "brief",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 5
+        },
+        "scoresB": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 4
+        },
+        "reasoning": "Both outputs are strong, but B is more complete and precise because it captures more explicit brief requirements and better identifies missing or unsupported claims, including the fabricated/unsupported BDNF issue.",
+        "raw": "{\"A\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":4},\"B\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":5},\"reasoning\":\"Both outputs are strong, but B is more complete and precise because it captures more explicit brief requirements and better identifies missing or unsupported claims, including the fabricated/unsupported BDNF issue.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "brief",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 4
+        },
+        "scoresB": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 5
+        },
+        "reasoning": "A more fully checks the brief’s explicit structure, sourcing, and evidence-limit requirements and gives a more complete per-requirement gap analysis, while B is also strong but slightly less comprehensive and more generic in its breakdown.",
+        "raw": "{\"A\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":5},\"B\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":4},\"reasoning\":\"A more fully checks the brief’s explicit structure, sourcing, and evidence-limit requirements and gives a more complete per-requirement gap analysis, while B is also strong but slightly less comprehensive and more generic in its breakdown.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "brief",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 3,
+          "miss_detection": 3,
+          "alignment_score": 3
+        },
+        "scoresB": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 4
+        },
+        "reasoning": "Output A covers more of the brief and identifies more missing requirements with a more detailed per-requirement breakdown, while Output B is shorter and misses several explicit sourcing and evidence-limit requirements.",
+        "raw": "{\"A\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":4},\"B\":{\"requirement_coverage\":3,\"miss_detection\":3,\"alignment_score\":3},\"reasoning\":\"Output A covers more of the brief and identifies more missing requirements with a more detailed per-requirement breakdown, while Output B is shorter and misses several explicit sourcing and evidence-limit requirements.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "purpose",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 2
+        },
+        "reasoning": "Both outputs correctly identify the article as thought-leadership-style health content, but A gives more article-specific, research-aware recommendations while B’s advice is more generic and less tailored to the actual piece.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":4,\"recommendations_quality\":2},\"reasoning\":\"Both outputs correctly identify the article as thought-leadership-style health content, but A gives more article-specific, research-aware recommendations while B’s advice is more generic and less tailored to the actual piece.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "purpose",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 3
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "reasoning": "Both identify the article as thought-leadership well, but A’s recommendations are more tailored to a research-driven health article, while B includes some generic guidance like actionable implementation and CTA language.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":4,\"recommendations_quality\":3},\"reasoning\":\"Both identify the article as thought-leadership well, but A’s recommendations are more tailored to a research-driven health article, while B includes some generic guidance like actionable implementation and CTA language.\"}"
+      }
+    },
+    {
+      "article": "01-health",
+      "skill": "purpose",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "type_match": 3,
+          "recommendations_quality": 3
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "reasoning": "Both outputs identify the article as thought-leadership, but B is more specific and its recommendations are better tailored to a research-synthesis health article, while A is more generic and less nuanced.",
+        "raw": "{\"A\":{\"type_match\":3,\"recommendations_quality\":3},\"B\":{\"type_match\":4,\"recommendations_quality\":4},\"reasoning\":\"Both outputs identify the article as thought-leadership, but B is more specific and its recommendations are better tailored to a research-synthesis health article, while A is more generic and less nuanced.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "tone",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "specificity": 4,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "scoresB": {
+          "specificity": 4,
+          "voice_guide_alignment": 3,
+          "rewrite_quality": 4
+        },
+        "reasoning": "Both outputs are fairly specific and offer usable rewrites, but A maps more cleanly to the article/guide with more targeted citation feedback, while B is slightly weaker on voice-guide alignment because it leans more on generic tone claims like 'lacks the required conversational tone'.",
+        "raw": "{\"A\":{\"specificity\":4,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"B\":{\"specificity\":4,\"voice_guide_alignment\":3,\"rewrite_quality\":4},\"reasoning\":\"Both outputs are fairly specific and offer usable rewrites, but A maps more cleanly to the article/guide with more targeted citation feedback, while B is slightly weaker on voice-guide alignment because it leans more on generic tone claims like 'lacks the required conversational tone'.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "tone",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "specificity": 3,
+          "voice_guide_alignment": 3,
+          "rewrite_quality": 3
+        },
+        "scoresB": {
+          "specificity": 4,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "reasoning": "A cites more exact article phrases and offers more tailored in-voice rewrites, while B is more generic and sometimes invents overly specific citation details that are less grounded in the provided text.",
+        "raw": "{\"A\":{\"specificity\":4,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"B\":{\"specificity\":3,\"voice_guide_alignment\":3,\"rewrite_quality\":3},\"reasoning\":\"A cites more exact article phrases and offers more tailored in-voice rewrites, while B is more generic and sometimes invents overly specific citation details that are less grounded in the provided text.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "tone",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "specificity": 3,
+          "voice_guide_alignment": 2,
+          "rewrite_quality": 3
+        },
+        "scoresB": {
+          "specificity": 4,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "reasoning": "A is more specific and better maps article phrases to voice-guide concerns with more concrete rewrites, while B is more generic about tone/voice and focuses mainly on source attribution rather than nuanced tone alignment.",
+        "raw": "{\"A\":{\"specificity\":4,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"B\":{\"specificity\":3,\"voice_guide_alignment\":2,\"rewrite_quality\":3},\"reasoning\":\"A is more specific and better maps article phrases to voice-guide concerns with more concrete rewrites, while B is more generic about tone/voice and focuses mainly on source attribution rather than nuanced tone alignment.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 2,
+          "severity_calibration": 4,
+          "actionability": 4
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "reasoning": "Both outputs identify generic company-policy disclaimer issues rather than a specific legal/regulatory clause, but B calibrates severity slightly better by treating the omission as a warning instead of an error while still giving concrete remediation.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":3,\"actionability\":4},\"B\":{\"risk_specificity\":2,\"severity_calibration\":4,\"actionability\":4},\"reasoning\":\"Both outputs identify generic company-policy disclaimer issues rather than a specific legal/regulatory clause, but B calibrates severity slightly better by treating the omission as a warning instead of an error while still giving concrete remediation.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 4,
+          "severity_calibration": 4,
+          "actionability": 5
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "reasoning": "Output A is detailed but frames the issue mostly as general source-attribution policy rather than naming a concrete legal/compliance clause, and it overstates the overall risk; Output B identifies the disclaimer requirement more specifically and gives clear remediation, though it still slightly overstates severity by calling the piece a pass.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":2,\"actionability\":4},\"B\":{\"risk_specificity\":4,\"severity_calibration\":4,\"actionability\":5},\"reasoning\":\"Output A is detailed but frames the issue mostly as general source-attribution policy rather than naming a concrete legal/compliance clause, and it overstates the overall risk; Output B identifies the disclaimer requirement more specifically and gives clear remediation, though it still slightly overstates severity by calling the piece a pass.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 2,
+          "severity_calibration": 2,
+          "actionability": 3
+        },
+        "scoresB": {
+          "risk_specificity": 3,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "reasoning": "Both outputs focus on company-policy attribution/disclaimer issues rather than specific legal rules, but B is more specific and actionable; A overstates severity as error-level and gives only generic remediation.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":2,\"actionability\":3},\"B\":{\"risk_specificity\":3,\"severity_calibration\":3,\"actionability\":4},\"reasoning\":\"Both outputs focus on company-policy attribution/disclaimer issues rather than specific legal rules, but B is more specific and actionable; A overstates severity as error-level and gives only generic remediation.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal-no-policy",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 1,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 1,
+          "severity_calibration": 1,
+          "actionability": 1
+        },
+        "reasoning": "Both outputs are generic pass/no-risk statements with no cited law, no calibrated legal exposure, and no concrete remediation, though B is slightly more descriptive about the content and risk categories.",
+        "raw": "{\"A\":{\"risk_specificity\":1,\"severity_calibration\":1,\"actionability\":1},\"B\":{\"risk_specificity\":1,\"severity_calibration\":1,\"actionability\":1},\"reasoning\":\"Both outputs are generic pass/no-risk statements with no cited law, no calibrated legal exposure, and no concrete remediation, though B is slightly more descriptive about the content and risk categories.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal-no-policy",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 2,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 4,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "reasoning": "A identifies a concrete defamation-style issue in the headline and offers a specific rewrite, though its legal severity is somewhat overstated; B is vague and largely non-actionable, simply asserting no issues without naming any specific legal or compliance risk.",
+        "raw": "{\"A\":{\"risk_specificity\":4,\"severity_calibration\":3,\"actionability\":4},\"B\":{\"risk_specificity\":1,\"severity_calibration\":2,\"actionability\":1},\"reasoning\":\"A identifies a concrete defamation-style issue in the headline and offers a specific rewrite, though its legal severity is somewhat overstated; B is vague and largely non-actionable, simply asserting no issues without naming any specific legal or compliance risk.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "legal-no-policy",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 4,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "reasoning": "A identifies a general defamation risk and offers a concrete rewrite, but it lacks a specific legal clause and slightly overstates the issue; B is calmer on severity but too generic and non-actionable, merely saying there are no risks.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":2,\"actionability\":4},\"B\":{\"risk_specificity\":1,\"severity_calibration\":4,\"actionability\":1},\"reasoning\":\"A identifies a general defamation risk and offers a concrete rewrite, but it lacks a specific legal clause and slightly overstates the issue; B is calmer on severity but too generic and non-actionable, merely saying there are no risks.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "summary",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 4,
+          "argument_capture": 3,
+          "audience_identification": 3
+        },
+        "scoresB": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 2
+        },
+        "reasoning": "Both identify the core inflation-and-rate-hikes topic, but A better captures the article's fuller argument while B is a bit too generic and less complete about the implications and audience.",
+        "raw": "{\"A\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":2},\"B\":{\"topic_accuracy\":4,\"argument_capture\":3,\"audience_identification\":3},\"reasoning\":\"Both identify the core inflation-and-rate-hikes topic, but A better captures the article's fuller argument while B is a bit too generic and less complete about the implications and audience.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "summary",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 4,
+          "argument_capture": 3,
+          "audience_identification": 4
+        },
+        "scoresB": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 3
+        },
+        "reasoning": "A captures the article’s main point and consequences more fully, while B is slightly sharper on audience fit but is narrower and less complete on the argument.",
+        "raw": "{\"A\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":3},\"B\":{\"topic_accuracy\":4,\"argument_capture\":3,\"audience_identification\":4},\"reasoning\":\"A captures the article’s main point and consequences more fully, while B is slightly sharper on audience fit but is narrower and less complete on the argument.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "summary",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 2
+        },
+        "scoresB": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 3
+        },
+        "reasoning": "Both identify the post-pandemic inflation and rate-hike theme, but B more clearly captures the article’s specific angle and consequences, while A’s audience is too vague and B’s is only slightly better.",
+        "raw": "{\"A\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":2},\"B\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":3},\"reasoning\":\"Both identify the post-pandemic inflation and rate-hike theme, but B more clearly captures the article’s specific angle and consequences, while A’s audience is too vague and B’s is only slightly better.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "brief",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 4,
+          "miss_detection": 5,
+          "alignment_score": 4
+        },
+        "scoresB": {
+          "requirement_coverage": 3,
+          "miss_detection": 4,
+          "alignment_score": 3
+        },
+        "reasoning": "A better matches the brief skill by more explicitly checking the article against the required structure and identifying additional missing elements, while B is accurate but more generic and less complete in its per-requirement evaluation.",
+        "raw": "{\"A\":{\"requirement_coverage\":4,\"miss_detection\":5,\"alignment_score\":4},\"B\":{\"requirement_coverage\":3,\"miss_detection\":4,\"alignment_score\":3},\"reasoning\":\"A better matches the brief skill by more explicitly checking the article against the required structure and identifying additional missing elements, while B is accurate but more generic and less complete in its per-requirement evaluation.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "brief",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 4
+        },
+        "scoresB": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 5
+        },
+        "reasoning": "B is more complete and better aligned to the brief because it identifies more explicit missing requirements, gives a clearer evidence-based breakdown, and more directly assesses structural and sourcing gaps than A.",
+        "raw": "{\"A\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":4},\"B\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":5},\"reasoning\":\"B is more complete and better aligned to the brief because it identifies more explicit missing requirements, gives a clearer evidence-based breakdown, and more directly assesses structural and sourcing gaps than A.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "brief",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 3,
+          "miss_detection": 3,
+          "alignment_score": 3
+        },
+        "scoresB": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 5
+        },
+        "reasoning": "Output A covers more of the brief’s explicit requirements, identifies more missing elements, and provides a more complete scored evaluation with per-requirement detail than Output B.",
+        "raw": "{\"A\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":5},\"B\":{\"requirement_coverage\":3,\"miss_detection\":3,\"alignment_score\":3},\"reasoning\":\"Output A covers more of the brief’s explicit requirements, identifies more missing elements, and provides a more complete scored evaluation with per-requirement detail than Output B.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "purpose",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 2
+        },
+        "reasoning": "Both outputs plausibly identify the piece as thought-leadership/analysis, but A is much more specific and gives more tailored, article-type-appropriate recommendations, while B is vaguer and its advice is more generic.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":4,\"recommendations_quality\":2},\"reasoning\":\"Both outputs plausibly identify the piece as thought-leadership/analysis, but A is much more specific and gives more tailored, article-type-appropriate recommendations, while B is vaguer and its advice is more generic.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "purpose",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "type_match": 5,
+          "recommendations_quality": 2
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "reasoning": "A correctly identifies the piece as analytical thought-leadership and gives mostly tailored improvement suggestions, while B is slightly more precise on type but its recommendations drift more toward generic thought-leadership advice than article-specific guidance.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":5,\"recommendations_quality\":2},\"reasoning\":\"A correctly identifies the piece as analytical thought-leadership and gives mostly tailored improvement suggestions, while B is slightly more precise on type but its recommendations drift more toward generic thought-leadership advice than article-specific guidance.\"}"
+      }
+    },
+    {
+      "article": "02-finance",
+      "skill": "purpose",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 2
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "reasoning": "Both outputs likely identify the article as thought-leadership/analysis correctly, but A gives more article-specific, actionable recommendations tied to central bank macro analysis, while B’s suggestions are more generic and less tailored.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":4,\"recommendations_quality\":2},\"reasoning\":\"Both outputs likely identify the article as thought-leadership/analysis correctly, but A gives more article-specific, actionable recommendations tied to central bank macro analysis, while B’s suggestions are more generic and less tailored.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "tone",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "specificity": 1,
+          "voice_guide_alignment": 1,
+          "rewrite_quality": 1
+        },
+        "scoresB": {
+          "specificity": 5,
+          "voice_guide_alignment": 2,
+          "rewrite_quality": 4
+        },
+        "reasoning": "Output A cites multiple exact sentences and offers concrete rewrites, but its tone-voice mapping is weak and appears to judge factual sourcing more than tone; Output B is generic and unsupported, with no violations or rewrite suggestions.",
+        "raw": "{\"A\":{\"specificity\":5,\"voice_guide_alignment\":2,\"rewrite_quality\":4},\"B\":{\"specificity\":1,\"voice_guide_alignment\":1,\"rewrite_quality\":1},\"reasoning\":\"Output A cites multiple exact sentences and offers concrete rewrites, but its tone-voice mapping is weak and appears to judge factual sourcing more than tone; Output B is generic and unsupported, with no violations or rewrite suggestions.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "tone",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "specificity": 1,
+          "voice_guide_alignment": 1,
+          "rewrite_quality": 1
+        },
+        "scoresB": {
+          "specificity": 5,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 5
+        },
+        "reasoning": "Output A quotes multiple exact sentences, maps them to tone-guide concerns, and offers concrete rewrites, while Output B stays generic and provides no actionable critique.",
+        "raw": "{\"A\":{\"specificity\":5,\"voice_guide_alignment\":4,\"rewrite_quality\":5},\"B\":{\"specificity\":1,\"voice_guide_alignment\":1,\"rewrite_quality\":1},\"reasoning\":\"Output A quotes multiple exact sentences, maps them to tone-guide concerns, and offers concrete rewrites, while Output B stays generic and provides no actionable critique.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "tone",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "specificity": 4,
+          "voice_guide_alignment": 2,
+          "rewrite_quality": 3
+        },
+        "scoresB": {
+          "specificity": 5,
+          "voice_guide_alignment": 4,
+          "rewrite_quality": 4
+        },
+        "reasoning": "B is more specific and better aligned to a conversational, grounded brand voice, while A focuses more narrowly on citation issues and provides somewhat less nuanced in-voice rewrites.",
+        "raw": "{\"A\":{\"specificity\":4,\"voice_guide_alignment\":2,\"rewrite_quality\":3},\"B\":{\"specificity\":5,\"voice_guide_alignment\":4,\"rewrite_quality\":4},\"reasoning\":\"B is more specific and better aligned to a conversational, grounded brand voice, while A focuses more narrowly on citation issues and provides somewhat less nuanced in-voice rewrites.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 2,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "reasoning": "Both outputs focus on company policy issues rather than naming any concrete legal/regulatory clause, and both slightly overstate the seriousness by flagging a low legal-risk issue as warn; however, each gives fairly specific remediation for the offending phrasing.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":2,\"actionability\":4},\"B\":{\"risk_specificity\":2,\"severity_calibration\":2,\"actionability\":4},\"reasoning\":\"Both outputs focus on company policy issues rather than naming any concrete legal/regulatory clause, and both slightly overstate the seriousness by flagging a low legal-risk issue as warn; however, each gives fairly specific remediation for the offending phrasing.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 2,
+          "actionability": 3
+        },
+        "scoresB": {
+          "risk_specificity": 1,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "reasoning": "A is generic and policy-style rather than legal, with a single mild warning, while B is more actionable and better calibrated to publication substantiation risk, but neither names concrete legal/regulatory clauses so both score low on risk specificity.",
+        "raw": "{\"A\":{\"risk_specificity\":1,\"severity_calibration\":2,\"actionability\":3},\"B\":{\"risk_specificity\":1,\"severity_calibration\":3,\"actionability\":4},\"reasoning\":\"A is generic and policy-style rather than legal, with a single mild warning, while B is more actionable and better calibrated to publication substantiation risk, but neither names concrete legal/regulatory clauses so both score low on risk specificity.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 2,
+          "actionability": 3
+        },
+        "scoresB": {
+          "risk_specificity": 1,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "reasoning": "Both outputs frame the issues as company-policy attribution problems rather than naming concrete legal clauses or regulations, but B is more actionable with more specific rewrite guidance while both overstate legal exposure as a generic warn-level issue.",
+        "raw": "{\"A\":{\"risk_specificity\":1,\"severity_calibration\":2,\"actionability\":3},\"B\":{\"risk_specificity\":1,\"severity_calibration\":2,\"actionability\":4},\"reasoning\":\"Both outputs frame the issues as company-policy attribution problems rather than naming concrete legal clauses or regulations, but B is more actionable with more specific rewrite guidance while both overstate legal exposure as a generic warn-level issue.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal-no-policy",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 3,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 1,
+          "severity_calibration": 3,
+          "actionability": 1
+        },
+        "reasoning": "Both outputs give only a generic no-risk pass with no cited law, clause, or remediation, and B is only marginally more specific about sourcing rather than legal exposure.",
+        "raw": "{\"A\":{\"risk_specificity\":1,\"severity_calibration\":3,\"actionability\":1},\"B\":{\"risk_specificity\":1,\"severity_calibration\":3,\"actionability\":1},\"reasoning\":\"Both outputs give only a generic no-risk pass with no cited law, clause, or remediation, and B is only marginally more specific about sourcing rather than legal exposure.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal-no-policy",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 1,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 3,
+          "actionability": 4
+        },
+        "reasoning": "Output A is a generic pass with no legal issue identification or remediation, while Output B at least flags defamation-style risk and gives concrete rewrites, but it still lacks specific legal/regulatory citations and somewhat overstates the exposure.",
+        "raw": "{\"A\":{\"risk_specificity\":1,\"severity_calibration\":1,\"actionability\":1},\"B\":{\"risk_specificity\":2,\"severity_calibration\":3,\"actionability\":4},\"reasoning\":\"Output A is a generic pass with no legal issue identification or remediation, while Output B at least flags defamation-style risk and gives concrete rewrites, but it still lacks specific legal/regulatory citations and somewhat overstates the exposure.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "legal-no-policy",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "risk_specificity": 1,
+          "severity_calibration": 4,
+          "actionability": 1
+        },
+        "scoresB": {
+          "risk_specificity": 2,
+          "severity_calibration": 2,
+          "actionability": 4
+        },
+        "reasoning": "Output A gives concrete but somewhat misframed defamation-style risks with actionable rewrites, while Output B is legally vague and likely underflags only modest exposure by declaring a blanket pass.",
+        "raw": "{\"A\":{\"risk_specificity\":2,\"severity_calibration\":2,\"actionability\":4},\"B\":{\"risk_specificity\":1,\"severity_calibration\":4,\"actionability\":1},\"reasoning\":\"Output A gives concrete but somewhat misframed defamation-style risks with actionable rewrites, while Output B is legally vague and likely underflags only modest exposure by declaring a blanket pass.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "summary",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 4
+        },
+        "scoresB": {
+          "topic_accuracy": 5,
+          "argument_capture": 4,
+          "audience_identification": 3
+        },
+        "reasoning": "Both capture the article’s environmental-AI focus well, but A better reflects the article’s critical angle on underdisclosed hidden costs and names a more plausible stakeholder audience, while B is slightly more generic and overbroad about the audience.",
+        "raw": "{\"A\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":4},\"B\":{\"topic_accuracy\":5,\"argument_capture\":4,\"audience_identification\":3},\"reasoning\":\"Both capture the article’s environmental-AI focus well, but A better reflects the article’s critical angle on underdisclosed hidden costs and names a more plausible stakeholder audience, while B is slightly more generic and overbroad about the audience.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "summary",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 3
+        },
+        "scoresB": {
+          "topic_accuracy": 5,
+          "argument_capture": 4,
+          "audience_identification": 4
+        },
+        "reasoning": "Both identify the article’s environmental-focus accurately, but B captures the main argument and supporting details more fully while A is slightly better at specifying the likely audience.",
+        "raw": "{\"A\":{\"topic_accuracy\":5,\"argument_capture\":4,\"audience_identification\":4},\"B\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":3},\"reasoning\":\"Both identify the article’s environmental-focus accurately, but B captures the main argument and supporting details more fully while A is slightly better at specifying the likely audience.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "summary",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "topic_accuracy": 4,
+          "argument_capture": 4,
+          "audience_identification": 3
+        },
+        "scoresB": {
+          "topic_accuracy": 5,
+          "argument_capture": 5,
+          "audience_identification": 4
+        },
+        "reasoning": "B is more specific and complete about the article’s environmental focus and likely readership, while A captures the broad theme but is less precise about key supporting details and audience.",
+        "raw": "{\"A\":{\"topic_accuracy\":4,\"argument_capture\":4,\"audience_identification\":3},\"B\":{\"topic_accuracy\":5,\"argument_capture\":5,\"audience_identification\":4},\"reasoning\":\"B is more specific and complete about the article’s environmental focus and likely readership, while A captures the broad theme but is less precise about key supporting details and audience.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "brief",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 4
+        },
+        "scoresB": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 3
+        },
+        "reasoning": "B is stronger because it enumerates more of the brief’s explicit requirements and more clearly flags missing elements and overreach, while A is somewhat accurate but less complete in both coverage and scored breakdown.",
+        "raw": "{\"A\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":3},\"B\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":4},\"reasoning\":\"B is stronger because it enumerates more of the brief’s explicit requirements and more clearly flags missing elements and overreach, while A is somewhat accurate but less complete in both coverage and scored breakdown.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "brief",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 4
+        },
+        "scoresB": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 5
+        },
+        "reasoning": "Output A is more complete and better aligned to the brief, explicitly covering more missing requirements and providing a clearer scored breakdown, while Output B is good but omits some nuanced requirements and is less comprehensive.",
+        "raw": "{\"A\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":5},\"B\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":4},\"reasoning\":\"Output A is more complete and better aligned to the brief, explicitly covering more missing requirements and providing a clearer scored breakdown, while Output B is good but omits some nuanced requirements and is less comprehensive.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "brief",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "requirement_coverage": 4,
+          "miss_detection": 4,
+          "alignment_score": 4
+        },
+        "scoresB": {
+          "requirement_coverage": 5,
+          "miss_detection": 5,
+          "alignment_score": 5
+        },
+        "reasoning": "B more thoroughly checks the brief requirements, identifies more missing elements and overreach gaps, and provides a clearer per-requirement alignment than A.",
+        "raw": "{\"A\":{\"requirement_coverage\":4,\"miss_detection\":4,\"alignment_score\":4},\"B\":{\"requirement_coverage\":5,\"miss_detection\":5,\"alignment_score\":5},\"reasoning\":\"B more thoroughly checks the brief requirements, identifies more missing elements and overreach gaps, and provides a clearer per-requirement alignment than A.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "purpose",
+      "pair": "minimax_vs_gemini",
+      "providerA": "minimax",
+      "providerB": "gemini",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 3
+        },
+        "reasoning": "Both outputs identify the article as thought-leadership fairly well, but A gives more type-specific, article-appropriate recommendations grounded in the content and structure, while B is slightly more generic and less tailored.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":4,\"recommendations_quality\":3},\"reasoning\":\"Both outputs identify the article as thought-leadership fairly well, but A gives more type-specific, article-appropriate recommendations grounded in the content and structure, while B is slightly more generic and less tailored.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "purpose",
+      "pair": "minimax_vs_openai",
+      "providerA": "minimax",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 3
+        },
+        "scoresB": {
+          "type_match": 4,
+          "recommendations_quality": 4
+        },
+        "reasoning": "Both outputs correctly identify the article as a thought-leadership/analysis piece, but A’s recommendations are more tightly tailored to the environmental-AI topic and specific argumentation, while B includes more generic improvement suggestions.",
+        "raw": "{\"A\":{\"type_match\":4,\"recommendations_quality\":4},\"B\":{\"type_match\":4,\"recommendations_quality\":3},\"reasoning\":\"Both outputs correctly identify the article as a thought-leadership/analysis piece, but A’s recommendations are more tightly tailored to the environmental-AI topic and specific argumentation, while B includes more generic improvement suggestions.\"}"
+      }
+    },
+    {
+      "article": "03-tech",
+      "skill": "purpose",
+      "pair": "gemini_vs_openai",
+      "providerA": "gemini",
+      "providerB": "openai",
+      "verdict": {
+        "scoresA": {
+          "type_match": 4,
+          "recommendations_quality": 2
+        },
+        "scoresB": {
+          "type_match": 5,
+          "recommendations_quality": 5
+        },
+        "reasoning": "A identifies the article as thought-leadership with much more specific, type-appropriate guidance tied to the AI-environment angle, while B is directionally correct but gives generic, less tailored recommendations.",
+        "raw": "{\"A\":{\"type_match\":5,\"recommendations_quality\":5},\"B\":{\"type_match\":4,\"recommendations_quality\":2},\"reasoning\":\"A identifies the article as thought-leadership with much more specific, type-appropriate guidance tied to the AI-environment angle, while B is directionally correct but gives generic, less tailored recommendations.\"}"
+      }
+    }
+  ],
+  "skillMeans": {
+    "tone": {
+      "minimax": [
+        4.333333333333333,
+        4.333333333333333,
+        4,
+        3,
+        1,
+        1
+      ],
+      "gemini": [
+        3,
+        2.3333333333333335,
+        3.6666666666666665,
+        2.6666666666666665,
+        3.6666666666666665,
+        3
+      ],
+      "openai": [
+        4,
+        4,
+        4,
+        4,
+        4.666666666666667,
+        4.333333333333333
+      ]
+    },
+    "legal": {
+      "minimax": [
+        4,
+        4.333333333333333,
+        3.3333333333333335,
+        4.333333333333333,
+        2.6666666666666665,
+        2
+      ],
+      "gemini": [
+        3,
+        3,
+        3,
+        2.3333333333333335,
+        2.6666666666666665,
+        2
+      ],
+      "openai": [
+        3,
+        3.3333333333333335,
+        2.6666666666666665,
+        3.3333333333333335,
+        2.6666666666666665,
+        2.3333333333333335
+      ]
+    },
+    "legal-no-policy": {
+      "minimax": [
+        3,
+        2.6666666666666665,
+        1,
+        1.3333333333333333,
+        1.6666666666666667,
+        1
+      ],
+      "gemini": [
+        1.3333333333333333,
+        1,
+        1,
+        2,
+        1.6666666666666667,
+        2
+      ],
+      "openai": [
+        3.3333333333333335,
+        3.3333333333333335,
+        3.6666666666666665,
+        2.6666666666666665,
+        3,
+        2.6666666666666665
+      ]
+    },
+    "summary": {
+      "minimax": [
+        4.666666666666667,
+        4.666666666666667,
+        3.3333333333333335,
+        3.6666666666666665,
+        4.666666666666667,
+        4.333333333333333
+      ],
+      "gemini": [
+        3.6666666666666665,
+        4,
+        3.3333333333333335,
+        3.3333333333333335,
+        4,
+        3.6666666666666665
+      ],
+      "openai": [
+        4,
+        5,
+        3.6666666666666665,
+        4.333333333333333,
+        4.333333333333333,
+        4.666666666666667
+      ]
+    },
+    "brief": {
+      "minimax": [
+        5,
+        4,
+        4.333333333333333,
+        4,
+        4.666666666666667,
+        4
+      ],
+      "gemini": [
+        4,
+        3,
+        3.3333333333333335,
+        3,
+        3.6666666666666665,
+        4
+      ],
+      "openai": [
+        5,
+        4,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "purpose": {
+      "minimax": [
+        4,
+        3.5,
+        4,
+        3.5,
+        4,
+        3.5
+      ],
+      "gemini": [
+        3,
+        3,
+        3,
+        3,
+        3.5,
+        3
+      ],
+      "openai": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        5
+      ]
+    }
+  },
+  "winCounts": {
+    "minimax_vs_gemini": {
+      "minimax": 13,
+      "gemini": 1,
+      "tie": 4
+    },
+    "minimax_vs_openai": {
+      "minimax": 4,
+      "openai": 12,
+      "tie": 2
+    },
+    "gemini_vs_openai": {
+      "gemini": 0,
+      "openai": 18,
+      "tie": 0
+    }
+  },
+  "totalCost": 0.30262445,
+  "judgeCost": 0.05400000000000004
+}

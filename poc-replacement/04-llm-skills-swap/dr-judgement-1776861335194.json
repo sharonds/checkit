@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-04-22T12:35:35.194Z",
+  "judge": "gpt-5.4-mini",
+  "drWordCount": 4184,
+  "drElapsedSec": 452.868,
+  "drCostUsd": 1.5,
+  "results": [
+    {
+      "opponent": "minimax",
+      "drScores": {
+        "risk_specificity": 5,
+        "severity_calibration": 3,
+        "actionability": 2
+      },
+      "opponentScores": {
+        "risk_specificity": 4,
+        "severity_calibration": 4,
+        "actionability": 5
+      },
+      "reasoning": "A names FTC/FDA and specific regulatory concepts but is more generic and somewhat overstates exposure, while B gives concrete policy-based fixes and specific phrasing changes, though it is slightly less law-specific and may overstate some issues as errors."
+    },
+    {
+      "opponent": "gemini",
+      "drScores": {
+        "risk_specificity": 2,
+        "severity_calibration": 2,
+        "actionability": 2
+      },
+      "opponentScores": {
+        "risk_specificity": 4,
+        "severity_calibration": 4,
+        "actionability": 5
+      },
+      "reasoning": "A directly ties issues to the company policy requirements and gives concrete fixes, while B is verbose and cites broad FTC/FDA frameworks but stays generic, overstates severity, and offers little specific remediation."
+    },
+    {
+      "opponent": "openai",
+      "drScores": {
+        "risk_specificity": 5,
+        "severity_calibration": 4,
+        "actionability": 2
+      },
+      "opponentScores": {
+        "risk_specificity": 3,
+        "severity_calibration": 3,
+        "actionability": 5
+      },
+      "reasoning": "A names FTC Act, FDA/FDCA, and disease-claim issues but is incomplete and less actionable; B is highly actionable with specific edits and disclaimer language, but it is less legally specific and slightly over/under-calibrated in severity."
+    }
+  ]
+}

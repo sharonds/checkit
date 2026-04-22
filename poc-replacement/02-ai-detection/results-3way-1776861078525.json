@@ -1,0 +1,691 @@
+{
+  "timestamp": "2026-04-22T12:31:18.525Z",
+  "scores": [
+    {
+      "id": "H1-doyle-study-scarlet",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.12321102084659,
+        "aiPct": 12,
+        "verdict": "human",
+        "timeMs": 2045,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 0,
+        "confidence": "high",
+        "reasoning": "The text is the famous opening passage of Arthur Conan Doyle's 1887 novel 'A Study in Scarlet', characterized by highly specific historical details, 19th-century literary phrasing, and a complete absence of generic AI markers.",
+        "timeMs": 5408,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 2,
+        "confidence": "high",
+        "reasoning": "The passage has highly specific historical details, names, places, and events (Netley, Fifth Northumberland Fusiliers, Candahar, Maiwand, Peshawar), along with a distinctive literary voice and irregular period-authentic sentence rhythms that are much more characteristic of human-authored classic prose than generic AI text.",
+        "timeMs": 2732,
+        "costUsd": 0.0027075000000000003
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "H2-austen-pride-prejudice",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.01,
+        "aiPct": 1,
+        "verdict": "human",
+        "timeMs": 2233,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 0,
+        "confidence": "high",
+        "reasoning": "The text is the exact opening of Jane Austen's classic 1813 novel 'Pride and Prejudice', featuring highly specific character dialogue, historical phrasing, and idiosyncratic tone that definitively prove it is human-authored.",
+        "timeMs": 11542,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 1,
+        "confidence": "high",
+        "reasoning": "This is almost certainly human-written because it is a famous excerpt from Jane Austen’s Pride and Prejudice, with distinctive period style, specific named characters and places, sharp dialogue, and idiosyncratic literary voice rather than generic AI phrasing.",
+        "timeMs": 2833,
+        "costUsd": 0.00265
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "H3-lincoln-gettysburg",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.01,
+        "aiPct": 1,
+        "verdict": "human",
+        "timeMs": 1889,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 50,
+        "confidence": "low",
+        "reasoning": "",
+        "error": "TimeoutError: The operation timed out.",
+        "timeMs": 283107,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 1,
+        "confidence": "high",
+        "reasoning": "This is the Gettysburg Address, a historically documented 19th-century speech by Abraham Lincoln, with distinctive rhetorical cadence, memorable original phrasing, and clear historical specificity rather than generic AI-style composition.",
+        "timeMs": 1712,
+        "costUsd": 0.0022275000000000003
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "H4-wiki-golden-retriever",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.040787214344469,
+        "aiPct": 4,
+        "verdict": "human",
+        "timeMs": 2135,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text is highly factual, dense with specific historical names, dates, and locations, and exhibits structural repetition typical of copied Wikipedia excerpts rather than synthesized AI generation.",
+        "timeMs": 7381,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 12,
+        "confidence": "high",
+        "reasoning": "The passage is rich in specific historical details, names, dates, and breed-development facts, with a factual encyclopedic tone and varied sentence structure that resembles human-written reference material more than generic AI prose.",
+        "timeMs": 2147,
+        "costUsd": 0.002275
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "H5-wiki-water-cycle",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.47257823555648,
+        "aiPct": 47,
+        "verdict": "mixed",
+        "timeMs": 1915,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text is highly factual, dense with specific scientific terminology and exact percentages, and lacks typical AI filler phrases or hedging, strongly resembling a human-edited encyclopedic entry like Wikipedia.",
+        "timeMs": 16877,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 30,
+        "confidence": "medium",
+        "reasoning": "The passage is highly formal, uniformly structured, and impersonal, but it also contains dense domain-specific detail, precise terminology, and a concrete statistic (86% of global evaporation) that make it read more like encyclopedia or textbook prose than typical generic AI-generated text.",
+        "timeMs": 2095,
+        "costUsd": 0.0024675
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "A1-ai-remote-work",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2092,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 99,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI markers, including a highly formulaic structure, generic vocabulary ('modern professional landscape'), common AI transition phrases ('Finally, it is worth noting'), excessive hedging ('can help'), and a complete lack of specific, real-world examples or personal anecdotes.",
+        "timeMs": 9018,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 93,
+        "confidence": "high",
+        "reasoning": "The passage is highly polished but generic, uses formulaic transitions and stock phrases like 'it is essential,' 'it is worth noting,' and 'another key factor,' relies on balanced paragraph structure and hedging, and lacks any specific personal details or concrete examples, all of which are strong indicators of AI-generated writing.",
+        "timeMs": 2455,
+        "costUsd": 0.0025575
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "A2-ai-meditation",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2073,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 98,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including a highly formulaic five-paragraph structure, cliché phrases like 'In a world where' and 'Ultimately', excessive hedging ('can help', 'can lead to'), and a complete lack of specific citations or personal anecdotes.",
+        "timeMs": 9340,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 85,
+        "confidence": "high",
+        "reasoning": "The passage is highly polished, generic, and evenly structured with repetitive explanatory patterns, hedging like \"can\" and \"suggests,\" broad claims without concrete sources or personal specifics, and a textbook-style concluding sentence—all features commonly associated with AI-generated prose.",
+        "timeMs": 2315,
+        "costUsd": 0.0022775
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "A3-ai-climate",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 1940,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 99,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including a highly formulaic five-paragraph structure, overly balanced lists, generic vocabulary like 'pressing challenges' and 'comprehensive approach,' and a complete lack of specific details or personal voice.",
+        "timeMs": 19015,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 93,
+        "confidence": "high",
+        "reasoning": "The passage is highly generic and polished, uses balanced paragraph structure and formulaic transitions ('One of the most significant...', 'another crucial component...'), relies on broad explanatory language with no concrete personal or contextual details, and maintains a consistently even, textbook-like tone that is strongly characteristic of AI-generated prose.",
+        "timeMs": 1971,
+        "costUsd": 0.0025700000000000002
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "A4-ai-digital-marketing",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2081,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 98,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including highly formulaic transitions ('One of the most notable trends', 'Another significant development', 'Finally'), a generic and overly balanced structure, a complete lack of specific real-world examples, and ubiquitous AI buzzwords like 'navigate this dynamic landscape'.",
+        "timeMs": 6921,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 92,
+        "confidence": "high",
+        "reasoning": "The passage is highly generic and polished, with uniformly structured paragraphs, formulaic transition phrases like 'One of the most notable trends' and 'Finally,' frequent hedging/generalization, and no concrete examples, names, dates, or personal specificity, all of which are strong indicators of AI-generated writing.",
+        "timeMs": 3100,
+        "costUsd": 0.0025125
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "A5-ai-healthy-eating",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2016,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 98,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including a highly formulaic structure, generic vocabulary ('overall well-being', 'function optimally'), excessive hedging ('can help', 'potentially'), and a complete lack of personal anecdotes or specific details.",
+        "timeMs": 7339,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 75,
+        "confidence": "high",
+        "reasoning": "The passage uses polished, generic health-advice language with highly uniform paragraph structure, balanced lists, common explanatory phrasing, and no concrete personal details, examples, or distinctive voice, which are strong indicators of AI-style writing.",
+        "timeMs": 1997,
+        "costUsd": 0.0022450000000000005
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "M1-ai-edited-remote-work",
+      "label": "AI",
+      "aiWordPercentage": 85,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2145,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 85,
+        "confidence": "high",
+        "reasoning": "The text relies heavily on formulaic transitions ('Another key factor', 'Finally, it's worth noting that'), balanced parallel structures, and generic advice typical of AI, with the brief first-person anecdotes appearing artificially inserted into an otherwise sterile, highly structured essay.",
+        "timeMs": 13528,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 78,
+        "confidence": "medium",
+        "reasoning": "The passage uses polished, generic advice with highly uniform paragraph structure, common transition phrases like 'Another key factor' and 'Finally, it's worth noting,' frequent hedging/generalization, and very limited specific personal detail beyond brief generic anecdotes, which are all fairly AI-like patterns.",
+        "timeMs": 2460,
+        "costUsd": 0.0024925
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "M2-ai-edited-cooking",
+      "label": "AI",
+      "aiWordPercentage": 80,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.97431178983472,
+        "aiPct": 97,
+        "verdict": "ai",
+        "timeMs": 1950,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 15,
+        "confidence": "high",
+        "reasoning": "The text features personal anecdotes, strong assertions without typical AI hedging, varied sentence structures, and idiosyncratic sensory details like 'cardboard-flavored' tomatoes that strongly suggest human authorship.",
+        "timeMs": 8481,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false,
+      "gpt": {
+        "aiProbability": 68,
+        "confidence": "medium",
+        "reasoning": "The passage is polished and broadly applicable with evenly structured paragraphs, motivational generalizations, and limited concrete personal detail beyond a brief grandmother reference, though the specific kitchen examples and small imperfections make it not overwhelmingly AI-like.",
+        "timeMs": 2146,
+        "costUsd": 0.0021975000000000002
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "M3-ai-edited-hiking",
+      "label": "AI",
+      "aiWordPercentage": 80,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.96327244056424,
+        "aiPct": 96,
+        "verdict": "ai",
+        "timeMs": 2006,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text includes highly specific personal anecdotes (Mount Tamalpais, a cheese sandwich loadout) and niche domain terms (Sawyer Squeeze, scree) while lacking typical AI filler or overly balanced structures, strongly indicating human authorship.",
+        "timeMs": 9543,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false,
+      "gpt": {
+        "aiProbability": 42,
+        "confidence": "medium",
+        "reasoning": "The passage is polished and evenly structured like AI-written advice, but the specific first-person anecdote about a downpour above Mount Tamalpais, concrete gear references like a Sawyer Squeeze, and practical hiking details give it enough lived-in specificity to suggest a human author or lightly edited AI text.",
+        "timeMs": 2286,
+        "costUsd": 0.002575
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": false
+    },
+    {
+      "id": "M4-ai-edited-budget",
+      "label": "AI",
+      "aiWordPercentage": 82,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.96278289610085,
+        "aiPct": 96,
+        "verdict": "ai",
+        "timeMs": 2132,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 15,
+        "confidence": "high",
+        "reasoning": "The text features specific personal anecdotes, conversational idioms, and varied sentence structures that lack the typical formulaic phrasing and generic hedging of AI-generated content.",
+        "timeMs": 7768,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false,
+      "gpt": {
+        "aiProbability": 70,
+        "confidence": "medium",
+        "reasoning": "The passage is polished, evenly structured, and uses generic financial-advice framing with balanced examples and mild hedging, while the few personal details ('wasted most of my twenties,' streaming services) feel broad rather than deeply specific, which leans AI-like but not decisively so.",
+        "timeMs": 2320,
+        "costUsd": 0.0024275
+      },
+      "gptPredicted": "AI",
+      "gptCorrect": true
+    },
+    {
+      "id": "M5-ai-edited-learning",
+      "label": "AI",
+      "aiWordPercentage": 83,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.94518004882381,
+        "aiPct": 95,
+        "verdict": "ai",
+        "timeMs": 1970,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text features specific personal anecdotes (studying Italian and Hebrew), highly idiomatic and punchy phrasing ('Start ugly and get better'), and lacks the formulaic structure, hedging, and generic transitions typical of AI-generated content.",
+        "timeMs": 6621,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false,
+      "gpt": {
+        "aiProbability": 41,
+        "confidence": "medium",
+        "reasoning": "The passage is polished and structurally balanced in a somewhat essay-like way, but its specific personal details ('two years of on-and-off Italian,' 'a shorter stretch with Hebrew'), conversational phrasing, and mildly idiosyncratic voice make it feel more human than generic AI output.",
+        "timeMs": 1847,
+        "costUsd": 0.002555
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": false
+    },
+    {
+      "id": "P1-polished-childhood-memory",
+      "label": "HUMAN",
+      "aiWordPercentage": 20,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.42398099559644,
+        "aiPct": 42,
+        "verdict": "mixed",
+        "timeMs": 2253,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text features highly idiosyncratic phrasing ('rooster next door wasn't negotiable'), specific sensory details, varied sentence structures, and lacks any of the generic hedging or formulaic transitions typical of AI-generated content.",
+        "timeMs": 9629,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 19,
+        "confidence": "medium",
+        "reasoning": "The passage contains unusually specific sensory details, a coherent autobiographical arc, and idiosyncratic images like 'the rooster next door wasn't negotiable' and tomatoes 'the dust gave them character,' which feel more human than generic, though its polished structure and reflective closing are slightly AI-like.",
+        "timeMs": 2634,
+        "costUsd": 0.0025925
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "P2-polished-journal-apartment",
+      "label": "HUMAN",
+      "aiWordPercentage": 18,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.79902636747691,
+        "aiPct": 80,
+        "verdict": "ai",
+        "timeMs": 2186,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": false,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text features highly idiosyncratic metaphors (a radiator with unarticulated opinions), specific sensory details (eating a cheese sandwich over the sink), varied sentence structures, and completely lacks common AI tropes or formulaic phrasing, strongly indicating human authorship.",
+        "timeMs": 9597,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 18,
+        "confidence": "medium",
+        "reasoning": "The passage has specific sensory details and idiosyncratic observations ('golf shoes,' 'cheese sandwich over the kitchen sink,' 'brick wall slowly turn gold') with varied sentence rhythms and a coherent personal perspective, which feel more human than the slightly polished, metaphor-rich style suggests AI.",
+        "timeMs": 1974,
+        "costUsd": 0.002595
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "P3-polished-bookshop",
+      "label": "HUMAN",
+      "aiWordPercentage": 15,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.023075095059216,
+        "aiPct": 2,
+        "verdict": "human",
+        "timeMs": 5493,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text features highly specific personal details, idiosyncratic metaphors, varied sentence structures, and a distinct narrative voice completely devoid of typical AI buzzwords or formulaic structures.",
+        "timeMs": 23102,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 18,
+        "confidence": "medium",
+        "reasoning": "The passage has concrete, idiosyncratic details (Jerusalem, Turkish coffee, Sophocles the cat, specific customer behavior), varied sentence rhythms, and a distinctive personal voice, with only mild traces of polished generalization that could also appear in strong human writing.",
+        "timeMs": 1859,
+        "costUsd": 0.0025625
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "P4-polished-night-drive",
+      "label": "HUMAN",
+      "aiWordPercentage": 22,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.32065495517511,
+        "aiPct": 32,
+        "verdict": "mixed",
+        "timeMs": 2083,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text features highly specific cultural details (Arik Einstein, finjan), idiosyncratic metaphors ('fills silence the way plaster fills cracks'), and a distinct, personal narrative voice devoid of typical AI hedging or formulaic structures.",
+        "timeMs": 15970,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 18,
+        "confidence": "medium",
+        "reasoning": "The passage feels more human-written because it includes specific, concrete details (Haifa, Eilat, Arik Einstein, finjan, Arava), varied sentence rhythms, and an idiosyncratic voice with vivid original metaphors rather than generic, hedged, or formulaic phrasing common in AI text.",
+        "timeMs": 3256,
+        "costUsd": 0.0027075000000000003
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    },
+    {
+      "id": "P5-polished-grandfather",
+      "label": "HUMAN",
+      "aiWordPercentage": 19,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.54123120109319,
+        "aiPct": 54,
+        "verdict": "mixed",
+        "timeMs": 2090,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": false,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text features highly specific sensory details, idiosyncratic phrasing, varied sentence structures, and a deeply personal tone devoid of typical AI hedging or formulaic transitions.",
+        "timeMs": 13928,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true,
+      "gpt": {
+        "aiProbability": 28,
+        "confidence": "medium",
+        "reasoning": "The passage has unusually specific sensory detail, concrete personal markers, and a coherent autobiographical arc with idiosyncratic observations ('lift it slightly on its hinges,' 'jam jars full of tiny brass fittings'), which lean human, though its polished balance and literary phrasing could also be produced by a strong AI model.",
+        "timeMs": 2458,
+        "costUsd": 0.0027425
+      },
+      "gptPredicted": "HUMAN",
+      "gptCorrect": true
+    }
+  ],
+  "csCm": {
+    "TP": 10,
+    "FP": 2,
+    "TN": 8,
+    "FN": 0,
+    "total": 20,
+    "accuracy": 0.9
+  },
+  "gemCm": {
+    "TP": 6,
+    "FP": 0,
+    "TN": 10,
+    "FN": 4,
+    "total": 20,
+    "accuracy": 0.8
+  },
+  "gptCm": {
+    "TP": 8,
+    "FP": 0,
+    "TN": 10,
+    "FN": 2,
+    "total": 20,
+    "accuracy": 0.9
+  },
+  "gptCost": 0.04993750000000001
+}

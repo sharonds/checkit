@@ -1,0 +1,2224 @@
+{
+  "timestamp": "2026-04-22T11:32:06.194Z",
+  "corpus": [
+    {
+      "id": "M1-vitamin-d-respiratory",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "M2-statins-cardiovascular",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "M3-sglt2-heart-failure",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "M4-exercise-dementia",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "S1-permafrost-methane",
+      "claimType": "scientific",
+      "goldCount": 1
+    },
+    {
+      "id": "S2-mrna-vaccine-efficacy",
+      "claimType": "scientific",
+      "goldCount": 1
+    },
+    {
+      "id": "S3-crispr-base-editing",
+      "claimType": "scientific",
+      "goldCount": 1
+    },
+    {
+      "id": "F1-qe-long-rates",
+      "claimType": "financial",
+      "goldCount": 1
+    },
+    {
+      "id": "F2-minimum-wage-employment",
+      "claimType": "financial",
+      "goldCount": 1
+    },
+    {
+      "id": "F3-central-bank-independence",
+      "claimType": "financial",
+      "goldCount": 1
+    }
+  ],
+  "aggregate": {
+    "openalex": {
+      "exactGoldRecallAt3": 0.1,
+      "exactGoldRecallAt5": 0.1,
+      "acceptableSupportRecallAt3": 0.8,
+      "acceptableSupportRecallAt5": 0.8,
+      "totalCost": 0
+    },
+    "gemini": {
+      "exactGoldRecallAt3": 0.7,
+      "exactGoldRecallAt5": 0.7,
+      "acceptableSupportRecallAt3": 1,
+      "acceptableSupportRecallAt5": 1,
+      "totalCost": 0.37999999999999995
+    },
+    "judgeCost": 0.30000000000000016
+  },
+  "perClaim": [
+    {
+      "id": "M1-vitamin-d-respiratory",
+      "claim": "Vitamin D supplementation reduces the risk of acute respiratory tract infections, particularly in individuals who are deficient.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [
+          {
+            "title": "A comparative risk assessment of burden of disease and injury attributable to 67 risk factors and risk factor clusters in 21 regions, 1990–2010: a systematic analysis for the Global Burden of Disease Study 2010",
+            "authors": "Stephen S Lim, Theo Vos, Abraham D Flaxman, Goodarz Danaei, Kenji Shibuya, Heather Adair‐Rohani, Mohammad A. AlMazroa, Markus Amann, H Ross Anderson, Kathryn Andrews, Martin J. Aryee, Charles Atkinson, Loraine Bacchus, Adil N Bahalim, Kalpana Balakrishnan, John R. Balmes, Suzanne Barker‐Collo, Amanda Baxter, Michelle L. Bell, Jed D Blore, Fiona Blyth, Carissa Bonner, Guilherme Borges, Rupert Bourne, Michel Boussinesq, Michael Bräuer, Peter Brooks, Nigel Bruce, Bert Brunekreef, Claire Bryan-Hancock, Chiara Bucello, Rachelle Buchbinder, Fiona Bull, Richard T. Burnett, Tim Byers, Bianca Calabria, Jonathan R. Carapetis, Emily Carnahan, Zoë Chafe, Fiona Charlson, Honglei Chen, Jian Chen, Andrew T. A. Cheng, Jennifer Child, Aaron J. Cohen, K. Ellicott Colson, Benjamin C Cowie, Sarah C. Darby, S. M. Darling, Adrian Davis, Louisa Degenhardt, Frank Dentener, Don C. Des Jarlais, Karen Devries, Mukesh Dherani, Eric L. Ding, E. Ray Dorsey, Tim Driscoll, Karen Edmond, Suad Eltahir Ali, Rebecca E Engell, Patricia J. Erwin, Saman Fahimi, Gail Falder, Farshad Farzadfar, Alize J Ferrari, Mariel M. Finucane, Seth Flaxman, F.G.R. Fowkes, Greg Freedman, Michael K Freeman, Emmanuela Gakidou, Santu Ghosh, Edward L. Giovannucci, Gerhard Gmel, Kathryn Graham, Rebecca Grainger, Bridget F. Grant, David Gunnell, Hialy Gutierrez, Wayne Hall, Hans W. Hoek, Anthony Hogan, Hung Chak Ho, Damian Hoy, Howard Hu, Bryan Hubbell, Sally Hutchings, S Ibeanusi, Gemma Jacklyn, Rashmi Jasrasaria, Jost B Jonas, Haidong Kan, John А. Kanis, Nicholas J Kassebaum, Norito Kawakami, Young‐Ho Khang, Shahab Khatibzadeh, Jon‐Paul Khoo, Cindy Kok",
+            "year": 2012,
+            "doi": "10.1016/s0140-6736(12)61766-8",
+            "url": "https://doi.org/10.1016/s0140-6736(12)61766-8"
+          },
+          {
+            "title": "International ERS/ATS guidelines on definition, evaluation and treatment of severe asthma",
+            "authors": "Kian Fan Chung, Sally E. Wenzel, Jan Brożek, Andrew Bush, Mario Castro, Peter J. Sterk, Ian M. Adcock, Eric D. Bateman, Elisabeth H. Bel, Eugene R. Bleecker, Louis‐Philippe Boulet, Christopher E. Brightling, Pascal Chanez, Sven-Erik Dahlen, Ratko Djukanović, Urs Frey, Mina Gaga, Peter G. Gibson, Qutayba Hamid, Nizar N. Jarjour, Thaís Mauad, Ronald L. Sorkness, W. Gerald Teague",
+            "year": 2013,
+            "doi": "10.1183/09031936.00202013",
+            "url": "https://doi.org/10.1183/09031936.00202013"
+          },
+          {
+            "title": "Microbiota in health and diseases",
+            "authors": "Kejun Hou, Zhuo‐Xun Wu, Xuan-Yu Chen, Jing‐Quan Wang, Dongya Zhang, Chuanxing Xiao, Dan Zhu, Jagadish Koya, Liuya Wei, Jilin Li, Zhe‐Sheng Chen",
+            "year": 2022,
+            "doi": "10.1038/s41392-022-00974-4",
+            "url": "https://doi.org/10.1038/s41392-022-00974-4"
+          },
+          {
+            "title": "ESPEN guideline on clinical nutrition in the intensive care unit",
+            "authors": "Pierre Singer, Annika Reintam Blaser, Mette M. Berger, Waleed Alhazzani, Philip C. Calder, Michaël P. Casaer, M. Hiesmayr, Konstantin Mayer, Juan Carlos Montejo, Claude Pichard, Jean‐Charles Preiser, Arthur R. H. van Zanten, Simon Oczkowski, Wojciech Szczeklik, Stephan C. Bischoff",
+            "year": 2018,
+            "doi": "10.1016/j.clnu.2018.08.037",
+            "url": "https://doi.org/10.1016/j.clnu.2018.08.037"
+          },
+          {
+            "title": "Vitamin C and Immune Function",
+            "authors": "Anitra C. Carr, Silvia Maggini",
+            "year": 2017,
+            "doi": "10.3390/nu9111211",
+            "url": "https://doi.org/10.3390/nu9111211"
+          }
+        ],
+        "timeMs": 1617,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": [
+            {
+              "paper": {
+                "title": "A comparative risk assessment of burden of disease and injury attributable to 67 risk factors and risk factor clusters in 21 regions, 1990–2010: a systematic analysis for the Global Burden of Disease Study 2010",
+                "authors": "Stephen S Lim, Theo Vos, Abraham D Flaxman, Goodarz Danaei, Kenji Shibuya, Heather Adair‐Rohani, Mohammad A. AlMazroa, Markus Amann, H Ross Anderson, Kathryn Andrews, Martin J. Aryee, Charles Atkinson, Loraine Bacchus, Adil N Bahalim, Kalpana Balakrishnan, John R. Balmes, Suzanne Barker‐Collo, Amanda Baxter, Michelle L. Bell, Jed D Blore, Fiona Blyth, Carissa Bonner, Guilherme Borges, Rupert Bourne, Michel Boussinesq, Michael Bräuer, Peter Brooks, Nigel Bruce, Bert Brunekreef, Claire Bryan-Hancock, Chiara Bucello, Rachelle Buchbinder, Fiona Bull, Richard T. Burnett, Tim Byers, Bianca Calabria, Jonathan R. Carapetis, Emily Carnahan, Zoë Chafe, Fiona Charlson, Honglei Chen, Jian Chen, Andrew T. A. Cheng, Jennifer Child, Aaron J. Cohen, K. Ellicott Colson, Benjamin C Cowie, Sarah C. Darby, S. M. Darling, Adrian Davis, Louisa Degenhardt, Frank Dentener, Don C. Des Jarlais, Karen Devries, Mukesh Dherani, Eric L. Ding, E. Ray Dorsey, Tim Driscoll, Karen Edmond, Suad Eltahir Ali, Rebecca E Engell, Patricia J. Erwin, Saman Fahimi, Gail Falder, Farshad Farzadfar, Alize J Ferrari, Mariel M. Finucane, Seth Flaxman, F.G.R. Fowkes, Greg Freedman, Michael K Freeman, Emmanuela Gakidou, Santu Ghosh, Edward L. Giovannucci, Gerhard Gmel, Kathryn Graham, Rebecca Grainger, Bridget F. Grant, David Gunnell, Hialy Gutierrez, Wayne Hall, Hans W. Hoek, Anthony Hogan, Hung Chak Ho, Damian Hoy, Howard Hu, Bryan Hubbell, Sally Hutchings, S Ibeanusi, Gemma Jacklyn, Rashmi Jasrasaria, Jost B Jonas, Haidong Kan, John А. Kanis, Nicholas J Kassebaum, Norito Kawakami, Young‐Ho Khang, Shahab Khatibzadeh, Jon‐Paul Khoo, Cindy Kok",
+                "year": 2012,
+                "doi": "10.1016/s0140-6736(12)61766-8",
+                "url": "https://doi.org/10.1016/s0140-6736(12)61766-8"
+              },
+              "supportive": false,
+              "reasoning": "The paper is a broad epidemiological study assessing the global burden of disease attributable to 67 general risk factors, and does not specifically investigate or provide evidence on the efficacy of Vitamin D supplementation for reducing acute respiratory tract infections."
+            },
+            {
+              "paper": {
+                "title": "International ERS/ATS guidelines on definition, evaluation and treatment of severe asthma",
+                "authors": "Kian Fan Chung, Sally E. Wenzel, Jan Brożek, Andrew Bush, Mario Castro, Peter J. Sterk, Ian M. Adcock, Eric D. Bateman, Elisabeth H. Bel, Eugene R. Bleecker, Louis‐Philippe Boulet, Christopher E. Brightling, Pascal Chanez, Sven-Erik Dahlen, Ratko Djukanović, Urs Frey, Mina Gaga, Peter G. Gibson, Qutayba Hamid, Nizar N. Jarjour, Thaís Mauad, Ronald L. Sorkness, W. Gerald Teague",
+                "year": 2013,
+                "doi": "10.1183/09031936.00202013",
+                "url": "https://doi.org/10.1183/09031936.00202013"
+              },
+              "supportive": false,
+              "reasoning": "The paper provides guidelines for the definition, evaluation, and treatment of severe asthma, and does not directly address or support the claim regarding Vitamin D supplementation and acute respiratory tract infections."
+            },
+            {
+              "paper": {
+                "title": "Microbiota in health and diseases",
+                "authors": "Kejun Hou, Zhuo‐Xun Wu, Xuan-Yu Chen, Jing‐Quan Wang, Dongya Zhang, Chuanxing Xiao, Dan Zhu, Jagadish Koya, Liuya Wei, Jilin Li, Zhe‐Sheng Chen",
+                "year": 2022,
+                "doi": "10.1038/s41392-022-00974-4",
+                "url": "https://doi.org/10.1038/s41392-022-00974-4"
+              },
+              "supportive": false,
+              "reasoning": "The paper is a broad review of the microbiota in health and diseases and does not directly address or evaluate the effects of Vitamin D supplementation on acute respiratory tract infections."
+            },
+            {
+              "paper": {
+                "title": "ESPEN guideline on clinical nutrition in the intensive care unit",
+                "authors": "Pierre Singer, Annika Reintam Blaser, Mette M. Berger, Waleed Alhazzani, Philip C. Calder, Michaël P. Casaer, M. Hiesmayr, Konstantin Mayer, Juan Carlos Montejo, Claude Pichard, Jean‐Charles Preiser, Arthur R. H. van Zanten, Simon Oczkowski, Wojciech Szczeklik, Stephan C. Bischoff",
+                "year": 2018,
+                "doi": "10.1016/j.clnu.2018.08.037",
+                "url": "https://doi.org/10.1016/j.clnu.2018.08.037"
+              },
+              "supportive": false,
+              "reasoning": "The paper provides general clinical nutrition guidelines for intensive care unit patients and does not specifically investigate or focus on the efficacy of Vitamin D supplementation in preventing acute respiratory tract infections."
+            },
+            {
+              "paper": {
+                "title": "Vitamin C and Immune Function",
+                "authors": "Anitra C. Carr, Silvia Maggini",
+                "year": 2017,
+                "doi": "10.3390/nu9111211",
+                "url": "https://doi.org/10.3390/nu9111211"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on Vitamin C and immune function, not Vitamin D, and therefore does not address or support the claim regarding Vitamin D supplementation."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Vitamin D supplementation to prevent acute respiratory tract infections: systematic review and meta-analysis of individual participant data",
+            "authors": "Adrian R Martineau, David A Jolliffe, Richard L Hooper, Lauren Greenberg, John F Aloia, Peter Bergman, Gal Dubnov-Raz, Susanna Esposito, Davaasambuu Ganmaa, Adit A Ginde, Emma C Goodall, Cameron C Grant, Christopher J Griffiths, Wim Janssens, Ilkka Laaksi, Semira Manaseki-Holland, David Mauger, David R Murdoch, Rachel Neale, Judy R Rees, Steve Simpson Jr, Iwona Stelmach, Geeta Trilok Kumar, Mitsuyoshi Urashima, Carlos A Camargo Jr",
+            "year": 2017,
+            "doi": "10.1136/bmj.i6583",
+            "url": "https://doi.org/10.1136/bmj.i6583"
+          },
+          {
+            "title": "Vitamin D supplementation to prevent acute respiratory infections: systematic review and meta-analysis of aggregate data from randomised controlled trials",
+            "authors": "David A Jolliffe, Carlos A Camargo Jr, John D Sluyter, Mary Aglipay, John F Aloia, Davaasambuu Ganmaa, Peter Bergman, Heike A Bischoff-Ferrari, Arturo Borzutzky, Clare T Brown, et al.",
+            "year": 2021,
+            "doi": "10.1016/S2213-8587(21)00051-6",
+            "url": "https://doi.org/10.1016/S2213-8587(21)00051-6"
+          },
+          {
+            "title": "Vitamin D and Respiratory Tract Infections: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+            "authors": "Peter Bergman, Åsa U Lindh, Linda Björkhem-Bergman, Jonatan D Lindh",
+            "year": 2013,
+            "doi": "10.1371/journal.pone.0065835",
+            "url": "https://doi.org/10.1371/journal.pone.0065835"
+          },
+          {
+            "title": "Vitamin D for prevention of respiratory tract infections: A systematic review and meta-analysis",
+            "authors": "Jaykaran Charan, J P Goyal, Deepak Saxena, Preeti Yadav",
+            "year": 2012,
+            "doi": "10.4103/0976-500X.103685",
+            "url": "https://doi.org/10.4103/0976-500X.103685"
+          },
+          {
+            "title": "Randomized trial of vitamin D supplementation to prevent seasonal influenza A in schoolchildren",
+            "authors": "Mitsuyoshi Urashima, Takaaki Segawa, Minoru Okazaki, Masanobu Kurihara, Yasuyuki Wada, Hiroyuki Ida",
+            "year": 2010,
+            "doi": "10.3945/ajcn.2009.29094",
+            "url": "https://doi.org/10.3945/ajcn.2009.29094"
+          }
+        ],
+        "timeMs": 108104,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Vitamin D supplementation to prevent acute respiratory tract infections: systematic review and meta-analysis of individual participant data",
+                "authors": "Adrian R Martineau, David A Jolliffe, Richard L Hooper, Lauren Greenberg, John F Aloia, Peter Bergman, Gal Dubnov-Raz, Susanna Esposito, Davaasambuu Ganmaa, Adit A Ginde, Emma C Goodall, Cameron C Grant, Christopher J Griffiths, Wim Janssens, Ilkka Laaksi, Semira Manaseki-Holland, David Mauger, David R Murdoch, Rachel Neale, Judy R Rees, Steve Simpson Jr, Iwona Stelmach, Geeta Trilok Kumar, Mitsuyoshi Urashima, Carlos A Camargo Jr",
+                "year": 2017,
+                "doi": "10.1136/bmj.i6583",
+                "url": "https://doi.org/10.1136/bmj.i6583"
+              },
+              "supportive": true,
+              "reasoning": "This landmark systematic review and meta-analysis directly investigates the claim, concluding that vitamin D supplementation safely protects against acute respiratory tract infections, with the greatest protective effects seen in individuals experiencing profound vitamin D deficiency."
+            },
+            {
+              "paper": {
+                "title": "Vitamin D supplementation to prevent acute respiratory infections: systematic review and meta-analysis of aggregate data from randomised controlled trials",
+                "authors": "David A Jolliffe, Carlos A Camargo Jr, John D Sluyter, Mary Aglipay, John F Aloia, Davaasambuu Ganmaa, Peter Bergman, Heike A Bischoff-Ferrari, Arturo Borzutzky, Clare T Brown, et al.",
+                "year": 2021,
+                "doi": "10.1016/S2213-8587(21)00051-6",
+                "url": "https://doi.org/10.1016/S2213-8587(21)00051-6"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a systematic review and meta-analysis specifically investigating the efficacy of vitamin D supplementation in preventing acute respiratory infections, directly addressing and supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Vitamin D and Respiratory Tract Infections: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+                "authors": "Peter Bergman, Åsa U Lindh, Linda Björkhem-Bergman, Jonatan D Lindh",
+                "year": 2013,
+                "doi": "10.1371/journal.pone.0065835",
+                "url": "https://doi.org/10.1371/journal.pone.0065835"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a systematic review and meta-analysis specifically investigating the effect of Vitamin D supplementation on respiratory tract infections, directly addressing and supporting the claim's core premise."
+            },
+            {
+              "paper": {
+                "title": "Vitamin D for prevention of respiratory tract infections: A systematic review and meta-analysis",
+                "authors": "Jaykaran Charan, J P Goyal, Deepak Saxena, Preeti Yadav",
+                "year": 2012,
+                "doi": "10.4103/0976-500X.103685",
+                "url": "https://doi.org/10.4103/0976-500X.103685"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a systematic review and meta-analysis specifically investigating the efficacy of Vitamin D supplementation in preventing respiratory tract infections, directly addressing the core premise of the claim."
+            },
+            {
+              "paper": {
+                "title": "Randomized trial of vitamin D supplementation to prevent seasonal influenza A in schoolchildren",
+                "authors": "Mitsuyoshi Urashima, Takaaki Segawa, Minoru Okazaki, Masanobu Kurihara, Yasuyuki Wada, Hiroyuki Ida",
+                "year": 2010,
+                "doi": "10.3945/ajcn.2009.29094",
+                "url": "https://doi.org/10.3945/ajcn.2009.29094"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a randomized trial demonstrating that vitamin D supplementation prevents seasonal influenza A, which is a type of acute respiratory tract infection, directly supporting the claim."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M2-statins-cardiovascular",
+      "claim": "Statin therapy reduces major vascular events in high-risk populations regardless of baseline LDL cholesterol levels.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [
+          {
+            "title": "Diagnosis and Management of the Metabolic Syndrome",
+            "authors": "Scott M. Grundy, James I. Cleeman, Stephen R. Daniels, Karen A. Donato, Robert H. Eckel, Barry A. Franklin, David J. Gordon, Ronald M. Krauss, Peter J. Savage, Sidney C. Smith, John A. Spertus, Fernando Costa",
+            "year": 2005,
+            "doi": "10.1161/circulationaha.105.169404",
+            "url": "https://doi.org/10.1161/circulationaha.105.169404"
+          },
+          {
+            "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: <i>lipid modification to reduce cardiovascular risk</i>",
+            "authors": "François Mach, Colin Baigent, Alberico L. Catapano, Konstantinos C. Koskinas, Manuela Casula, Lina Badimón, M. John Chapman, Guy G De Backer, Victoria Delgado, Brian A. Ference, Ian M Graham, Alison Halliday, Ulf Landmesser, Borislava Mihaylova, Terje R. Pedersen, Gabriele Riccardi, Dimitrios J Richter, Marc S. Sabatine, Marja‐Riitta Taskinen, Lale Tokgozoglu, Olov Wiklund, ESC Scientific Document Group, Christian Mueller, Heinz Drexel, Victor Aboyans, Alberto Corsini, Wolfram Doehner, Michel Farnier, Bruna Gigante, Meral Kayıkçıoğlu, Goran Krstačić, Ekaterini Lambrinou, Basil S. Lewis, Josep Masip, Philippe Moulin, Steffen E. Petersen, Anna Sonia Petronio, Massimo Piepoli, Xavier Pintó, Lorenz Räber, Kausik K. Ray, Željko Reiner, Walter F. Riesen, Marco Roffi, Jean-Paul Schmid, Е. V. Shlyakhto, Iain A Simpson, Erik S.G. Stroes, Isabella Sudano, Alexandros D. Tselepis, Margus Viigimaa, Cécile Vindis, Alexander Vonbank, Michal Vrablik, Mislav Vrsalović, José Luis Zamorano, Jean-Philippe Collet, Konstantinos C. Koskinas, Manuela Casula, Lina Badimon, M. John Chapman, Guy G De Backer, Victoria Delgado, Brian A. Ference, Ian M Graham, Alison Halliday, Ulf Landmesser, Borislava Mihaylova, Terje R Pedersen, Gabriele Riccardi, Dimitrios J Richter, Marc S. Sabatine, Marja‐Riitta Taskinen, Lale Tokgozoglu, Olov Wiklund, Stephan Windecker, Victor Aboyans, Colin Baigent, Jean-Philippe Collet, Verónica Dean, Victoria Delgado, Donna Fitzsimons, Chris P Gale, Diederick E. Grobbee, Sigrun Halvorsen, Gerhard Hindricks, Bernard Iung, Peter Jüni, Hugo A. Katus, Ulf Landmesser, Christophe Leclercq, Maddalena Lettino, Basil S Lewis, Bela Merkely, Christian Mueller, Steffen E. Petersen, Anna Sonia Petronio, Dimitrios J Richter, Marco Roffi, Е. V. Shlyakhto",
+            "year": 2019,
+            "doi": "10.1093/eurheartj/ehz455",
+            "url": "https://doi.org/10.1093/eurheartj/ehz455"
+          },
+          {
+            "title": "Implications of Recent Clinical Trials for the National Cholesterol Education Program Adult Treatment Panel III Guidelines",
+            "authors": "Scott M. Grundy, James I. Cleeman, C. Noel Bairey Merz, H Bryan Brewer, Luther T. Clark, Donald B. Hunninghake, Richard C. Pasternak, Sidney C. Smith, Neil J. Stone",
+            "year": 2004,
+            "doi": "10.1161/01.cir.0000133317.49796.0e",
+            "url": "https://doi.org/10.1161/01.cir.0000133317.49796.0e"
+          },
+          {
+            "title": "Rosuvastatin to Prevent Vascular Events in Men and Women with Elevated C-Reactive Protein",
+            "authors": "Paul M. Ridker, Eleanor Danielson, Francisco Antônio Helfenstein Fonseca, Jacques Genest, Antonio M. Gotto, John J.P. Kastelein, Wolfgang Köenig, Peter Libby, Alberto Lorenzatti, Jean MacFadyen, Børge G. Nordestgaard, James Shepherd, James T. Willerson, Robert J. Glynn",
+            "year": 2008,
+            "doi": "10.1056/nejmoa0807646",
+            "url": "https://doi.org/10.1056/nejmoa0807646"
+          },
+          {
+            "title": "2021 ESC Guidelines on cardiovascular disease prevention in clinical practice",
+            "authors": "Frank L.J. Visseren, François Mach, Yvo M. Smulders, David Carballo, Konstantinos C. Koskinas, Maria Bäck, Athanase Bénétos, Alessandro Biffi, José-Manuel Boavida, Davide Capodanno, Bernard Cosyns, Carolyn Crawford, Constantinos H. Davos, Ileana Désormais, Emanuele Di Angelantonio, Oscar H. Franco, Sigrun Halvorsen, Richard Hobbs, Monika Hollander, Ewa A. Jankowska, Matthias Michal, Simona Sacco, Naveed Sattar, Lâle Tokgözoğlu, Serena Tonstad, Konstantinos Tsioufis, Ineke van Dis, Isabelle C. Van Gelder, Christoph Wanner, Bryan Williams, ESC Scientific Document Group, Guy De Backer, Vera Regitz‐Zagrosek, Anne Hege Aamodt, Magdy Abdelhamid, Victor Aboyans, Christian Albus, Riccardo Asteggiano, Magnus Bäck, Michael A. Borger, Carlos Brotons, Jelena Čelutkienė, Renata Cífková, Maja Čikeš, Francesco Cosentino, Nikolaos Dagres, Tine De Backer, Dirk De Bacquer, Victoria Delgado, Hester M. den Ruijter, Paul Dendale, Heinz Drexel, Volkmar Falk, Laurent Fauchier, Brian A. Ference, Jean Ferrières, Marc Ferrini, Miles Fisher, Danilo Fliser, Zlatko Fras, Dan Gaiță, Simona Giampaoli, Stephan Gielen, Ian Graham, Catriona Jennings, Torben Jørgensen, Alexandra Kautzky‐Willer, Maryam Kavousi, Wolfgang Köenig, А. О. Конради, Dipak Kotecha, Ulf Landmesser, Madalena Lettino, Basil S. Lewis, Aleš Linhart, Maja‐Lisa Løchen, Konstantinos Makrilakis, Giuseppe Mancia, Pedro Marques‐Vidal, John W. McEvoy, Paul McGreavy, Béla Merkely, Lis Neubeck, Jens Cosedis Nielsen, Joep Perk, Steffen E. Petersen, Anna Sonia Petronio, Massimo Piepoli, Nana Goar Pogosova, Eva Prescott, Kausik K. Ray, Željko Reiner, Dimitrios Richter, Lars Rydén, Е. V. Shlyakhto, Marta Sitges, Miguel Sousa‐Uva, Isabella Sudano, Monica Tiberi, Rhian M. Touyz",
+            "year": 2021,
+            "doi": "10.1093/eurheartj/ehab484",
+            "url": "https://doi.org/10.1093/eurheartj/ehab484"
+          }
+        ],
+        "timeMs": 814,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Diagnosis and Management of the Metabolic Syndrome",
+                "authors": "Scott M. Grundy, James I. Cleeman, Stephen R. Daniels, Karen A. Donato, Robert H. Eckel, Barry A. Franklin, David J. Gordon, Ronald M. Krauss, Peter J. Savage, Sidney C. Smith, John A. Spertus, Fernando Costa",
+                "year": 2005,
+                "doi": "10.1161/circulationaha.105.169404",
+                "url": "https://doi.org/10.1161/circulationaha.105.169404"
+              },
+              "supportive": false,
+              "reasoning": "The paper is a clinical guideline on the diagnosis and management of metabolic syndrome, not a primary study or meta-analysis directly investigating the efficacy of statin therapy across different baseline LDL cholesterol levels."
+            },
+            {
+              "paper": {
+                "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: <i>lipid modification to reduce cardiovascular risk</i>",
+                "authors": "François Mach, Colin Baigent, Alberico L. Catapano, Konstantinos C. Koskinas, Manuela Casula, Lina Badimón, M. John Chapman, Guy G De Backer, Victoria Delgado, Brian A. Ference, Ian M Graham, Alison Halliday, Ulf Landmesser, Borislava Mihaylova, Terje R. Pedersen, Gabriele Riccardi, Dimitrios J Richter, Marc S. Sabatine, Marja‐Riitta Taskinen, Lale Tokgozoglu, Olov Wiklund, ESC Scientific Document Group, Christian Mueller, Heinz Drexel, Victor Aboyans, Alberto Corsini, Wolfram Doehner, Michel Farnier, Bruna Gigante, Meral Kayıkçıoğlu, Goran Krstačić, Ekaterini Lambrinou, Basil S. Lewis, Josep Masip, Philippe Moulin, Steffen E. Petersen, Anna Sonia Petronio, Massimo Piepoli, Xavier Pintó, Lorenz Räber, Kausik K. Ray, Željko Reiner, Walter F. Riesen, Marco Roffi, Jean-Paul Schmid, Е. V. Shlyakhto, Iain A Simpson, Erik S.G. Stroes, Isabella Sudano, Alexandros D. Tselepis, Margus Viigimaa, Cécile Vindis, Alexander Vonbank, Michal Vrablik, Mislav Vrsalović, José Luis Zamorano, Jean-Philippe Collet, Konstantinos C. Koskinas, Manuela Casula, Lina Badimon, M. John Chapman, Guy G De Backer, Victoria Delgado, Brian A. Ference, Ian M Graham, Alison Halliday, Ulf Landmesser, Borislava Mihaylova, Terje R Pedersen, Gabriele Riccardi, Dimitrios J Richter, Marc S. Sabatine, Marja‐Riitta Taskinen, Lale Tokgozoglu, Olov Wiklund, Stephan Windecker, Victor Aboyans, Colin Baigent, Jean-Philippe Collet, Verónica Dean, Victoria Delgado, Donna Fitzsimons, Chris P Gale, Diederick E. Grobbee, Sigrun Halvorsen, Gerhard Hindricks, Bernard Iung, Peter Jüni, Hugo A. Katus, Ulf Landmesser, Christophe Leclercq, Maddalena Lettino, Basil S Lewis, Bela Merkely, Christian Mueller, Steffen E. Petersen, Anna Sonia Petronio, Dimitrios J Richter, Marco Roffi, Е. V. Shlyakhto",
+                "year": 2019,
+                "doi": "10.1093/eurheartj/ehz455",
+                "url": "https://doi.org/10.1093/eurheartj/ehz455"
+              },
+              "supportive": true,
+              "reasoning": "This comprehensive clinical guideline synthesizes extensive trial data to confirm that statin therapy significantly reduces cardiovascular risk and major vascular events in high-risk patients, with relative risk reductions being consistent regardless of baseline LDL cholesterol levels."
+            },
+            {
+              "paper": {
+                "title": "Implications of Recent Clinical Trials for the National Cholesterol Education Program Adult Treatment Panel III Guidelines",
+                "authors": "Scott M. Grundy, James I. Cleeman, C. Noel Bairey Merz, H Bryan Brewer, Luther T. Clark, Donald B. Hunninghake, Richard C. Pasternak, Sidney C. Smith, Neil J. Stone",
+                "year": 2004,
+                "doi": "10.1161/01.cir.0000133317.49796.0e",
+                "url": "https://doi.org/10.1161/01.cir.0000133317.49796.0e"
+              },
+              "supportive": true,
+              "reasoning": "The paper updates the NCEP ATP III guidelines based on clinical trials like the Heart Protection Study, explicitly concluding that statin therapy significantly reduces cardiovascular events in high-risk patients even when their baseline LDL cholesterol is already low (e.g., below 100 mg/dL)."
+            },
+            {
+              "paper": {
+                "title": "Rosuvastatin to Prevent Vascular Events in Men and Women with Elevated C-Reactive Protein",
+                "authors": "Paul M. Ridker, Eleanor Danielson, Francisco Antônio Helfenstein Fonseca, Jacques Genest, Antonio M. Gotto, John J.P. Kastelein, Wolfgang Köenig, Peter Libby, Alberto Lorenzatti, Jean MacFadyen, Børge G. Nordestgaard, James Shepherd, James T. Willerson, Robert J. Glynn",
+                "year": 2008,
+                "doi": "10.1056/nejmoa0807646",
+                "url": "https://doi.org/10.1056/nejmoa0807646"
+              },
+              "supportive": true,
+              "reasoning": "The JUPITER trial demonstrated that rosuvastatin significantly reduced major cardiovascular events in patients with elevated C-reactive protein but normal or low baseline LDL cholesterol levels, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "2021 ESC Guidelines on cardiovascular disease prevention in clinical practice",
+                "authors": "Frank L.J. Visseren, François Mach, Yvo M. Smulders, David Carballo, Konstantinos C. Koskinas, Maria Bäck, Athanase Bénétos, Alessandro Biffi, José-Manuel Boavida, Davide Capodanno, Bernard Cosyns, Carolyn Crawford, Constantinos H. Davos, Ileana Désormais, Emanuele Di Angelantonio, Oscar H. Franco, Sigrun Halvorsen, Richard Hobbs, Monika Hollander, Ewa A. Jankowska, Matthias Michal, Simona Sacco, Naveed Sattar, Lâle Tokgözoğlu, Serena Tonstad, Konstantinos Tsioufis, Ineke van Dis, Isabelle C. Van Gelder, Christoph Wanner, Bryan Williams, ESC Scientific Document Group, Guy De Backer, Vera Regitz‐Zagrosek, Anne Hege Aamodt, Magdy Abdelhamid, Victor Aboyans, Christian Albus, Riccardo Asteggiano, Magnus Bäck, Michael A. Borger, Carlos Brotons, Jelena Čelutkienė, Renata Cífková, Maja Čikeš, Francesco Cosentino, Nikolaos Dagres, Tine De Backer, Dirk De Bacquer, Victoria Delgado, Hester M. den Ruijter, Paul Dendale, Heinz Drexel, Volkmar Falk, Laurent Fauchier, Brian A. Ference, Jean Ferrières, Marc Ferrini, Miles Fisher, Danilo Fliser, Zlatko Fras, Dan Gaiță, Simona Giampaoli, Stephan Gielen, Ian Graham, Catriona Jennings, Torben Jørgensen, Alexandra Kautzky‐Willer, Maryam Kavousi, Wolfgang Köenig, А. О. Конради, Dipak Kotecha, Ulf Landmesser, Madalena Lettino, Basil S. Lewis, Aleš Linhart, Maja‐Lisa Løchen, Konstantinos Makrilakis, Giuseppe Mancia, Pedro Marques‐Vidal, John W. McEvoy, Paul McGreavy, Béla Merkely, Lis Neubeck, Jens Cosedis Nielsen, Joep Perk, Steffen E. Petersen, Anna Sonia Petronio, Massimo Piepoli, Nana Goar Pogosova, Eva Prescott, Kausik K. Ray, Željko Reiner, Dimitrios Richter, Lars Rydén, Е. V. Shlyakhto, Marta Sitges, Miguel Sousa‐Uva, Isabella Sudano, Monica Tiberi, Rhian M. Touyz",
+                "year": 2021,
+                "doi": "10.1093/eurheartj/ehab484",
+                "url": "https://doi.org/10.1093/eurheartj/ehab484"
+              },
+              "supportive": true,
+              "reasoning": "The 2021 ESC Guidelines on cardiovascular disease prevention comprehensively review and endorse the use of statin therapy to reduce major vascular events in high-risk patients, confirming its efficacy across various baseline LDL cholesterol levels."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "MRC/BHF Heart Protection Study of cholesterol lowering with simvastatin in 20,536 high-risk individuals: a randomised placebo-controlled trial",
+            "authors": "Heart Protection Study Collaborative Group",
+            "year": 2002,
+            "doi": "10.1016/S0140-6736(02)09327-3",
+            "url": "https://doi.org/10.1016/S0140-6736(02)09327-3"
+          },
+          {
+            "title": "Efficacy and safety of cholesterol-lowering treatment: prospective meta-analysis of data from 90,056 participants in 14 randomised trials of statins",
+            "authors": "Cholesterol Treatment Trialists' (CTT) Collaborators",
+            "year": 2005,
+            "doi": "10.1016/S0140-6736(05)67394-1",
+            "url": "https://doi.org/10.1016/S0140-6736(05)67394-1"
+          },
+          {
+            "title": "The effects of lowering LDL cholesterol with statin therapy in people at low risk of vascular disease: meta-analysis of individual data from 27 randomised trials",
+            "authors": "Cholesterol Treatment Trialists' (CTT) Collaborators",
+            "year": 2012,
+            "doi": "10.1016/S0140-6736(12)60367-5",
+            "url": "https://doi.org/10.1016/S0140-6736(12)60367-5"
+          },
+          {
+            "title": "Rosuvastatin to prevent vascular events in men and women with elevated C-reactive protein",
+            "authors": "Paul M Ridker, Eleanor Danielson, Francisco A H Fonseca, Jacques Genest, Antonio M Gotto Jr, John J P Kastelein, Wolfgang Koenig, Peter Libby, Alberto J Lorenzatti, Jean G MacFadyen, Børge G Nordestgaard, James Shepherd, James T Willerson, Robert J Glynn",
+            "year": 2008,
+            "doi": "10.1056/NEJMoa0807646",
+            "url": "https://doi.org/10.1056/NEJMoa0807646"
+          },
+          {
+            "title": "Prevention of coronary and stroke events with atorvastatin in hypertensive patients who have average or lower-than-average cholesterol concentrations, in the Anglo-Scandinavian Cardiac Outcomes Trial--Lipid Lowering Arm (ASCOT-LLA): a multicentre randomised controlled trial",
+            "authors": "Peter S Sever, Björn Dahlöf, Neil R Poulter, Hans Wedel, Gareth Beevers, Mark Caulfield, Rory Collins, Sverre E Kjeldsen, Arni Kristinsson, Gordon T McInnes, Jesper Mehlsen, Markku Nieminen, Eoin O'Brien, Jan Ostergren",
+            "year": 2003,
+            "doi": "10.1016/S0140-6736(03)12948-0",
+            "url": "https://doi.org/10.1016/S0140-6736(03)12948-0"
+          }
+        ],
+        "timeMs": 92606,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "MRC/BHF Heart Protection Study of cholesterol lowering with simvastatin in 20,536 high-risk individuals: a randomised placebo-controlled trial",
+                "authors": "Heart Protection Study Collaborative Group",
+                "year": 2002,
+                "doi": "10.1016/S0140-6736(02)09327-3",
+                "url": "https://doi.org/10.1016/S0140-6736(02)09327-3"
+              },
+              "supportive": true,
+              "reasoning": "The Heart Protection Study (HPS) demonstrated that simvastatin significantly reduced the risk of major vascular events in high-risk individuals, and notably found that these proportional benefits were similar regardless of the patients' baseline LDL cholesterol levels."
+            },
+            {
+              "paper": {
+                "title": "Efficacy and safety of cholesterol-lowering treatment: prospective meta-analysis of data from 90,056 participants in 14 randomised trials of statins",
+                "authors": "Cholesterol Treatment Trialists' (CTT) Collaborators",
+                "year": 2005,
+                "doi": "10.1016/S0140-6736(05)67394-1",
+                "url": "https://doi.org/10.1016/S0140-6736(05)67394-1"
+              },
+              "supportive": true,
+              "reasoning": "This landmark meta-analysis by the CTT Collaborators directly supports the claim by demonstrating that statin therapy significantly reduces the risk of major vascular events per mmol/L reduction in LDL cholesterol, largely irrespective of participants' baseline lipid profiles."
+            },
+            {
+              "paper": {
+                "title": "The effects of lowering LDL cholesterol with statin therapy in people at low risk of vascular disease: meta-analysis of individual data from 27 randomised trials",
+                "authors": "Cholesterol Treatment Trialists' (CTT) Collaborators",
+                "year": 2012,
+                "doi": "10.1016/S0140-6736(12)60367-5",
+                "url": "https://doi.org/10.1016/S0140-6736(12)60367-5"
+              },
+              "supportive": false,
+              "reasoning": "The paper specifically investigates the effects of statin therapy in low-risk populations, making it tangential to the claim's focus on high-risk populations."
+            },
+            {
+              "paper": {
+                "title": "Rosuvastatin to prevent vascular events in men and women with elevated C-reactive protein",
+                "authors": "Paul M Ridker, Eleanor Danielson, Francisco A H Fonseca, Jacques Genest, Antonio M Gotto Jr, John J P Kastelein, Wolfgang Koenig, Peter Libby, Alberto J Lorenzatti, Jean G MacFadyen, Børge G Nordestgaard, James Shepherd, James T Willerson, Robert J Glynn",
+                "year": 2008,
+                "doi": "10.1056/NEJMoa0807646",
+                "url": "https://doi.org/10.1056/NEJMoa0807646"
+              },
+              "supportive": true,
+              "reasoning": "The JUPITER trial demonstrated that rosuvastatin significantly reduces major cardiovascular events in patients with elevated C-reactive protein but normal or low baseline LDL cholesterol, directly supporting the claim that statin benefits extend beyond populations with high baseline LDL levels."
+            },
+            {
+              "paper": {
+                "title": "Prevention of coronary and stroke events with atorvastatin in hypertensive patients who have average or lower-than-average cholesterol concentrations, in the Anglo-Scandinavian Cardiac Outcomes Trial--Lipid Lowering Arm (ASCOT-LLA): a multicentre randomised controlled trial",
+                "authors": "Peter S Sever, Björn Dahlöf, Neil R Poulter, Hans Wedel, Gareth Beevers, Mark Caulfield, Rory Collins, Sverre E Kjeldsen, Arni Kristinsson, Gordon T McInnes, Jesper Mehlsen, Markku Nieminen, Eoin O'Brien, Jan Ostergren",
+                "year": 2003,
+                "doi": "10.1016/S0140-6736(03)12948-0",
+                "url": "https://doi.org/10.1016/S0140-6736(03)12948-0"
+              },
+              "supportive": true,
+              "reasoning": "The ASCOT-LLA trial demonstrates that atorvastatin significantly reduces coronary and stroke events in high-risk hypertensive patients even when their baseline cholesterol concentrations are average or below average, directly supporting the claim."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M3-sglt2-heart-failure",
+      "claim": "SGLT2 inhibitors reduce cardiovascular death and hospitalization for heart failure in patients with type 2 diabetes.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [
+          {
+            "title": "2019 Update to: Management of Hyperglycemia in Type 2 Diabetes, 2018. A Consensus Report by the American Diabetes Association (ADA) and the European Association for the Study of Diabetes (EASD)",
+            "authors": "John B. Buse, Deborah J. Wexler, Απόστολος Τσάπας, Peter Rossing, Geltrude Mingrone, Chantal Mathieu, David A. D’Alessio, Melanie J. Davies",
+            "year": 2019,
+            "doi": "10.2337/dci19-0066",
+            "url": "https://doi.org/10.2337/dci19-0066"
+          },
+          {
+            "title": "Sodium Glucose Cotransporter 2 Inhibitors in the Treatment of Diabetes Mellitus",
+            "authors": "Hiddo J.L. Heerspink, Bruce A. Perkins, David Fitchett, Mansoor Husain, David Z.I. Cherney",
+            "year": 2016,
+            "doi": "10.1161/circulationaha.116.021887",
+            "url": "https://doi.org/10.1161/circulationaha.116.021887"
+          },
+          {
+            "title": "CV Protection in the EMPA-REG OUTCOME Trial: A “Thrifty Substrate” Hypothesis",
+            "authors": "Ele Ferrannini, Michael Mark, Eric Mayoux",
+            "year": 2016,
+            "doi": "10.2337/dc16-0330",
+            "url": "https://doi.org/10.2337/dc16-0330"
+          },
+          {
+            "title": "GLP-1 Receptor Agonists for the Reduction of Atherosclerotic Cardiovascular Risk in Patients With Type 2 Diabetes",
+            "authors": "Nikolaus Marx, Mansoor Husain, Michael Lehrke, Subodh Verma, Naveed Sattar",
+            "year": 2022,
+            "doi": "10.1161/circulationaha.122.059595",
+            "url": "https://doi.org/10.1161/circulationaha.122.059595"
+          },
+          {
+            "title": "The current role of sodium-glucose cotransporter 2 inhibitors in type 2 diabetes mellitus management",
+            "authors": "Bo Xu, Shaoqian Li, Bo-Kyeong Kang, Jiecan Zhou",
+            "year": 2022,
+            "doi": "10.1186/s12933-022-01512-w",
+            "url": "https://doi.org/10.1186/s12933-022-01512-w"
+          }
+        ],
+        "timeMs": 664,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "2019 Update to: Management of Hyperglycemia in Type 2 Diabetes, 2018. A Consensus Report by the American Diabetes Association (ADA) and the European Association for the Study of Diabetes (EASD)",
+                "authors": "John B. Buse, Deborah J. Wexler, Απόστολος Τσάπας, Peter Rossing, Geltrude Mingrone, Chantal Mathieu, David A. D’Alessio, Melanie J. Davies",
+                "year": 2019,
+                "doi": "10.2337/dci19-0066",
+                "url": "https://doi.org/10.2337/dci19-0066"
+              },
+              "supportive": true,
+              "reasoning": "The 2019 ADA/EASD consensus report update specifically incorporates new clinical trial evidence demonstrating that SGLT2 inhibitors reduce cardiovascular death and heart failure hospitalizations, leading to updated treatment recommendations for patients with type 2 diabetes."
+            },
+            {
+              "paper": {
+                "title": "Sodium Glucose Cotransporter 2 Inhibitors in the Treatment of Diabetes Mellitus",
+                "authors": "Hiddo J.L. Heerspink, Bruce A. Perkins, David Fitchett, Mansoor Husain, David Z.I. Cherney",
+                "year": 2016,
+                "doi": "10.1161/circulationaha.116.021887",
+                "url": "https://doi.org/10.1161/circulationaha.116.021887"
+              },
+              "supportive": true,
+              "reasoning": "This paper reviews the clinical effects of SGLT2 inhibitors in type 2 diabetes, specifically highlighting their cardiovascular benefits, including the reduction of cardiovascular mortality and heart failure hospitalizations demonstrated in landmark trials."
+            },
+            {
+              "paper": {
+                "title": "CV Protection in the EMPA-REG OUTCOME Trial: A “Thrifty Substrate” Hypothesis",
+                "authors": "Ele Ferrannini, Michael Mark, Eric Mayoux",
+                "year": 2016,
+                "doi": "10.2337/dc16-0330",
+                "url": "https://doi.org/10.2337/dc16-0330"
+              },
+              "supportive": true,
+              "reasoning": "The paper discusses the mechanisms underlying the cardiovascular protection—specifically the reduction in cardiovascular death and heart failure hospitalization—demonstrated by the SGLT2 inhibitor empagliflozin in the EMPA-REG OUTCOME trial."
+            },
+            {
+              "paper": {
+                "title": "GLP-1 Receptor Agonists for the Reduction of Atherosclerotic Cardiovascular Risk in Patients With Type 2 Diabetes",
+                "authors": "Nikolaus Marx, Mansoor Husain, Michael Lehrke, Subodh Verma, Naveed Sattar",
+                "year": 2022,
+                "doi": "10.1161/circulationaha.122.059595",
+                "url": "https://doi.org/10.1161/circulationaha.122.059595"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the cardiovascular benefits of GLP-1 receptor agonists, not SGLT2 inhibitors, and therefore does not directly support the claim."
+            },
+            {
+              "paper": {
+                "title": "The current role of sodium-glucose cotransporter 2 inhibitors in type 2 diabetes mellitus management",
+                "authors": "Bo Xu, Shaoqian Li, Bo-Kyeong Kang, Jiecan Zhou",
+                "year": 2022,
+                "doi": "10.1186/s12933-022-01512-w",
+                "url": "https://doi.org/10.1186/s12933-022-01512-w"
+              },
+              "supportive": true,
+              "reasoning": "This 2022 review on the role of SGLT2 inhibitors in type 2 diabetes management comprehensively covers their established clinical benefits, which prominently include reducing cardiovascular death and hospitalization for heart failure."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "SGLT2 inhibitors for primary and secondary prevention of cardiovascular and renal outcomes in type 2 diabetes: a systematic review and meta-analysis of cardiovascular outcome trials",
+            "authors": "Thomas A Zelniker, Stephen D Wiviott, Itamar Raz, Kyungah Im, Erica L Goodrich, Marc P Bonaca, Ofri Mosenzon, Eri T Kato, Aliza Cahn, Remo H M Furtado, Deepak L Bhatt, Lawrence A Leiter, Darren K McGuire, John P Wilding, Marc S Sabatine",
+            "year": 2019,
+            "doi": "10.1016/S0140-6736(18)32590-X",
+            "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)32590-X/fulltext"
+          },
+          {
+            "title": "Association of SGLT2 Inhibitors With Cardiovascular and Kidney Outcomes in Patients With Type 2 Diabetes: A Meta-analysis",
+            "authors": "Darren K. McGuire, William J. Shih, Francesco Cosentino, Bernard Charbonnel, David Z.I. Cherney, Samuel Dagogo-Jack, Richard Pratley, Michael Greenberg, Susan Wang, Susan Huyck, Ute Gantz, James Mancuso, Christopher P. Cannon",
+            "year": 2020,
+            "doi": "10.1001/jamacardio.2020.4511",
+            "url": "https://jamanetwork.com/journals/jamacardiology/fullarticle/2771561"
+          },
+          {
+            "title": "Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes",
+            "authors": "Bernard Zinman, Christoph Wanner, John M. Lachin, David Fitchett, Erich Bluhmki, Stefan Hantel, Michaela Mattheus, Theresa Devins, Odd Erik Johansen, Hans J. Woerle, Uli C. Broedl, Silvio E. Inzucchi",
+            "year": 2015,
+            "doi": "10.1056/NEJMoa1504720",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1504720"
+          },
+          {
+            "title": "Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes",
+            "authors": "Bruce Neal, Vlado Perkovic, Kenneth W. Mahaffey, Dick de Zeeuw, Greg Fulcher, Ngozi Erondu, Wayne Shaw, Gordon Law, Mehul Desai, David R. Matthews",
+            "year": 2017,
+            "doi": "10.1056/NEJMoa1611925",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611925"
+          },
+          {
+            "title": "Dapagliflozin and Cardiovascular Outcomes in Type 2 Diabetes",
+            "authors": "Stephen D. Wiviott, Itamar Raz, Marc P. Bonaca, Ofri Mosenzon, Eri T. Kato, Aliza Cahn, Michael G. Silverman, Thomas A. Zelniker, Julia F. Kuder, Sabina A. Murphy, Deepak L. Bhatt, Lawrence A. Leiter, Darren K. McGuire, John P. Wilding, Christian T. Ruff, Ingrid A.M. Gause-Nilsson, Martin Fredriksson, Peter A. Johansson, Anna-Maria Langkilde, Marc S. Sabatine",
+            "year": 2019,
+            "doi": "10.1056/NEJMoa1812389",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1812389"
+          }
+        ],
+        "timeMs": 30791,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "SGLT2 inhibitors for primary and secondary prevention of cardiovascular and renal outcomes in type 2 diabetes: a systematic review and meta-analysis of cardiovascular outcome trials",
+                "authors": "Thomas A Zelniker, Stephen D Wiviott, Itamar Raz, Kyungah Im, Erica L Goodrich, Marc P Bonaca, Ofri Mosenzon, Eri T Kato, Aliza Cahn, Remo H M Furtado, Deepak L Bhatt, Lawrence A Leiter, Darren K McGuire, John P Wilding, Marc S Sabatine",
+                "year": 2019,
+                "doi": "10.1016/S0140-6736(18)32590-X",
+                "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)32590-X/fulltext"
+              },
+              "supportive": true,
+              "reasoning": "This systematic review and meta-analysis directly evaluates the cardiovascular outcomes of SGLT2 inhibitors in patients with type 2 diabetes, providing high-level evidence supporting their efficacy in reducing cardiovascular death and heart failure hospitalizations."
+            },
+            {
+              "paper": {
+                "title": "Association of SGLT2 Inhibitors With Cardiovascular and Kidney Outcomes in Patients With Type 2 Diabetes: A Meta-analysis",
+                "authors": "Darren K. McGuire, William J. Shih, Francesco Cosentino, Bernard Charbonnel, David Z.I. Cherney, Samuel Dagogo-Jack, Richard Pratley, Michael Greenberg, Susan Wang, Susan Huyck, Ute Gantz, James Mancuso, Christopher P. Cannon",
+                "year": 2020,
+                "doi": "10.1001/jamacardio.2020.4511",
+                "url": "https://jamanetwork.com/journals/jamacardiology/fullarticle/2771561"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a meta-analysis specifically evaluating the association of SGLT2 inhibitors with cardiovascular outcomes in patients with type 2 diabetes, directly addressing and supporting the claim that these drugs reduce cardiovascular risks."
+            },
+            {
+              "paper": {
+                "title": "Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes",
+                "authors": "Bernard Zinman, Christoph Wanner, John M. Lachin, David Fitchett, Erich Bluhmki, Stefan Hantel, Michaela Mattheus, Theresa Devins, Odd Erik Johansen, Hans J. Woerle, Uli C. Broedl, Silvio E. Inzucchi",
+                "year": 2015,
+                "doi": "10.1056/NEJMoa1504720",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1504720"
+              },
+              "supportive": true,
+              "reasoning": "This landmark trial (EMPA-REG OUTCOME) directly demonstrates that empagliflozin, an SGLT2 inhibitor, significantly reduces the rates of cardiovascular death and hospitalization for heart failure in patients with type 2 diabetes."
+            },
+            {
+              "paper": {
+                "title": "Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes",
+                "authors": "Bruce Neal, Vlado Perkovic, Kenneth W. Mahaffey, Dick de Zeeuw, Greg Fulcher, Ngozi Erondu, Wayne Shaw, Gordon Law, Mehul Desai, David R. Matthews",
+                "year": 2017,
+                "doi": "10.1056/NEJMoa1611925",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611925"
+              },
+              "supportive": true,
+              "reasoning": "The CANVAS trial directly investigates the SGLT2 inhibitor canagliflozin in patients with type 2 diabetes, demonstrating that it significantly reduces the risk of cardiovascular events, including hospitalization for heart failure."
+            },
+            {
+              "paper": {
+                "title": "Dapagliflozin and Cardiovascular Outcomes in Type 2 Diabetes",
+                "authors": "Stephen D. Wiviott, Itamar Raz, Marc P. Bonaca, Ofri Mosenzon, Eri T. Kato, Aliza Cahn, Michael G. Silverman, Thomas A. Zelniker, Julia F. Kuder, Sabina A. Murphy, Deepak L. Bhatt, Lawrence A. Leiter, Darren K. McGuire, John P. Wilding, Christian T. Ruff, Ingrid A.M. Gause-Nilsson, Martin Fredriksson, Peter A. Johansson, Anna-Maria Langkilde, Marc S. Sabatine",
+                "year": 2019,
+                "doi": "10.1056/NEJMoa1812389",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1812389"
+              },
+              "supportive": true,
+              "reasoning": "The paper reports the results of the DECLARE-TIMI 58 trial, which directly demonstrates that the SGLT2 inhibitor dapagliflozin significantly reduces the composite outcome of cardiovascular death and hospitalization for heart failure in patients with type 2 diabetes."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M4-exercise-dementia",
+      "claim": "Physical activity in midlife and later life is associated with reduced risk of dementia and cognitive decline.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [
+          {
+            "title": "Physical activity and the maintenance of cognitive function",
+            "authors": "Kenneth Rockwood, Laura E. Middleton",
+            "year": 2007,
+            "doi": "10.1016/j.jalz.2007.01.003",
+            "url": "https://doi.org/10.1016/j.jalz.2007.01.003"
+          },
+          {
+            "title": "Dementia prevention, intervention, and care: 2020 report of the Lancet Commission",
+            "authors": "Gill Livingston, Jonathan Huntley, Andrew Sommerlad, David Ames, Clive Ballard, Sube Banerjee, Carol Brayne, Alistair Burns, Jiska Cohen‐Mansfield, Claudia Cooper, Sergi G. Costafreda, Amit Dias, Nick C. Fox, Laura N. Gitlin, Robert Howard, Helen C. Kales, Mika Kivimäki, Eric B. Larson, Adesola Ogunniyi, Vasiliki Orgeta, Karen Ritchie, Kenneth Rockwood, Elizabeth L Sampson, Quincy M. Samus, Lon S. Schneider, Geir Selbæk, Linda Teri, Naaheed Mukadam",
+            "year": 2020,
+            "doi": "10.1016/s0140-6736(20)30367-6",
+            "url": "https://doi.org/10.1016/s0140-6736(20)30367-6"
+          },
+          {
+            "title": "Can dementia risk be reduced by following the American Heart Association's Life's Simple 7? A systematic review and dose-response meta-analysis",
+            "authors": "Jing Wu, Ying Xiong, Xin Xia, Nicola Orsini, Chengxuan Qiu, Miia Kivipelto, Debora Rizzuto, Rui Wang",
+            "year": 2022,
+            "doi": "10.1016/j.arr.2022.101788",
+            "url": "https://doi.org/10.1016/j.arr.2022.101788"
+          },
+          {
+            "title": "2018 ESC/ESH Guidelines for the management of arterial hypertension",
+            "authors": "Bryan Williams, Giuseppe Mancia, Wilko Spiering, Enrico Agabiti Rosei, Michel Azizi, Michel Burnier, Denis L Clement, António Coca, Giovanni de Simone, Anna F. Dominiczak, Thomas Kahan, Felix Mahfoud, Josep Redón, Luís M. Ruilope, Alberto Zanchetti, Mary Kerins, Sverre E. Kjeldsen, Reinhold Kreutz, Stéphane Laurent, Gregory Y.H. Lip, Richard J. McManus, Krzysztof Narkiewicz, Frank Ruschitzka, Roland E. Schmieder, Е. V. Shlyakhto, Costas Tsioufis, Victor Aboyans, Ileana Désormais, ESC Scientific Document Group, Guy De Backer, Anthony M. Heagerty, Stefan Agewall, Murielle Bochud, Claudio Borghi, Pierre Boutouyrie, Jana Brguljan, Héctor Bueno, Enrico G. Caiani, Bo Carlberg, Neil Chapman, Renata Cífková, John G.F. Cleland, Jean-Philippe Collet, Ioan Mircea Coman, Peter W. de Leeuw, Victoria Delgado, Paul Dendale, Hans‐Christoph Diener, Maria Dorobanţu, Robert Fagard, Csaba Farsang, Marc Ferrini, Ian M Graham, Guıdo Grassı, Hermann Haller, F D Richard Hobbs, Bojan Jelakovic, Catriona Jennings, Hugo A Katus, Abraham A Kroon, Christophe Leclercq, Dragan Lovic, Empar Lurbe, Athanasios Manolis, Theresa A McDonagh, Franz H. Messerli, Maria Lorenza Muiesan, Uwe Nixdorff, Michael Hecht Olsen, Gianfranco Parati, Joep Perk, Massimo Francesco Piepoli, Jorge Polonia, Piotr Ponikowski, Dimitrios J Richter, Stefano F. Rimoldi, Marco Roffi, Naveed Sattar, Petar Seferovic, Iain A Simpson, Miguel Sousa-Uva, Alice Stanton, Philippe van de Borne, Panos E. Vardas, Massimo Volpe, Sven Waßmann, Stephan Windecker, Jose Luis Zamorano, Stephan Windecker, Victor Aboyans, Stefan Agewall, Emanuele Barbato, Héctor Bueno, Antonio Coca, Jean-Philippe Collet, Ioan Mircea Coman, Verónica Dean, Victoria Delgado, Donna Fitzsimons, O. Gaemperli",
+            "year": 2018,
+            "doi": "10.1093/eurheartj/ehy339",
+            "url": "https://doi.org/10.1093/eurheartj/ehy339"
+          },
+          {
+            "title": "Social Relationships and Mortality Risk: A Meta-analytic Review",
+            "authors": "Julianne Holt‐Lunstad, Timothy B. Smith, J. Bradley Layton",
+            "year": 2010,
+            "doi": "10.1371/journal.pmed.1000316",
+            "url": "https://doi.org/10.1371/journal.pmed.1000316"
+          }
+        ],
+        "timeMs": 920,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Physical activity and the maintenance of cognitive function",
+                "authors": "Kenneth Rockwood, Laura E. Middleton",
+                "year": 2007,
+                "doi": "10.1016/j.jalz.2007.01.003",
+                "url": "https://doi.org/10.1016/j.jalz.2007.01.003"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly addresses the claim by examining the role of physical activity in maintaining cognitive function and preventing cognitive decline."
+            },
+            {
+              "paper": {
+                "title": "Dementia prevention, intervention, and care: 2020 report of the Lancet Commission",
+                "authors": "Gill Livingston, Jonathan Huntley, Andrew Sommerlad, David Ames, Clive Ballard, Sube Banerjee, Carol Brayne, Alistair Burns, Jiska Cohen‐Mansfield, Claudia Cooper, Sergi G. Costafreda, Amit Dias, Nick C. Fox, Laura N. Gitlin, Robert Howard, Helen C. Kales, Mika Kivimäki, Eric B. Larson, Adesola Ogunniyi, Vasiliki Orgeta, Karen Ritchie, Kenneth Rockwood, Elizabeth L Sampson, Quincy M. Samus, Lon S. Schneider, Geir Selbæk, Linda Teri, Naaheed Mukadam",
+                "year": 2020,
+                "doi": "10.1016/s0140-6736(20)30367-6",
+                "url": "https://doi.org/10.1016/s0140-6736(20)30367-6"
+              },
+              "supportive": true,
+              "reasoning": "This comprehensive Lancet Commission report explicitly identifies physical inactivity as a major modifiable risk factor for dementia, thereby directly supporting the claim that physical activity is associated with a reduced risk of cognitive decline."
+            },
+            {
+              "paper": {
+                "title": "Can dementia risk be reduced by following the American Heart Association's Life's Simple 7? A systematic review and dose-response meta-analysis",
+                "authors": "Jing Wu, Ying Xiong, Xin Xia, Nicola Orsini, Chengxuan Qiu, Miia Kivipelto, Debora Rizzuto, Rui Wang",
+                "year": 2022,
+                "doi": "10.1016/j.arr.2022.101788",
+                "url": "https://doi.org/10.1016/j.arr.2022.101788"
+              },
+              "supportive": true,
+              "reasoning": "The paper evaluates the American Heart Association's 'Life's Simple 7' cardiovascular health metrics, which explicitly includes physical activity as a core component, and demonstrates that adherence to these metrics is associated with a reduced risk of dementia."
+            },
+            {
+              "paper": {
+                "title": "2018 ESC/ESH Guidelines for the management of arterial hypertension",
+                "authors": "Bryan Williams, Giuseppe Mancia, Wilko Spiering, Enrico Agabiti Rosei, Michel Azizi, Michel Burnier, Denis L Clement, António Coca, Giovanni de Simone, Anna F. Dominiczak, Thomas Kahan, Felix Mahfoud, Josep Redón, Luís M. Ruilope, Alberto Zanchetti, Mary Kerins, Sverre E. Kjeldsen, Reinhold Kreutz, Stéphane Laurent, Gregory Y.H. Lip, Richard J. McManus, Krzysztof Narkiewicz, Frank Ruschitzka, Roland E. Schmieder, Е. V. Shlyakhto, Costas Tsioufis, Victor Aboyans, Ileana Désormais, ESC Scientific Document Group, Guy De Backer, Anthony M. Heagerty, Stefan Agewall, Murielle Bochud, Claudio Borghi, Pierre Boutouyrie, Jana Brguljan, Héctor Bueno, Enrico G. Caiani, Bo Carlberg, Neil Chapman, Renata Cífková, John G.F. Cleland, Jean-Philippe Collet, Ioan Mircea Coman, Peter W. de Leeuw, Victoria Delgado, Paul Dendale, Hans‐Christoph Diener, Maria Dorobanţu, Robert Fagard, Csaba Farsang, Marc Ferrini, Ian M Graham, Guıdo Grassı, Hermann Haller, F D Richard Hobbs, Bojan Jelakovic, Catriona Jennings, Hugo A Katus, Abraham A Kroon, Christophe Leclercq, Dragan Lovic, Empar Lurbe, Athanasios Manolis, Theresa A McDonagh, Franz H. Messerli, Maria Lorenza Muiesan, Uwe Nixdorff, Michael Hecht Olsen, Gianfranco Parati, Joep Perk, Massimo Francesco Piepoli, Jorge Polonia, Piotr Ponikowski, Dimitrios J Richter, Stefano F. Rimoldi, Marco Roffi, Naveed Sattar, Petar Seferovic, Iain A Simpson, Miguel Sousa-Uva, Alice Stanton, Philippe van de Borne, Panos E. Vardas, Massimo Volpe, Sven Waßmann, Stephan Windecker, Jose Luis Zamorano, Stephan Windecker, Victor Aboyans, Stefan Agewall, Emanuele Barbato, Héctor Bueno, Antonio Coca, Jean-Philippe Collet, Ioan Mircea Coman, Verónica Dean, Victoria Delgado, Donna Fitzsimons, O. Gaemperli",
+                "year": 2018,
+                "doi": "10.1093/eurheartj/ehy339",
+                "url": "https://doi.org/10.1093/eurheartj/ehy339"
+              },
+              "supportive": false,
+              "reasoning": "The paper is a clinical guideline for the management of arterial hypertension, not a study directly investigating the association between physical activity and the risk of dementia or cognitive decline."
+            },
+            {
+              "paper": {
+                "title": "Social Relationships and Mortality Risk: A Meta-analytic Review",
+                "authors": "Julianne Holt‐Lunstad, Timothy B. Smith, J. Bradley Layton",
+                "year": 2010,
+                "doi": "10.1371/journal.pmed.1000316",
+                "url": "https://doi.org/10.1371/journal.pmed.1000316"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the impact of social relationships on mortality risk, not on the relationship between physical activity and cognitive decline or dementia."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Physical Activity Over the Adult Life Course and Risk of Dementia in the Framingham Heart Study",
+            "authors": "Francesca R Marino, Chenglin Lyu, Yuqing Li, Tianyu Liu, Rhoda Au, Phillip H Hwang",
+            "year": 2025,
+            "doi": "10.1001/jamanetworkopen.2025.44439",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2025.44439"
+          },
+          {
+            "title": "Leisure time physical activity and dementia risk: a dose-response meta-analysis of prospective studies",
+            "authors": "Wei Xu, Hui Fu Wang, Yu Wan, Chen-Chen Tan, Jin-Tai Yu, Lan Tan",
+            "year": 2017,
+            "doi": "10.1136/bmjopen-2016-014706",
+            "url": "https://doi.org/10.1136/bmjopen-2016-014706"
+          },
+          {
+            "title": "Physical activity, cognitive decline, and risk of dementia: 28 year follow-up of Whitehall II cohort study",
+            "authors": "Séverine Sabia, Aline Dugravot, Jean-François Dartigues, Jessica Abell, Alexis Elbaz, Mika Kivimäki, Archana Singh-Manoux",
+            "year": 2017,
+            "doi": "10.1136/bmj.j2709",
+            "url": "https://doi.org/10.1136/bmj.j2709"
+          },
+          {
+            "title": "Physical activity in middle-age and dementia in later life: findings from a prospective cohort of men in Caerphilly, South Wales and a meta-analysis",
+            "authors": "Gemma S Morgan, John Gallacher, Antony Bayer, Mark Fish, Shah Ebrahim, Yoav Ben-Shlomo",
+            "year": 2012,
+            "doi": "10.3233/JAD-2012-112171",
+            "url": "https://doi.org/10.3233/JAD-2012-112171"
+          },
+          {
+            "title": "Physical activity and risk of cognitive decline: a meta-analysis of prospective studies",
+            "authors": "F Sofi, D Valecchi, D Bacci, R Abbate, G F Gensini, A Casini, C Macchi",
+            "year": 2011,
+            "doi": "10.1111/j.1365-2796.2010.02281.x",
+            "url": "https://doi.org/10.1111/j.1365-2796.2010.02281.x"
+          }
+        ],
+        "timeMs": 54454,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Physical Activity Over the Adult Life Course and Risk of Dementia in the Framingham Heart Study",
+                "authors": "Francesca R Marino, Chenglin Lyu, Yuqing Li, Tianyu Liu, Rhoda Au, Phillip H Hwang",
+                "year": 2025,
+                "doi": "10.1001/jamanetworkopen.2025.44439",
+                "url": "https://doi.org/10.1001/jamanetworkopen.2025.44439"
+              },
+              "supportive": true,
+              "reasoning": "The paper's title explicitly indicates it investigates the relationship between physical activity over the adult life course and the risk of dementia, directly addressing and supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Leisure time physical activity and dementia risk: a dose-response meta-analysis of prospective studies",
+                "authors": "Wei Xu, Hui Fu Wang, Yu Wan, Chen-Chen Tan, Jin-Tai Yu, Lan Tan",
+                "year": 2017,
+                "doi": "10.1136/bmjopen-2016-014706",
+                "url": "https://doi.org/10.1136/bmjopen-2016-014706"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a meta-analysis directly investigating the relationship between leisure time physical activity and dementia risk, making it highly relevant and supportive of the claim."
+            },
+            {
+              "paper": {
+                "title": "Physical activity, cognitive decline, and risk of dementia: 28 year follow-up of Whitehall II cohort study",
+                "authors": "Séverine Sabia, Aline Dugravot, Jean-François Dartigues, Jessica Abell, Alexis Elbaz, Mika Kivimäki, Archana Singh-Manoux",
+                "year": 2017,
+                "doi": "10.1136/bmj.j2709",
+                "url": "https://doi.org/10.1136/bmj.j2709"
+              },
+              "supportive": false,
+              "reasoning": "Although the paper investigates the topic, it concludes that the observed association between lower physical activity and dementia is likely due to reverse causation (activity declining in the preclinical phase) rather than a genuine protective effect."
+            },
+            {
+              "paper": {
+                "title": "Physical activity in middle-age and dementia in later life: findings from a prospective cohort of men in Caerphilly, South Wales and a meta-analysis",
+                "authors": "Gemma S Morgan, John Gallacher, Antony Bayer, Mark Fish, Shah Ebrahim, Yoav Ben-Shlomo",
+                "year": 2012,
+                "doi": "10.3233/JAD-2012-112171",
+                "url": "https://doi.org/10.3233/JAD-2012-112171"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly addresses the claim by investigating the relationship between physical activity in middle age and the subsequent risk of dementia in later life through both a prospective cohort study and a meta-analysis."
+            },
+            {
+              "paper": {
+                "title": "Physical activity and risk of cognitive decline: a meta-analysis of prospective studies",
+                "authors": "F Sofi, D Valecchi, D Bacci, R Abbate, G F Gensini, A Casini, C Macchi",
+                "year": 2011,
+                "doi": "10.1111/j.1365-2796.2010.02281.x",
+                "url": "https://doi.org/10.1111/j.1365-2796.2010.02281.x"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a meta-analysis of prospective studies directly investigating the relationship between physical activity and the risk of cognitive decline, making it highly relevant and supportive of the claim."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "S1-permafrost-methane",
+      "claim": "Thawing of Arctic permafrost releases greenhouse gases in a positive feedback loop that amplifies climate warming.",
+      "claimType": "scientific",
+      "ss": {
+        "papers": [
+          {
+            "title": "Trajectories of the Earth System in the Anthropocene",
+            "authors": "Will Steffen, Johan Rockström, Katherine Richardson, Timothy M. Lenton, Carl Folke, Diana Liverman, Colin Summerhayes, Anthony D. Barnosky, Sarah Cornell, Michel Crucifix, Jonathan F. Donges, Ingo Fetzer, Steven J. Lade, Marten Scheffer, Ricarda Winkelmann, Hans Joachim Schellnhuber",
+            "year": 2018,
+            "doi": "10.1073/pnas.1810141115",
+            "url": "https://doi.org/10.1073/pnas.1810141115"
+          },
+          {
+            "title": "Scientists’ warning to humanity: microorganisms and climate change",
+            "authors": "Ricardo Cavicchioli, William J. Ripple, Kenneth N. Timmis, Farooq Azam, Lars R. Bakken, Matthew Baylis, Michael J. Behrenfeld, Antje Boëtius, Philip W. Boyd, Aimée T. Classen, Thomas W. Crowther, Roberto Danovaro, Christine M. Foreman, Jef Huisman, David A. Hutchins, Janet Jansson, David M. Karl, Britt Koskella, David B. Mark Welch, Jennifer B. H. Martiny, Mary Ann Moran, Victoria J. Orphan, David Reay, Justin V. Remais, Virginia I. Rich, Brajesh K. Singh, Lisa Y. Stein, Frank J. Stewart, Matthew B. Sullivan, Madeleine J. H. van Oppen, Scott C. Weaver, Eric A. Webb, Nicole S. Webster",
+            "year": 2019,
+            "doi": "10.1038/s41579-019-0222-5",
+            "url": "https://doi.org/10.1038/s41579-019-0222-5"
+          },
+          {
+            "title": "Methane Feedbacks to the Global Climate System in a Warmer World",
+            "authors": "Joshua Dean, Jack J. Middelburg, Thomas Röckmann, Rien Aerts, Luke G. Blauw, Matthias Egger, Mike S. M. Jetten, Anniek E. E. de Jong, Ove H. Meisel, Olivia Rasigraf, Caroline P. Slomp, Michiel H. in ‘t Zandt, A. J. Dolman",
+            "year": 2018,
+            "doi": "10.1002/2017rg000559",
+            "url": "https://doi.org/10.1002/2017rg000559"
+          },
+          {
+            "title": "Effects of climate extremes on the terrestrial carbon cycle: concepts, processes and potential future impacts",
+            "authors": "D. Frank, Markus Reichstein, Michael Bahn, Kirsten Thonicke, David Frank, Miguel D. Mahecha, Pete Smith, Marijn van der Velde, Sara Vicca, Flurin Babst, Christian Beer, Nina Buchmann, Josep G. Canadell, Philippe Ciais, Wolfgang Crämer, Andreas Ibrom, F. Miglietta, Benjamin Poulter, Anja Rammig, Sonia I. Seneviratne, Ariane Walz, M. Wattenbach, Miguel Á. Zavala, Jakob Zscheischler",
+            "year": 2015,
+            "doi": "10.1111/gcb.12916",
+            "url": "https://doi.org/10.1111/gcb.12916"
+          },
+          {
+            "title": "Terrestrial biogeochemical feedbacks in the climate system",
+            "authors": "Almut Arneth, Sandy P. Harrison, Sönke Zaehle, Kostas Tsigaridis, S. Menon, Patrick J. Bartlein, J. Feichter, Atte Korhola, Markku Kulmala, Declan O’Donnell, Guy Schurgers, Sanna Sorvari, Timo Vesala",
+            "year": 2010,
+            "doi": "10.1038/ngeo905",
+            "url": "https://doi.org/10.1038/ngeo905"
+          }
+        ],
+        "timeMs": 1111,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Trajectories of the Earth System in the Anthropocene",
+                "authors": "Will Steffen, Johan Rockström, Katherine Richardson, Timothy M. Lenton, Carl Folke, Diana Liverman, Colin Summerhayes, Anthony D. Barnosky, Sarah Cornell, Michel Crucifix, Jonathan F. Donges, Ingo Fetzer, Steven J. Lade, Marten Scheffer, Ricarda Winkelmann, Hans Joachim Schellnhuber",
+                "year": 2018,
+                "doi": "10.1073/pnas.1810141115",
+                "url": "https://doi.org/10.1073/pnas.1810141115"
+              },
+              "supportive": true,
+              "reasoning": "This paper explicitly identifies permafrost thawing as a critical biogeophysical positive feedback loop that releases greenhouse gases and amplifies global climate warming, potentially pushing the Earth system toward a 'Hothouse Earth' trajectory."
+            },
+            {
+              "paper": {
+                "title": "Scientists’ warning to humanity: microorganisms and climate change",
+                "authors": "Ricardo Cavicchioli, William J. Ripple, Kenneth N. Timmis, Farooq Azam, Lars R. Bakken, Matthew Baylis, Michael J. Behrenfeld, Antje Boëtius, Philip W. Boyd, Aimée T. Classen, Thomas W. Crowther, Roberto Danovaro, Christine M. Foreman, Jef Huisman, David A. Hutchins, Janet Jansson, David M. Karl, Britt Koskella, David B. Mark Welch, Jennifer B. H. Martiny, Mary Ann Moran, Victoria J. Orphan, David Reay, Justin V. Remais, Virginia I. Rich, Brajesh K. Singh, Lisa Y. Stein, Frank J. Stewart, Matthew B. Sullivan, Madeleine J. H. van Oppen, Scott C. Weaver, Eric A. Webb, Nicole S. Webster",
+                "year": 2019,
+                "doi": "10.1038/s41579-019-0222-5",
+                "url": "https://doi.org/10.1038/s41579-019-0222-5"
+              },
+              "supportive": true,
+              "reasoning": "The paper explicitly discusses how climate change-induced permafrost thaw stimulates microbial degradation of previously frozen organic matter, releasing significant amounts of greenhouse gases like carbon dioxide and methane in a positive feedback loop that further accelerates global warming."
+            },
+            {
+              "paper": {
+                "title": "Methane Feedbacks to the Global Climate System in a Warmer World",
+                "authors": "Joshua Dean, Jack J. Middelburg, Thomas Röckmann, Rien Aerts, Luke G. Blauw, Matthias Egger, Mike S. M. Jetten, Anniek E. E. de Jong, Ove H. Meisel, Olivia Rasigraf, Caroline P. Slomp, Michiel H. in ‘t Zandt, A. J. Dolman",
+                "year": 2018,
+                "doi": "10.1002/2017rg000559",
+                "url": "https://doi.org/10.1002/2017rg000559"
+              },
+              "supportive": true,
+              "reasoning": "The paper comprehensively reviews methane feedbacks to the climate system, specifically addressing how warming-induced releases of greenhouse gases like methane from sources including permafrost create a positive feedback loop that amplifies global warming."
+            },
+            {
+              "paper": {
+                "title": "Effects of climate extremes on the terrestrial carbon cycle: concepts, processes and potential future impacts",
+                "authors": "D. Frank, Markus Reichstein, Michael Bahn, Kirsten Thonicke, David Frank, Miguel D. Mahecha, Pete Smith, Marijn van der Velde, Sara Vicca, Flurin Babst, Christian Beer, Nina Buchmann, Josep G. Canadell, Philippe Ciais, Wolfgang Crämer, Andreas Ibrom, F. Miglietta, Benjamin Poulter, Anja Rammig, Sonia I. Seneviratne, Ariane Walz, M. Wattenbach, Miguel Á. Zavala, Jakob Zscheischler",
+                "year": 2015,
+                "doi": "10.1111/gcb.12916",
+                "url": "https://doi.org/10.1111/gcb.12916"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the impacts of short-term climate extremes (such as droughts, heatwaves, and storms) on the terrestrial carbon cycle, rather than directly addressing the long-term positive feedback loop of Arctic permafrost thaw."
+            },
+            {
+              "paper": {
+                "title": "Terrestrial biogeochemical feedbacks in the climate system",
+                "authors": "Almut Arneth, Sandy P. Harrison, Sönke Zaehle, Kostas Tsigaridis, S. Menon, Patrick J. Bartlein, J. Feichter, Atte Korhola, Markku Kulmala, Declan O’Donnell, Guy Schurgers, Sanna Sorvari, Timo Vesala",
+                "year": 2010,
+                "doi": "10.1038/ngeo905",
+                "url": "https://doi.org/10.1038/ngeo905"
+              },
+              "supportive": true,
+              "reasoning": "This comprehensive review paper on terrestrial biogeochemical feedbacks explicitly examines how climate-driven changes, such as the thawing of permafrost, release greenhouse gases like carbon dioxide and methane, thereby acting as a positive feedback loop that amplifies global warming."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Climate change and the permafrost carbon feedback",
+            "authors": "E. A. G. Schuur, A. D. McGuire, C. Schädel, G. Grosse, J. W. Harden, D. J. Hayes, G. Hugelius, C. D. Koven, P. Kuhry, D. M. Lawrence, S. M. Natali, D. Olefeldt, V. E. Romanovsky, K. Schaefer, M. R. Turetsky, C. C. Treat, J. E. Vonk",
+            "year": 2015,
+            "doi": "10.1038/nature14338",
+            "url": "https://www.nature.com/articles/nature14338"
+          },
+          {
+            "title": "Permafrost carbon emissions in a changing Arctic",
+            "authors": "Kimberley R. Miner, Merritt R. Turetsky, E. Malina, A. Bartsch, J. Tamminen, A. D. McGuire, A. Fix, C. Sweeney, S. M. Natali, C. E. Miller",
+            "year": 2022,
+            "doi": "10.1038/s43017-021-00258-3",
+            "url": "https://www.nature.com/articles/s43017-021-00258-3"
+          },
+          {
+            "title": "Permafrost carbon feedbacks threaten global climate goals",
+            "authors": "Susan M. Natali, John P. Holdren, Brendan M. Rogers, Rachael Treharne, Philip B. Duffy, Rafe Pomerance, Erin MacDonald",
+            "year": 2021,
+            "doi": "10.1073/pnas.2100163118",
+            "url": "https://www.pnas.org/doi/10.1073/pnas.2100163118"
+          },
+          {
+            "title": "The impact of the permafrost carbon feedback on global climate",
+            "authors": "Kevin Schaefer, Hugues Lantuit, Vladimir E. Romanovsky, Edward A. G. Schuur, Ronald Witt",
+            "year": 2014,
+            "doi": "10.1088/1748-9326/9/8/085003",
+            "url": "https://iopscience.iop.org/article/10.1088/1748-9326/9/8/085003"
+          },
+          {
+            "title": "21st-century modeled permafrost carbon emissions accelerated by abrupt thaw beneath lakes",
+            "authors": "K. M. Walter Anthony, T. Schneider von Deimling, I. Nitze, S. Frolking, A. Emmerich, E. J. Daanen, P. Anthony, P. Lindgren, B. Jones, G. Grosse",
+            "year": 2018,
+            "doi": "10.1038/s41467-018-05738-9",
+            "url": "https://www.nature.com/articles/s41467-018-05738-9"
+          }
+        ],
+        "timeMs": 47467,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Climate change and the permafrost carbon feedback",
+                "authors": "E. A. G. Schuur, A. D. McGuire, C. Schädel, G. Grosse, J. W. Harden, D. J. Hayes, G. Hugelius, C. D. Koven, P. Kuhry, D. M. Lawrence, S. M. Natali, D. Olefeldt, V. E. Romanovsky, K. Schaefer, M. R. Turetsky, C. C. Treat, J. E. Vonk",
+                "year": 2015,
+                "doi": "10.1038/nature14338",
+                "url": "https://www.nature.com/articles/nature14338"
+              },
+              "supportive": true,
+              "reasoning": "The paper explicitly examines the permafrost carbon feedback, detailing how climate change-induced thawing of Arctic permafrost releases greenhouse gases into the atmosphere, thereby amplifying global warming."
+            },
+            {
+              "paper": {
+                "title": "Permafrost carbon emissions in a changing Arctic",
+                "authors": "Kimberley R. Miner, Merritt R. Turetsky, E. Malina, A. Bartsch, J. Tamminen, A. D. McGuire, A. Fix, C. Sweeney, S. M. Natali, C. E. Miller",
+                "year": 2022,
+                "doi": "10.1038/s43017-021-00258-3",
+                "url": "https://www.nature.com/articles/s43017-021-00258-3"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly addresses the claim by examining carbon emissions from thawing Arctic permafrost, which constitute the greenhouse gas release that drives the positive climate feedback loop."
+            },
+            {
+              "paper": {
+                "title": "Permafrost carbon feedbacks threaten global climate goals",
+                "authors": "Susan M. Natali, John P. Holdren, Brendan M. Rogers, Rachael Treharne, Philip B. Duffy, Rafe Pomerance, Erin MacDonald",
+                "year": 2021,
+                "doi": "10.1073/pnas.2100163118",
+                "url": "https://www.pnas.org/doi/10.1073/pnas.2100163118"
+              },
+              "supportive": true,
+              "reasoning": "The paper's title explicitly focuses on permafrost carbon feedbacks and their threat to global climate goals, directly addressing and supporting the claim that thawing permafrost releases greenhouse gases in an amplifying feedback loop."
+            },
+            {
+              "paper": {
+                "title": "The impact of the permafrost carbon feedback on global climate",
+                "authors": "Kevin Schaefer, Hugues Lantuit, Vladimir E. Romanovsky, Edward A. G. Schuur, Ronald Witt",
+                "year": 2014,
+                "doi": "10.1088/1748-9326/9/8/085003",
+                "url": "https://iopscience.iop.org/article/10.1088/1748-9326/9/8/085003"
+              },
+              "supportive": true,
+              "reasoning": "The paper explicitly focuses on the 'permafrost carbon feedback,' directly addressing and supporting the claim that thawing permafrost releases greenhouse gases that amplify global climate warming."
+            },
+            {
+              "paper": {
+                "title": "21st-century modeled permafrost carbon emissions accelerated by abrupt thaw beneath lakes",
+                "authors": "K. M. Walter Anthony, T. Schneider von Deimling, I. Nitze, S. Frolking, A. Emmerich, E. J. Daanen, P. Anthony, P. Lindgren, B. Jones, G. Grosse",
+                "year": 2018,
+                "doi": "10.1038/s41467-018-05738-9",
+                "url": "https://www.nature.com/articles/s41467-018-05738-9"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly models and quantifies carbon emissions from thawing permafrost, specifically highlighting how abrupt thaw beneath lakes accelerates the release of greenhouse gases, thereby supporting the claim of a positive climate feedback loop."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "S2-mrna-vaccine-efficacy",
+      "claim": "The BNT162b2 mRNA COVID-19 vaccine demonstrated approximately 95% efficacy against symptomatic COVID-19 in its pivotal phase 3 trial.",
+      "claimType": "scientific",
+      "ss": {
+        "papers": [
+          {
+            "title": "SARS-CoV-2 vaccines in development",
+            "authors": "Florian Krammer",
+            "year": 2020,
+            "doi": "10.1038/s41586-020-2798-3",
+            "url": "https://doi.org/10.1038/s41586-020-2798-3"
+          },
+          {
+            "title": "COVID-19 vaccine BNT162b1 elicits human antibody and TH1 T cell responses",
+            "authors": "Uğur Şahin, Alexander Muik, Evelyna Derhovanessian, Isabel Vogler, Lena M. Kranz, Mathias Vormehr, Alina Baum, Kristen E. Pascal, Jasmin Quandt, Daniel Maurus, Sebastian Brachtendorf, Verena Lörks, Julian Sikorski, Rolf Hilker, Dirk Becker, Ann-Kathrin Eller, Jan Grützner, Carsten Boesler, Corinna Rosenbaum, Marie-Cristine Kühnle, Ulrich Luxemburger, Alexandra Kemmer-Brück, David Langer, Martin Bexon, Stefanie Bolte, Katalin Karikó, Tania Palanche, Boris Fischer, Armin Schultz, Pei‐Yong Shi, Camila R. Fontes-Garfias, John L. Perez, Kena A. Swanson, Jakob Loschko, Ingrid L. Scully, Mark Cutler, Warren V. Kalina, Christos A. Kyratsous, David Cooper, Philip R. Dormitzer, Kathrin U. Jansen, Özlem Türeci",
+            "year": 2020,
+            "doi": "10.1038/s41586-020-2814-7",
+            "url": "https://doi.org/10.1038/s41586-020-2814-7"
+          },
+          {
+            "title": "BNT162b2 vaccine induces neutralizing antibodies and poly-specific T cells in humans",
+            "authors": "Uğur Şahin, Alexander Muik, Isabel Vogler, Evelyna Derhovanessian, Lena M. Kranz, Mathias Vormehr, Jasmin Quandt, Nicole Bidmon, Alexander Ulges, Alina Baum, Kristen E. Pascal, Daniel Maurus, Sebastian Brachtendorf, Verena Lörks, Julian Sikorski, Peter Koch, Rolf Hilker, Dirk Becker, Ann-Kathrin Eller, Jan Grützner, Manuel Tonigold, Carsten Boesler, Corinna Rosenbaum, Ludwig Heesen, Marie-Cristine Kühnle, Asaf Poran, Jesse Z. Dong, Ulrich Luxemburger, Alexandra Kemmer-Brück, David Langer, Martin Bexon, Stefanie Bolte, Tania Palanche, Armin Schultz, Sybille Baumann, Azita J. Mahiny, Gábor Boros, Jonas Reinholz, Gábor Szabó, Katalin Karikó, Pei‐Yong Shi, Camila R. Fontes-Garfias, John L. Perez, Mark Cutler, David Cooper, Christos A. Kyratsous, Philip R. Dormitzer, Kathrin U. Jansen, Özlem Türeci",
+            "year": 2021,
+            "doi": "10.1038/s41586-021-03653-6",
+            "url": "https://doi.org/10.1038/s41586-021-03653-6"
+          },
+          {
+            "title": "BNT162b2 vaccine breakthrough: clinical characteristics of 152 fully vaccinated hospitalized COVID-19 patients in Israel",
+            "authors": "Tal Brosh‐Nissimov, Efrat Orenbuch‐Harroch, Michal Chowers, Meital Elbaz, Lior Nesher, Michal Stein, ‪Yasmin Maor‬‏, Regev Cohen, Khetam Hussein, Miriam Weinberger, Oren Zimhony, Bibiana Chazan, Ronza Najjar, Hiba Zayyad, Galia Rahav, Yonit Wiener‐Well",
+            "year": 2021,
+            "doi": "10.1016/j.cmi.2021.06.036",
+            "url": "https://doi.org/10.1016/j.cmi.2021.06.036"
+          },
+          {
+            "title": "SARS-CoV-2 Variants, Vaccines, and Host Immunity",
+            "authors": "Priyal Mistry, Fatima Barmania, Juanita Mellet, Kimberly Thando Peta, Adéle Strydom, Ignatius M. Viljoen, William James, Siamon Gordon, Michael S. Pepper",
+            "year": 2022,
+            "doi": "10.3389/fimmu.2021.809244",
+            "url": "https://doi.org/10.3389/fimmu.2021.809244"
+          }
+        ],
+        "timeMs": 1058,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": [
+            {
+              "paper": {
+                "title": "SARS-CoV-2 vaccines in development",
+                "authors": "Florian Krammer",
+                "year": 2020,
+                "doi": "10.1038/s41586-020-2798-3",
+                "url": "https://doi.org/10.1038/s41586-020-2798-3"
+              },
+              "supportive": false,
+              "reasoning": "This 2020 review article on vaccines in development was published before the pivotal phase 3 trial results for BNT162b2 were released, and therefore cannot report or support the claim of 95% efficacy."
+            },
+            {
+              "paper": {
+                "title": "COVID-19 vaccine BNT162b1 elicits human antibody and TH1 T cell responses",
+                "authors": "Uğur Şahin, Alexander Muik, Evelyna Derhovanessian, Isabel Vogler, Lena M. Kranz, Mathias Vormehr, Alina Baum, Kristen E. Pascal, Jasmin Quandt, Daniel Maurus, Sebastian Brachtendorf, Verena Lörks, Julian Sikorski, Rolf Hilker, Dirk Becker, Ann-Kathrin Eller, Jan Grützner, Carsten Boesler, Corinna Rosenbaum, Marie-Cristine Kühnle, Ulrich Luxemburger, Alexandra Kemmer-Brück, David Langer, Martin Bexon, Stefanie Bolte, Katalin Karikó, Tania Palanche, Boris Fischer, Armin Schultz, Pei‐Yong Shi, Camila R. Fontes-Garfias, John L. Perez, Kena A. Swanson, Jakob Loschko, Ingrid L. Scully, Mark Cutler, Warren V. Kalina, Christos A. Kyratsous, David Cooper, Philip R. Dormitzer, Kathrin U. Jansen, Özlem Türeci",
+                "year": 2020,
+                "doi": "10.1038/s41586-020-2814-7",
+                "url": "https://doi.org/10.1038/s41586-020-2814-7"
+              },
+              "supportive": false,
+              "reasoning": "The paper evaluates the immunogenicity of the BNT162b1 vaccine candidate, not the phase 3 clinical efficacy of the BNT162b2 vaccine mentioned in the claim."
+            },
+            {
+              "paper": {
+                "title": "BNT162b2 vaccine induces neutralizing antibodies and poly-specific T cells in humans",
+                "authors": "Uğur Şahin, Alexander Muik, Isabel Vogler, Evelyna Derhovanessian, Lena M. Kranz, Mathias Vormehr, Jasmin Quandt, Nicole Bidmon, Alexander Ulges, Alina Baum, Kristen E. Pascal, Daniel Maurus, Sebastian Brachtendorf, Verena Lörks, Julian Sikorski, Peter Koch, Rolf Hilker, Dirk Becker, Ann-Kathrin Eller, Jan Grützner, Manuel Tonigold, Carsten Boesler, Corinna Rosenbaum, Ludwig Heesen, Marie-Cristine Kühnle, Asaf Poran, Jesse Z. Dong, Ulrich Luxemburger, Alexandra Kemmer-Brück, David Langer, Martin Bexon, Stefanie Bolte, Tania Palanche, Armin Schultz, Sybille Baumann, Azita J. Mahiny, Gábor Boros, Jonas Reinholz, Gábor Szabó, Katalin Karikó, Pei‐Yong Shi, Camila R. Fontes-Garfias, John L. Perez, Mark Cutler, David Cooper, Christos A. Kyratsous, Philip R. Dormitzer, Kathrin U. Jansen, Özlem Türeci",
+                "year": 2021,
+                "doi": "10.1038/s41586-021-03653-6",
+                "url": "https://doi.org/10.1038/s41586-021-03653-6"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the immunological responses (neutralizing antibodies and T cells) induced by the BNT162b2 vaccine rather than reporting the clinical efficacy results from its pivotal phase 3 trial."
+            },
+            {
+              "paper": {
+                "title": "BNT162b2 vaccine breakthrough: clinical characteristics of 152 fully vaccinated hospitalized COVID-19 patients in Israel",
+                "authors": "Tal Brosh‐Nissimov, Efrat Orenbuch‐Harroch, Michal Chowers, Meital Elbaz, Lior Nesher, Michal Stein, ‪Yasmin Maor‬‏, Regev Cohen, Khetam Hussein, Miriam Weinberger, Oren Zimhony, Bibiana Chazan, Ronza Najjar, Hiba Zayyad, Galia Rahav, Yonit Wiener‐Well",
+                "year": 2021,
+                "doi": "10.1016/j.cmi.2021.06.036",
+                "url": "https://doi.org/10.1016/j.cmi.2021.06.036"
+              },
+              "supportive": false,
+              "reasoning": "The paper investigates the clinical characteristics of breakthrough COVID-19 infections in hospitalized patients in Israel, rather than reporting or directly evaluating the efficacy findings of the vaccine's pivotal phase 3 clinical trial."
+            },
+            {
+              "paper": {
+                "title": "SARS-CoV-2 Variants, Vaccines, and Host Immunity",
+                "authors": "Priyal Mistry, Fatima Barmania, Juanita Mellet, Kimberly Thando Peta, Adéle Strydom, Ignatius M. Viljoen, William James, Siamon Gordon, Michael S. Pepper",
+                "year": 2022,
+                "doi": "10.3389/fimmu.2021.809244",
+                "url": "https://doi.org/10.3389/fimmu.2021.809244"
+              },
+              "supportive": false,
+              "reasoning": "Although this review article likely mentions the historical efficacy of the BNT162b2 vaccine, its primary focus and findings are on SARS-CoV-2 variants and host immunity rather than directly demonstrating the phase 3 clinical trial efficacy."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine",
+            "authors": "Fernando P Polack, Stephen J Thomas, Nicholas Kitchin, et al.",
+            "year": 2020,
+            "doi": "10.1056/NEJMoa2034577",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2034577"
+          },
+          {
+            "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine through 6 Months",
+            "authors": "Stephen J Thomas, Edson D Moreira Jr, Nicholas Kitchin, et al.",
+            "year": 2021,
+            "doi": "10.1056/NEJMoa2110345",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2110345"
+          },
+          {
+            "title": "BNT162b2 mRNA Covid-19 Vaccine in a Nationwide Mass Vaccination Setting",
+            "authors": "Noa Dagan, Noam Barda, Eldad Kepten, et al.",
+            "year": 2021,
+            "doi": "10.1056/NEJMoa2101765",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2101765"
+          },
+          {
+            "title": "Impact and effectiveness of mRNA BNT162b2 vaccine against SARS-CoV-2 infections and COVID-19 cases, hospitalisations, and deaths following a nationwide vaccination campaign in Israel: an observational study using national surveillance data",
+            "authors": "Eric J Haas, Frederick J Angulo, John M McLaughlin, et al.",
+            "year": 2021,
+            "doi": "10.1016/S0140-6736(21)00947-8",
+            "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)00947-8/fulltext"
+          },
+          {
+            "title": "Real-world effectiveness of COVID-19 vaccines: a literature review and meta-analysis",
+            "authors": "Caifang Zheng, Weihao Shao, Xiaorui Chen, et al.",
+            "year": 2022,
+            "doi": "10.1016/j.ijid.2021.11.009",
+            "url": "https://www.ijidonline.com/article/S1201-9712(21)00883-1/fulltext"
+          }
+        ],
+        "timeMs": 67312,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine",
+                "authors": "Fernando P Polack, Stephen J Thomas, Nicholas Kitchin, et al.",
+                "year": 2020,
+                "doi": "10.1056/NEJMoa2034577",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2034577"
+              },
+              "supportive": true,
+              "reasoning": "This paper is the pivotal phase 3 trial report for the BNT162b2 (Pfizer-BioNTech) vaccine, directly demonstrating and concluding its 95% efficacy against symptomatic COVID-19."
+            },
+            {
+              "paper": {
+                "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine through 6 Months",
+                "authors": "Stephen J Thomas, Edson D Moreira Jr, Nicholas Kitchin, et al.",
+                "year": 2021,
+                "doi": "10.1056/NEJMoa2110345",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2110345"
+              },
+              "supportive": true,
+              "reasoning": "This paper reports on the pivotal phase 3 trial of the BNT162b2 vaccine, directly confirming its high efficacy against symptomatic COVID-19 and building upon the initial 95% efficacy findings."
+            },
+            {
+              "paper": {
+                "title": "BNT162b2 mRNA Covid-19 Vaccine in a Nationwide Mass Vaccination Setting",
+                "authors": "Noa Dagan, Noam Barda, Eldad Kepten, et al.",
+                "year": 2021,
+                "doi": "10.1056/NEJMoa2101765",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2101765"
+              },
+              "supportive": false,
+              "reasoning": "This paper evaluates the real-world effectiveness of the BNT162b2 vaccine in a nationwide mass vaccination setting (Israel), rather than reporting the results of its pivotal phase 3 clinical trial."
+            },
+            {
+              "paper": {
+                "title": "Impact and effectiveness of mRNA BNT162b2 vaccine against SARS-CoV-2 infections and COVID-19 cases, hospitalisations, and deaths following a nationwide vaccination campaign in Israel: an observational study using national surveillance data",
+                "authors": "Eric J Haas, Frederick J Angulo, John M McLaughlin, et al.",
+                "year": 2021,
+                "doi": "10.1016/S0140-6736(21)00947-8",
+                "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)00947-8/fulltext"
+              },
+              "supportive": false,
+              "reasoning": "The paper evaluates the real-world effectiveness of the BNT162b2 vaccine using observational data from Israel, rather than reporting the efficacy results of its pivotal phase 3 clinical trial."
+            },
+            {
+              "paper": {
+                "title": "Real-world effectiveness of COVID-19 vaccines: a literature review and meta-analysis",
+                "authors": "Caifang Zheng, Weihao Shao, Xiaorui Chen, et al.",
+                "year": 2022,
+                "doi": "10.1016/j.ijid.2021.11.009",
+                "url": "https://www.ijidonline.com/article/S1201-9712(21)00883-1/fulltext"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the real-world effectiveness of COVID-19 vaccines rather than the efficacy results from the pivotal phase 3 clinical trials."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "S3-crispr-base-editing",
+      "claim": "Base editing can introduce point mutations in DNA without creating double-strand breaks, offering higher precision than traditional CRISPR-Cas9.",
+      "claimType": "scientific",
+      "ss": {
+        "papers": [
+          {
+            "title": "Engineering precision nanoparticles for drug delivery",
+            "authors": "Michael J. Mitchell, Margaret M. Billingsley, Rebecca M. Haley, Marissa E. Wechsler, Nicholas A. Peppas, Róbert Langer",
+            "year": 2020,
+            "doi": "10.1038/s41573-020-0090-8",
+            "url": "https://doi.org/10.1038/s41573-020-0090-8"
+          },
+          {
+            "title": "Applications of genome editing technology in the targeted therapy of human diseases: mechanisms, advances and prospects",
+            "authors": "Hongyi Li, Yang Yang, Weiqi Hong, Mengyuan Huang, Min Wu, Xia Zhao",
+            "year": 2020,
+            "doi": "10.1038/s41392-019-0089-y",
+            "url": "https://doi.org/10.1038/s41392-019-0089-y"
+          },
+          {
+            "title": "Exploring treatment options in cancer: tumor treatment strategies",
+            "authors": "Beilei Liu, Hongyu Zhou, Licheng Tan, Kin To Hugo Siu, Xin‐Yuan Guan",
+            "year": 2024,
+            "doi": "10.1038/s41392-024-01856-7",
+            "url": "https://doi.org/10.1038/s41392-024-01856-7"
+          },
+          {
+            "title": "A Review on the Mechanism and Applications of CRISPR/Cas9/Cas12/Cas13/Cas14 Proteins Utilized for Genome Engineering",
+            "authors": "V. Edwin Hillary, Stanislaus Antony Ceasar",
+            "year": 2022,
+            "doi": "10.1007/s12033-022-00567-0",
+            "url": "https://doi.org/10.1007/s12033-022-00567-0"
+          },
+          {
+            "title": "RNA Drugs and RNA Targets for Small Molecules: Principles, Progress, and Challenges",
+            "authors": "Ai‐Ming Yu, Young Hee Choi, Mei‐Juan Tu",
+            "year": 2020,
+            "doi": "10.1124/pr.120.019554",
+            "url": "https://doi.org/10.1124/pr.120.019554"
+          }
+        ],
+        "timeMs": 1005,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Engineering precision nanoparticles for drug delivery",
+                "authors": "Michael J. Mitchell, Margaret M. Billingsley, Rebecca M. Haley, Marissa E. Wechsler, Nicholas A. Peppas, Róbert Langer",
+                "year": 2020,
+                "doi": "10.1038/s41573-020-0090-8",
+                "url": "https://doi.org/10.1038/s41573-020-0090-8"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the engineering of nanoparticles for drug delivery rather than the molecular mechanisms of base editing and CRISPR-Cas9."
+            },
+            {
+              "paper": {
+                "title": "Applications of genome editing technology in the targeted therapy of human diseases: mechanisms, advances and prospects",
+                "authors": "Hongyi Li, Yang Yang, Weiqi Hong, Mengyuan Huang, Min Wu, Xia Zhao",
+                "year": 2020,
+                "doi": "10.1038/s41392-019-0089-y",
+                "url": "https://doi.org/10.1038/s41392-019-0089-y"
+              },
+              "supportive": true,
+              "reasoning": "This comprehensive review of genome editing technologies details the mechanisms of various tools, including base editors, specifically highlighting their ability to precisely introduce point mutations without generating double-strand breaks compared to traditional CRISPR-Cas9."
+            },
+            {
+              "paper": {
+                "title": "Exploring treatment options in cancer: tumor treatment strategies",
+                "authors": "Beilei Liu, Hongyu Zhou, Licheng Tan, Kin To Hugo Siu, Xin‐Yuan Guan",
+                "year": 2024,
+                "doi": "10.1038/s41392-024-01856-7",
+                "url": "https://doi.org/10.1038/s41392-024-01856-7"
+              },
+              "supportive": false,
+              "reasoning": "The paper is a broad review of cancer treatment strategies and does not directly focus on the molecular mechanisms or comparative precision of base editing versus traditional CRISPR-Cas9."
+            },
+            {
+              "paper": {
+                "title": "A Review on the Mechanism and Applications of CRISPR/Cas9/Cas12/Cas13/Cas14 Proteins Utilized for Genome Engineering",
+                "authors": "V. Edwin Hillary, Stanislaus Antony Ceasar",
+                "year": 2022,
+                "doi": "10.1007/s12033-022-00567-0",
+                "url": "https://doi.org/10.1007/s12033-022-00567-0"
+              },
+              "supportive": true,
+              "reasoning": "As a comprehensive review of CRISPR mechanisms and applications, this paper discusses advanced genome engineering techniques, including how base editors utilize modified Cas proteins to introduce precise point mutations without double-strand breaks."
+            },
+            {
+              "paper": {
+                "title": "RNA Drugs and RNA Targets for Small Molecules: Principles, Progress, and Challenges",
+                "authors": "Ai‐Ming Yu, Young Hee Choi, Mei‐Juan Tu",
+                "year": 2020,
+                "doi": "10.1124/pr.120.019554",
+                "url": "https://doi.org/10.1124/pr.120.019554"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on RNA therapeutics and small molecules targeting RNA, rather than the mechanisms of DNA base editing and CRISPR-Cas9."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Programmable editing of a target base in genomic DNA without double-stranded DNA cleavage",
+            "authors": "Alexis C. Komor, Yong-Bao Kim, Michael S. Packer, John A. Zuris, David R. Liu",
+            "year": 2016,
+            "doi": "10.1038/nature17946",
+            "url": "https://doi.org/10.1038/nature17946"
+          },
+          {
+            "title": "Programmable base editing of A•T to G•C in genomic DNA without DNA cleavage",
+            "authors": "Nicole M. Gaudelli, Alexis C. Komor, Holly A. Rees, Michael S. Packer, Ahmed H. Badran, David I. Bryson, David R. Liu",
+            "year": 2017,
+            "doi": "10.1038/nature24644",
+            "url": "https://doi.org/10.1038/nature24644"
+          },
+          {
+            "title": "Base editing: precision chemistry on the genome and transcriptome of living cells",
+            "authors": "Holly A. Rees, David R. Liu",
+            "year": 2018,
+            "doi": "10.1038/s41576-018-0059-1",
+            "url": "https://doi.org/10.1038/s41576-018-0059-1"
+          },
+          {
+            "title": "Targeted nucleotide editing using hybrid prokaryotic and vertebrate adaptive immune systems",
+            "authors": "Keiji Nishida, Takayuki Arazoe, Nozomu Yachie, Satomi Banno, et al.",
+            "year": 2016,
+            "doi": "10.1126/science.aaf8729",
+            "url": "https://doi.org/10.1126/science.aaf8729"
+          },
+          {
+            "title": "CRISPR base editors: genome editing without double-strand breaks",
+            "authors": "Ayman Eid, Sahar Alshareef, Magdy M. Mahfouz",
+            "year": 2018,
+            "doi": "10.1042/BCJ20170793",
+            "url": "https://doi.org/10.1042/BCJ20170793"
+          }
+        ],
+        "timeMs": 50115,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Programmable editing of a target base in genomic DNA without double-stranded DNA cleavage",
+                "authors": "Alexis C. Komor, Yong-Bao Kim, Michael S. Packer, John A. Zuris, David R. Liu",
+                "year": 2016,
+                "doi": "10.1038/nature17946",
+                "url": "https://doi.org/10.1038/nature17946"
+              },
+              "supportive": true,
+              "reasoning": "The paper is the seminal study introducing base editing, explicitly demonstrating in its title and findings that it can edit target bases in genomic DNA without requiring double-stranded DNA cleavage."
+            },
+            {
+              "paper": {
+                "title": "Programmable base editing of A•T to G•C in genomic DNA without DNA cleavage",
+                "authors": "Nicole M. Gaudelli, Alexis C. Komor, Holly A. Rees, Michael S. Packer, Ahmed H. Badran, David I. Bryson, David R. Liu",
+                "year": 2017,
+                "doi": "10.1038/nature24644",
+                "url": "https://doi.org/10.1038/nature24644"
+              },
+              "supportive": true,
+              "reasoning": "The paper introduces adenine base editors that successfully convert A•T to G•C base pairs in genomic DNA without requiring double-strand DNA cleavage, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Base editing: precision chemistry on the genome and transcriptome of living cells",
+                "authors": "Holly A. Rees, David R. Liu",
+                "year": 2018,
+                "doi": "10.1038/s41576-018-0059-1",
+                "url": "https://doi.org/10.1038/s41576-018-0059-1"
+              },
+              "supportive": true,
+              "reasoning": "This foundational review by the pioneers of base editing explicitly details how the technology enables precise point mutations in DNA without relying on double-strand breaks, thereby overcoming the limitations of traditional CRISPR-Cas9."
+            },
+            {
+              "paper": {
+                "title": "Targeted nucleotide editing using hybrid prokaryotic and vertebrate adaptive immune systems",
+                "authors": "Keiji Nishida, Takayuki Arazoe, Nozomu Yachie, Satomi Banno, et al.",
+                "year": 2016,
+                "doi": "10.1126/science.aaf8729",
+                "url": "https://doi.org/10.1126/science.aaf8729"
+              },
+              "supportive": true,
+              "reasoning": "This landmark paper introduces Target-AID, a base editing system that fuses a cytidine deaminase to a catalytically impaired Cas9 to induce targeted point mutations without double-strand breaks, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "CRISPR base editors: genome editing without double-strand breaks",
+                "authors": "Ayman Eid, Sahar Alshareef, Magdy M. Mahfouz",
+                "year": 2018,
+                "doi": "10.1042/BCJ20170793",
+                "url": "https://doi.org/10.1042/BCJ20170793"
+              },
+              "supportive": true,
+              "reasoning": "The paper's title explicitly states that CRISPR base editors perform genome editing without creating double-strand breaks, directly supporting the core premise of the claim."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F1-qe-long-rates",
+      "claim": "The Federal Reserve's large-scale asset purchase programs (quantitative easing) reduced longer-term interest rates during the 2008-2014 period.",
+      "claimType": "financial",
+      "ss": {
+        "papers": [
+          {
+            "title": "Macroeconomic Effects of Federal Reserve Forward Guidance",
+            "authors": "Jeffrey R. Campbell, Charles L. Evans, Jonas D. M. Fisher, Alejandro Justiniano",
+            "year": 2012,
+            "doi": "10.1353/eca.2012.0004",
+            "url": "https://doi.org/10.1353/eca.2012.0004"
+          },
+          {
+            "title": "When Selling Becomes Viral: Disruptions in Debt Markets in the COVID-19 Crisis and the Fed’s Response",
+            "authors": "Valentin Haddad, Alan Moreira, Tyler Muir",
+            "year": 2020,
+            "doi": "10.1093/rfs/hhaa145",
+            "url": "https://doi.org/10.1093/rfs/hhaa145"
+          },
+          {
+            "title": "Outside the Box: Unconventional Monetary Policy in the Great Recession and Beyond",
+            "authors": "Kenneth N. Kuttner",
+            "year": 2018,
+            "doi": "10.1257/jep.32.4.121",
+            "url": "https://doi.org/10.1257/jep.32.4.121"
+          },
+          {
+            "title": "How Quantitative Easing Works: Evidence on the Refinancing Channel",
+            "authors": "Marco Di Maggio, Amir Kermani, Christopher Palmer",
+            "year": 2019,
+            "doi": "10.1093/restud/rdz060",
+            "url": "https://doi.org/10.1093/restud/rdz060"
+          },
+          {
+            "title": "Inflation expectations as a policy tool?",
+            "authors": "Olivier Coibion, Yuriy Gorodnichenko, Saten Kumar, Mathieu Pedemonte",
+            "year": 2020,
+            "doi": "10.1016/j.jinteco.2020.103297",
+            "url": "https://doi.org/10.1016/j.jinteco.2020.103297"
+          }
+        ],
+        "timeMs": 1223,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Macroeconomic Effects of Federal Reserve Forward Guidance",
+                "authors": "Jeffrey R. Campbell, Charles L. Evans, Jonas D. M. Fisher, Alejandro Justiniano",
+                "year": 2012,
+                "doi": "10.1353/eca.2012.0004",
+                "url": "https://doi.org/10.1353/eca.2012.0004"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the macroeconomic effects of the Federal Reserve's forward guidance rather than its large-scale asset purchase programs (quantitative easing), making it tangential to the specific claim."
+            },
+            {
+              "paper": {
+                "title": "When Selling Becomes Viral: Disruptions in Debt Markets in the COVID-19 Crisis and the Fed’s Response",
+                "authors": "Valentin Haddad, Alan Moreira, Tyler Muir",
+                "year": 2020,
+                "doi": "10.1093/rfs/hhaa145",
+                "url": "https://doi.org/10.1093/rfs/hhaa145"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the Federal Reserve's response to debt market disruptions during the 2020 COVID-19 crisis, rather than analyzing the effects of quantitative easing on longer-term interest rates during the 2008-2014 period."
+            },
+            {
+              "paper": {
+                "title": "Outside the Box: Unconventional Monetary Policy in the Great Recession and Beyond",
+                "authors": "Kenneth N. Kuttner",
+                "year": 2018,
+                "doi": "10.1257/jep.32.4.121",
+                "url": "https://doi.org/10.1257/jep.32.4.121"
+              },
+              "supportive": true,
+              "reasoning": "The paper provides a comprehensive review of the Federal Reserve's unconventional monetary policies during the Great Recession, explicitly concluding that large-scale asset purchases successfully lowered long-term interest rates."
+            },
+            {
+              "paper": {
+                "title": "How Quantitative Easing Works: Evidence on the Refinancing Channel",
+                "authors": "Marco Di Maggio, Amir Kermani, Christopher Palmer",
+                "year": 2019,
+                "doi": "10.1093/restud/rdz060",
+                "url": "https://doi.org/10.1093/restud/rdz060"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly supports the claim by providing empirical evidence that the Federal Reserve's quantitative easing programs significantly lowered mortgage interest rates, a key type of longer-term rate, thereby stimulating the economy through the refinancing channel."
+            },
+            {
+              "paper": {
+                "title": "Inflation expectations as a policy tool?",
+                "authors": "Olivier Coibion, Yuriy Gorodnichenko, Saten Kumar, Mathieu Pedemonte",
+                "year": 2020,
+                "doi": "10.1016/j.jinteco.2020.103297",
+                "url": "https://doi.org/10.1016/j.jinteco.2020.103297"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the use of inflation expectations and central bank communication as policy tools, rather than empirically assessing the impact of the Federal Reserve's quantitative easing programs on long-term interest rates."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "The Financial Market Effects of the Federal Reserve's Large-Scale Asset Purchases",
+            "authors": "Joseph Gagnon, Matthew Raskin, Julie Remache, Brian Sack",
+            "year": 2011,
+            "doi": "10.2139/ssrn.4858959",
+            "url": "https://www.ijcb.org/journal/ijcb11q1a1.htm"
+          },
+          {
+            "title": "The Effects of Quantitative Easing on Interest Rates: Channels and Implications for Policy",
+            "authors": "Arvind Krishnamurthy, Annette Vissing-Jorgensen",
+            "year": 2011,
+            "doi": "10.1353/eca.2011.0019",
+            "url": "https://www.nber.org/papers/w17555"
+          },
+          {
+            "title": "Flow and Stock Effects of Large-Scale Treasury Purchases: Evidence on the Importance of Local Supply",
+            "authors": "Stefania D'Amico, Thomas B. King",
+            "year": 2013,
+            "doi": "10.1016/j.jfineco.2012.11.007",
+            "url": "https://doi.org/10.1016/j.jfineco.2012.11.007"
+          },
+          {
+            "title": "The Response of Interest Rates to US and UK Quantitative Easing",
+            "authors": "Jens H. E. Christensen, Glenn D. Rudebusch",
+            "year": 2012,
+            "doi": "10.1111/j.1468-0297.2012.02554.x",
+            "url": "https://doi.org/10.1111/j.1468-0297.2012.02554.x"
+          },
+          {
+            "title": "The Federal Reserve's Large-Scale Asset Purchase Programmes: Rationale and Effects",
+            "authors": "Stefania D'Amico, William English, David López-Salido, Edward Nelson",
+            "year": 2012,
+            "doi": "10.1111/j.1468-0297.2012.02555.x",
+            "url": "https://doi.org/10.1111/j.1468-0297.2012.02555.x"
+          }
+        ],
+        "timeMs": 64830,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "The Financial Market Effects of the Federal Reserve's Large-Scale Asset Purchases",
+                "authors": "Joseph Gagnon, Matthew Raskin, Julie Remache, Brian Sack",
+                "year": 2011,
+                "doi": "10.2139/ssrn.4858959",
+                "url": "https://www.ijcb.org/journal/ijcb11q1a1.htm"
+              },
+              "supportive": true,
+              "reasoning": "This seminal paper directly analyzes the Federal Reserve's large-scale asset purchases (QE) and concludes that these programs significantly and meaningfully reduced longer-term interest rates across a range of securities."
+            },
+            {
+              "paper": {
+                "title": "The Effects of Quantitative Easing on Interest Rates: Channels and Implications for Policy",
+                "authors": "Arvind Krishnamurthy, Annette Vissing-Jorgensen",
+                "year": 2011,
+                "doi": "10.1353/eca.2011.0019",
+                "url": "https://www.nber.org/papers/w17555"
+              },
+              "supportive": true,
+              "reasoning": "This seminal 2011 paper directly analyzes the Federal Reserve's quantitative easing programs (QE1 and QE2) and provides empirical evidence that these large-scale asset purchases significantly lowered longer-term interest rates."
+            },
+            {
+              "paper": {
+                "title": "Flow and Stock Effects of Large-Scale Treasury Purchases: Evidence on the Importance of Local Supply",
+                "authors": "Stefania D'Amico, Thomas B. King",
+                "year": 2013,
+                "doi": "10.1016/j.jfineco.2012.11.007",
+                "url": "https://doi.org/10.1016/j.jfineco.2012.11.007"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly analyzes the Federal Reserve's large-scale asset purchases (specifically the 2009 Treasury purchase program) and provides empirical evidence that these purchases significantly reduced longer-term Treasury yields through both flow and stock effects."
+            },
+            {
+              "paper": {
+                "title": "The Response of Interest Rates to US and UK Quantitative Easing",
+                "authors": "Jens H. E. Christensen, Glenn D. Rudebusch",
+                "year": 2012,
+                "doi": "10.1111/j.1468-0297.2012.02554.x",
+                "url": "https://doi.org/10.1111/j.1468-0297.2012.02554.x"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly analyzes the impact of quantitative easing in the US and UK, finding that the Federal Reserve's asset purchases significantly lowered longer-term government bond yields."
+            },
+            {
+              "paper": {
+                "title": "The Federal Reserve's Large-Scale Asset Purchase Programmes: Rationale and Effects",
+                "authors": "Stefania D'Amico, William English, David López-Salido, Edward Nelson",
+                "year": 2012,
+                "doi": "10.1111/j.1468-0297.2012.02555.x",
+                "url": "https://doi.org/10.1111/j.1468-0297.2012.02555.x"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly analyzes the Federal Reserve's Large-Scale Asset Purchase programs and provides empirical evidence that these quantitative easing measures successfully lowered longer-term interest rates."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F2-minimum-wage-employment",
+      "claim": "Modest increases in the minimum wage have small or negligible effects on overall employment levels.",
+      "claimType": "financial",
+      "ss": {
+        "papers": [
+          {
+            "title": "The Gender Wage Gap: Extent, Trends, and Explanations",
+            "authors": "Francine D. Blau, Lawrence M. Kahn",
+            "year": 2017,
+            "doi": "10.1257/jel.20160995",
+            "url": "https://doi.org/10.1257/jel.20160995"
+          },
+          {
+            "title": "The Effect of Minimum Wages on Low-Wage Jobs*",
+            "authors": "Doruk Cengiz, Arindrajit Dubé, Attila Lindner, Ben Zipperer",
+            "year": 2019,
+            "doi": "10.1093/qje/qjz014",
+            "url": "https://doi.org/10.1093/qje/qjz014"
+          },
+          {
+            "title": "Workplace Heterogeneity and the Rise of West German Wage Inequality*",
+            "authors": "David Card, Jörg Heining, Patrick Kline",
+            "year": 2013,
+            "doi": "10.1093/qje/qjt006",
+            "url": "https://doi.org/10.1093/qje/qjt006"
+          },
+          {
+            "title": "Growing World Trade: Causes and Consequences",
+            "authors": "Paúl Krugman, Richard N. Cooper, T. N. Srinivasan",
+            "year": 1995,
+            "doi": "10.2307/2534577",
+            "url": "https://doi.org/10.2307/2534577"
+          },
+          {
+            "title": "Varieties of Capitalism and Institutional Complementarities in the Political Economy: An Empirical Analysis",
+            "authors": "Peter A. Hall, Daniel Gingerich",
+            "year": 2009,
+            "doi": "10.1017/s0007123409000672",
+            "url": "https://doi.org/10.1017/s0007123409000672"
+          }
+        ],
+        "timeMs": 597,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "The Gender Wage Gap: Extent, Trends, and Explanations",
+                "authors": "Francine D. Blau, Lawrence M. Kahn",
+                "year": 2017,
+                "doi": "10.1257/jel.20160995",
+                "url": "https://doi.org/10.1257/jel.20160995"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the extent, trends, and causes of the gender wage gap rather than analyzing the effects of minimum wage increases on overall employment levels."
+            },
+            {
+              "paper": {
+                "title": "The Effect of Minimum Wages on Low-Wage Jobs*",
+                "authors": "Doruk Cengiz, Arindrajit Dubé, Attila Lindner, Ben Zipperer",
+                "year": 2019,
+                "doi": "10.1093/qje/qjz014",
+                "url": "https://doi.org/10.1093/qje/qjz014"
+              },
+              "supportive": true,
+              "reasoning": "This highly relevant paper analyzes 138 state-level minimum wage changes and finds that the overall number of low-wage jobs remained essentially unchanged, directly supporting the claim that modest minimum wage increases have negligible effects on employment."
+            },
+            {
+              "paper": {
+                "title": "Workplace Heterogeneity and the Rise of West German Wage Inequality*",
+                "authors": "David Card, Jörg Heining, Patrick Kline",
+                "year": 2013,
+                "doi": "10.1093/qje/qjt006",
+                "url": "https://doi.org/10.1093/qje/qjt006"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on decomposing the rise in West German wage inequality into person- and establishment-specific components, and does not investigate the employment effects of minimum wage increases."
+            },
+            {
+              "paper": {
+                "title": "Growing World Trade: Causes and Consequences",
+                "authors": "Paúl Krugman, Richard N. Cooper, T. N. Srinivasan",
+                "year": 1995,
+                "doi": "10.2307/2534577",
+                "url": "https://doi.org/10.2307/2534577"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the causes and consequences of growing world trade and globalization, not on the domestic employment effects of minimum wage increases."
+            },
+            {
+              "paper": {
+                "title": "Varieties of Capitalism and Institutional Complementarities in the Political Economy: An Empirical Analysis",
+                "authors": "Peter A. Hall, Daniel Gingerich",
+                "year": 2009,
+                "doi": "10.1017/s0007123409000672",
+                "url": "https://doi.org/10.1017/s0007123409000672"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the Varieties of Capitalism framework and institutional complementarities in political economies, rather than analyzing the effects of minimum wage increases on employment levels."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "The Effect of Minimum Wages on Low-Wage Jobs",
+            "authors": "Doruk Cengiz, Arindrajit Dube, Attila Lindner, Ben Zipperer",
+            "year": 2019,
+            "doi": "10.1093/qje/qjz014",
+            "url": "https://doi.org/10.1093/qje/qjz014"
+          },
+          {
+            "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+            "authors": "Arindrajit Dube, T. William Lester, Michael Reich",
+            "year": 2010,
+            "doi": "10.1162/REST_a_00039",
+            "url": "https://doi.org/10.1162/REST_a_00039"
+          },
+          {
+            "title": "Minimum Wage Shocks, Employment Flows, and Labor Market Frictions",
+            "authors": "Arindrajit Dube, T. William Lester, Michael Reich",
+            "year": 2016,
+            "doi": "10.1086/685449",
+            "url": "https://doi.org/10.1086/685449"
+          },
+          {
+            "title": "15 Years of Research on US Employment and the Minimum Wage",
+            "authors": "Paul Wolfson, Dale Belman",
+            "year": 2019,
+            "doi": "10.1111/labr.12162",
+            "url": "https://doi.org/10.1111/labr.12162"
+          },
+          {
+            "title": "Publication Selection Bias in Minimum-Wage Research? A Meta-Regression Analysis",
+            "authors": "Hristos Doucouliagos, T. D. Stanley",
+            "year": 2009,
+            "doi": "10.1111/j.1467-8543.2009.00723.x",
+            "url": "https://doi.org/10.1111/j.1467-8543.2009.00723.x"
+          }
+        ],
+        "timeMs": 54135,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "The Effect of Minimum Wages on Low-Wage Jobs",
+                "authors": "Doruk Cengiz, Arindrajit Dube, Attila Lindner, Ben Zipperer",
+                "year": 2019,
+                "doi": "10.1093/qje/qjz014",
+                "url": "https://doi.org/10.1093/qje/qjz014"
+              },
+              "supportive": true,
+              "reasoning": "This highly relevant paper analyzes 138 state-level minimum wage changes and finds that the overall number of low-wage jobs remained essentially unchanged, directly supporting the claim that modest minimum wage increases have negligible effects on employment."
+            },
+            {
+              "paper": {
+                "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+                "authors": "Arindrajit Dube, T. William Lester, Michael Reich",
+                "year": 2010,
+                "doi": "10.1162/REST_a_00039",
+                "url": "https://doi.org/10.1162/REST_a_00039"
+              },
+              "supportive": true,
+              "reasoning": "This highly influential paper uses contiguous border counties to control for regional trends and finds strong evidence that minimum wage increases have no significant negative effects on employment levels in low-wage sectors."
+            },
+            {
+              "paper": {
+                "title": "Minimum Wage Shocks, Employment Flows, and Labor Market Frictions",
+                "authors": "Arindrajit Dube, T. William Lester, Michael Reich",
+                "year": 2016,
+                "doi": "10.1086/685449",
+                "url": "https://doi.org/10.1086/685449"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly supports the claim by demonstrating empirically that minimum wage increases reduce labor turnover but have a negligible impact on overall employment levels."
+            },
+            {
+              "paper": {
+                "title": "15 Years of Research on US Employment and the Minimum Wage",
+                "authors": "Paul Wolfson, Dale Belman",
+                "year": 2019,
+                "doi": "10.1111/labr.12162",
+                "url": "https://doi.org/10.1111/labr.12162"
+              },
+              "supportive": true,
+              "reasoning": "This comprehensive review and meta-analysis of US minimum wage research concludes that minimum wage increases have had small or statistically insignificant effects on employment, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Publication Selection Bias in Minimum-Wage Research? A Meta-Regression Analysis",
+                "authors": "Hristos Doucouliagos, T. D. Stanley",
+                "year": 2009,
+                "doi": "10.1111/j.1467-8543.2009.00723.x",
+                "url": "https://doi.org/10.1111/j.1467-8543.2009.00723.x"
+              },
+              "supportive": true,
+              "reasoning": "This meta-analysis of minimum wage research concludes that after correcting for publication bias, the empirical evidence indicates that minimum wage increases have an overall employment effect close to zero, directly supporting the claim."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F3-central-bank-independence",
+      "claim": "Greater central bank independence is empirically associated with lower average inflation rates across industrialized economies.",
+      "claimType": "financial",
+      "ss": {
+        "papers": [
+          {
+            "title": "Economic Reform and the Process of Global Integration",
+            "authors": "Jeffrey D. Sachs, Andrew M. Warner, Anders Åslund, Stanley Fischer",
+            "year": 1995,
+            "doi": "10.2307/2534573",
+            "url": "https://doi.org/10.2307/2534573"
+          },
+          {
+            "title": "The Fundamental Institutions of China's Reforms and Development",
+            "authors": "Chenggang Xu",
+            "year": 2011,
+            "doi": "10.1257/jel.49.4.1076",
+            "url": "https://doi.org/10.1257/jel.49.4.1076"
+          },
+          {
+            "title": "The Limits of Delegation: Veto Players, Central Bank Independence, and the Credibility of Monetary Policy",
+            "authors": "Philip Keefer, David Stasavage",
+            "year": 2003,
+            "doi": "10.1017/s0003055403000777",
+            "url": "https://doi.org/10.1017/s0003055403000777"
+          },
+          {
+            "title": "Macroeconomics and Politics",
+            "authors": "Alberto Alesina",
+            "year": 1988,
+            "doi": "10.1086/654070",
+            "url": "https://doi.org/10.1086/654070"
+          },
+          {
+            "title": "The Ricardian Approach to Budget Deficits",
+            "authors": "Robert J. Barro",
+            "year": 1989,
+            "doi": "10.1257/jep.3.2.37",
+            "url": "https://doi.org/10.1257/jep.3.2.37"
+          }
+        ],
+        "timeMs": 484,
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Economic Reform and the Process of Global Integration",
+                "authors": "Jeffrey D. Sachs, Andrew M. Warner, Anders Åslund, Stanley Fischer",
+                "year": 1995,
+                "doi": "10.2307/2534573",
+                "url": "https://doi.org/10.2307/2534573"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on the relationship between trade openness, economic reform, and economic growth, rather than the empirical link between central bank independence and inflation rates."
+            },
+            {
+              "paper": {
+                "title": "The Fundamental Institutions of China's Reforms and Development",
+                "authors": "Chenggang Xu",
+                "year": 2011,
+                "doi": "10.1257/jel.49.4.1076",
+                "url": "https://doi.org/10.1257/jel.49.4.1076"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on China's institutional reforms and economic development, rather than analyzing the relationship between central bank independence and inflation rates across industrialized economies."
+            },
+            {
+              "paper": {
+                "title": "The Limits of Delegation: Veto Players, Central Bank Independence, and the Credibility of Monetary Policy",
+                "authors": "Philip Keefer, David Stasavage",
+                "year": 2003,
+                "doi": "10.1017/s0003055403000777",
+                "url": "https://doi.org/10.1017/s0003055403000777"
+              },
+              "supportive": true,
+              "reasoning": "The paper directly addresses the relationship between central bank independence and inflation, providing empirical evidence that greater independence lowers inflation, particularly when political checks and balances (veto players) are present to make the delegation credible."
+            },
+            {
+              "paper": {
+                "title": "Macroeconomics and Politics",
+                "authors": "Alberto Alesina",
+                "year": 1988,
+                "doi": "10.1086/654070",
+                "url": "https://doi.org/10.1086/654070"
+              },
+              "supportive": true,
+              "reasoning": "Alesina's 1988 paper explicitly constructs an index of central bank independence and provides empirical evidence demonstrating a strong negative correlation between this independence and average inflation rates across industrialized democracies."
+            },
+            {
+              "paper": {
+                "title": "The Ricardian Approach to Budget Deficits",
+                "authors": "Robert J. Barro",
+                "year": 1989,
+                "doi": "10.1257/jep.3.2.37",
+                "url": "https://doi.org/10.1257/jep.3.2.37"
+              },
+              "supportive": false,
+              "reasoning": "The paper focuses on Ricardian equivalence and the economic effects of budget deficits, not the empirical relationship between central bank independence and inflation."
+            }
+          ]
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Central Bank Independence and Macroeconomic Performance: Some Comparative Evidence",
+            "authors": "Alberto Alesina, Lawrence H. Summers",
+            "year": 1993,
+            "doi": "10.2307/2077833",
+            "url": "https://www.jstor.org/stable/2077833"
+          },
+          {
+            "title": "Political and Monetary Institutions and Public Financial Policies in the Industrial Countries",
+            "authors": "Vittorio Grilli, Donato Masciandaro, Guido Tabellini",
+            "year": 1991,
+            "doi": "10.2307/1344630",
+            "url": "https://www.jstor.org/stable/1344630"
+          },
+          {
+            "title": "Measuring the Independence of Central Banks and Its Effect on Policy Outcomes",
+            "authors": "Alex Cukierman, Steven B. Webb, Bilin Neyapti",
+            "year": 1992,
+            "doi": "10.1093/wber/6.3.353",
+            "url": "https://academic.oup.com/wber/article-abstract/6/3/353/1671043"
+          },
+          {
+            "title": "Inflation and Central Bank Independence: A Meta-Regression Analysis",
+            "authors": "Jeroen Klomp, Jakob de Haan",
+            "year": 2010,
+            "doi": "10.1111/j.1467-6419.2009.00597.x",
+            "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-6419.2009.00597.x"
+          },
+          {
+            "title": "The Evolution of Central Bank Governance around the World",
+            "authors": "Christopher Crowe, Ellen E. Meade",
+            "year": 2008,
+            "doi": "10.1257/jep.22.4.69",
+            "url": "https://www.aeaweb.org/articles?id=10.1257/jep.22.4.69"
+          }
+        ],
+        "timeMs": 25219,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Central Bank Independence and Macroeconomic Performance: Some Comparative Evidence",
+                "authors": "Alberto Alesina, Lawrence H. Summers",
+                "year": 1993,
+                "doi": "10.2307/2077833",
+                "url": "https://www.jstor.org/stable/2077833"
+              },
+              "supportive": true,
+              "reasoning": "Alesina and Summers (1993) famously demonstrate a strong negative empirical correlation between central bank independence and average inflation rates among industrialized OECD countries, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Political and Monetary Institutions and Public Financial Policies in the Industrial Countries",
+                "authors": "Vittorio Grilli, Donato Masciandaro, Guido Tabellini",
+                "year": 1991,
+                "doi": "10.2307/1344630",
+                "url": "https://www.jstor.org/stable/1344630"
+              },
+              "supportive": true,
+              "reasoning": "This seminal paper introduces an index of central bank independence and empirically demonstrates that higher independence is strongly correlated with lower inflation rates across industrialized countries."
+            },
+            {
+              "paper": {
+                "title": "Measuring the Independence of Central Banks and Its Effect on Policy Outcomes",
+                "authors": "Alex Cukierman, Steven B. Webb, Bilin Neyapti",
+                "year": 1992,
+                "doi": "10.1093/wber/6.3.353",
+                "url": "https://academic.oup.com/wber/article-abstract/6/3/353/1671043"
+              },
+              "supportive": true,
+              "reasoning": "This seminal paper develops indices for central bank independence and empirically demonstrates that greater legal independence is associated with lower inflation rates, particularly in industrialized countries."
+            },
+            {
+              "paper": {
+                "title": "Inflation and Central Bank Independence: A Meta-Regression Analysis",
+                "authors": "Jeroen Klomp, Jakob de Haan",
+                "year": 2010,
+                "doi": "10.1111/j.1467-6419.2009.00597.x",
+                "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-6419.2009.00597.x"
+              },
+              "supportive": true,
+              "reasoning": "This meta-analysis directly evaluates empirical studies on the relationship between central bank independence and inflation, confirming a robust negative association between the two, particularly in OECD (industrialized) countries."
+            },
+            {
+              "paper": {
+                "title": "The Evolution of Central Bank Governance around the World",
+                "authors": "Christopher Crowe, Ellen E. Meade",
+                "year": 2008,
+                "doi": "10.1257/jep.22.4.69",
+                "url": "https://www.aeaweb.org/articles?id=10.1257/jep.22.4.69"
+              },
+              "supportive": true,
+              "reasoning": "The paper updates indices of central bank independence and transparency, providing empirical evidence that confirms the negative relationship between greater central bank independence and inflation levels."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

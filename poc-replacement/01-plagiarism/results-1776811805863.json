@@ -1,0 +1,1081 @@
+{
+  "timestamp": "2026-04-21T22:50:05.863Z",
+  "corpus": [
+    {
+      "id": "11-heavy-hebrew-wiki-ai",
+      "severity": "heavy",
+      "sentences": 8
+    },
+    {
+      "id": "12-heavy-hebrew-idi-policy",
+      "severity": "heavy",
+      "sentences": 7
+    },
+    {
+      "id": "13-light-hebrew-idi",
+      "severity": "light",
+      "sentences": 6
+    },
+    {
+      "id": "14-original-hebrew",
+      "severity": "none",
+      "sentences": 7
+    },
+    {
+      "id": "15-heavy-britannica-photosynthesis",
+      "severity": "heavy",
+      "sentences": 8
+    },
+    {
+      "id": "16-heavy-sciencedaily-ocean",
+      "severity": "heavy",
+      "sentences": 8
+    }
+  ],
+  "aggregate": {
+    "copyscape": {
+      "cm": {
+        "TP": 20,
+        "FP": 0,
+        "TN": 24,
+        "FN": 0,
+        "total": 44,
+        "accuracy": 1
+      },
+      "prf": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "articleAccuracy": 1,
+      "totalCost": 0.060000000000000005
+    },
+    "gemini": {
+      "cm": {
+        "TP": 20,
+        "FP": 0,
+        "TN": 24,
+        "FN": 0,
+        "total": 44,
+        "accuracy": 1
+      },
+      "prf": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "articleAccuracy": 1,
+      "avgSourceUrlMatchRate": 0.8333333333333334,
+      "totalCost": 0.228
+    }
+  },
+  "perArticle": [
+    {
+      "id": "11-heavy-hebrew-wiki-ai",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 5,
+        "totalSentences": 8,
+        "plagiarizedPct": 62.5
+      },
+      "copyscape": {
+        "similarityPct": 76,
+        "matches": [
+          {
+            "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA",
+            "title": "בינה מלאכותית - ויקיפדיה",
+            "wordsMatched": 107,
+            "percentMatched": 76,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בינה מלאכותית (באנגלית: Artificial Intelligence; בקיצור: AI) היא יכולתן של מערכות טכנולוגיות ומחשבים לדמות היבטים &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;אלגוריתמים המסוגלים לזהות דפוסים בתוך כמויות אדירות של נתונים, להסתגל &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;למצבים משתנים ולבצע משימות המצריכות &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;יכולת ניתוח מורכבת ושיקול דעת. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בעשורים הראשונים של המאה ה-21 הפכה הבינה המלאכותית לאחת הטכנולוגיות המעצבות ביותר של האנושות. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;היא נחשבת לטכנולוגיה רב-תכליתית, בדומה למנוע הקיטור או לחשמל, המהווה &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;לצד השפעתה האזרחית, הבינה המלאכותית מהווה מוקד מרכזי במאבק על &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.hamichlol.org.il/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA",
+            "title": "בינה מלאכותית - המכלול",
+            "wordsMatched": 106,
+            "percentMatched": 76,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;מערכות טכנולוגיות ומחשבים לדמות היבטים של תבונה אנושית, ובכלל זה &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בניגוד לתוכנות מחשב מסורתיות הפועלות לפי סדרת הוראות קבועה מראש, מערכות בינה מלאכותית מבוססות על &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;אלגוריתמים המסוגלים לזהות דפוסים בתוך כמויות אדירות של נתונים &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;למצבים משתנים ולבצע משימות המצריכות יכולת ניתוח מורכבת ושיקול דעת.&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בעשורים הראשונים של המאה ה-21 הפכה הבינה המלאכותית לאחת הטכנולוגיות המעצבות ביותר של האנושות. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;היא נחשבת לטכנולוגיה רב-תכליתית, בדומה למנוע הקיטור או לחשמל, המהווה &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 1129,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 77,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "בינה מלאכותית (באנגלית: Artificial Intelligence; בקיצור: AI) היא יכולתן של מערכות טכנולוגיות ומחשבים לדמות היבטים של תבונה אנושית, ובכלל זה למידה, הסקת מסקנות, פתרון בעיות ותפיסה חזותית או לשונית.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA"
+          },
+          {
+            "sentence": "בניגוד לתוכנות מחשב מסורתיות הפועלות לפי סדרת הוראות קבועה מראש, מערכות בינה מלאכותית מבוססות על אלגוריתמים המסוגלים לזהות דפוסים בתוך כמויות אדירות של נתונים, להסתגל למצבים משתנים ולבצע משימות המצריכות יכולת ניתוח מורכבת ושיקול דעת.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA"
+          },
+          {
+            "sentence": "בעשורים הראשונים של המאה ה-21 הפכה הבינה המלאכותית לאחת הטכנולוגיות המעצבות ביותר של האנושות.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA"
+          },
+          {
+            "sentence": "היא נחשבת לטכנולוגיה רב-תכליתית, בדומה למנוע הקיטור או לחשמל, המהווה תשתית לשינויים עמוקים בכלכלה, בתרבות ובחברה.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA"
+          },
+          {
+            "sentence": "לצד השפעתה האזרחית, הבינה המלאכותית מהווה מוקד מרכזי במאבק על עוצמה גאופוליטית.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 77,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"בינה מלאכותית (באנגלית: Artificial Intelligence; בקיצור: AI) היא יכולתן של מערכות טכנולוגיות ומחשבים לדמות היבטים של תבונה אנושית, ובכלל זה למידה, הסקת מסקנות, פתרון בעיות ותפיסה חזותית או לשונית.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA\"\n    },\n    {\n      \"sentence\": \"בניגוד לתוכנות מחשב מסורתיות הפועלות לפי סדרת הוראות קבועה מראש, מערכות בינה מלאכותית מבוססות על אלגוריתמים המסוגלים לזהות דפוסים בתוך כמויות אדירות של נתונים, להסתגל למצבים משתנים ולבצע משימות המצריכות יכולת ניתוח מורכבת ושיקול דעת.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA\"\n    },\n    {\n      \"sentence\": \"בעשורים הראשונים של המאה ה-21 הפכה הבינה המלאכותית לאחת הטכנולוגיות המעצבות ביותר של האנושות.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA\"\n    },\n    {\n      \"sentence\": \"היא נחשבת לטכנולוגיה רב-תכליתית, בדומה למנוע הקיטור או לחשמל, המהווה תשתית לשינויים עמוקים בכלכלה, בתרבות ובחברה.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA\"\n    },\n    {\n      \"sentence\": \"לצד השפעתה האזרחית, הבינה המלאכותית מהווה מוקד מרכזי במאבק על עוצמה גאופוליטית.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%A0%D7%94_%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"בינה מלאכותית (באנגלית: Artificial Intelligence; בקיצור: AI) היא יכולתן של מערכות טכנולוגיות ומחשבים לדמות היבטים של תבונה אנושית\""
+        ],
+        "timeMs": 40164,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "12-heavy-hebrew-idi-policy",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 4,
+        "totalSentences": 7,
+        "plagiarizedPct": 57.14285714285714
+      },
+      "copyscape": {
+        "similarityPct": 59,
+        "matches": [
+          {
+            "url": "https://www.idi.org.il/articles/36066",
+            "title": "ההחלטה לבטל את סבסוד מעונות היום- קשה, אך מתבקשת",
+            "wordsMatched": 45,
+            "percentMatched": 59,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בשבוע שעבר הטיל שר האוצר אביגדור ליברמן פצצה כשהתנה את התמיכה במעונות היום &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בעבודת הגבר. המטרה ברורה - להביא לעלייה בשיעור &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;הגברים החרדים הפונים להכשרה מקצועית ואקדמית ולתעסוקה. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;אין ספק, מדובר בהחלטה קשה, אך גם מתבקשת. זום-&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;אאוט על המספרים מהעשור האחרון מספר את הסיפור כולו.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.inn.co.il/news/498883",
+            "title": "המספרים שמאחורי גזירת ליברמן - ערוץ 7",
+            "wordsMatched": 45,
+            "percentMatched": 59,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;האוצר אביגדור ליברמן פצצה כשהתנה את התמיכה במעונות היום בעבודת הגבר. המטרה &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;ברורה - להביא לעלייה בשיעור הגברים החרדים הפונים להכשרה מקצועית ואקדמית ולתעסוקה. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;אין ספק, מדובר בהחלטה קשה, אך גם מתבקשת. זום-&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;אאוט על המספרים מהעשור האחרון מספר את הסיפור כולו.&lt;/font&gt;"
+          }
+        ],
+        "timeMs": 1055,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 60,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "בשבוע שעבר הטיל שר האוצר אביגדור ליברמן פצצה כשהתנה את התמיכה במעונות היום בעבודת הגבר.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.idi.org.il/"
+          },
+          {
+            "sentence": "המטרה ברורה - להביא לעלייה בשיעור הגברים החרדים הפונים להכשרה מקצועית ואקדמית ולתעסוקה.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.idi.org.il/"
+          },
+          {
+            "sentence": "אין ספק, מדובר בהחלטה קשה, אך גם מתבקשת.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.idi.org.il/"
+          },
+          {
+            "sentence": "זום-אאוט על המספרים מהעשור האחרון מספר את הסיפור כולו.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.idi.org.il/"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 60,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"בשבוע שעבר הטיל שר האוצר אביגדור ליברמן פצצה כשהתנה את התמיכה במעונות היום בעבודת הגבר.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.idi.org.il/\"\n    },\n    {\n      \"sentence\": \"המטרה ברורה - להביא לעלייה בשיעור הגברים החרדים הפונים להכשרה מקצועית ואקדמית ולתעסוקה.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.idi.org.il/\"\n    },\n    {\n      \"sentence\": \"אין ספק, מדובר בהחלטה קשה, אך גם מתבקשת.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.idi.org.il/\"\n    },\n    {\n      \"sentence\": \"זום-אאוט על המספרים מהעשור האחרון מספר את הסיפור כולו.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.idi.org.il/\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"בשבוע שעבר הטיל שר האוצר אביגדור ליברמן פצצה כשהתנה את התמיכה במעונות היום בעבודת הגבר\""
+        ],
+        "timeMs": 29917,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "13-light-hebrew-idi",
+      "groundTruth": {
+        "severity": "light",
+        "plagiarizedSentenceCount": 1,
+        "totalSentences": 6,
+        "plagiarizedPct": 16.666666666666664
+      },
+      "copyscape": {
+        "similarityPct": 29,
+        "matches": [
+          {
+            "url": "https://www.idi.org.il/articles/36066",
+            "title": "ההחלטה לבטל את סבסוד מעונות היום- קשה, אך מתבקשת",
+            "wordsMatched": 28,
+            "percentMatched": 29,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בין השנים 2015-2013, עת היה נתניהו ראש ממשלה ולפיד שר האוצר (והחרדים באופוזיציה), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;נעשו כמה קיצוצים בתמיכה הכלכלית שניתנה לחברה החרדית, שנועדו להביא לכניסת גברים חרדים לתעסוקה. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;הבולטים &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.inn.co.il/news/498883",
+            "title": "המספרים שמאחורי גזירת ליברמן - ערוץ 7",
+            "wordsMatched": 28,
+            "percentMatched": 29,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;בין השנים 2015-2013, עת היה נתניהו ראש ממשלה ולפיד שר האוצר (והחרדים באופוזיציה), &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;נעשו כמה קיצוצים בתמיכה הכלכלית שניתנה לחברה החרדית, שנועדו להביא לכניסת גברים חרדים לתעסוקה. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;הבולטים &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 921,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 30,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "בחינה של הנתונים מגלה כי בין השנים 2015-2013, עת היה נתניהו ראש ממשלה ולפיד שר האוצר (והחרדים באופוזיציה), נעשו כמה קיצוצים בתמיכה הכלכלית שניתנה לחברה החרדית, שנועדו להביא לכניסת גברים חרדים לתעסוקה.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.idi.org.il/"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 30,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"בחינה של הנתונים מגלה כי בין השנים 2015-2013, עת היה נתניהו ראש ממשלה ולפיד שר האוצר (והחרדים באופוזיציה), נעשו כמה קיצוצים בתמיכה הכלכלית שניתנה לחברה החרדית, שנועדו להביא לכניסת גברים חרדים לתעסוקה.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.idi.org.il/\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"נעשו כמה קיצוצים בתמיכה הכלכלית שניתנה לחברה החרדית, שנועדו להביא לכניסת גברים חרדים לתעסוקה\""
+        ],
+        "timeMs": 26158,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "14-original-hebrew",
+      "groundTruth": {
+        "severity": "none",
+        "plagiarizedSentenceCount": 0,
+        "totalSentences": 7,
+        "plagiarizedPct": 0
+      },
+      "copyscape": {
+        "similarityPct": 0,
+        "matches": [],
+        "timeMs": 485,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 0,
+        "isPlagiarized": false,
+        "copiedSentences": [],
+        "rawText": "{\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sources": [],
+        "searchQueries": [],
+        "timeMs": 15553,
+        "costUsd": 0.038,
+        "error": "JSON parse failed: {\n  \"overallSimilarity\": 0,\n  \"isPlagiarized\": false,\n  \"copiedSentences\":",
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 0,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "15-heavy-britannica-photosynthesis",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 5,
+        "totalSentences": 8,
+        "plagiarizedPct": 62.5
+      },
+      "copyscape": {
+        "similarityPct": 26,
+        "matches": [
+          {
+            "url": "https://brainly.in/question/39922622",
+            "title": "Concept of past Chpter.To the cuckoo - Brainly.in",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... Explanation: &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthesis, the process by which green plants and certain other organisms transform light energy into chemical energy.&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to convert water, carbon &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;dioxide, and minerals into oxygen and energy-rich organic compounds &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.agu.org/Channel/Photosynthesis",
+            "title": "Photosynthesis | AGU",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the process by which green plants and certain other organisms transform light energy into chemical energy &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to convert &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;water, carbon dioxide, and minerals into oxygen and energy-rich organic compounds.&lt;/font&gt;"
+          },
+          {
+            "url": "https://krissyballinger.com.au/blog/cleaning-house-plants/",
+            "title": "Cleaning house plants | Krissy Ballinger - Naturally Inspired",
+            "wordsMatched": 39,
+            "percentMatched": 26,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;certain other organisms transform light energy into chemical energy. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;convert water, carbon dioxide, and minerals into oxygen and energy-rich organic &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;compound. (Source). While there are several ways you can &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/summary/photochemical-reaction",
+            "title": "photochemical reaction summary | Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;organisms transform light energy into chemical energy. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;During photosynthesis ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;In green plants, light energy is captured &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;by chlorophyll in the chloroplasts of the leaves  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;and used to convert water, carbon dioxide, and &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;minerals into oxygen and energy-rich organic compounds.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/contributor/James-Alan-Bassham/192",
+            "title": "James Alan Bassham | Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and energy-rich organic &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/summary/chemical-reaction",
+            "title": "chemical reaction summary | Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and energy-rich organic &lt;/font&gt;"
+          },
+          {
+            "url": "https://kids.britannica.com/kids/article/blue-green-algae/15751/related",
+            "title": "blue-green algae - Kids | Britannica Kids | Homework Help",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the process by which green plants and certain other organisms transform light energy into chemical energy. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/science/photosynthesis",
+            "title": "Photosynthesis | Definition, Formula, Process, Diagram, Reactants ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://brainly.in/question/62230959",
+            "title": "Why is photosynthesis a chemical reaction and how can u represent ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/science/chlorophyll",
+            "title": "Chlorophyll | Definition, Function, &amp; Facts | Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/science/photodynamism",
+            "title": "Photodynamism | Photosynthesis, Light, Plants - Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/science/sunlight-solar-radiation",
+            "title": "Sunlight | Definition, Wavelengths, &amp; Facts - Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/science/How-Do-Plants-Grow",
+            "title": "How Do Plants Grow? | Cells, Photosynthesis, Hormones ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/biography/Daniel-G-Nocera",
+            "title": "Daniel G. Nocera | Biography &amp; Facts - Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/technology/artificial-leaf",
+            "title": "Artificial leaf | Device, Solar Energy &amp; Hydrogen-energy Production",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.britannica.com/biography/Robert-Huber",
+            "title": "Robert Huber | Nobel Prize, Chemistry, Photosynthesis - Britannica",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/buildingacumen/posts/during-photosynthesis-in-green-plants-light-energy-is-captured-and-used-to-conve/148220196888277/",
+            "title": "During photosynthesis in green plants, light energy is captured and ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and &lt;/font&gt;"
+          },
+          {
+            "url": "https://newhopeinternationalministries.wordpress.com/2018/11/12/marvelous-magnolias-spiritual-photosynthesis/",
+            "title": "Marvelous Magnolias &amp; Spiritual Photosynthesis",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.facebook.com/texastestedseeds/photos/photosynthesis-is-a-compound-word-made-up-of-photo-which-means-light-and-synthes/1281361250656090/",
+            "title": "Texas | Facebook - Facebook",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and energy-rich organic compounds.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.urch.com/forums/topic/10099-new-questions/",
+            "title": "New questions - TOEFL Grammar - Urch Forums",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... the process of &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.threads.com/@educatorbio/post/DC4RlNMBfld",
+            "title": "the process by which green plants and certain other organisms ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Photosynthesis :- the process by which green plants and certain other organisms transform light energy into chemical energy.&lt;/font&gt;"
+          },
+          {
+            "url": "https://ketalegacy.org/leave-it-to-leaves/",
+            "title": "Leave it to Leaves - Keta Legacy Foundation",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;It would be impossible to overestimate the importance of photosynthesis in the maintenance of life on Earth. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;If photosynthesis ceased &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.dreamstime.com/competent-photosynthesis-color-line-icon-process-which-green-plants-certain-other-organisms-transform-light-energy-image167712955",
+            "title": "Competent Photosynthesis Color Line Icon. the Process by Which ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The process by which green plants and certain other organisms transform light energy into chemical energy. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Pictogram for web page, mobile app, promo. UI UX &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.ck12.org/flexi/life-science/leaves-and-photosynthesis/what-is-the-process-by-which-green-plants-and-certain-organisms-transform-light-energy-into-chemical-energy-called/",
+            "title": "What is the process by which green plants and certain organisms ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The process by which green plants and certain other organisms transform light energy into chemical energy &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;is called photosynthesis.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.alamy.com/competent-photosynthesis-black-line-icon-the-process-by-which-green-plants-and-certain-other-organisms-transform-light-energy-into-chemical-energy-image376219713.html",
+            "title": "Competent photosynthesis black line icon. The process by ... - Alamy",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The process by which green plants and certain other organisms transform light energy into chemical energy. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Pictogram for web page, mobile app, promo.&lt;/font&gt;"
+          },
+          {
+            "url": "https://brainly.com/question/35728179",
+            "title": "Specialized vocabulary, or jargon, are words specific to a particular ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... b. Photosynthesis is &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;the process by which green plants and certain other organisms transform light energy into chemical energy.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.alamy.com/stock-photo/photosynthesis-process-illustration.html?pseudoid=BF315C6716264EFAA323362C24E496AE",
+            "title": "Photosynthesis process illustration Stock Photos and Images - Alamy",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... RF 2CPBYWW–Competent photosynthesis color line icon. &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The process by which green plants and certain other organisms transform light energy into chemical &lt;/font&gt;"
+          }
+        ],
+        "timeMs": 4454,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 76,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "Photosynthesis, the process by which green plants and certain other organisms transform light energy into chemical energy.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.britannica.com/science/photosynthesis"
+          },
+          {
+            "sentence": "During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and energy-rich organic compounds.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.britannica.com/science/photosynthesis"
+          },
+          {
+            "sentence": "It would be impossible to overestimate the importance of photosynthesis in the maintenance of life on Earth.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.britannica.com/science/photosynthesis"
+          },
+          {
+            "sentence": "The Great Oxidation Event, which began about 2.4 billion years ago and was largely driven by the photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the way for the evolution of most forms of multicellular life.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.britannica.com/science/photosynthesis"
+          },
+          {
+            "sentence": "Photosynthesis completely transformed Earth's environment and biosphere.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.britannica.com/science/photosynthesis"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 76,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"Photosynthesis, the process by which green plants and certain other organisms transform light energy into chemical energy.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.britannica.com/science/photosynthesis\"\n    },\n    {\n      \"sentence\": \"During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and energy-rich organic compounds.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.britannica.com/science/photosynthesis\"\n    },\n    {\n      \"sentence\": \"It would be impossible to overestimate the importance of photosynthesis in the maintenance of life on Earth.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.britannica.com/science/photosynthesis\"\n    },\n    {\n      \"sentence\": \"The Great Oxidation Event, which began about 2.4 billion years ago and was largely driven by the photosynthetic cyanobacteria, raised atmospheric oxygen to nearly 1 percent of present levels over a span of 600 million years, paving the way for the evolution of most forms of multicellular life.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.britannica.com/science/photosynthesis\"\n    },\n    {\n      \"sentence\": \"Photosynthesis completely transformed Earth's environment and biosphere.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.britannica.com/science/photosynthesis\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"During photosynthesis in green plants, light energy is captured and used to convert water, carbon dioxide, and minerals into oxygen and energy-rich organic compounds.\"",
+          "\"Photosynthesis, the process by which green plants and certain other organisms transform light energy into chemical energy.\"",
+          "\"The Great Oxidation Event, which began about 2.4 billion years ago and was largely driven by the photosynthetic cyanobacteria\"",
+          "\"It would be impossible to overestimate the importance of photosynthesis in the maintenance of life on Earth.\""
+        ],
+        "timeMs": 22429,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    },
+    {
+      "id": "16-heavy-sciencedaily-ocean",
+      "groundTruth": {
+        "severity": "heavy",
+        "plagiarizedSentenceCount": 5,
+        "totalSentences": 8,
+        "plagiarizedPct": 62.5
+      },
+      "copyscape": {
+        "similarityPct": 69,
+        "matches": [
+          {
+            "url": "https://www.sciencedaily.com/terms/ocean_current.htm",
+            "title": "Ocean current - ScienceDaily",
+            "wordsMatched": 92,
+            "percentMatched": 69,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;An ocean current is any more or less permanent or continuous, directed movement of ocean water that flows in one of the Earth's oceans.&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;salinity differences and the gravitation of the moon. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The depth contours, the shoreline and other currents influence the current's direction and strength &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Ocean currents can flow for thousands of kilometers. They are &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;very important in determining the climates &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;of the continents, especially those &lt;/font&gt;"
+          },
+          {
+            "url": "https://ahadsjournal.wordpress.com/2020/07/22/interesting-facts-fundament-of-ocean-current-ahadsjournal/",
+            "title": "Interesting Facts &amp; fundament of ocean Current-ahadsjournal",
+            "wordsMatched": 92,
+            "percentMatched": 69,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;permanent or continuous, directed movement of ocean water that flows &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;salinity differences and the gravitation of the moon.&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;The depth ... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The depth contours, the shoreline and other currents influence the current's direction and strength.Ocean currents can flow for thousands of &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;continents, especially those regions bordering on the ocean.&lt;/font&gt;"
+          },
+          {
+            "url": "https://www.haikudeck.com/copy-of-ocean-currents-and-climates-science-and-technology-presentation-eK2rcV2h1D",
+            "title": "Copy of Ocean Currents And Climates by barnetta - Haiku Deck",
+            "wordsMatched": 67,
+            "percentMatched": 50,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The currents are generated from the forces acting upon the water like the earth's rotation, the wind, the temperature and salinity differences and the &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The depth contours, the shoreline and other currents influence the current's direction and strength. Ocean currents can flow for thousands of kilometers.&lt;/font&gt;"
+          },
+          {
+            "url": "https://quizlet.com/75314704/unit-10-flash-cards/",
+            "title": "Unit 10 Flashcards | Quizlet",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Ocean current is any more or less permanent or continuous, directed movement of ocean water that flows in one of the Earth's oceans.&lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;water like the earth's rotation, the wind, the temperature and salinity differences and the gravitation of the moon. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Tap the card to flip. 1 / 8.&lt;/font&gt;"
+          },
+          {
+            "url": "https://en.wikipedia.org/wiki/Wikipedia:Picture_of_the_day/January_2009",
+            "title": "Wikipedia:Picture of the day/January 2009",
+            "wordsMatched": 33,
+            "percentMatched": 24,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... They &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are generated from the forces acting upon the water like the Earth's rotation, the wind, the temperature, &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;salinity differences and the gravitation of the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.omicsonline.org/scholarly/ocean-currents-journals-articles-ppts-list.php",
+            "title": "Ocean Currents | List of High Impact Articles | PPts | Journals",
+            "wordsMatched": 27,
+            "percentMatched": 20,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;An ocean current is &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;more or less permanent or continuous, directed movement of ocean water that flows in one of the Earth's oceans. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;Ocean current is the &lt;/font&gt;"
+          },
+          {
+            "url": "https://www.scribd.com/document/494379968/G9-OCEAN-CURRENTS-Learning-Plan",
+            "title": "Understanding Ocean Currents in Climate | PDF - Scribd",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;current's direction and strength. Ocean currents can flow for thousands of kilometers. They are very important in determining the climates of the continents &lt;/font&gt;"
+          },
+          {
+            "url": "https://polarpedia.eu/en/ocean-current/",
+            "title": "Ocean current - Polarpedia",
+            "wordsMatched": 47,
+            "percentMatched": 35,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;salinity differences, and the gravitation of the moon. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;The currents  &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;are very important in determining the climates of the continents (especially those regions bordering &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;the ocean) and ecosystems. Dr. Michael &lt;/font&gt;"
+          },
+          {
+            "url": "https://sist.sathyabama.ac.in/sist_coursematerial/uploads/SBTA7010.pdf",
+            "title": "1 MARINE BIOTECHNOLOGY: SBTA 7010 - Sathyabama",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;strength. Ocean currents can flow for thousands of kilometers. They are very important in determining the climates of the continents, especially those &lt;/font&gt;"
+          },
+          {
+            "url": "https://brainly.in/question/38436829",
+            "title": "राइट एनी थ्री एडवांटेजेस ऑफ ओशन​ - Brainly.in",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... Explanation:&lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;An ocean current is any more or &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... Answer:&lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;permanent or continuous, directed movement of ocean water that flows in one of the &lt;/font&gt;"
+          },
+          {
+            "url": "https://brainly.in/question/12359939",
+            "title": "write about the main events of ocean currents. give example ...",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;salinity differences and the gravitation of the moon. &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;The depth contours, the shoreline and other currents influence the current's direction &lt;/font&gt;"
+          },
+          {
+            "url": "https://en.wiktionary.org/wiki/ocean_current",
+            "title": "ocean current - Wiktionary, the free dictionary",
+            "wordsMatched": 0,
+            "percentMatched": 0,
+            "snippet": "&lt;font color=&quot;#777777&quot;&gt;... ocean current (plural ocean currents). &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;Any more or less permanent or continuous, directed movement of &lt;/font&gt;&lt;font color=&quot;#777777&quot;&gt;... &lt;/font&gt;&lt;font color=&quot;#000000&quot;&gt;water that flows in one of the Earth's oceans.&lt;/font&gt;"
+          }
+        ],
+        "timeMs": 1521,
+        "costUsd": 0.01,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "articleLevelCorrect": true
+      },
+      "gemini": {
+        "overallSimilarity": 69,
+        "isPlagiarized": true,
+        "copiedSentences": [
+          {
+            "sentence": "An ocean current is any more or less permanent or continuous, directed movement of ocean water that flows in one of the Earth's oceans.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.sciencedaily.com"
+          },
+          {
+            "sentence": "The currents are generated from the forces acting upon the water like the earth's rotation, the wind, the temperature and salinity differences and the gravitation of the moon.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.sciencedaily.com"
+          },
+          {
+            "sentence": "The depth contours, the shoreline and other currents influence the current's direction and strength.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.sciencedaily.com"
+          },
+          {
+            "sentence": "Ocean currents can flow for thousands of kilometers.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.sciencedaily.com"
+          },
+          {
+            "sentence": "They are very important in determining the climates of the continents, especially those regions bordering on the ocean.",
+            "isPlagiarized": true,
+            "confidence": "high",
+            "sourceUrl": "https://www.sciencedaily.com"
+          }
+        ],
+        "rawText": "{\n  \"overallSimilarity\": 69,\n  \"isPlagiarized\": true,\n  \"copiedSentences\": [\n    {\n      \"sentence\": \"An ocean current is any more or less permanent or continuous, directed movement of ocean water that flows in one of the Earth's oceans.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.sciencedaily.com\"\n    },\n    {\n      \"sentence\": \"The currents are generated from the forces acting upon the water like the earth's rotation, the wind, the temperature and salinity differences and the gravitation of the moon.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.sciencedaily.com\"\n    },\n    {\n      \"sentence\": \"The depth contours, the shoreline and other currents influence the current's direction and strength.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.sciencedaily.com\"\n    },\n    {\n      \"sentence\": \"Ocean currents can flow for thousands of kilometers.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.sciencedaily.com\"\n    },\n    {\n      \"sentence\": \"They are very important in determining the climates of the continents, especially those regions bordering on the ocean.\",\n      \"isPlagiarized\": true,\n      \"confidence\": \"high\",\n      \"sourceUrl\": \"https://www.sciencedaily.com\"\n    }\n  ]\n}",
+        "sources": [],
+        "searchQueries": [
+          "\"An ocean current is any more or less permanent or continuous, directed movement of ocean water that flows in one of the Earth's oceans.\"",
+          "\"Ocean currents can flow for thousands of kilometers.\"",
+          "\"The depth contours, the shoreline and other currents influence the current's direction and strength.\"",
+          "\"The currents are generated from the forces acting upon the water like the earth's rotation, the wind, the temperature and salinity differences and the gravitation of the moon.\"",
+          "\"They are very important in determining the climates of the continents, especially those regions bordering on the ocean.\""
+        ],
+        "timeMs": 32215,
+        "costUsd": 0.038,
+        "sentenceLevelBinaryResults": [
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "positive",
+            "actual": "positive"
+          },
+          {
+            "predicted": "negative",
+            "actual": "negative"
+          }
+        ],
+        "sourceUrlMatchRate": 1,
+        "articleLevelCorrect": true
+      }
+    }
+  ]
+}

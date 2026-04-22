@@ -1,0 +1,644 @@
+{
+  "timestamp": "2026-04-22T08:37:40.642Z",
+  "corpus": [
+    {
+      "id": "H1-doyle-study-scarlet",
+      "label": "HUMAN",
+      "provenance": "pure-human",
+      "aiWordPercentage": 0
+    },
+    {
+      "id": "H2-austen-pride-prejudice",
+      "label": "HUMAN",
+      "provenance": "pure-human",
+      "aiWordPercentage": 0
+    },
+    {
+      "id": "H3-lincoln-gettysburg",
+      "label": "HUMAN",
+      "provenance": "pure-human",
+      "aiWordPercentage": 0
+    },
+    {
+      "id": "H4-wiki-golden-retriever",
+      "label": "HUMAN",
+      "provenance": "pure-human",
+      "aiWordPercentage": 0
+    },
+    {
+      "id": "H5-wiki-water-cycle",
+      "label": "HUMAN",
+      "provenance": "pure-human",
+      "aiWordPercentage": 0
+    },
+    {
+      "id": "A1-ai-remote-work",
+      "label": "AI",
+      "provenance": "pure-ai",
+      "aiWordPercentage": 100
+    },
+    {
+      "id": "A2-ai-meditation",
+      "label": "AI",
+      "provenance": "pure-ai",
+      "aiWordPercentage": 100
+    },
+    {
+      "id": "A3-ai-climate",
+      "label": "AI",
+      "provenance": "pure-ai",
+      "aiWordPercentage": 100
+    },
+    {
+      "id": "A4-ai-digital-marketing",
+      "label": "AI",
+      "provenance": "pure-ai",
+      "aiWordPercentage": 100
+    },
+    {
+      "id": "A5-ai-healthy-eating",
+      "label": "AI",
+      "provenance": "pure-ai",
+      "aiWordPercentage": 100
+    },
+    {
+      "id": "M1-ai-edited-remote-work",
+      "label": "AI",
+      "provenance": "ai-then-edited",
+      "aiWordPercentage": 85
+    },
+    {
+      "id": "M2-ai-edited-cooking",
+      "label": "AI",
+      "provenance": "ai-then-edited",
+      "aiWordPercentage": 80
+    },
+    {
+      "id": "M3-ai-edited-hiking",
+      "label": "AI",
+      "provenance": "ai-then-edited",
+      "aiWordPercentage": 80
+    },
+    {
+      "id": "M4-ai-edited-budget",
+      "label": "AI",
+      "provenance": "ai-then-edited",
+      "aiWordPercentage": 82
+    },
+    {
+      "id": "M5-ai-edited-learning",
+      "label": "AI",
+      "provenance": "ai-then-edited",
+      "aiWordPercentage": 83
+    },
+    {
+      "id": "P1-polished-childhood-memory",
+      "label": "HUMAN",
+      "provenance": "human-then-polished",
+      "aiWordPercentage": 20
+    },
+    {
+      "id": "P2-polished-journal-apartment",
+      "label": "HUMAN",
+      "provenance": "human-then-polished",
+      "aiWordPercentage": 18
+    },
+    {
+      "id": "P3-polished-bookshop",
+      "label": "HUMAN",
+      "provenance": "human-then-polished",
+      "aiWordPercentage": 15
+    },
+    {
+      "id": "P4-polished-night-drive",
+      "label": "HUMAN",
+      "provenance": "human-then-polished",
+      "aiWordPercentage": 22
+    },
+    {
+      "id": "P5-polished-grandfather",
+      "label": "HUMAN",
+      "provenance": "human-then-polished",
+      "aiWordPercentage": 19
+    }
+  ],
+  "aggregate": {
+    "copyscape": {
+      "cm": {
+        "TP": 10,
+        "FP": 2,
+        "TN": 8,
+        "FN": 0,
+        "total": 20,
+        "accuracy": 0.9
+      },
+      "prf": {
+        "precision": 0.8333333333333334,
+        "recall": 1,
+        "f1": 0.9090909090909091
+      },
+      "spearman": 0.8962406015037594,
+      "totalCost": 0.20000000000000004
+    },
+    "gemini": {
+      "cm": {
+        "TP": 6,
+        "FP": 0,
+        "TN": 10,
+        "FN": 4,
+        "total": 20,
+        "accuracy": 0.8
+      },
+      "prf": {
+        "precision": 1,
+        "recall": 0.6,
+        "f1": 0.7499999999999999
+      },
+      "spearman": 0.7466165413533834,
+      "totalCost": 0.06000000000000002
+    }
+  },
+  "perSample": [
+    {
+      "id": "H1-doyle-study-scarlet",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.12321102084659,
+        "aiPct": 12,
+        "verdict": "human",
+        "timeMs": 2045,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 0,
+        "confidence": "high",
+        "reasoning": "The text is the famous opening passage of Arthur Conan Doyle's 1887 novel 'A Study in Scarlet', characterized by highly specific historical details, 19th-century literary phrasing, and a complete absence of generic AI markers.",
+        "timeMs": 5408,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "H2-austen-pride-prejudice",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.01,
+        "aiPct": 1,
+        "verdict": "human",
+        "timeMs": 2233,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 0,
+        "confidence": "high",
+        "reasoning": "The text is the exact opening of Jane Austen's classic 1813 novel 'Pride and Prejudice', featuring highly specific character dialogue, historical phrasing, and idiosyncratic tone that definitively prove it is human-authored.",
+        "timeMs": 11542,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "H3-lincoln-gettysburg",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.01,
+        "aiPct": 1,
+        "verdict": "human",
+        "timeMs": 1889,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 50,
+        "confidence": "low",
+        "reasoning": "",
+        "error": "TimeoutError: The operation timed out.",
+        "timeMs": 283107,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "H4-wiki-golden-retriever",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.040787214344469,
+        "aiPct": 4,
+        "verdict": "human",
+        "timeMs": 2135,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text is highly factual, dense with specific historical names, dates, and locations, and exhibits structural repetition typical of copied Wikipedia excerpts rather than synthesized AI generation.",
+        "timeMs": 7381,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "H5-wiki-water-cycle",
+      "label": "HUMAN",
+      "aiWordPercentage": 0,
+      "provenance": "pure-human",
+      "copyscape": {
+        "aiScore": 0.47257823555648,
+        "aiPct": 47,
+        "verdict": "mixed",
+        "timeMs": 1915,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text is highly factual, dense with specific scientific terminology and exact percentages, and lacks typical AI filler phrases or hedging, strongly resembling a human-edited encyclopedic entry like Wikipedia.",
+        "timeMs": 16877,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "A1-ai-remote-work",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2092,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 99,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI markers, including a highly formulaic structure, generic vocabulary ('modern professional landscape'), common AI transition phrases ('Finally, it is worth noting'), excessive hedging ('can help'), and a complete lack of specific, real-world examples or personal anecdotes.",
+        "timeMs": 9018,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true
+    },
+    {
+      "id": "A2-ai-meditation",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2073,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 98,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including a highly formulaic five-paragraph structure, cliché phrases like 'In a world where' and 'Ultimately', excessive hedging ('can help', 'can lead to'), and a complete lack of specific citations or personal anecdotes.",
+        "timeMs": 9340,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true
+    },
+    {
+      "id": "A3-ai-climate",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 1940,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 99,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including a highly formulaic five-paragraph structure, overly balanced lists, generic vocabulary like 'pressing challenges' and 'comprehensive approach,' and a complete lack of specific details or personal voice.",
+        "timeMs": 19015,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true
+    },
+    {
+      "id": "A4-ai-digital-marketing",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2081,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 98,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including highly formulaic transitions ('One of the most notable trends', 'Another significant development', 'Finally'), a generic and overly balanced structure, a complete lack of specific real-world examples, and ubiquitous AI buzzwords like 'navigate this dynamic landscape'.",
+        "timeMs": 6921,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true
+    },
+    {
+      "id": "A5-ai-healthy-eating",
+      "label": "AI",
+      "aiWordPercentage": 100,
+      "provenance": "pure-ai",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2016,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 98,
+        "confidence": "high",
+        "reasoning": "The text exhibits classic AI hallmarks, including a highly formulaic structure, generic vocabulary ('overall well-being', 'function optimally'), excessive hedging ('can help', 'potentially'), and a complete lack of personal anecdotes or specific details.",
+        "timeMs": 7339,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true
+    },
+    {
+      "id": "M1-ai-edited-remote-work",
+      "label": "AI",
+      "aiWordPercentage": 85,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.99,
+        "aiPct": 99,
+        "verdict": "ai",
+        "timeMs": 2145,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 85,
+        "confidence": "high",
+        "reasoning": "The text relies heavily on formulaic transitions ('Another key factor', 'Finally, it's worth noting that'), balanced parallel structures, and generic advice typical of AI, with the brief first-person anecdotes appearing artificially inserted into an otherwise sterile, highly structured essay.",
+        "timeMs": 13528,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "AI",
+      "geminiCorrect": true
+    },
+    {
+      "id": "M2-ai-edited-cooking",
+      "label": "AI",
+      "aiWordPercentage": 80,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.97431178983472,
+        "aiPct": 97,
+        "verdict": "ai",
+        "timeMs": 1950,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 15,
+        "confidence": "high",
+        "reasoning": "The text features personal anecdotes, strong assertions without typical AI hedging, varied sentence structures, and idiosyncratic sensory details like 'cardboard-flavored' tomatoes that strongly suggest human authorship.",
+        "timeMs": 8481,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false
+    },
+    {
+      "id": "M3-ai-edited-hiking",
+      "label": "AI",
+      "aiWordPercentage": 80,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.96327244056424,
+        "aiPct": 96,
+        "verdict": "ai",
+        "timeMs": 2006,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text includes highly specific personal anecdotes (Mount Tamalpais, a cheese sandwich loadout) and niche domain terms (Sawyer Squeeze, scree) while lacking typical AI filler or overly balanced structures, strongly indicating human authorship.",
+        "timeMs": 9543,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false
+    },
+    {
+      "id": "M4-ai-edited-budget",
+      "label": "AI",
+      "aiWordPercentage": 82,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.96278289610085,
+        "aiPct": 96,
+        "verdict": "ai",
+        "timeMs": 2132,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 15,
+        "confidence": "high",
+        "reasoning": "The text features specific personal anecdotes, conversational idioms, and varied sentence structures that lack the typical formulaic phrasing and generic hedging of AI-generated content.",
+        "timeMs": 7768,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false
+    },
+    {
+      "id": "M5-ai-edited-learning",
+      "label": "AI",
+      "aiWordPercentage": 83,
+      "provenance": "ai-then-edited",
+      "copyscape": {
+        "aiScore": 0.94518004882381,
+        "aiPct": 95,
+        "verdict": "ai",
+        "timeMs": 1970,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text features specific personal anecdotes (studying Italian and Hebrew), highly idiomatic and punchy phrasing ('Start ugly and get better'), and lacks the formulaic structure, hedging, and generic transitions typical of AI-generated content.",
+        "timeMs": 6621,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": false
+    },
+    {
+      "id": "P1-polished-childhood-memory",
+      "label": "HUMAN",
+      "aiWordPercentage": 20,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.42398099559644,
+        "aiPct": 42,
+        "verdict": "mixed",
+        "timeMs": 2253,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text features highly idiosyncratic phrasing ('rooster next door wasn't negotiable'), specific sensory details, varied sentence structures, and lacks any of the generic hedging or formulaic transitions typical of AI-generated content.",
+        "timeMs": 9629,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "P2-polished-journal-apartment",
+      "label": "HUMAN",
+      "aiWordPercentage": 18,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.79902636747691,
+        "aiPct": 80,
+        "verdict": "ai",
+        "timeMs": 2186,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": false,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text features highly idiosyncratic metaphors (a radiator with unarticulated opinions), specific sensory details (eating a cheese sandwich over the sink), varied sentence structures, and completely lacks common AI tropes or formulaic phrasing, strongly indicating human authorship.",
+        "timeMs": 9597,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "P3-polished-bookshop",
+      "label": "HUMAN",
+      "aiWordPercentage": 15,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.023075095059216,
+        "aiPct": 2,
+        "verdict": "human",
+        "timeMs": 5493,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text features highly specific personal details, idiosyncratic metaphors, varied sentence structures, and a distinct narrative voice completely devoid of typical AI buzzwords or formulaic structures.",
+        "timeMs": 23102,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "P4-polished-night-drive",
+      "label": "HUMAN",
+      "aiWordPercentage": 22,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.32065495517511,
+        "aiPct": 32,
+        "verdict": "mixed",
+        "timeMs": 2083,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "HUMAN",
+      "copyscapeCorrect": true,
+      "gemini": {
+        "aiProbability": 5,
+        "confidence": "high",
+        "reasoning": "The text features highly specific cultural details (Arik Einstein, finjan), idiosyncratic metaphors ('fills silence the way plaster fills cracks'), and a distinct, personal narrative voice devoid of typical AI hedging or formulaic structures.",
+        "timeMs": 15970,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    },
+    {
+      "id": "P5-polished-grandfather",
+      "label": "HUMAN",
+      "aiWordPercentage": 19,
+      "provenance": "human-then-polished",
+      "copyscape": {
+        "aiScore": 0.54123120109319,
+        "aiPct": 54,
+        "verdict": "mixed",
+        "timeMs": 2090,
+        "costUsd": 0.01
+      },
+      "copyscapePredicted": "AI",
+      "copyscapeCorrect": false,
+      "gemini": {
+        "aiProbability": 10,
+        "confidence": "high",
+        "reasoning": "The text features highly specific sensory details, idiosyncratic phrasing, varied sentence structures, and a deeply personal tone devoid of typical AI hedging or formulaic transitions.",
+        "timeMs": 13928,
+        "costUsd": 0.003
+      },
+      "geminiPredicted": "HUMAN",
+      "geminiCorrect": true
+    }
+  ]
+}

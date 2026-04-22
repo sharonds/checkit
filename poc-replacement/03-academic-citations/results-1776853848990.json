@@ -1,0 +1,950 @@
+{
+  "timestamp": "2026-04-22T10:30:48.991Z",
+  "corpus": [
+    {
+      "id": "M1-vitamin-d-respiratory",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "M2-statins-cardiovascular",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "M3-sglt2-heart-failure",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "M4-exercise-dementia",
+      "claimType": "medical",
+      "goldCount": 1
+    },
+    {
+      "id": "S1-permafrost-methane",
+      "claimType": "scientific",
+      "goldCount": 1
+    },
+    {
+      "id": "S2-mrna-vaccine-efficacy",
+      "claimType": "scientific",
+      "goldCount": 1
+    },
+    {
+      "id": "S3-crispr-base-editing",
+      "claimType": "scientific",
+      "goldCount": 1
+    },
+    {
+      "id": "F1-qe-long-rates",
+      "claimType": "financial",
+      "goldCount": 1
+    },
+    {
+      "id": "F2-minimum-wage-employment",
+      "claimType": "financial",
+      "goldCount": 1
+    },
+    {
+      "id": "F3-central-bank-independence",
+      "claimType": "financial",
+      "goldCount": 1
+    }
+  ],
+  "aggregate": {
+    "semanticScholar": {
+      "exactGoldRecallAt3": 0,
+      "exactGoldRecallAt5": 0,
+      "acceptableSupportRecallAt3": 0,
+      "acceptableSupportRecallAt5": 0,
+      "totalCost": 0
+    },
+    "gemini": {
+      "exactGoldRecallAt3": 0.6,
+      "exactGoldRecallAt5": 0.6,
+      "acceptableSupportRecallAt3": 0.6,
+      "acceptableSupportRecallAt5": 0.6,
+      "totalCost": 0.37999999999999995
+    },
+    "judgeCost": 0.09
+  },
+  "perClaim": [
+    {
+      "id": "M1-vitamin-d-respiratory",
+      "claim": "Vitamin D supplementation reduces the risk of acute respiratory tract infections, particularly in individuals who are deficient.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [],
+        "timeMs": 4073,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Vitamin D supplementation to prevent acute respiratory tract infections: systematic review and meta-analysis of individual participant data",
+            "authors": "Adrian R Martineau, David A Jolliffe, Richard L Hooper, et al.",
+            "year": 2017,
+            "doi": "10.1136/bmj.i6583",
+            "url": "https://doi.org/10.1136/bmj.i6583"
+          },
+          {
+            "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials",
+            "authors": "David A Jolliffe, Carlos A Camargo Jr, John D Sluyter, et al.",
+            "year": 2021,
+            "doi": "10.1016/S2213-8587(21)00051-6",
+            "url": "https://doi.org/10.1016/S2213-8587(21)00051-6"
+          },
+          {
+            "title": "Vitamin D and Respiratory Tract Infections: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+            "authors": "Peter Bergman, Asa U Lindh, Linda Björkhem-Bergman, Jonatan D Lindh",
+            "year": 2013,
+            "doi": "10.1371/journal.pone.0065835",
+            "url": "https://doi.org/10.1371/journal.pone.0065835"
+          },
+          {
+            "title": "Vitamin D supplementation and risk of respiratory tract infections: a meta-analysis of randomized controlled trials",
+            "authors": "S Mao, S Huang",
+            "year": 2013,
+            "doi": "10.3109/00365548.2013.799287",
+            "url": "https://doi.org/10.3109/00365548.2013.799287"
+          },
+          {
+            "title": "Randomized trial of vitamin D supplementation to prevent seasonal influenza A in schoolchildren",
+            "authors": "Mitsuyoshi Urashima, Takaaki Segawa, Minoru Okazaki, Mana Kurihara, Yasuyuki Wada, Hiroyuki Ida",
+            "year": 2010,
+            "doi": "10.3945/ajcn.2009.29094",
+            "url": "https://doi.org/10.3945/ajcn.2009.29094"
+          }
+        ],
+        "timeMs": 114869,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Vitamin D supplementation to prevent acute respiratory tract infections: systematic review and meta-analysis of individual participant data",
+                "authors": "Adrian R Martineau, David A Jolliffe, Richard L Hooper, et al.",
+                "year": 2017,
+                "doi": "10.1136/bmj.i6583",
+                "url": "https://doi.org/10.1136/bmj.i6583"
+              },
+              "supportive": true,
+              "reasoning": "The cited systematic review and meta-analysis directly investigates the claim and concludes that vitamin D supplementation safely protects against acute respiratory tract infections, with the strongest protective effects seen in individuals with baseline vitamin D deficiency."
+            },
+            {
+              "paper": {
+                "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials",
+                "authors": "David A Jolliffe, Carlos A Camargo Jr, John D Sluyter, et al.",
+                "year": 2021,
+                "doi": "10.1016/S2213-8587(21)00051-6",
+                "url": "https://doi.org/10.1016/S2213-8587(21)00051-6"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a systematic review and meta-analysis specifically investigating the efficacy of vitamin D supplementation in preventing acute respiratory infections, directly addressing and supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Vitamin D and Respiratory Tract Infections: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+                "authors": "Peter Bergman, Asa U Lindh, Linda Björkhem-Bergman, Jonatan D Lindh",
+                "year": 2013,
+                "doi": "10.1371/journal.pone.0065835",
+                "url": "https://doi.org/10.1371/journal.pone.0065835"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a systematic review and meta-analysis of randomized controlled trials that directly investigates and confirms the protective effect of Vitamin D supplementation against respiratory tract infections."
+            },
+            {
+              "paper": {
+                "title": "Vitamin D supplementation and risk of respiratory tract infections: a meta-analysis of randomized controlled trials",
+                "authors": "S Mao, S Huang",
+                "year": 2013,
+                "doi": "10.3109/00365548.2013.799287",
+                "url": "https://doi.org/10.3109/00365548.2013.799287"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a meta-analysis of randomized controlled trials that directly investigates the effect of Vitamin D supplementation on the risk of respiratory tract infections, providing high-level evidence relevant to the claim."
+            },
+            {
+              "paper": {
+                "title": "Randomized trial of vitamin D supplementation to prevent seasonal influenza A in schoolchildren",
+                "authors": "Mitsuyoshi Urashima, Takaaki Segawa, Minoru Okazaki, Mana Kurihara, Yasuyuki Wada, Hiroyuki Ida",
+                "year": 2010,
+                "doi": "10.3945/ajcn.2009.29094",
+                "url": "https://doi.org/10.3945/ajcn.2009.29094"
+              },
+              "supportive": true,
+              "reasoning": "This randomized controlled trial directly supports the claim by demonstrating that vitamin D supplementation significantly reduced the incidence of seasonal influenza A, an acute respiratory tract infection, in schoolchildren."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M2-statins-cardiovascular",
+      "claim": "Statin therapy reduces major vascular events in high-risk populations regardless of baseline LDL cholesterol levels.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [],
+        "timeMs": 3422,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [],
+        "timeMs": 150008,
+        "error": "AbortError: The operation was aborted.",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      }
+    },
+    {
+      "id": "M3-sglt2-heart-failure",
+      "claim": "SGLT2 inhibitors reduce cardiovascular death and hospitalization for heart failure in patients with type 2 diabetes.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [],
+        "timeMs": 3601,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes",
+            "authors": "Bernard Zinman, Christoph Wanner, John M. Lachin, David Fitchett, Erich Bluhmki, Stefan Hantel, Michaela Mattheus, Theresa Devins, Odd Erik Johansen, Hans J. Woerle, Uli C. Broedl, Silvio E. Inzucchi",
+            "year": 2015,
+            "doi": "10.1056/NEJMoa1504720",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1504720"
+          },
+          {
+            "title": "SGLT2 inhibitors for primary and secondary prevention of cardiovascular and renal outcomes in type 2 diabetes: a systematic review and meta-analysis of cardiovascular outcome trials",
+            "authors": "Thomas A Zelniker, Stephen D Wiviott, Itamar Raz, Kyungah Im, Erica L Goodrich, Marc P Bonaca, Ofri Mosenzon, Eri T Kato, Avivit Cahn, Remo H M Furtado, Deepak L Bhatt, Lawrence A Leiter, Darren K McGuire, John P H Wilding, Marc S Sabatine",
+            "year": 2019,
+            "doi": "10.1016/S0140-6736(18)32590-X",
+            "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)32590-X/fulltext"
+          },
+          {
+            "title": "Association of SGLT2 Inhibitors With Cardiovascular and Kidney Outcomes in Patients With Type 2 Diabetes: A Meta-analysis",
+            "authors": "Darren K. McGuire, William J. Shih, Francesco Cosentino, Bernard Charbonnel, David Z.I. Cherney, Samuel Dagogo-Jack, Richard Pratley, Michael Greenberg, Steven Wang, Serge A. Jabbour, Kamlesh Khunti, Urszula B. O'Brien, Agata Ponikowska, Robert E. Ratner, Mikhail N. Kosiborod",
+            "year": 2021,
+            "doi": "10.1001/jamacardio.2020.4511",
+            "url": "https://jamanetwork.com/journals/jamacardiology/fullarticle/2771563"
+          },
+          {
+            "title": "Dapagliflozin and Cardiovascular Outcomes in Type 2 Diabetes",
+            "authors": "Stephen D. Wiviott, Itamar Raz, Marc P. Bonaca, Ofri Mosenzon, Eri T. Kato, Avivit Cahn, Michael G. Silverman, Thomas A. Zelniker, Julia F. Kuder, Sabina A. Murphy, Deepak L. Bhatt, Lawrence A. Leiter, Darren K. McGuire, John P.H. Wilding, Christian T. Ruff, Ingrid A.M. Gause-Nilsson, Marcus Ljunggren, Anna Maria Langkilde, Peter A. Johansson, Marc S. Sabatine",
+            "year": 2019,
+            "doi": "10.1056/NEJMoa1812389",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1812389"
+          },
+          {
+            "title": "Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes",
+            "authors": "Bruce Neal, Vlado Perkovic, Kenneth W. Mahaffey, Dick de Zeeuw, Greg Fulcher, Ngozi Erondu, Wayne Shaw, Gordon Law, Mehul Desai, David R. Matthews",
+            "year": 2017,
+            "doi": "10.1056/NEJMoa1611925",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611925"
+          }
+        ],
+        "timeMs": 26998,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes",
+                "authors": "Bernard Zinman, Christoph Wanner, John M. Lachin, David Fitchett, Erich Bluhmki, Stefan Hantel, Michaela Mattheus, Theresa Devins, Odd Erik Johansen, Hans J. Woerle, Uli C. Broedl, Silvio E. Inzucchi",
+                "year": 2015,
+                "doi": "10.1056/NEJMoa1504720",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1504720"
+              },
+              "supportive": true,
+              "reasoning": "This landmark trial (EMPA-REG OUTCOME) directly demonstrates that empagliflozin, an SGLT2 inhibitor, significantly reduces cardiovascular mortality and hospitalization for heart failure in patients with type 2 diabetes."
+            },
+            {
+              "paper": {
+                "title": "SGLT2 inhibitors for primary and secondary prevention of cardiovascular and renal outcomes in type 2 diabetes: a systematic review and meta-analysis of cardiovascular outcome trials",
+                "authors": "Thomas A Zelniker, Stephen D Wiviott, Itamar Raz, Kyungah Im, Erica L Goodrich, Marc P Bonaca, Ofri Mosenzon, Eri T Kato, Avivit Cahn, Remo H M Furtado, Deepak L Bhatt, Lawrence A Leiter, Darren K McGuire, John P H Wilding, Marc S Sabatine",
+                "year": 2019,
+                "doi": "10.1016/S0140-6736(18)32590-X",
+                "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)32590-X/fulltext"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a systematic review and meta-analysis specifically evaluating the efficacy of SGLT2 inhibitors in preventing cardiovascular outcomes, including cardiovascular death and heart failure hospitalization, in patients with type 2 diabetes."
+            },
+            {
+              "paper": {
+                "title": "Association of SGLT2 Inhibitors With Cardiovascular and Kidney Outcomes in Patients With Type 2 Diabetes: A Meta-analysis",
+                "authors": "Darren K. McGuire, William J. Shih, Francesco Cosentino, Bernard Charbonnel, David Z.I. Cherney, Samuel Dagogo-Jack, Richard Pratley, Michael Greenberg, Steven Wang, Serge A. Jabbour, Kamlesh Khunti, Urszula B. O'Brien, Agata Ponikowska, Robert E. Ratner, Mikhail N. Kosiborod",
+                "year": 2021,
+                "doi": "10.1001/jamacardio.2020.4511",
+                "url": "https://jamanetwork.com/journals/jamacardiology/fullarticle/2771563"
+              },
+              "supportive": true,
+              "reasoning": "The paper is a meta-analysis specifically evaluating the association of SGLT2 inhibitors with cardiovascular outcomes, including cardiovascular death and heart failure hospitalization, in patients with type 2 diabetes, directly addressing and supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Dapagliflozin and Cardiovascular Outcomes in Type 2 Diabetes",
+                "authors": "Stephen D. Wiviott, Itamar Raz, Marc P. Bonaca, Ofri Mosenzon, Eri T. Kato, Avivit Cahn, Michael G. Silverman, Thomas A. Zelniker, Julia F. Kuder, Sabina A. Murphy, Deepak L. Bhatt, Lawrence A. Leiter, Darren K. McGuire, John P.H. Wilding, Christian T. Ruff, Ingrid A.M. Gause-Nilsson, Marcus Ljunggren, Anna Maria Langkilde, Peter A. Johansson, Marc S. Sabatine",
+                "year": 2019,
+                "doi": "10.1056/NEJMoa1812389",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1812389"
+              },
+              "supportive": true,
+              "reasoning": "The paper reports on the DECLARE-TIMI 58 trial, which directly demonstrates that the SGLT2 inhibitor dapagliflozin significantly reduces the composite outcome of cardiovascular death and hospitalization for heart failure in patients with type 2 diabetes."
+            },
+            {
+              "paper": {
+                "title": "Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes",
+                "authors": "Bruce Neal, Vlado Perkovic, Kenneth W. Mahaffey, Dick de Zeeuw, Greg Fulcher, Ngozi Erondu, Wayne Shaw, Gordon Law, Mehul Desai, David R. Matthews",
+                "year": 2017,
+                "doi": "10.1056/NEJMoa1611925",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611925"
+              },
+              "supportive": true,
+              "reasoning": "The CANVAS trial directly investigates the SGLT2 inhibitor canagliflozin and demonstrates its efficacy in reducing cardiovascular events, including hospitalization for heart failure, in patients with type 2 diabetes."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "M4-exercise-dementia",
+      "claim": "Physical activity in midlife and later life is associated with reduced risk of dementia and cognitive decline.",
+      "claimType": "medical",
+      "ss": {
+        "papers": [],
+        "timeMs": 3438,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [],
+        "timeMs": 150014,
+        "error": "AbortError: The operation was aborted.",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      }
+    },
+    {
+      "id": "S1-permafrost-methane",
+      "claim": "Thawing of Arctic permafrost releases greenhouse gases in a positive feedback loop that amplifies climate warming.",
+      "claimType": "scientific",
+      "ss": {
+        "papers": [],
+        "timeMs": 3618,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Climate change and the permafrost carbon feedback",
+            "authors": "E. A. G. Schuur, A. D. McGuire, C. Schädel, G. Grosse, J. W. Harden, D. J. Hayes, G. Hugelius, C. D. Koven, P. Kuhry, D. M. Lawrence, S. M. Natali, D. Olefeldt, V. E. Romanovsky, K. Schaefer, M. R. Turetsky, C. C. Treat, J. E. Vonk",
+            "year": 2015,
+            "doi": "10.1038/nature14338",
+            "url": "https://doi.org/10.1038/nature14338"
+          },
+          {
+            "title": "Permafrost carbon feedbacks threaten global climate goals",
+            "authors": "Susan M. Natali, John P. Holdren, Brendan M. Rogers, Rachael Treharne, Philip B. Duffy, Rafe Pomerance, Erin MacDonald",
+            "year": 2021,
+            "doi": "10.1073/pnas.2100163118",
+            "url": "https://www.pnas.org/doi/10.1073/pnas.2100163118"
+          },
+          {
+            "title": "Carbon release through abrupt permafrost thaw",
+            "authors": "M. R. Turetsky, B. W. Abbott, M. C. Jones, K. Walter Anthony, D. Olefeldt, E. A. G. Schuur, G. Grosse, P. Kuhry, G. Hugelius, C. Koven, D. M. Lawrence, C. Gibson, A. B. K. Sannel, A. D. McGuire",
+            "year": 2020,
+            "doi": "10.1038/s41561-019-0526-0",
+            "url": "https://www.nature.com/articles/s41561-019-0526-0"
+          },
+          {
+            "title": "Permafrost carbon-climate feedbacks accelerate global warming",
+            "authors": "Charles D. Koven, B. Ringeval, P. Friedlingstein, P. Ciais, P. Cadule, D. Franc, S. Tarnocai, A. Krinner",
+            "year": 2011,
+            "doi": "10.1073/pnas.1103910108",
+            "url": "https://www.pnas.org/doi/10.1073/pnas.1103910108"
+          },
+          {
+            "title": "Vulnerability of Permafrost Carbon to Climate Change: Implications for the Global Carbon Cycle",
+            "authors": "Edward A. G. Schuur, James Bockheim, Josep G. Canadell, Eugenie Euskirchen, Christopher B. Field, Sergey V. Goryachkin, Stefan Hagemann, Peter Kuhry, Peter M. Lafleur, Hanna Lee, Galina Mazhitova, Frederick E. Nelson, Annette Rinke, Vladimir E. Romanovsky, Nikolay Shiklomanov, Charles Tarnocai, Sergey Venevsky, Jason G. Vogel, Sergei A. Zimov",
+            "year": 2008,
+            "doi": "10.1641/B580807",
+            "url": "https://academic.oup.com/bioscience/article/58/8/701/238454"
+          }
+        ],
+        "timeMs": 97283,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Climate change and the permafrost carbon feedback",
+                "authors": "E. A. G. Schuur, A. D. McGuire, C. Schädel, G. Grosse, J. W. Harden, D. J. Hayes, G. Hugelius, C. D. Koven, P. Kuhry, D. M. Lawrence, S. M. Natali, D. Olefeldt, V. E. Romanovsky, K. Schaefer, M. R. Turetsky, C. C. Treat, J. E. Vonk",
+                "year": 2015,
+                "doi": "10.1038/nature14338",
+                "url": "https://doi.org/10.1038/nature14338"
+              },
+              "supportive": true,
+              "reasoning": "The paper explicitly reviews the permafrost carbon feedback, detailing how climate change-induced thawing of Arctic permafrost releases greenhouse gases that further amplify global warming."
+            },
+            {
+              "paper": {
+                "title": "Permafrost carbon feedbacks threaten global climate goals",
+                "authors": "Susan M. Natali, John P. Holdren, Brendan M. Rogers, Rachael Treharne, Philip B. Duffy, Rafe Pomerance, Erin MacDonald",
+                "year": 2021,
+                "doi": "10.1073/pnas.2100163118",
+                "url": "https://www.pnas.org/doi/10.1073/pnas.2100163118"
+              },
+              "supportive": true,
+              "reasoning": "The paper's title explicitly focuses on 'permafrost carbon feedbacks' and their threat to global climate goals, directly addressing and supporting the claim that thawing permafrost releases greenhouse gases in an amplifying feedback loop."
+            },
+            {
+              "paper": {
+                "title": "Carbon release through abrupt permafrost thaw",
+                "authors": "M. R. Turetsky, B. W. Abbott, M. C. Jones, K. Walter Anthony, D. Olefeldt, E. A. G. Schuur, G. Grosse, P. Kuhry, G. Hugelius, C. Koven, D. M. Lawrence, C. Gibson, A. B. K. Sannel, A. D. McGuire",
+                "year": 2020,
+                "doi": "10.1038/s41561-019-0526-0",
+                "url": "https://www.nature.com/articles/s41561-019-0526-0"
+              },
+              "supportive": true,
+              "reasoning": "The paper explicitly investigates carbon release from abrupt permafrost thaw, directly supporting the claim that thawing permafrost releases greenhouse gases that contribute to climate warming."
+            },
+            {
+              "paper": {
+                "title": "Permafrost carbon-climate feedbacks accelerate global warming",
+                "authors": "Charles D. Koven, B. Ringeval, P. Friedlingstein, P. Ciais, P. Cadule, D. Franc, S. Tarnocai, A. Krinner",
+                "year": 2011,
+                "doi": "10.1073/pnas.1103910108",
+                "url": "https://www.pnas.org/doi/10.1073/pnas.1103910108"
+              },
+              "supportive": true,
+              "reasoning": "The paper's title explicitly states that permafrost carbon-climate feedbacks accelerate global warming, directly supporting the claim that thawing permafrost releases greenhouse gases in an amplifying positive feedback loop."
+            },
+            {
+              "paper": {
+                "title": "Vulnerability of Permafrost Carbon to Climate Change: Implications for the Global Carbon Cycle",
+                "authors": "Edward A. G. Schuur, James Bockheim, Josep G. Canadell, Eugenie Euskirchen, Christopher B. Field, Sergey V. Goryachkin, Stefan Hagemann, Peter Kuhry, Peter M. Lafleur, Hanna Lee, Galina Mazhitova, Frederick E. Nelson, Annette Rinke, Vladimir E. Romanovsky, Nikolay Shiklomanov, Charles Tarnocai, Sergey Venevsky, Jason G. Vogel, Sergei A. Zimov",
+                "year": 2008,
+                "doi": "10.1641/B580807",
+                "url": "https://academic.oup.com/bioscience/article/58/8/701/238454"
+              },
+              "supportive": true,
+              "reasoning": "The paper explicitly examines the vulnerability of permafrost carbon to climate change, detailing how thawing permafrost releases carbon into the atmosphere and creates a positive feedback loop that exacerbates global warming."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "S2-mrna-vaccine-efficacy",
+      "claim": "The BNT162b2 mRNA COVID-19 vaccine demonstrated approximately 95% efficacy against symptomatic COVID-19 in its pivotal phase 3 trial.",
+      "claimType": "scientific",
+      "ss": {
+        "papers": [],
+        "timeMs": 3888,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine",
+            "authors": "Fernando P. Polack, Stephen J. Thomas, Nicholas Kitchin, Judith Absalon, Alejandra Gurtman, Stephen Lockhart, John L. Perez, Gonzalo Pérez Marc, Edson D. Moreira, Cristiano Zerbini, et al.",
+            "year": 2020,
+            "doi": "10.1056/NEJMoa2034577",
+            "url": "https://doi.org/10.1056/NEJMoa2034577"
+          },
+          {
+            "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine through 6 Months",
+            "authors": "Stephen J. Thomas, Edson D. Moreira, Nicholas Kitchin, Judith Absalon, Alejandra Gurtman, Stephen Lockhart, John L. Perez, Gonzalo Pérez Marc, Fernando P. Polack, Cristiano Zerbini, et al.",
+            "year": 2021,
+            "doi": "10.1056/NEJMoa2110345",
+            "url": "https://doi.org/10.1056/NEJMoa2110345"
+          },
+          {
+            "title": "BNT162b2 mRNA Covid-19 Vaccine in a Nationwide Mass Vaccination Setting",
+            "authors": "Noa Dagan, Noam Barda, Eldad Kepten, Oren Miron, Shay Perchik, Mark A. Katz, Ran D. Balicer",
+            "year": 2021,
+            "doi": "10.1056/NEJMoa2101765",
+            "url": "https://doi.org/10.1056/NEJMoa2101765"
+          },
+          {
+            "title": "Impact and effectiveness of mRNA BNT162b2 vaccine against SARS-CoV-2 infections and COVID-19 cases, hospitalisations, and deaths following a nationwide vaccination campaign in Israel: an observational study using national surveillance data",
+            "authors": "Eric J. Haas, Frederick J. Angulo, John M. McLaughlin, Emilia Anis, Sharon R. Singer, Farid Khan, Nati Brooks, Meirav Smaja, Gabriel Mircus, Kaijie Pan, et al.",
+            "year": 2021,
+            "doi": "10.1016/S0140-6736(21)00947-8",
+            "url": "https://doi.org/10.1016/S0140-6736(21)00947-8"
+          },
+          {
+            "title": "Comparative systematic review and meta-analysis of 3 million individuals evaluating the efficacy and safety of COVID-19 vaccines",
+            "authors": "Ian McDonald, Sarah M. Murray, Catherine J. Reynolds, Daniel M. Altmann, Rosemary J. Boyton",
+            "year": 2021,
+            "doi": "10.1016/j.jinf.2021.05.022",
+            "url": "https://doi.org/10.1016/j.jinf.2021.05.022"
+          }
+        ],
+        "timeMs": 45183,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine",
+                "authors": "Fernando P. Polack, Stephen J. Thomas, Nicholas Kitchin, Judith Absalon, Alejandra Gurtman, Stephen Lockhart, John L. Perez, Gonzalo Pérez Marc, Edson D. Moreira, Cristiano Zerbini, et al.",
+                "year": 2020,
+                "doi": "10.1056/NEJMoa2034577",
+                "url": "https://doi.org/10.1056/NEJMoa2034577"
+              },
+              "supportive": true,
+              "reasoning": "This paper is the pivotal phase 3 trial report for the BNT162b2 vaccine, directly demonstrating and concluding that the vaccine has a 95% efficacy against Covid-19."
+            },
+            {
+              "paper": {
+                "title": "Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine through 6 Months",
+                "authors": "Stephen J. Thomas, Edson D. Moreira, Nicholas Kitchin, Judith Absalon, Alejandra Gurtman, Stephen Lockhart, John L. Perez, Gonzalo Pérez Marc, Fernando P. Polack, Cristiano Zerbini, et al.",
+                "year": 2021,
+                "doi": "10.1056/NEJMoa2110345",
+                "url": "https://doi.org/10.1056/NEJMoa2110345"
+              },
+              "supportive": true,
+              "reasoning": "This paper reports the updated results of the pivotal phase 3 trial for the BNT162b2 vaccine, directly confirming its high efficacy (initially ~95%) against symptomatic COVID-19."
+            },
+            {
+              "paper": {
+                "title": "BNT162b2 mRNA Covid-19 Vaccine in a Nationwide Mass Vaccination Setting",
+                "authors": "Noa Dagan, Noam Barda, Eldad Kepten, Oren Miron, Shay Perchik, Mark A. Katz, Ran D. Balicer",
+                "year": 2021,
+                "doi": "10.1056/NEJMoa2101765",
+                "url": "https://doi.org/10.1056/NEJMoa2101765"
+              },
+              "supportive": false,
+              "reasoning": "The paper evaluates the real-world effectiveness of the BNT162b2 vaccine in a nationwide mass vaccination setting in Israel, rather than reporting the findings of its pivotal phase 3 clinical trial."
+            },
+            {
+              "paper": {
+                "title": "Impact and effectiveness of mRNA BNT162b2 vaccine against SARS-CoV-2 infections and COVID-19 cases, hospitalisations, and deaths following a nationwide vaccination campaign in Israel: an observational study using national surveillance data",
+                "authors": "Eric J. Haas, Frederick J. Angulo, John M. McLaughlin, Emilia Anis, Sharon R. Singer, Farid Khan, Nati Brooks, Meirav Smaja, Gabriel Mircus, Kaijie Pan, et al.",
+                "year": 2021,
+                "doi": "10.1016/S0140-6736(21)00947-8",
+                "url": "https://doi.org/10.1016/S0140-6736(21)00947-8"
+              },
+              "supportive": false,
+              "reasoning": "The paper is an observational study evaluating the real-world effectiveness of the vaccine in Israel, rather than the pivotal phase 3 clinical trial referenced in the claim."
+            },
+            {
+              "paper": {
+                "title": "Comparative systematic review and meta-analysis of 3 million individuals evaluating the efficacy and safety of COVID-19 vaccines",
+                "authors": "Ian McDonald, Sarah M. Murray, Catherine J. Reynolds, Daniel M. Altmann, Rosemary J. Boyton",
+                "year": 2021,
+                "doi": "10.1016/j.jinf.2021.05.022",
+                "url": "https://doi.org/10.1016/j.jinf.2021.05.022"
+              },
+              "supportive": true,
+              "reasoning": "As a comprehensive systematic review and meta-analysis evaluating COVID-19 vaccine efficacy, this paper aggregates and confirms the clinical trial data, directly supporting the established ~95% efficacy finding of the BNT162b2 phase 3 trial."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "S3-crispr-base-editing",
+      "claim": "Base editing can introduce point mutations in DNA without creating double-strand breaks, offering higher precision than traditional CRISPR-Cas9.",
+      "claimType": "scientific",
+      "ss": {
+        "papers": [],
+        "timeMs": 3879,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [],
+        "timeMs": 150007,
+        "error": "AbortError: The operation was aborted.",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      }
+    },
+    {
+      "id": "F1-qe-long-rates",
+      "claim": "The Federal Reserve's large-scale asset purchase programs (quantitative easing) reduced longer-term interest rates during the 2008-2014 period.",
+      "claimType": "financial",
+      "ss": {
+        "papers": [],
+        "timeMs": 3338,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [],
+        "timeMs": 150006,
+        "error": "AbortError: The operation was aborted.",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      }
+    },
+    {
+      "id": "F2-minimum-wage-employment",
+      "claim": "Modest increases in the minimum wage have small or negligible effects on overall employment levels.",
+      "claimType": "financial",
+      "ss": {
+        "papers": [],
+        "timeMs": 3879,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "The Effect of Minimum Wages on Low-Wage Jobs",
+            "authors": "Doruk Cengiz, Arindrajit Dube, Attila Lindner, Ben Zipperer",
+            "year": 2019,
+            "doi": "10.1093/qje/qjz014",
+            "url": "https://academic.oup.com/qje/article/134/3/1405/5484905"
+          },
+          {
+            "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+            "authors": "Arindrajit Dube, T. William Lester, Michael Reich",
+            "year": 2010,
+            "doi": "10.1162/REST_a_00039",
+            "url": "https://direct.mit.edu/rest/article/92/4/945/57733/Minimum-Wage-Effects-Across-State-Borders"
+          },
+          {
+            "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania",
+            "authors": "David Card, Alan B. Krueger",
+            "year": 1994,
+            "doi": "10.2307/2118030",
+            "url": "https://www.jstor.org/stable/2118030"
+          },
+          {
+            "title": "15 Years of Research on US Employment and the Minimum Wage",
+            "authors": "Paul Wolfson, Dale Belman",
+            "year": 2019,
+            "doi": "10.1111/labr.12162",
+            "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/labr.12162"
+          },
+          {
+            "title": "Publication Selection Bias in Minimum-Wage Research? A Meta-Regression Analysis",
+            "authors": "Hristos Doucouliagos, T. D. Stanley",
+            "year": 2009,
+            "doi": "10.1111/j.1467-8543.2009.00723.x",
+            "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8543.2009.00723.x"
+          }
+        ],
+        "timeMs": 21390,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "The Effect of Minimum Wages on Low-Wage Jobs",
+                "authors": "Doruk Cengiz, Arindrajit Dube, Attila Lindner, Ben Zipperer",
+                "year": 2019,
+                "doi": "10.1093/qje/qjz014",
+                "url": "https://academic.oup.com/qje/article/134/3/1405/5484905"
+              },
+              "supportive": true,
+              "reasoning": "This highly relevant paper analyzes 138 state-level minimum wage changes and finds that they significantly increased wages for low-wage workers without causing any detectable change in overall employment levels, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Minimum Wage Effects Across State Borders: Estimates Using Contiguous Counties",
+                "authors": "Arindrajit Dube, T. William Lester, Michael Reich",
+                "year": 2010,
+                "doi": "10.1162/REST_a_00039",
+                "url": "https://direct.mit.edu/rest/article/92/4/945/57733/Minimum-Wage-Effects-Across-State-Borders"
+              },
+              "supportive": true,
+              "reasoning": "This highly influential paper uses contiguous border counties to control for regional trends and finds that minimum wage increases have no significant negative effects on employment levels in low-wage sectors, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania",
+                "authors": "David Card, Alan B. Krueger",
+                "year": 1994,
+                "doi": "10.2307/2118030",
+                "url": "https://www.jstor.org/stable/2118030"
+              },
+              "supportive": true,
+              "reasoning": "This seminal paper by Card and Krueger famously found that a minimum wage increase in New Jersey did not reduce employment in the fast-food industry compared to neighboring Pennsylvania, directly supporting the claim that modest increases have negligible negative effects on employment."
+            },
+            {
+              "paper": {
+                "title": "15 Years of Research on US Employment and the Minimum Wage",
+                "authors": "Paul Wolfson, Dale Belman",
+                "year": 2019,
+                "doi": "10.1111/labr.12162",
+                "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/labr.12162"
+              },
+              "supportive": true,
+              "reasoning": "This comprehensive review and meta-analysis of US minimum wage research concludes that minimum wage increases have had small or statistically insignificant effects on employment, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Publication Selection Bias in Minimum-Wage Research? A Meta-Regression Analysis",
+                "authors": "Hristos Doucouliagos, T. D. Stanley",
+                "year": 2009,
+                "doi": "10.1111/j.1467-8543.2009.00723.x",
+                "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8543.2009.00723.x"
+              },
+              "supportive": true,
+              "reasoning": "This meta-analysis of minimum wage research concludes that after correcting for publication bias, the empirical evidence indicates that minimum wage increases have an employment effect close to zero, directly supporting the claim."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "F3-central-bank-independence",
+      "claim": "Greater central bank independence is empirically associated with lower average inflation rates across industrialized economies.",
+      "claimType": "financial",
+      "ss": {
+        "papers": [],
+        "timeMs": 3348,
+        "error": "HTTP 429",
+        "exactGoldHits": {
+          "r3": false,
+          "r5": false
+        },
+        "acceptableSupport": {
+          "r3": false,
+          "r5": false,
+          "judgments": []
+        }
+      },
+      "gem": {
+        "papers": [
+          {
+            "title": "Central Bank Independence and Macroeconomic Performance: Some Comparative Evidence",
+            "authors": "Alberto Alesina, Lawrence H. Summers",
+            "year": 1993,
+            "doi": "10.2307/2077833",
+            "url": "https://doi.org/10.2307/2077833"
+          },
+          {
+            "title": "Political and Monetary Institutions and Public Financial Policies in the Industrial Countries",
+            "authors": "Vittorio Grilli, Donato Masciandaro, Guido Tabellini",
+            "year": 1991,
+            "doi": "10.2307/1344630",
+            "url": "https://doi.org/10.2307/1344630"
+          },
+          {
+            "title": "Measuring the Independence of Central Banks and Its Effect on Policy Outcomes",
+            "authors": "Alex Cukierman, Steven B. Webb, Bilin Neyapti",
+            "year": 1992,
+            "doi": "10.1093/wber/6.3.353",
+            "url": "https://doi.org/10.1093/wber/6.3.353"
+          },
+          {
+            "title": "Inflation and Central Bank Independence: A Meta-Regression Analysis",
+            "authors": "Jeroen Klomp, Jakob de Haan",
+            "year": 2010,
+            "doi": "10.1111/j.1467-6419.2009.00597.x",
+            "url": "https://doi.org/10.1111/j.1467-6419.2009.00597.x"
+          },
+          {
+            "title": "Central Bank Independence: An Update of Theory and Evidence",
+            "authors": "Helge Berger, Jakob de Haan, Sylvester C. W. Eijffinger",
+            "year": 2001,
+            "doi": "10.1111/1467-6419.00131",
+            "url": "https://doi.org/10.1111/1467-6419.00131"
+          }
+        ],
+        "timeMs": 59181,
+        "exactGoldHits": {
+          "r3": true,
+          "r5": true
+        },
+        "acceptableSupport": {
+          "r3": true,
+          "r5": true,
+          "judgments": [
+            {
+              "paper": {
+                "title": "Central Bank Independence and Macroeconomic Performance: Some Comparative Evidence",
+                "authors": "Alberto Alesina, Lawrence H. Summers",
+                "year": 1993,
+                "doi": "10.2307/2077833",
+                "url": "https://doi.org/10.2307/2077833"
+              },
+              "supportive": true,
+              "reasoning": "This seminal paper by Alesina and Summers (1993) directly examines industrialized economies and finds a strong empirical correlation between higher central bank independence and lower average inflation rates."
+            },
+            {
+              "paper": {
+                "title": "Political and Monetary Institutions and Public Financial Policies in the Industrial Countries",
+                "authors": "Vittorio Grilli, Donato Masciandaro, Guido Tabellini",
+                "year": 1991,
+                "doi": "10.2307/1344630",
+                "url": "https://doi.org/10.2307/1344630"
+              },
+              "supportive": true,
+              "reasoning": "This foundational paper constructs an index of central bank independence and empirically demonstrates that greater independence is strongly associated with lower inflation rates across industrialized countries."
+            },
+            {
+              "paper": {
+                "title": "Measuring the Independence of Central Banks and Its Effect on Policy Outcomes",
+                "authors": "Alex Cukierman, Steven B. Webb, Bilin Neyapti",
+                "year": 1992,
+                "doi": "10.1093/wber/6.3.353",
+                "url": "https://doi.org/10.1093/wber/6.3.353"
+              },
+              "supportive": true,
+              "reasoning": "This seminal paper develops indices of central bank independence and empirically demonstrates that greater legal independence is significantly associated with lower inflation rates in industrialized countries, directly supporting the claim."
+            },
+            {
+              "paper": {
+                "title": "Inflation and Central Bank Independence: A Meta-Regression Analysis",
+                "authors": "Jeroen Klomp, Jakob de Haan",
+                "year": 2010,
+                "doi": "10.1111/j.1467-6419.2009.00597.x",
+                "url": "https://doi.org/10.1111/j.1467-6419.2009.00597.x"
+              },
+              "supportive": true,
+              "reasoning": "This meta-regression analysis comprehensively reviews empirical studies on the topic and confirms a robust negative relationship between central bank independence and inflation, particularly in OECD/industrialized economies."
+            },
+            {
+              "paper": {
+                "title": "Central Bank Independence: An Update of Theory and Evidence",
+                "authors": "Helge Berger, Jakob de Haan, Sylvester C. W. Eijffinger",
+                "year": 2001,
+                "doi": "10.1111/1467-6419.00131",
+                "url": "https://doi.org/10.1111/1467-6419.00131"
+              },
+              "supportive": true,
+              "reasoning": "The paper provides a comprehensive review of the empirical evidence on central bank independence, confirming the well-established finding that higher independence is associated with lower inflation, particularly in industrialized countries."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
