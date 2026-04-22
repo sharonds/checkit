@@ -11,6 +11,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import type { Config } from "../config.ts";
 import { createGeminiCapability } from "../providers/gemini-capability.ts";
+import { isE2E, assertMocksOnly } from "../e2e/mode.ts";
+import { loadScenario } from "../e2e/fixtures.ts";
 
 export const MINIMAX_BASE_URL = "https://api.minimax.io/anthropic";
 export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
@@ -34,6 +36,7 @@ export interface LlmClient {
 
 function createAnthropicCaller(client: Anthropic, model: string): LlmClient["call"] {
   return async (prompt: string, maxTokens = 1024) => {
+    assertMocksOnly("llm:anthropic");
     const response = await client.messages.create({
       model,
       max_tokens: maxTokens,
@@ -45,6 +48,7 @@ function createAnthropicCaller(client: Anthropic, model: string): LlmClient["cal
 
 function createOpenAICaller(client: OpenAI, model: string): LlmClient["call"] {
   return async (prompt: string, maxTokens = 1024) => {
+    assertMocksOnly("llm:openai");
     const response = await client.chat.completions.create({
       model,
       max_tokens: maxTokens,
@@ -69,6 +73,7 @@ interface GeminiGenerateContentResponse {
 
 function createGeminiCaller(apiKey: string, model: string): LlmClient["call"] {
   return async (prompt: string, maxTokens = 1024) => {
+    assertMocksOnly("llm:gemini");
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
       {
@@ -108,6 +113,33 @@ function createGeminiCaller(apiKey: string, model: string): LlmClient["call"] {
  * Returns null when no usable key is configured.
  */
 export function getLlmClient(config: Config): LlmClient | null {
+  // E2E mode: return a scenario-driven mock instead of making real HTTP calls.
+  // We still honor the configured provider so skills that branch on it see the
+  // expected value, but the call() handler reads from the fixture.
+  if (isE2E()) {
+    const provider: LlmProvider =
+      config.llmProvider ??
+      (config.minimaxApiKey
+        ? "minimax"
+        : config.anthropicApiKey
+          ? "anthropic"
+          : config.geminiApiKey
+            ? "gemini"
+            : "minimax");
+    return {
+      provider,
+      model: LLM_MODEL[provider],
+      call: async () => {
+        const s = loadScenario();
+        const text =
+          s.providers.geminiChat?.text ??
+          s.providers.minimax?.text ??
+          "{}";
+        return text;
+      },
+    };
+  }
+
   // Explicit provider preference
   if (config.llmProvider === "openrouter" && config.openrouterApiKey) {
     const client = new OpenAI({ apiKey: config.openrouterApiKey, baseURL: OPENROUTER_BASE_URL });
